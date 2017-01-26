@@ -45,7 +45,7 @@ public class Robot extends SampleRobot {
 			spiGyro.startLiveWindowMode();
 		} catch (NullPointerException npe) {
 			// do nothing
-
+//HSGDHSDGSHHDSGHD
 		}
 	}
 
