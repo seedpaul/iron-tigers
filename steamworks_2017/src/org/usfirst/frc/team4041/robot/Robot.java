@@ -44,8 +44,7 @@ public class Robot extends SampleRobot {
 			spiGyro.reset();
 			spiGyro.startLiveWindowMode();
 		} catch (NullPointerException npe) {
-			// do nothing
-//HSGDHSDGSHHDSGHD
+			//this  is another source control test mod
 		}
 	}
 
