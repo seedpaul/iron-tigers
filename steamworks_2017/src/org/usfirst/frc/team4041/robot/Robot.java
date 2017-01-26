@@ -13,15 +13,16 @@ import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.CameraServer;
 
 public class Robot extends SampleRobot {
+	
 	CameraServer server;
 	RobotDrive robotDrive;
-	static final Talon leftTalon = new Talon(3);
-	static final Talon rightTalon = new Talon(2);
-	static final VictorSP victor = new VictorSP(6);
+	static final Talon leftTalon = new Talon(RobotMap.leftTalon);
+	static final Talon rightTalon = new Talon(RobotMap.RightTalon);
+	static final VictorSP victor = new VictorSP(RobotMap.shooterVictor);
 	
-	static final Encoder leftEncoder = new Encoder(0, 1, true, Encoder.EncodingType.k4X);
-	static final Encoder rightEncoder = new Encoder(2, 3, false, Encoder.EncodingType.k4X);
-	static final Joystick xbox = new Joystick(0);
+	static final Encoder leftEncoder = new Encoder(RobotMap.leftEncooderDIO1, RobotMap.leftEncooderDIO2, true, Encoder.EncodingType.k4X);
+	static final Encoder rightEncoder = new Encoder(RobotMap.RightEncooderDIO1, RobotMap.RightEncooderDIO12, false, Encoder.EncodingType.k4X);
+	static final Joystick xbox = new Joystick(RobotMap.xboxController);
 	double axisR;
 	double axisL;
 	double triggers;
