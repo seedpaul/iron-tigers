@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 public class Robot extends SampleRobot {
 	
@@ -24,8 +25,8 @@ public class Robot extends SampleRobot {
 	static final Encoder shooterEncoder = new Encoder(RobotMap.shooterEncoderDIO1, RobotMap.shooterEncoderDIO2, true, Encoder.EncodingType.k4X);
 	
 	static final Joystick xbox = new Joystick(RobotMap.xboxController);
-	
 	static final ADXRS450_Gyro spiGyro = new ADXRS450_Gyro(SPI.Port.kOnboardCS0);
+	//static final LiveWindow liveWindow = new LiveWindow();
 	
 	double axisR;
 	double axisL;
@@ -46,6 +47,8 @@ public class Robot extends SampleRobot {
 		
 		leftEncoder.setDistancePerPulse(0.00277778);
 		rightEncoder.setDistancePerPulse(0.00277778);
+		
+		//LiveWindow.addSensor("Chassis", "gyro", spiGyro);
 
 		try {
 			spiGyro.reset();
