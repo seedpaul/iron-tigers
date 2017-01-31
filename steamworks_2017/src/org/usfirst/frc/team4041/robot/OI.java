@@ -14,7 +14,7 @@ public class OI {
 	static final JoystickButton buttonLeftBumper = new JoystickButton(xbox, RobotMap.buttonBumperLeft);
 
     public void init() {
-
+    	//put some code here if you like
     }
 
     private static double deadzone(double d) {
