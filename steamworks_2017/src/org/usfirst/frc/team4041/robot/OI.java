@@ -1,39 +1,84 @@
 package org.usfirst.frc.team4041.robot;
 
-import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
-import org.usfirst.frc.team4041.robot.commands.ExampleCommand;
-
-/**
- * This class is the glue that binds the controls on the physical operator
- * interface to the commands and command groups that allow control of the robot.
- */
 public class OI {
-	//// CREATING BUTTONS
-	// One type of button is a joystick button which is any button on a
-	//// joystick.
-	// You create one by telling it which joystick it's on and which button
-	// number it is.
-	// Joystick stick = new Joystick(port);
-	// Button button = new JoystickButton(stick, buttonNumber);
 
-	// There are a few additional built in buttons you can use. Additionally,
-	// by subclassing Button you can create custom triggers and bind those to
-	// commands the same as any other Button.
+	static final Joystick xbox = new Joystick(RobotMap.xboxController);
+	static final JoystickButton buttonA = new JoystickButton(xbox, RobotMap.buttonA);
+	static final JoystickButton buttonB = new JoystickButton(xbox, RobotMap.buttonB);
+	static final JoystickButton buttonX = new JoystickButton(xbox, RobotMap.buttonX);
+	static final JoystickButton buttonY = new JoystickButton(xbox, RobotMap.buttonY);
+	static final JoystickButton buttonRightBumper = new JoystickButton(xbox, RobotMap.buttonBumperRight);
+	static final JoystickButton buttonLeftBumper = new JoystickButton(xbox, RobotMap.buttonBumperLeft);
 
-	//// TRIGGERING COMMANDS WITH BUTTONS
-	// Once you have a button, it's trivial to bind it to a button in one of
-	// three ways:
+    public void init() {
 
-	// Start the command when the button is pressed and let it run the command
-	// until it is finished as determined by it's isFinished method.
-	// button.whenPressed(new ExampleCommand());
+    }
 
-	// Run the command while the button is being held down and interrupt it once
-	// the button is released.
-	// button.whileHeld(new ExampleCommand());
+    private static double deadzone(double d) {
+        //whenever the controller moves LESS than the magic number, the 
+        //joystick is in the loose position so return zero - as if the 
+        //joystick was not moved
+        if (Math.abs(d) < RobotMap.DEADZONE_MAGIC_NUMBER) {
+            return 0;
+        }
 
-	// Start the command when the button is released and let it run the command
-	// until it is finished as determined by it's isFinished method.
-	// button.whenReleased(new ExampleCommand());
+        //When the joystick is used for a purpose (passes the if statements, 
+        //hence not just being loose), do math
+        //gets the sign of d, negative or positive
+        return (d / Math.abs(d)) * ((Math.abs(d) - RobotMap.DEADZONE_MAGIC_NUMBER) / (1 - RobotMap.DEADZONE_MAGIC_NUMBER)); //scales it
+    }
+
+    public static double getLeftStickY() {
+        return deadzone(-xbox.getRawAxis(RobotMap.leftStickY));
+    }
+
+    public static double getRightStickY() {
+        return deadzone(-xbox.getRawAxis(RobotMap.rightStickY));
+    }
+
+    public static boolean isXButtonPressed() {
+        return xbox.getRawButton(RobotMap.buttonX);
+    }
+
+    public static boolean isYButtonPressed() {
+        return xbox.getRawButton(RobotMap.buttonY);
+    }
+
+    public static boolean isAButtonPressed() {
+        return xbox.getRawButton(RobotMap.buttonA);
+    }
+
+    public static boolean isBButtonPressed() {
+        return xbox.getRawButton(RobotMap.buttonB);
+    }
+
+    public static boolean isRBButtonPressed() {
+        return xbox.getRawButton(RobotMap.buttonBumperRight);
+    }
+
+    public static boolean isLBButtonPressed() {
+        return xbox.getRawButton(RobotMap.buttonBumperLeft);
+    }
+
+    public static double getRightTrigger() {
+        double triggerValue = xbox.getRawAxis(RobotMap.rightTrigger);
+        if (triggerValue < 0) {
+            return Math.abs(deadzone(triggerValue));
+        } else {
+            return 0;
+        }
+    }
+
+    public static double getLeftTrigger() {
+        double triggerValue = xbox.getRawAxis(RobotMap.leftTrigger);
+        if (triggerValue > 0) {
+            return deadzone(triggerValue);
+        } else {
+            return 0;
+        }
+    }
+
 }
