@@ -4,11 +4,10 @@ import org.usfirst.frc.team4041.robot.OI;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-public class DriveWithController extends CommandBase
-{
-
-    public DriveWithController()
-    {
+public class DriveWithController extends CommandBase {
+	
+    public DriveWithController(){
+    	
 		requires((Subsystem) driveTrain);
     }
 

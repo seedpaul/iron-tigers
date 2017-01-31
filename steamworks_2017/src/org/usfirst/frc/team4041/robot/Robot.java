@@ -12,10 +12,9 @@ public class Robot extends IterativeRobot {
 	
 	CameraServer server;
 	
-//	static final VictorSP shooterVictor = new VictorSP(RobotMap.shooterVictor);
 //	static final VictorSP waterfallVictor = new VictorSP(RobotMap.waterfallVictor);
 //	static final VictorSP pickerVictor = new VictorSP(RobotMap.pickerVictor);
-//	static final Encoder shooterEncoder = new Encoder(RobotMap.shooterEncoderDIO1, RobotMap.shooterEncoderDIO2, true, Encoder.EncodingType.k4X);
+
 
 	public void robotInit() {
 		
