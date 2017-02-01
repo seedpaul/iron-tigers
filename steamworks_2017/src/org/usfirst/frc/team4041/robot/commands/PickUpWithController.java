@@ -4,30 +4,33 @@ import org.usfirst.frc.team4041.robot.OI;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-public class ShootWithController extends CommandBase {
+public class PickUpWithController extends CommandBase {
 	
-	static final double shooterSpeed = 0.45;
+	static final double pickerSpeed = 0.75;
+	static boolean running;
 
-    public ShootWithController() {
+    public PickUpWithController() {
     	
-        requires((Subsystem) shooter);
+        requires((Subsystem) picker);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	
     	//we don't want it to run on initialization
+    	running = false;
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	
-    	if(OI.isBButtonPressed()){
-        	if(shooter.isSpinning()){
-        		shooter.stopShooter();
+    	if(OI.isAButtonPressed()){
+        	if(running){
+        		picker.stopPicker();
         	}else{
-        		shooter.runShooter(shooterSpeed);
+        		picker.startPicker(pickerSpeed);
         	}
+        	running = !running;
     	}
     }
 
@@ -38,12 +41,15 @@ public class ShootWithController extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-    	shooter.stopShooter();
+    	
+    	picker.stopPicker();
+    	running = false;
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	shooter.stopShooter();
+    	picker.stopPicker();
+    	running = false;
     }
-} 
+}

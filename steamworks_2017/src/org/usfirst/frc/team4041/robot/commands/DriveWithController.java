@@ -20,7 +20,6 @@ public class DriveWithController extends CommandBase {
     protected void execute() {   
  
        driveTrain.tankDrive(OI.getRightStickY(), OI.getLeftStickY());
-        
     }
     
     // Make this return true when this Command no longer needs to run execute()
@@ -38,6 +37,7 @@ public class DriveWithController extends CommandBase {
     // subsystems is scheduled to run
     protected void interrupted() {
         //log("I've been interrupted and am differing to the new Command");
+    	driveTrain.stop();
     }
 
 }

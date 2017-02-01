@@ -15,7 +15,6 @@ public class Robot extends IterativeRobot {
 //	static final VictorSP waterfallVictor = new VictorSP(RobotMap.waterfallVictor);
 //	static final VictorSP pickerVictor = new VictorSP(RobotMap.pickerVictor);
 
-
 	public void robotInit() {
 		
 		 server = CameraServer.getInstance();
@@ -39,9 +38,25 @@ public class Robot extends IterativeRobot {
 
         Command driveTrainControls = new DriveWithController();
         driveTrainControls.start();
+        
+        Command shoot = new ShootWithController();
+        shoot.start();
+        
+        Command climb = new ClimbWithController();
+        climb.start();
+        
+        Command feedShooter = new FeedWithController();
+        feedShooter.start();
+        
+        Command collect = new PickUpWithController();
+        collect.start();
+        
+        Command dump = new UnloadWithController();
+        dump.start();
     }
 
     public void teleopPeriodic() {
+    	
         Scheduler.getInstance().run();
 
         if (((Subsystem) CommandBase.driveTrain).getCurrentCommand() == null) {

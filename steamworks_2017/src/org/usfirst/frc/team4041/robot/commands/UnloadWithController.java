@@ -4,30 +4,33 @@ import org.usfirst.frc.team4041.robot.OI;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-public class ShootWithController extends CommandBase {
+public class UnloadWithController extends CommandBase {
 	
-	static final double shooterSpeed = 0.45;
+	static final double waterfallSpeed = 0.65;
+	static boolean running;
 
-    public ShootWithController() {
+    public UnloadWithController() {
     	
-        requires((Subsystem) shooter);
+        requires((Subsystem) waterfall);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	
     	//we don't want it to run on initialization
+    	running = false;
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	
-    	if(OI.isBButtonPressed()){
-        	if(shooter.isSpinning()){
-        		shooter.stopShooter();
+    	if(OI.isXButtonPressed()){
+        	if(running){
+        		waterfall.stopWaterfall();
         	}else{
-        		shooter.runShooter(shooterSpeed);
+        		waterfall.startWaterfall(waterfallSpeed);
         	}
+        	running = !running;
     	}
     }
 
@@ -38,12 +41,16 @@ public class ShootWithController extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-    	shooter.stopShooter();
+    	
+    	waterfall.stopWaterfall();
+    	running = false;
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	shooter.stopShooter();
+    	
+    	waterfall.stopWaterfall();
+    	running = false;
     }
-} 
+}

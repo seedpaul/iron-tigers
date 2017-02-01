@@ -24,10 +24,11 @@ public class DriveTrain extends Subsystem {
 
 //	static final Ultrasonic ultrasonic = new Ultrasonic(RobotMap.ultrasonicPing, RobotMap.ultrasonicEcho, Ultrasonic.Unit.kInches);
     
-    public static DriveTrain instance;
+    private static DriveTrain instance;
     
     private DriveTrain() {
     	// do some stuff here it need be!
+    	initialize();
     }
     
     public static DriveTrain getInstance() {
@@ -40,20 +41,27 @@ public class DriveTrain extends Subsystem {
     public void initialize() {
 		robotDrive.setExpiration(0.1);
 		
+		leftEncoder.reset();
+		rightEncoder.reset();
 		leftEncoder.setDistancePerPulse(0.00277778);
 		rightEncoder.setDistancePerPulse(0.00277778);
 
 		try {
 			spiGyro.reset();
+			spiGyro.calibrate();
 		} catch (NullPointerException npe) {
 			//eat this error
 		}
 
 		robotDrive.setSafetyEnabled(false);
     }
+    
+    public void stop(){
+    	robotDrive.tankDrive(RobotMap.STOP, RobotMap.STOP);
+    }
 
     protected void initDefaultCommand() {
-        this.setDefaultCommand(new DriveWithController());
+        setDefaultCommand(new DriveWithController());
     }
 
     public void tankDrive(double right, double left) { 
@@ -62,6 +70,10 @@ public class DriveTrain extends Subsystem {
 
     public Gyro getGyro() {
         return spiGyro;
+    }
+    
+    public double getAngle(){
+    	return spiGyro.getAngle();
     }
 
     public RobotDrive getTrain() {
@@ -74,6 +86,11 @@ public class DriveTrain extends Subsystem {
     
     public Encoder getLeftEncoder() {
         return leftEncoder;
+    }
+    
+    public double getLeftDistance(){
+    	
+    	return leftEncoder.getDistance();
     }
 
 //    public double getDistanceToWall() {

@@ -1,24 +1,24 @@
 package org.usfirst.frc.team4041.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.VictorSP;
+import edu.wpi.first.wpilibj.Victor;
 
 import org.usfirst.frc.team4041.robot.RobotMap;
 
-public class Waterfall extends Subsystem {
+public class Lifter extends Subsystem {
 
-	static final VictorSP waterfallVictor = new VictorSP(RobotMap.waterfallVictor);
-	private static Waterfall instance;
+	static final Victor lifterVictor = new Victor(RobotMap.lifterVictor);
+	private static Lifter instance;
 	
-	private Waterfall(){
+	private Lifter(){
 		
 		initialize();
 	}
 	
-    public static Waterfall getInstance() {
+    public static Lifter getInstance() {
     	
         if (instance == null) {
-            instance = new Waterfall();
+            instance = new Lifter();
         }
         return instance;
     }
@@ -27,14 +27,14 @@ public class Waterfall extends Subsystem {
     	
     }
     
-    public void startWaterfall(double speed){
+    public void startLifter(double speed){
     	
-    	waterfallVictor.set(speed);
+    	lifterVictor.set(speed);
     }
     
-    public void stopWaterfall(){
+    public void stopLifter(){
     	
-    	waterfallVictor.set(RobotMap.STOP);
+    	lifterVictor.set(RobotMap.STOP);
     }
    
     public void initDefaultCommand() {
@@ -42,3 +42,4 @@ public class Waterfall extends Subsystem {
         //setDefaultCommand(new MySpecialCommand());
     }
 }
+

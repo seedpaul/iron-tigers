@@ -4,30 +4,33 @@ import org.usfirst.frc.team4041.robot.OI;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-public class ShootWithController extends CommandBase {
+public class ClimbWithController extends CommandBase {
 	
-	static final double shooterSpeed = 0.45;
+	static final double climbingSpeed = 0.35;
+	static boolean running;
 
-    public ShootWithController() {
+    public ClimbWithController() {
     	
-        requires((Subsystem) shooter);
+        requires((Subsystem) lifter);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	
     	//we don't want it to run on initialization
+    	running = false;
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	
-    	if(OI.isBButtonPressed()){
-        	if(shooter.isSpinning()){
-        		shooter.stopShooter();
+    	if(OI.isYButtonPressed()){
+        	if(running){
+        		lifter.stopLifter();
         	}else{
-        		shooter.runShooter(shooterSpeed);
+        		lifter.startLifter(climbingSpeed);
         	}
+        	running = !running;
     	}
     }
 
@@ -38,12 +41,16 @@ public class ShootWithController extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-    	shooter.stopShooter();
+    	
+    	lifter.stopLifter();
+    	running = false;
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	shooter.stopShooter();
+    	
+    	lifter.stopLifter();
+    	running = false;
     }
-} 
+}

@@ -12,10 +12,12 @@ public class Shooter extends Subsystem {
 	static final VictorSP shooterVictor = new VictorSP(RobotMap.shooterVictor);
 	static final Encoder shooterEncoder = new Encoder(RobotMap.shooterEncoderDIO1, RobotMap.shooterEncoderDIO2, true, Encoder.EncodingType.k4X);
 	
-    public static Shooter instance;
+    private static Shooter instance;
+    private static final int spinningThreshold = 100;
     
     private Shooter() {
     	// do some stuff here it need be!
+    	initialize();
     }
     
     public static Shooter getInstance() {
@@ -51,6 +53,17 @@ public class Shooter extends Subsystem {
     public double getShooterSpeed(){
     	
     	return shooterEncoder.getRate();
+    }
+    
+    public boolean isSpinning(){
+    	
+    	return getShooterSpeed() > spinningThreshold;
+    }
+    
+    
+    public void stopShooter(){
+    	
+    	shooterVictor.set(RobotMap.STOP);
     }
 }
 

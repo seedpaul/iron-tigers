@@ -1,6 +1,7 @@
 package org.usfirst.frc.team4041.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.Joystick.ButtonType;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 public class OI {
@@ -80,5 +81,4 @@ public class OI {
             return 0;
         }
     }
-
 }
