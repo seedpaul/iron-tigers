@@ -1,13 +1,13 @@
 package org.usfirst.frc.team4041.robot.commands;
 
-import org.usfirst.frc.team4041.robot.OI;
+//import org.usfirst.frc.team4041.robot.OI;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class ClimbWithController extends CommandBase {
 	
 	static final double climbingSpeed = 0.35;
-	static boolean running;
+	//static boolean running;
 
     public ClimbWithController() {
     	
@@ -18,24 +18,25 @@ public class ClimbWithController extends CommandBase {
     protected void initialize() {
     	
     	//we don't want it to run on initialization
-    	running = false;
+    	//running = false;
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	
-    	if(OI.isYButtonPressed()){
-        	if(running){
-        		lifter.stopLifter();
-        	}else{
+//    	if(OI.isYButtonPressed()){
+//        	if(running){
+//        		lifter.stopLifter();
+//        	}else{
         		lifter.startLifter(climbingSpeed);
-        	}
-        	running = !running;
-    	}
+//        	}
+//        	running = !running;
+//    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
+    	lifter.stopLifter();
         return false;
     }
 
@@ -43,7 +44,7 @@ public class ClimbWithController extends CommandBase {
     protected void end() {
     	
     	lifter.stopLifter();
-    	running = false;
+    	//running = false;
     }
 
     // Called when another command which requires one or more of the same
@@ -51,6 +52,6 @@ public class ClimbWithController extends CommandBase {
     protected void interrupted() {
     	
     	lifter.stopLifter();
-    	running = false;
+    	///running = false;
     }
 }

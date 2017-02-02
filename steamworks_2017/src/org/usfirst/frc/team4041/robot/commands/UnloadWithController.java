@@ -1,13 +1,13 @@
 package org.usfirst.frc.team4041.robot.commands;
 
-import org.usfirst.frc.team4041.robot.OI;
+//import org.usfirst.frc.team4041.robot.OI;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class UnloadWithController extends CommandBase {
 	
 	static final double waterfallSpeed = 0.65;
-	static boolean running;
+	//static boolean running;
 
     public UnloadWithController() {
     	
@@ -18,24 +18,25 @@ public class UnloadWithController extends CommandBase {
     protected void initialize() {
     	
     	//we don't want it to run on initialization
-    	running = false;
+    	//running = false;
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	
-    	if(OI.isXButtonPressed()){
-        	if(running){
-        		waterfall.stopWaterfall();
-        	}else{
+//    	if(OI.isXButtonPressed()){
+//        	if(running){
+//        		waterfall.stopWaterfall();
+//        	}else{
         		waterfall.startWaterfall(waterfallSpeed);
-        	}
-        	running = !running;
-    	}
+//        	}
+//        	running = !running;
+//    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
+    	waterfall.stopWaterfall();
         return false;
     }
 
@@ -43,7 +44,7 @@ public class UnloadWithController extends CommandBase {
     protected void end() {
     	
     	waterfall.stopWaterfall();
-    	running = false;
+    	//running = false;
     }
 
     // Called when another command which requires one or more of the same
@@ -51,6 +52,6 @@ public class UnloadWithController extends CommandBase {
     protected void interrupted() {
     	
     	waterfall.stopWaterfall();
-    	running = false;
+    	//running = false;
     }
 }

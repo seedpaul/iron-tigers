@@ -1,13 +1,13 @@
 package org.usfirst.frc.team4041.robot.commands;
 
-import org.usfirst.frc.team4041.robot.OI;
+//import org.usfirst.frc.team4041.robot.OI;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class FeedWithController extends CommandBase {
 	
 	static final double feederSpeed = 0.20;
-	static boolean running;
+	//static boolean running;
 
     public FeedWithController() {
     	
@@ -18,25 +18,25 @@ public class FeedWithController extends CommandBase {
     protected void initialize() {
     	
     	//we don't want it to run on initialization
-    	running = false;
+    	//running = false;
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	
-    	if(OI.isRBButtonPressed()){
-        	if(running){
-        		feeder.stopFeeder();
-        	}else{
+//    	if(OI.isRBButtonPressed()){
+//        	if(running){
+//        		feeder.stopFeeder();
+//        	}else{
         		feeder.startFeeder(feederSpeed);
-        	}
-        	running = !running;
-    	}
+//        	}
+//        	running = !running;
+//    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	
+    	feeder.stopFeeder();
         return false;
     }
 
@@ -44,7 +44,7 @@ public class FeedWithController extends CommandBase {
     protected void end() {
     	
     	feeder.stopFeeder();
-    	running = false;
+    	//running = false;
     }
 
     // Called when another command which requires one or more of the same
@@ -52,6 +52,6 @@ public class FeedWithController extends CommandBase {
     protected void interrupted() {
     	
     	feeder.stopFeeder();
-    	running = false;
+    	//running = false;
     }
 }

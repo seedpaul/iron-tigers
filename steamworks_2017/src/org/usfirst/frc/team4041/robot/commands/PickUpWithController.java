@@ -1,13 +1,13 @@
 package org.usfirst.frc.team4041.robot.commands;
 
-import org.usfirst.frc.team4041.robot.OI;
+//import org.usfirst.frc.team4041.robot.OI;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class PickUpWithController extends CommandBase {
 	
 	static final double pickerSpeed = 0.75;
-	static boolean running;
+	//static boolean running;
 
     public PickUpWithController() {
     	
@@ -18,24 +18,25 @@ public class PickUpWithController extends CommandBase {
     protected void initialize() {
     	
     	//we don't want it to run on initialization
-    	running = false;
+    	//running = false;
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	
-    	if(OI.isAButtonPressed()){
-        	if(running){
-        		picker.stopPicker();
-        	}else{
+//    	if(OI.isAButtonPressed()){
+//        	if(running){
+//        		picker.stopPicker();
+//        	}else{
         		picker.startPicker(pickerSpeed);
-        	}
-        	running = !running;
-    	}
+//        	}
+//        	running = !running;
+//    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
+    	picker.stopPicker();
         return false;
     }
 
@@ -43,13 +44,13 @@ public class PickUpWithController extends CommandBase {
     protected void end() {
     	
     	picker.stopPicker();
-    	running = false;
+    	//running = false;
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
     	picker.stopPicker();
-    	running = false;
+    	//running = false;
     }
 }
