@@ -2,6 +2,7 @@ package org.usfirst.frc.team4041.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.SPI;
@@ -54,6 +55,11 @@ public class DriveTrain extends Subsystem {
 		}
 
 		robotDrive.setSafetyEnabled(false);
+    	SmartDashboard.putNumber("Right Distance", rightEncoder.getDistance());
+    	SmartDashboard.putNumber("Left Distance", leftEncoder.getDistance());
+    	SmartDashboard.putData("Gyro", spiGyro);
+    	SmartDashboard.putData("leftEncoder", leftEncoder);
+    	SmartDashboard.putData("rightEncoder", rightEncoder);
     }
     
     public void stop(){
@@ -66,6 +72,8 @@ public class DriveTrain extends Subsystem {
 
     public void tankDrive(double right, double left) { 
     	robotDrive.tankDrive(right, left);
+    	SmartDashboard.putNumber("Right Distance", rightEncoder.getDistance());
+    	SmartDashboard.putNumber("Left Distance", leftEncoder.getDistance());
     }
 
     public Gyro getGyro() {

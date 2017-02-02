@@ -1,6 +1,7 @@
 package org.usfirst.frc.team4041.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.VictorSP;
 
@@ -32,6 +33,7 @@ public class Shooter extends Subsystem {
     	
     	shooterEncoder.reset();
     	shooterEncoder.setDistancePerPulse(1);
+    	SmartDashboard.putData("shooterEncoder", shooterEncoder);
     }
 
     public void initDefaultCommand() {
