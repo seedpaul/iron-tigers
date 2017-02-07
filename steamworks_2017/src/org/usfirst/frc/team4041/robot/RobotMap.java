@@ -21,17 +21,20 @@ public class RobotMap {
 	
 	public static final int xboxController = 0;
 	
-	public static final int buttonA = 0;	//picker
-	public static final int buttonB = 2;	//shooter
-	public static final int buttonX = 1;	//unload
-	public static final int buttonY = 3;	//climb
+	public static final int buttonA = 1;//picker
+	public static final int buttonB = 2;//shooter
 	
-	public static final int buttonBumperRight = 5;	//feeder
-	public static final int buttonBumperLeft = 4;
+	public static final int buttonX = 3;//climb
+	public static final int buttonY = 4;//waterfall
+	
+	public static final int buttonBumperLeft = 5;
+	public static final int buttonBumperRight = 6;
+	
 	public static final int rightStickY = 5;
 	public static final int leftStickY = 1;
+	
 	public static final int rightTrigger = 3;
-	public static final int leftTrigger = 2;
+	public static final int leftTrigger = 3;
 //	
 //	public static final int ultrasonicPing = 3;
 //	public static final int ultrasonicEcho = 2;

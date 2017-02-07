@@ -39,32 +39,32 @@ public class Shooter extends Subsystem {
     public void initDefaultCommand() {
     	
         // Set the default command for a subsystem here.
-        setDefaultCommand(new ShootWithController());
+        //setDefaultCommand(new ShootWithController());
     }
     
     public void runShooter(double speed){
-    	
     	shooterVictor.set(speed);
+    	SmartDashboard.putData("shooterEncoder", shooterEncoder);
     }
     
     public void reverseShooter(double speed){
-    	
     	shooterVictor.set(speed);
+    	SmartDashboard.putData("shooterEncoder", shooterEncoder);
     }
     
     public double getShooterSpeed(){
-    	
+    	SmartDashboard.putData("shooterEncoder", shooterEncoder);
     	return shooterEncoder.getRate();
     }
     
     public boolean isSpinning(){
-    	
+    	SmartDashboard.putData("shooterEncoder", shooterEncoder);
     	return getShooterSpeed() > spinningThreshold;
     }
     
-    
     public void stopShooter(){
-    	
+    	shooterEncoder.reset();
+    	SmartDashboard.putData("shooterEncoder", shooterEncoder);
     	shooterVictor.set(RobotMap.STOP);
     }
 }

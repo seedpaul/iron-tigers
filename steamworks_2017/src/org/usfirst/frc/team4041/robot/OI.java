@@ -1,6 +1,8 @@
 package org.usfirst.frc.team4041.robot;
 
 import org.usfirst.frc.team4041.robot.commands.ClimbWithController;
+import org.usfirst.frc.team4041.robot.commands.DriveStraight;
+import org.usfirst.frc.team4041.robot.commands.DriveCurve;
 import org.usfirst.frc.team4041.robot.commands.FeedWithController;
 import org.usfirst.frc.team4041.robot.commands.PickUpWithController;
 import org.usfirst.frc.team4041.robot.commands.ShootWithController;
@@ -25,16 +27,13 @@ public class OI {
 
     public void init() {
     	//put some code here if you like
-    	//buttonA.toggleWhenPressed(new PickUpWithController());
-    	//buttonB.toggleWhenPressed(new ShootWithController());
+    	buttonA.toggleWhenPressed(new PickUpWithController());
+    	//buttonB.toggleWhenPressed(new DriveForward(15.0,0.3));
+    	buttonB.toggleWhenPressed(new DriveCurve(24.0, 12.0, 0.4, 10.0));
     	buttonX.toggleWhenPressed(new ClimbWithController());
-    	//buttonY.toggleWhenPressed(new UnloadWithController());
-    	
-    	buttonRightBumper.toggleWhenPressed(new FeedWithController());
-    	buttonLeftBumper.toggleWhenPressed(new UnloadWithController());
-    	buttonRightTrigger.toggleWhenPressed(new ShootWithController());
-    	buttonLeftTrigger.toggleWhenPressed(new PickUpWithController());
-    
+    	buttonY.toggleWhenPressed(new UnloadWithController());
+    	buttonLeftBumper.toggleWhenPressed(new FeedWithController());
+    	buttonRightBumper.toggleWhenPressed(new ShootWithController());
     }
     
     private static double deadzone(double d) {
@@ -58,46 +57,22 @@ public class OI {
     public static double getRightStickY() {
         return deadzone(-xbox.getRawAxis(RobotMap.rightStickY));
     }
-//
-//    public static boolean isXButtonPressed() {
-//        return xbox.getRawButton(RobotMap.buttonX);
-//    }
-//
-//    public static boolean isYButtonPressed() {
-//        return xbox.getRawButton(RobotMap.buttonY);
-//    }
-//
-//    public static boolean isAButtonPressed() {
-//        return xbox.getRawButton(RobotMap.buttonA);
-//    }
-//
-//    public static boolean isBButtonPressed() {
-//        return xbox.getRawButton(RobotMap.buttonB);
-//    }
-//
-//    public static boolean isRBButtonPressed() {
-//        return xbox.getRawButton(RobotMap.buttonBumperRight);
-//    }
-//
-//    public static boolean isLBButtonPressed() {
-//        return xbox.getRawButton(RobotMap.buttonBumperLeft);
-//    }
-//
-//    public static double getRightTrigger() {
-//        double triggerValue = xbox.getRawAxis(RobotMap.rightTrigger);
-//        if (triggerValue < 0) {
-//            return Math.abs(deadzone(triggerValue));
-//        } else {
-//            return 0;
-//        }
-//    }
-//
-//    public static double getLeftTrigger() {
-//        double triggerValue = xbox.getRawAxis(RobotMap.leftTrigger);
-//        if (triggerValue > 0) {
-//            return deadzone(triggerValue);
-//        } else {
-//            return 0;
-//        }
-//    }
+
+	  public boolean getRightTrigger() {
+	  double triggerValue = xbox.getRawAxis(RobotMap.rightTrigger);
+	  if (triggerValue < 0) {
+	      return true;
+	  } else {
+	      return false;
+	  }
+	}
+
+    public boolean getLeftTrigger() {
+        double triggerValue = xbox.getRawAxis(RobotMap.leftTrigger);
+        if (triggerValue > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

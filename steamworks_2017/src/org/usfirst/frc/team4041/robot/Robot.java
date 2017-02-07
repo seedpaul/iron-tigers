@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team4041.robot.commands.*;
 
@@ -18,10 +19,12 @@ public class Robot extends IterativeRobot {
 
 	public void robotInit() {
 		
+		
 		 server = CameraServer.getInstance();
 		 server.startAutomaticCapture();
 		 
 		 CommandBase.init();
+		 SmartDashboard.putData(Scheduler.getInstance());
 	}
 
 	public Robot() {
@@ -40,20 +43,22 @@ public class Robot extends IterativeRobot {
         Command driveTrainControls = new DriveWithController();
         driveTrainControls.start();
         
-        Command shoot = new ShootWithController();
-        shoot.start();
+        SmartDashboard.putData(Scheduler.getInstance());
         
-        Command climb = new ClimbWithController();
-        climb.start();
-        
-        Command feedShooter = new FeedWithController();
-        feedShooter.start();
-        
-        Command collect = new PickUpWithController();
-        collect.start();
-        
-        Command dump = new UnloadWithController();
-        dump.start();
+//        Command shoot = new ShootWithController();
+//        //shoot.start();
+//        
+//        Command climb = new ClimbWithController();
+//        //climb.start();
+//        
+//        Command feedShooter = new FeedWithController();
+//        //feedShooter.start();
+//        
+//        Command collect = new PickUpWithController();
+//        //collect.start();
+//        
+//        Command dump = new UnloadWithController();
+        //dump.start();
     }
 
     public void teleopPeriodic() {
