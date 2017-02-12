@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class FeedWithController extends CommandBase {
 	
-	static final double feederSpeed = 0.60;
+	static final double feederSpeed = 0.2;
 	//static boolean running;
 
     public FeedWithController() {

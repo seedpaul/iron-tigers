@@ -42,7 +42,7 @@ public class Shooter extends Subsystem {
         //setDefaultCommand(new ShootWithController());
     }
     
-    public void runShooter(double speed){
+    public void startShooter(double speed){
     	shooterVictor.set(speed);
     	SmartDashboard.putData("shooterEncoder", shooterEncoder);
     }

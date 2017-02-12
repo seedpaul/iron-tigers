@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
@@ -20,8 +21,8 @@ public class DriveTrain extends Subsystem {
 	static final ADXRS450_Gyro spiGyro = new ADXRS450_Gyro(SPI.Port.kOnboardCS0);
 	
 	static final RobotDrive robotDrive = new RobotDrive(leftTalon, rightTalon);
-	static final Encoder leftEncoder = new Encoder(RobotMap.leftEncooderDIO1, RobotMap.leftEncooderDIO2, true, Encoder.EncodingType.k2X);
-	static final Encoder rightEncoder = new Encoder(RobotMap.rightEncooderDIO1, RobotMap.rightEncooderDIO12, false, Encoder.EncodingType.k2X);
+	static final Encoder leftEncoder = new Encoder(RobotMap.leftEncooderDIO1, RobotMap.leftEncooderDIO2, true, Encoder.EncodingType.k4X);
+	static final Encoder rightEncoder = new Encoder(RobotMap.rightEncooderDIO1, RobotMap.rightEncooderDIO12, false, Encoder.EncodingType.k4X);
 
 //	static final Ultrasonic ultrasonic = new Ultrasonic(RobotMap.ultrasonicPing, RobotMap.ultrasonicEcho, Ultrasonic.Unit.kInches);
     
@@ -46,6 +47,7 @@ public class DriveTrain extends Subsystem {
 		rightEncoder.reset();
 		leftEncoder.setDistancePerPulse(0.0027777778);
 		rightEncoder.setDistancePerPulse(0.0027777778);
+		rightEncoder.setPIDSourceType(PIDSourceType.kDisplacement);
 	
 		try {
 			spiGyro.reset();
@@ -73,6 +75,10 @@ public class DriveTrain extends Subsystem {
     	SmartDashboard.putData("Gyro", spiGyro);
     	SmartDashboard.putData("leftEncoder", leftEncoder);
     	SmartDashboard.putData("rightEncoder", rightEncoder);
+    }
+    
+    public void resetGyro() {
+    	spiGyro.reset();
     }
 
     public Gyro getGyro() {
@@ -117,6 +123,27 @@ public class DriveTrain extends Subsystem {
     	robotDrive.drive(magnitude, curve);
     	}
     	return finished;
+    }
+    
+    
+    private double ds_e = 0;
+    private double ds_kp = 0.03;
+    private final double Kp = 0.03;
+    
+    public void driveStraighter(double speed){
+    	ds_kp = SmartDashboard.getNumber("straight kp",0.03);
+    	double angle = spiGyro.getAngle();
+    	double output = -angle*Kp;
+    	
+    	if(Math.abs(output) < 0.4 && output != 0){
+    		output = (output/Math.abs(output)) * 0.4;
+    	}
+    	HDrive(speed, output);
+    	
+    }
+    
+    public void HDrive(double moveValue, double turnValue){
+    	robotDrive.arcadeDrive(-moveValue,turnValue);
     }
     
     public boolean driveStraight(double speed, double distance, double tolerance){

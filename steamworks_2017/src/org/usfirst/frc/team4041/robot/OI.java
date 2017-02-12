@@ -28,10 +28,12 @@ public class OI {
     public void init() {
     	//put some code here if you like
     	buttonA.toggleWhenPressed(new PickUpWithController());
-    	//buttonB.toggleWhenPressed(new DriveForward(15.0,0.3));
-    	buttonB.toggleWhenPressed(new DriveCurve(24.0, 12.0, 0.4, 10.0));
-    	buttonX.toggleWhenPressed(new ClimbWithController());
-    	buttonY.toggleWhenPressed(new UnloadWithController());
+    	buttonY.toggleWhenPressed(new ClimbWithController());
+    	
+    	buttonB.toggleWhenPressed(new UnloadWithController());
+    	//buttonX.toggleWhenPressed(new UnloadWithController(-0.55));
+    	//buttonB.toggleWhenPressed(new DriveCurve(24.0, 12.0, 0.4, 10.0));
+    	
     	buttonLeftBumper.toggleWhenPressed(new FeedWithController());
     	buttonRightBumper.toggleWhenPressed(new ShootWithController());
     }
