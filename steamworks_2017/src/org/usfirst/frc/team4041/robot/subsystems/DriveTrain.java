@@ -71,7 +71,7 @@ public class DriveTrain extends Subsystem {
     }
 
     public void tankDrive(double right, double left) { 
-    	robotDrive.tankDrive(right, left);
+    	robotDrive.tankDrive(right, left, true);
     	SmartDashboard.putData("Gyro", spiGyro);
     	SmartDashboard.putData("leftEncoder", leftEncoder);
     	SmartDashboard.putData("rightEncoder", rightEncoder);
@@ -125,13 +125,12 @@ public class DriveTrain extends Subsystem {
     	return finished;
     }
     
-    
     private double ds_e = 0;
     private double ds_kp = 0.03;
     private final double Kp = 0.03;
     
     public void driveStraighter(double speed){
-    	ds_kp = SmartDashboard.getNumber("straight kp",0.03);
+    	ds_kp = 0.03;//SmartDashboard.getNumber("straight kp",0.03);
     	double angle = spiGyro.getAngle();
     	double output = -angle*Kp;
     	
@@ -139,7 +138,6 @@ public class DriveTrain extends Subsystem {
     		output = (output/Math.abs(output)) * 0.4;
     	}
     	HDrive(speed, output);
-    	
     }
     
     public void HDrive(double moveValue, double turnValue){

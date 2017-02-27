@@ -19,7 +19,6 @@ public class Robot extends IterativeRobot {
 
 	public void robotInit() {
 		
-		
 		 server = CameraServer.getInstance();
 		 server.startAutomaticCapture();
 		 
@@ -42,6 +41,9 @@ public class Robot extends IterativeRobot {
     	
         Command driveTrainControls = new DriveWithController();
         driveTrainControls.start();
+        
+        Command initCamera = new RotateCameraBack();
+        initCamera.start();
         
         SmartDashboard.putData(Scheduler.getInstance());
         

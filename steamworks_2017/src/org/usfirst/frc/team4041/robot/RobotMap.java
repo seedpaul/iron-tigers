@@ -30,6 +30,9 @@ public class RobotMap {
 	public static final int buttonBumperLeft = 5;
 	public static final int buttonBumperRight = 6;
 	
+	public static final int buttonSelect = 7;
+	public static final int buttonStart = 8;
+	
 	public static final int rightStickY = 5;
 	public static final int leftStickY = 1;
 	

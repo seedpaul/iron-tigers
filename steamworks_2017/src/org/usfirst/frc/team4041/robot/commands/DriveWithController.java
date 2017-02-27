@@ -19,7 +19,9 @@ public class DriveWithController extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {   
  
-       driveTrain.tankDrive(OI.getRightStickY(), OI.getLeftStickY());
+    	double inverseRight = (-1 * OI.getRightStickY());
+    	double inverseLeft = (-1 * OI.getLeftStickY());
+       driveTrain.tankDrive(inverseRight, inverseLeft);
     }
     
     // Make this return true when this Command no longer needs to run execute()

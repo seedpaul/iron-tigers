@@ -5,11 +5,14 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class UnloadWithController extends CommandBase {
 	
 	static final double pickerSpeed = -0.75;
-	static final double unloaderSpeed = 0.55;
+	static final double unloaderSpeed = 0.65;
+	static final double feederSpeed = -0.75;
+	
 	
     public UnloadWithController() {
         requires((Subsystem) picker);
-        requires((Subsystem) waterfall);;
+        requires((Subsystem) waterfall);
+        requires((Subsystem) feeder);
     }
 
     // Called just before this Command runs the first time
@@ -19,6 +22,7 @@ public class UnloadWithController extends CommandBase {
     protected void execute() {
     	picker.startPicker(pickerSpeed);
     	waterfall.startWaterfall(unloaderSpeed);
+    	feeder.startFeeder(feederSpeed);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -30,6 +34,7 @@ public class UnloadWithController extends CommandBase {
     protected void end() {
     	picker.stopPicker();
     	waterfall.stopWaterfall();
+    	feeder.stopFeeder();
     }
 
     // Called when another command which requires one or more of the same
@@ -37,5 +42,6 @@ public class UnloadWithController extends CommandBase {
     protected void interrupted() {
     	picker.stopPicker();
     	waterfall.stopWaterfall();
+    	feeder.stopFeeder();
     }
 }

@@ -1,24 +1,29 @@
 package org.usfirst.frc.team4041.robot;
 
 import org.usfirst.frc.team4041.robot.commands.ClimbWithController;
-import org.usfirst.frc.team4041.robot.commands.DriveStraight;
-import org.usfirst.frc.team4041.robot.commands.DriveCurve;
+//import org.usfirst.frc.team4041.robot.commands.DriveStraighter;
 import org.usfirst.frc.team4041.robot.commands.FeedWithController;
 import org.usfirst.frc.team4041.robot.commands.PickUpWithController;
 import org.usfirst.frc.team4041.robot.commands.ShootWithController;
 import org.usfirst.frc.team4041.robot.commands.UnloadWithController;
+import org.usfirst.frc.team4041.robot.commands.RotateCameraFoward;
+import org.usfirst.frc.team4041.robot.commands.RotateCameraBack;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
-
 public class OI {
 
 	static final Joystick xbox = new Joystick(RobotMap.xboxController);
+	
 	static final JoystickButton buttonA = new JoystickButton(xbox, RobotMap.buttonA);
 	static final JoystickButton buttonB = new JoystickButton(xbox, RobotMap.buttonB);
 	static final JoystickButton buttonX = new JoystickButton(xbox, RobotMap.buttonX);
 	static final JoystickButton buttonY = new JoystickButton(xbox, RobotMap.buttonY);
+	
+	static final JoystickButton buttonStart = new JoystickButton(xbox, RobotMap.buttonStart);
+	static final JoystickButton buttonSelect = new JoystickButton(xbox, RobotMap.buttonSelect);
+	
 	static final JoystickButton buttonRightBumper = new JoystickButton(xbox, RobotMap.buttonBumperRight);
 	static final JoystickButton buttonLeftBumper = new JoystickButton(xbox, RobotMap.buttonBumperLeft);
 	
@@ -26,13 +31,18 @@ public class OI {
 	static final JoystickButton buttonLeftTrigger = new JoystickButton(xbox, RobotMap.leftTrigger);
 
     public void init() {
+    	
     	//put some code here if you like
     	buttonA.toggleWhenPressed(new PickUpWithController());
     	buttonY.toggleWhenPressed(new ClimbWithController());
-    	
     	buttonB.toggleWhenPressed(new UnloadWithController());
-    	//buttonX.toggleWhenPressed(new UnloadWithController(-0.55));
-    	//buttonB.toggleWhenPressed(new DriveCurve(24.0, 12.0, 0.4, 10.0));
+    	
+    	buttonSelect.toggleWhenPressed(new RotateCameraFoward());
+    	buttonStart.toggleWhenPressed(new RotateCameraBack());
+    	
+    	//buttonX.toggleWhenPressed(new DriveStraighter(10.0, 0.5));
+    	//buttonX.toggleWhenPressed(new DriveStraight(10, 0.4));
+    	//buttonX.toggleWhenPressed(new DriveCurve(24.0, 12.0, 0.4, 10.0));
     	
     	buttonLeftBumper.toggleWhenPressed(new FeedWithController());
     	buttonRightBumper.toggleWhenPressed(new ShootWithController());

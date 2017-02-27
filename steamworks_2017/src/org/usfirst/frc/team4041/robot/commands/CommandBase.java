@@ -5,7 +5,6 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team4041.robot.subsystems.*;
 import org.usfirst.frc.team4041.robot.OI;
 
-
 public abstract class CommandBase extends Command 
 { 
     public static DriveTrain driveTrain;
@@ -14,6 +13,7 @@ public abstract class CommandBase extends Command
     public static Feeder feeder;
     public static Lifter lifter;
     public static Waterfall waterfall;
+    public static Camera camera;
     
     public static OI oi;
 
@@ -26,6 +26,7 @@ public abstract class CommandBase extends Command
         feeder = Feeder.getInstance();
         lifter = Lifter.getInstance();
         waterfall = Waterfall.getInstance();
+        camera = Camera.getInstance();
         
         oi = new OI();
         oi.init();

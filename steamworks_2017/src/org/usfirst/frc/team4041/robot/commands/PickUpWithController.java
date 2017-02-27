@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class PickUpWithController extends CommandBase {
 	
 	static final double pickerSpeed = -0.75;
-	static final double waterfallSpeed = -0.55;
+	static final double waterfallSpeed = -0.65;
 
     public PickUpWithController() {
         requires((Subsystem) picker);

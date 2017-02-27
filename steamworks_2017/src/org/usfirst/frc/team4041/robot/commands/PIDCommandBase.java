@@ -5,7 +5,6 @@ import edu.wpi.first.wpilibj.command.PIDCommand;
 import org.usfirst.frc.team4041.robot.subsystems.*;
 import org.usfirst.frc.team4041.robot.OI;
 
-
 public abstract class PIDCommandBase extends PIDCommand 
 { 
     public static DriveTrain driveTrain;
@@ -33,7 +32,6 @@ public abstract class PIDCommandBase extends PIDCommand
 
     //Constructor
     public PIDCommandBase(String name, double p,double i, double d, double period) {	
-        super(name,p,i,d, period);
+        super(name, p, i, d, period);
     }
-
 }
