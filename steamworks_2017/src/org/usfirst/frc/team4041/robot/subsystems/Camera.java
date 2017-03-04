@@ -1,13 +1,16 @@
 package org.usfirst.frc.team4041.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+
+import org.usfirst.frc.team4041.robot.RobotMap;
+
 import edu.wpi.first.wpilibj.Servo;
 
 //import org.usfirst.frc.team4041.robot.RobotMap;
 
 public class Camera extends Subsystem {
 
-	static final Servo  servo = new Servo(9);
+	static final Servo  servo = new Servo(RobotMap.cameraServo);
 	private static Camera instance;
 	
 	private Camera(){
@@ -34,7 +37,7 @@ public class Camera extends Subsystem {
     public void CameraBack(){	
     	servo.set(0.0);
     }
-    
+  
     public double getAngle(){
     	return servo.getAngle();
     }

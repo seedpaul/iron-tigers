@@ -1,7 +1,11 @@
 package org.usfirst.frc.team4041.robot;
 
 import org.usfirst.frc.team4041.robot.commands.ClimbWithController;
-//import org.usfirst.frc.team4041.robot.commands.DriveStraighter;
+
+import org.usfirst.frc.team4041.robot.commands.DriveStraight;
+import org.usfirst.frc.team4041.robot.commands.DriveCurveLeft;
+import org.usfirst.frc.team4041.robot.commands.DriveCurveRight;
+
 import org.usfirst.frc.team4041.robot.commands.FeedWithController;
 import org.usfirst.frc.team4041.robot.commands.PickUpWithController;
 import org.usfirst.frc.team4041.robot.commands.ShootWithController;
@@ -37,13 +41,13 @@ public class OI {
     	buttonY.toggleWhenPressed(new ClimbWithController());
     	buttonB.toggleWhenPressed(new UnloadWithController());
     	
+    	//buttonX.toggleWhenPressed(new DriveStraight(5.0, 0.4));
+    	//buttonX.toggleWhenPressed(new DriveCurveLeft(7.5));
+    	//buttonX.toggleWhenPressed(new DriveCurveRight(7.5));
+    	
     	buttonSelect.toggleWhenPressed(new RotateCameraFoward());
     	buttonStart.toggleWhenPressed(new RotateCameraBack());
-    	
-    	//buttonX.toggleWhenPressed(new DriveStraighter(10.0, 0.5));
-    	//buttonX.toggleWhenPressed(new DriveStraight(10, 0.4));
-    	//buttonX.toggleWhenPressed(new DriveCurve(24.0, 12.0, 0.4, 10.0));
-    	
+
     	buttonLeftBumper.toggleWhenPressed(new FeedWithController());
     	buttonRightBumper.toggleWhenPressed(new ShootWithController());
     }

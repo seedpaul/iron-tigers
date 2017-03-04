@@ -50,7 +50,7 @@ public class  DriveStraighter extends PIDCommandBase{
     		 output = output * (timeSinceInitialized()+.4);
     	}
     		
-    	driveTrain.driveStraighter(-output);
+    	//driveTrain.driveStraighter(output);
     }
     
     private double constrain(double min, double value, double max){
@@ -67,6 +67,10 @@ public class  DriveStraighter extends PIDCommandBase{
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	if(driveTrain == null){
+    		driveTrain = DriveTrain.getInstance();
+    	}
+    	
     	driveTrain.getRightEncoder().reset();
     	driveTrain.resetGyro();
     	getPIDController().setSetpoint(distance);

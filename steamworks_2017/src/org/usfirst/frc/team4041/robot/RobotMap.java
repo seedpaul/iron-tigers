@@ -9,7 +9,9 @@ public class RobotMap {
 	public static final int pickerVictor = 8;
 	public static final int feederVictor= 4;
 	public static final int lifterVictor = 1;
-			
+	
+	public static final int cameraServo = 9;
+	
 	public static final int leftEncooderDIO1 = 0;
 	public static final int leftEncooderDIO2 = 1;
 	

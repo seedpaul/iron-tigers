@@ -2,33 +2,31 @@ package org.usfirst.frc.team4041.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-public class DriveStraight extends CommandBase {
+public class DriveCurveRight extends CommandBase {
+
+	private static double distance;
 	
-	private static double distance = 0;
-	private static double speed = 0;
 	private static boolean finishedDriving = false; 
 	
-    public DriveStraight() {
-    	this(distance, speed);
+    public DriveCurveRight() {
+    	// some random default values we used during testing
+    	this(7.5);
     }
-	
-	public DriveStraight(double distance_in, double speed_in) {
+    
+	public DriveCurveRight(double Distance) {
 		requires((Subsystem) driveTrain);
-		distance = distance_in;
-		speed = speed_in;
+		distance = Distance;
     }
 	
     // Called just before this Command runs the first time
     protected void initialize() {
     	//System.out.println("drive foward init");
     	driveTrain.getLeftEncoder().reset();
-    	driveTrain.getRightEncoder().reset();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	//System.out.println("drive foward execute");
-    	finishedDriving = driveTrain.driveStraight(speed, distance, 0.055);
+    	finishedDriving = driveTrain.driveCurveRight(distance);
     }
 
     // Make this return true when this Command no longer needs to run execute()

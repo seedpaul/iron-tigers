@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team4041.robot.commands.*;
@@ -13,9 +14,8 @@ import org.usfirst.frc.team4041.robot.commands.*;
 public class Robot extends IterativeRobot {
 	
 	CameraServer server;
-	
-//	static final VictorSP waterfallVictor = new VictorSP(RobotMap.waterfallVictor);
-//	static final VictorSP pickerVictor = new VictorSP(RobotMap.pickerVictor);
+	Command autonousCommand;
+	SendableChooser<CommandBase> autoChooser;
 
 	public void robotInit() {
 		
@@ -24,6 +24,13 @@ public class Robot extends IterativeRobot {
 		 
 		 CommandBase.init();
 		 SmartDashboard.putData(Scheduler.getInstance());
+		 
+		 autoChooser = new SendableChooser<CommandBase>();
+		 autoChooser.addDefault("Drive Straight", new DriveStraight(5.0, 0.4));
+		 autoChooser.addObject("Turn Left", new DriveCurveLeft());
+		 autoChooser.addObject("Turn Right", new DriveCurveRight());
+		 
+		 SmartDashboard.putData("Autonomous Mode Selection:", autoChooser);
 	}
 
 	public Robot() {
@@ -31,10 +38,13 @@ public class Robot extends IterativeRobot {
 	}
     public void autonomousInit() {
     	//do autonomous init stuff here;
+    	autonousCommand = (Command) autoChooser.getSelected();
+    	autonousCommand.start();
     }
 
     public void autonomousPeriodic() {
     	//do periodic autonomous stuff here
+    	Scheduler.getInstance().run();
     }
 
     public void teleopInit() {
@@ -47,20 +57,6 @@ public class Robot extends IterativeRobot {
         
         SmartDashboard.putData(Scheduler.getInstance());
         
-//        Command shoot = new ShootWithController();
-//        //shoot.start();
-//        
-//        Command climb = new ClimbWithController();
-//        //climb.start();
-//        
-//        Command feedShooter = new FeedWithController();
-//        //feedShooter.start();
-//        
-//        Command collect = new PickUpWithController();
-//        //collect.start();
-//        
-//        Command dump = new UnloadWithController();
-        //dump.start();
     }
 
     public void teleopPeriodic() {
