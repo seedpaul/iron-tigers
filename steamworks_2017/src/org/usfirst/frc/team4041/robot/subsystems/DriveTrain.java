@@ -100,6 +100,10 @@ public class DriveTrain extends Subsystem {
         return leftEncoder;
     }
     
+    public void resetLeftEncoder(){
+    	leftEncoder.reset();
+    }
+    
     public double getLeftDistance(){
     	return leftEncoder.getDistance();
     }
@@ -115,10 +119,10 @@ public class DriveTrain extends Subsystem {
     	if(distance >  currentDistance){
     		finished = false;
     		if((currentDistance/distance) > .60 &&  (currentDistance/distance) < .80){
-    			robotDrive.tankDrive(-0.65, -0.25, true);
+    			robotDrive.tankDrive(0.25, 0.65, true);
     		}
     		else{
-    			robotDrive.tankDrive(-0.45, -0.40, true);
+    			robotDrive.tankDrive(0.45,0.45, true);
     		}
     		 
     	}
@@ -134,11 +138,11 @@ public class DriveTrain extends Subsystem {
     	double currentDistance = Math.abs(leftEncoder.getDistance());
     	if(distance >  currentDistance){
     		finished = false;
-    		if((currentDistance/distance) > .65 && (currentDistance/distance) < .71){
-    			robotDrive.tankDrive(-0.25, -0.65, true);
+    		if((currentDistance/distance) > .65 && (currentDistance/distance) < .80){
+    			robotDrive.tankDrive(0.75, 0.25, true);
     		}
     		else{
-    			robotDrive.tankDrive(-0.45, -0.40, true);
+    			robotDrive.tankDrive(0.45, 0.45, true);
     		}
     	}
     	SmartDashboard.putData("Gyro", spiGyro);
@@ -146,7 +150,6 @@ public class DriveTrain extends Subsystem {
     	SmartDashboard.putData("rightEncoder", rightEncoder);
     	return finished;
     }
-    
     
     public boolean driveStraight(double speed, double distance, double tolerance){
     	
@@ -158,9 +161,6 @@ public class DriveTrain extends Subsystem {
     	boolean finished = true;
     	//double adjustment = 0.75;
     	
-    	//reverse the speed to adjust for backwards ddrivig in autonomous mode
-    	speed = -speed;
-    	
     	if(distance >  Math.abs(leftEncoder.getDistance()) && distance > Math.abs(rightEncoder.getDistance())){
     		finished = false;
     		//System.out.println("carry on my wayward son!");
@@ -168,7 +168,7 @@ public class DriveTrain extends Subsystem {
     		//the distances traveled by each side of the drive train
     		// are within tolerance, so just go forward
     		//System.out.println("straight and narrow");
-    		robotDrive.tankDrive(speed, (speed + 0.05), true);        
+    		robotDrive.tankDrive(speed,speed, true);        
         	
 //        	if(tolerance - Math.abs(Math.abs(leftEncoder.getDistance()) - Math.abs(rightEncoder.getDistance()))  < 0){
 //        		

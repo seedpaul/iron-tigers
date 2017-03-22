@@ -26,7 +26,8 @@ public class Robot extends IterativeRobot {
 		 SmartDashboard.putData(Scheduler.getInstance());
 		 
 		 autoChooser = new SendableChooser<CommandBase>();
-		 autoChooser.addDefault("Drive Straight", new DriveStraight(5.0, 0.4));
+		 autoChooser.addDefault("Drive Straight", new DriveStraight(5.2, 0.55));
+		 
 		 autoChooser.addObject("Turn Left", new DriveCurveLeft());
 		 autoChooser.addObject("Turn Right", new DriveCurveRight());
 		 

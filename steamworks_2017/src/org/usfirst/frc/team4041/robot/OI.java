@@ -2,11 +2,13 @@ package org.usfirst.frc.team4041.robot;
 
 import org.usfirst.frc.team4041.robot.commands.ClimbWithController;
 
-import org.usfirst.frc.team4041.robot.commands.DriveStraight;
-import org.usfirst.frc.team4041.robot.commands.DriveCurveLeft;
-import org.usfirst.frc.team4041.robot.commands.DriveCurveRight;
+//import org.usfirst.frc.team4041.robot.commands.DriveStraight;
+//import org.usfirst.frc.team4041.robot.commands.DriveCurveLeft;
+//import org.usfirst.frc.team4041.robot.commands.DriveCurveRight;
 
 import org.usfirst.frc.team4041.robot.commands.FeedWithController;
+import org.usfirst.frc.team4041.robot.commands.GrabWithControllerForward;
+import org.usfirst.frc.team4041.robot.commands.GrabWithControllerReverse;
 import org.usfirst.frc.team4041.robot.commands.PickUpWithController;
 import org.usfirst.frc.team4041.robot.commands.ShootWithController;
 import org.usfirst.frc.team4041.robot.commands.UnloadWithController;
@@ -39,11 +41,14 @@ public class OI {
     	//put some code here if you like
     	buttonA.toggleWhenPressed(new PickUpWithController());
     	buttonY.toggleWhenPressed(new ClimbWithController());
-    	buttonB.toggleWhenPressed(new UnloadWithController());
+    	//buttonB.toggleWhenPressed(new UnloadWithController());
     	
     	//buttonX.toggleWhenPressed(new DriveStraight(5.0, 0.4));
     	//buttonX.toggleWhenPressed(new DriveCurveLeft(7.5));
     	//buttonX.toggleWhenPressed(new DriveCurveRight(7.5));
+    	
+    	buttonB.toggleWhenPressed(new GrabWithControllerForward());
+    	buttonX.toggleWhenPressed(new GrabWithControllerReverse());
     	
     	buttonSelect.toggleWhenPressed(new RotateCameraFoward());
     	buttonStart.toggleWhenPressed(new RotateCameraBack());

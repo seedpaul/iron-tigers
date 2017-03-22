@@ -22,6 +22,7 @@ public class DriveCurveRight extends CommandBase {
     protected void initialize() {
     	//System.out.println("drive foward init");
     	driveTrain.getLeftEncoder().reset();
+    	driveTrain.resetLeftEncoder();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -39,6 +40,7 @@ public class DriveCurveRight extends CommandBase {
     protected void end() {
     	//System.out.println("drive forward end");
     	driveTrain.stop();
+    	driveTrain.resetLeftEncoder();
     }
 
     // Called when another command which requires one or more of the same
@@ -46,6 +48,7 @@ public class DriveCurveRight extends CommandBase {
     protected void interrupted() {
     	//System.out.println("drive foward interrupted");
     	driveTrain.stop();
+    	driveTrain.resetLeftEncoder();
     }
     
 }

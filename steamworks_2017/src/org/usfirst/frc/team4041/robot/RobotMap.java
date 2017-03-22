@@ -9,8 +9,10 @@ public class RobotMap {
 	public static final int pickerVictor = 8;
 	public static final int feederVictor= 4;
 	public static final int lifterVictor = 1;
+	public static final int grabberSpark = 5;
 	
 	public static final int cameraServo = 9;
+	public static final int centerSwitch = 6;
 	
 	public static final int leftEncooderDIO1 = 0;
 	public static final int leftEncooderDIO2 = 1;
@@ -40,9 +42,6 @@ public class RobotMap {
 	
 	public static final int rightTrigger = 3;
 	public static final int leftTrigger = 3;
-//	
-//	public static final int ultrasonicPing = 3;
-//	public static final int ultrasonicEcho = 2;
 
 	public static final double DEADZONE_MAGIC_NUMBER = .15;
 	public static final double STOP = 0.0;

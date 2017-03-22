@@ -6,7 +6,6 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.VictorSP;
 
 import org.usfirst.frc.team4041.robot.RobotMap;
-import org.usfirst.frc.team4041.robot.commands.ShootWithController;
 
 public class Shooter extends Subsystem {
 
