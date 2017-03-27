@@ -1,60 +1,76 @@
 package org.usfirst.frc.team4041.robot;
 
 import org.usfirst.frc.team4041.robot.commands.ClimbWithController;
-
-//import org.usfirst.frc.team4041.robot.commands.DriveStraight;
-//import org.usfirst.frc.team4041.robot.commands.DriveCurveLeft;
-//import org.usfirst.frc.team4041.robot.commands.DriveCurveRight;
+import org.usfirst.frc.team4041.robot.commands.DriveStraight;
+import org.usfirst.frc.team4041.robot.commands.DriveCurveLeft;
+import org.usfirst.frc.team4041.robot.commands.DriveCurveRight;
 
 import org.usfirst.frc.team4041.robot.commands.FeedWithController;
-import org.usfirst.frc.team4041.robot.commands.GrabWithControllerForward;
-import org.usfirst.frc.team4041.robot.commands.GrabWithControllerReverse;
+import org.usfirst.frc.team4041.robot.commands.GrabWithControllerUp;
+import org.usfirst.frc.team4041.robot.commands.GrabWithControllerDown;
 import org.usfirst.frc.team4041.robot.commands.PickUpWithController;
 import org.usfirst.frc.team4041.robot.commands.ShootWithController;
 import org.usfirst.frc.team4041.robot.commands.UnloadWithController;
 import org.usfirst.frc.team4041.robot.commands.RotateCameraFoward;
 import org.usfirst.frc.team4041.robot.commands.RotateCameraBack;
+import org.usfirst.frc.team4041.robot.commands.EjectWithController;
+import org.usfirst.frc.team4041.robot.commands.EngulfWithController;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 public class OI {
 
-	static final Joystick xbox = new Joystick(RobotMap.xboxController);
-	
-	static final JoystickButton buttonA = new JoystickButton(xbox, RobotMap.buttonA);
-	static final JoystickButton buttonB = new JoystickButton(xbox, RobotMap.buttonB);
-	static final JoystickButton buttonX = new JoystickButton(xbox, RobotMap.buttonX);
-	static final JoystickButton buttonY = new JoystickButton(xbox, RobotMap.buttonY);
-	
-	static final JoystickButton buttonStart = new JoystickButton(xbox, RobotMap.buttonStart);
-	static final JoystickButton buttonSelect = new JoystickButton(xbox, RobotMap.buttonSelect);
-	
-	static final JoystickButton buttonRightBumper = new JoystickButton(xbox, RobotMap.buttonBumperRight);
-	static final JoystickButton buttonLeftBumper = new JoystickButton(xbox, RobotMap.buttonBumperLeft);
-	
-	static final JoystickButton buttonRightTrigger = new JoystickButton(xbox, RobotMap.rightTrigger);
-	static final JoystickButton buttonLeftTrigger = new JoystickButton(xbox, RobotMap.leftTrigger);
+	static final Joystick xboxDriver = new Joystick(RobotMap.xboxControllerDriver);
+	static final JoystickButton XD_buttonA = new JoystickButton(xboxDriver, RobotMap.buttonA);
+	static final JoystickButton XD_buttonB = new JoystickButton(xboxDriver, RobotMap.buttonB);
+	static final JoystickButton XD_buttonX = new JoystickButton(xboxDriver, RobotMap.buttonX);
+	static final JoystickButton XD_buttonY = new JoystickButton(xboxDriver, RobotMap.buttonY);
+	static final JoystickButton XD_buttonStart = new JoystickButton(xboxDriver, RobotMap.buttonStart);
+	static final JoystickButton XD_buttonSelect = new JoystickButton(xboxDriver, RobotMap.buttonSelect);
+	static final JoystickButton XD_buttonRightBumper = new JoystickButton(xboxDriver, RobotMap.buttonBumperRight);
+	static final JoystickButton XD_buttonLeftBumper = new JoystickButton(xboxDriver, RobotMap.buttonBumperLeft);
+	static final JoystickButton XD_buttonRightTrigger = new JoystickButton(xboxDriver, RobotMap.rightTrigger);
+	static final JoystickButton XD_buttonLeftTrigger = new JoystickButton(xboxDriver, RobotMap.leftTrigger);
 
+	static final Joystick xboxAssistant = new Joystick(RobotMap.xboxControllerAssistant);
+	static final JoystickButton XA_button1 = new JoystickButton(xboxAssistant, RobotMap.button1);
+	static final JoystickButton XA_button2 = new JoystickButton(xboxAssistant, RobotMap.button2);
+	static final JoystickButton XA_button3 = new JoystickButton(xboxAssistant, RobotMap.button3);
+	static final JoystickButton XA_button4 = new JoystickButton(xboxAssistant, RobotMap.button4);
+	static final JoystickButton XA_buttonStart = new JoystickButton(xboxAssistant, RobotMap.buttonStart_generic);
+	static final JoystickButton XA_buttonSelect = new JoystickButton(xboxAssistant, RobotMap.buttonSelect_generic);
+	static final JoystickButton XA_buttonRightBumper = new JoystickButton(xboxAssistant, RobotMap.buttonBumperRight);
+	static final JoystickButton XA_buttonLeftBumper = new JoystickButton(xboxAssistant, RobotMap.buttonBumperLeft);
+	static final JoystickButton XA_buttonRightTrigger = new JoystickButton(xboxAssistant, RobotMap.rightTrigger_generic);
+	static final JoystickButton XA_buttonLeftTrigger = new JoystickButton(xboxAssistant, RobotMap.leftTrigger_generic);
+	static final JoystickButton XA_rightJoystickPush = new JoystickButton(xboxAssistant, RobotMap.rightJoystickPush);
+	static final JoystickButton XA_lefttJoystickPush = new JoystickButton(xboxAssistant, RobotMap.leftJoystickPush);
+	
     public void init() {
     	
-    	//put some code here if you like
-    	buttonA.toggleWhenPressed(new PickUpWithController());
-    	buttonY.toggleWhenPressed(new ClimbWithController());
-    	//buttonB.toggleWhenPressed(new UnloadWithController());
+    	//start driver xbox controller buttons *********************************
+    	XD_buttonA.toggleWhenPressed(new PickUpWithController());
     	
-    	//buttonX.toggleWhenPressed(new DriveStraight(5.0, 0.4));
-    	//buttonX.toggleWhenPressed(new DriveCurveLeft(7.5));
-    	//buttonX.toggleWhenPressed(new DriveCurveRight(7.5));
+    	XD_buttonB.toggleWhenPressed(new UnloadWithController());
+    	XD_buttonLeftBumper.toggleWhenPressed(new FeedWithController());
+    	XD_buttonRightBumper.toggleWhenPressed(new ShootWithController());
+    	XD_buttonSelect.toggleWhenPressed(new RotateCameraFoward());
+    	XD_buttonStart.toggleWhenPressed(new RotateCameraBack());
+    	//end driver xbox controller buttons *********************************
     	
-    	buttonB.toggleWhenPressed(new GrabWithControllerForward());
-    	buttonX.toggleWhenPressed(new GrabWithControllerReverse());
+    	//start assistant xbox controller buttons ***********************************
+    	XA_button2.toggleWhenPressed(new GrabWithControllerDown());
+    	XA_button4.toggleWhenPressed(new GrabWithControllerUp());
+    	XA_button1.toggleWhenPressed(new EngulfWithController());
+    	XA_button3.toggleWhenPressed(new EjectWithController());
     	
-    	buttonSelect.toggleWhenPressed(new RotateCameraFoward());
-    	buttonStart.toggleWhenPressed(new RotateCameraBack());
-
-    	buttonLeftBumper.toggleWhenPressed(new FeedWithController());
-    	buttonRightBumper.toggleWhenPressed(new ShootWithController());
+    	XA_buttonRightTrigger.toggleWhenPressed(new ClimbWithController());
+    	
+    	XA_buttonStart.toggleWhenPressed(new DriveStraight(5.0, -0.45));
+    	XA_buttonLeftBumper.toggleWhenPressed(new DriveCurveLeft(5.0));
+    	XA_buttonRightBumper.toggleWhenPressed(new DriveCurveRight(5.0));
+    	//end assistant xbox controller buttons *********************************
     }
     
     private static double deadzone(double d) {
@@ -72,15 +88,15 @@ public class OI {
     }
 
     public static double getLeftStickY() {
-        return deadzone(-xbox.getRawAxis(RobotMap.leftStickY));
+        return deadzone(-xboxDriver.getRawAxis(RobotMap.leftStickY));
     }
 
     public static double getRightStickY() {
-        return deadzone(-xbox.getRawAxis(RobotMap.rightStickY));
+        return deadzone(-xboxDriver.getRawAxis(RobotMap.rightStickY));
     }
 
 	  public boolean getRightTrigger() {
-	  double triggerValue = xbox.getRawAxis(RobotMap.rightTrigger);
+	  double triggerValue = xboxDriver.getRawAxis(RobotMap.rightTrigger);
 	  if (triggerValue < 0) {
 	      return true;
 	  } else {
@@ -89,7 +105,7 @@ public class OI {
 	}
 
     public boolean getLeftTrigger() {
-        double triggerValue = xbox.getRawAxis(RobotMap.leftTrigger);
+        double triggerValue = xboxDriver.getRawAxis(RobotMap.leftTrigger);
         if (triggerValue > 0) {
             return true;
         } else {

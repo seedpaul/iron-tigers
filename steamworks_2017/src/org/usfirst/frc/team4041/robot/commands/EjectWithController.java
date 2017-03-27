@@ -2,14 +2,12 @@ package org.usfirst.frc.team4041.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-public class PickUpWithController extends CommandBase {
+public class EjectWithController extends CommandBase {
 	
-	static final double pickerSpeed = -1;
-	static final double waterfallSpeed = -1;
+	static final double suckerSpeed = 0.4;
 
-    public PickUpWithController() {
+    public EjectWithController() {
         requires((Subsystem) picker);
-        requires((Subsystem) waterfall);
     }
 
     // Called just before this Command runs the first time
@@ -17,8 +15,7 @@ public class PickUpWithController extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	picker.startPicker(pickerSpeed);
-    	waterfall.startWaterfall(waterfallSpeed);
+    	picker.startPicker(suckerSpeed);
     }
     
     // Make this return true when this Command no longer needs to run execute()
@@ -29,13 +26,13 @@ public class PickUpWithController extends CommandBase {
     // Called once after isFinished returns true
     protected void end() {
     	picker.stopPicker();
-    	waterfall.stopWaterfall();
+
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
     	picker.stopPicker();
-    	waterfall.stopWaterfall();
+
     }
 }

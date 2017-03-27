@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.Talon;
-//import edu.wpi.first.wpilibj.Ultrasonic;
+import edu.wpi.first.wpilibj.Timer;
 
 import org.usfirst.frc.team4041.robot.RobotMap;
 import org.usfirst.frc.team4041.robot.commands.DriveWithController;
@@ -24,7 +24,7 @@ public class DriveTrain extends Subsystem {
 	static final Encoder leftEncoder = new Encoder(RobotMap.leftEncooderDIO1, RobotMap.leftEncooderDIO2, false, Encoder.EncodingType.k4X);//e4t
 	static final Encoder rightEncoder = new Encoder(RobotMap.rightEncooderDIO1, RobotMap.rightEncooderDIO12, true, Encoder.EncodingType.k4X);//e4p
 
-//	static final Ultrasonic ultrasonic = new Ultrasonic(RobotMap.ultrasonicPing, RobotMap.ultrasonicEcho, Ultrasonic.Unit.kInches);
+	private static double Kp = 0.03;
     
     private static DriveTrain instance;
     
@@ -115,19 +115,22 @@ public class DriveTrain extends Subsystem {
     public boolean driveCurveLeft(double distance){
     	
     	boolean finished = true;
-    	double currentDistance = Math.abs(leftEncoder.getDistance());
+    	double finishAngle = -15.0;
+    	double currentDistance = Math.abs(rightEncoder.getDistance());
     	if(distance >  currentDistance){
     		finished = false;
-    		if((currentDistance/distance) > .60 &&  (currentDistance/distance) < .80){
-    			robotDrive.tankDrive(0.25, 0.65, true);
+    		double angle = spiGyro.getAngle(); // get current heading
+    		if((currentDistance/distance) > .60){
+        		
+        		robotDrive.drive(0.45, ((finishAngle+angle)*Kp)); // drive towards heading 0
+        		Timer.delay(0.004); 
     		}
     		else{
-    			robotDrive.tankDrive(0.45,0.45, true);
+        		robotDrive.drive(0.45, -angle*Kp); // drive towards heading 0
+        		Timer.delay(0.004);
     		}
-    		 
     	}
     	SmartDashboard.putData("Gyro", spiGyro);
-    	SmartDashboard.putData("leftEncoder", leftEncoder);
     	SmartDashboard.putData("rightEncoder", rightEncoder);
     	return finished;
     }
@@ -135,83 +138,45 @@ public class DriveTrain extends Subsystem {
     public boolean driveCurveRight(double distance){
     	
     	boolean finished = true;
-    	double currentDistance = Math.abs(leftEncoder.getDistance());
+    	double finishAngle = 15.0;
+    	double currentDistance = Math.abs(rightEncoder.getDistance());
     	if(distance >  currentDistance){
     		finished = false;
-    		if((currentDistance/distance) > .65 && (currentDistance/distance) < .80){
-    			robotDrive.tankDrive(0.75, 0.25, true);
+    		double angle = spiGyro.getAngle(); // get current heading
+    		if((currentDistance/distance) > .60){
+        		robotDrive.drive(0.45, ((finishAngle+angle)*Kp)); // drive towards heading 0
+        		Timer.delay(0.004); 
     		}
     		else{
-    			robotDrive.tankDrive(0.45, 0.45, true);
+    			robotDrive.drive(0.45, -angle*Kp); // drive towards heading 0
+        		Timer.delay(0.004);
     		}
     	}
     	SmartDashboard.putData("Gyro", spiGyro);
-    	SmartDashboard.putData("leftEncoder", leftEncoder);
     	SmartDashboard.putData("rightEncoder", rightEncoder);
     	return finished;
     }
     
-    public boolean driveStraight(double speed, double distance, double tolerance){
+    public boolean driveStraight(double speed, double distance){
     	
-    	//System.out.println("in drive straight function");
     	SmartDashboard.putData("Gyro", spiGyro);
     	SmartDashboard.putData("leftEncoder", leftEncoder);
     	SmartDashboard.putData("rightEncoder", rightEncoder);
     	
     	boolean finished = true;
-    	//double adjustment = 0.75;
     	
     	if(distance >  Math.abs(leftEncoder.getDistance()) && distance > Math.abs(rightEncoder.getDistance())){
-    		finished = false;
-    		//System.out.println("carry on my wayward son!");
     		
-    		//the distances traveled by each side of the drive train
-    		// are within tolerance, so just go forward
-    		//System.out.println("straight and narrow");
-    		robotDrive.tankDrive(speed,speed, true);        
+    		finished = false;
+    		double angle = spiGyro.getAngle(); // get current heading
+    		robotDrive.drive(speed, -angle*Kp); // drive towards heading 0
+    		Timer.delay(0.004);     
         	
-//        	if(tolerance - Math.abs(Math.abs(leftEncoder.getDistance()) - Math.abs(rightEncoder.getDistance()))  < 0){
-//        		
-//        		double difference = Math.abs(leftEncoder.getDistance()) - Math.abs(rightEncoder.getDistance());
-//        		SmartDashboard.putNumber("difference",difference);
-//        		//System.out.println("we have achieved wonkiness");
-//        		//we're out odistanceDifferencef tolerance
-//        		//lets figure out which side has travel further
-//        		//adjustedSpeed = (speed + (Math.abs(leftEncoder.getDistance()) - Math.abs(rightEncoder.getDistance()))/10);
-//        		if(Math.abs(leftEncoder.getDistance()) - Math.abs(rightEncoder.getDistance()) > 0){
-//        			//the left side has traveled further than the right side
-//        			robotDrive.tankDrive((speed + (adjustment)), 0.1, true);
-//        			//System.out.println("increase right");
-//        		}else{
-//        			//the right side has traveled further than the left side
-//        			robotDrive.tankDrive(0.1, (speed + adjustment), true);
-//        			//System.out.println("increase left");
-//        		}
-//        	}
     	}
     	SmartDashboard.putData("Gyro", spiGyro);
     	SmartDashboard.putData("leftEncoder", leftEncoder);
     	SmartDashboard.putData("rightEncoder", rightEncoder);
     	return finished;
     }
- 
-//  private double ds_e = 0;
-//  private double ds_kp = 0.03;
-//  private final double Kp = 0.03;
-//  
-//  public void driveStraighter(double speed){
-//  	ds_kp = 0.03;//SmartDashboard.getNumber("straight kp",0.03);
-//  	double angle = spiGyro.getAngle();
-//  	double output = -angle*Kp;
-//  	
-//  	if(Math.abs(output) < 0.4 && output != 0){
-//  		output = (output/Math.abs(output)) * 0.4;
-//  	}
-//  	HDrive(speed, output);
-//  }
-//  
-//  public void HDrive(double moveValue, double turnValue){
-//  	robotDrive.arcadeDrive(-moveValue,turnValue);
-//  } 
 }
 

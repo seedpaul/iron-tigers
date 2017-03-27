@@ -23,12 +23,13 @@ public class DriveStraight extends CommandBase {
     	//System.out.println("drive foward init");
     	driveTrain.getLeftEncoder().reset();
     	driveTrain.getRightEncoder().reset();
+    	driveTrain.getGyro().reset();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	//System.out.println("drive foward execute");
-    	finishedDriving = driveTrain.driveStraight(speed, distance, 0.055);
+    	finishedDriving = driveTrain.driveStraight(speed, distance);
     }
 
     // Make this return true when this Command no longer needs to run execute()

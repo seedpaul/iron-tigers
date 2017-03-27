@@ -2,12 +2,13 @@ package org.usfirst.frc.team4041.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-public class GrabWithControllerReverse extends CommandBase {
+public class GrabWithControllerDown extends CommandBase {
 	
-	static double grabberSpeed = -0.5;
+	static double grabberSpeed = -0.45;
 
-    public GrabWithControllerReverse() {
+    public GrabWithControllerDown() {
         requires((Subsystem) grabber);
+        requires((Subsystem) picker);
     }
     // Called just before this Command runs the first time
     protected void initialize() {}
@@ -17,6 +18,7 @@ public class GrabWithControllerReverse extends CommandBase {
     	
     	//if(!grabber.getSwitch().get()){
     		grabber.startGrabber(grabberSpeed);
+    		picker.startPicker(.15);
     	//}
     }
     
@@ -28,11 +30,13 @@ public class GrabWithControllerReverse extends CommandBase {
     // Called once after isFinished returns true
     protected void end() {
     	grabber.stopGrabber();
+    	picker.stopPicker();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
     	grabber.stopGrabber();
+    	picker.stopPicker();
     }
 }
