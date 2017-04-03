@@ -1,10 +1,6 @@
 package org.usfirst.frc.team4041.robot;
 
 import org.usfirst.frc.team4041.robot.commands.ClimbWithController;
-import org.usfirst.frc.team4041.robot.commands.DriveStraight;
-import org.usfirst.frc.team4041.robot.commands.DriveCurveLeft;
-import org.usfirst.frc.team4041.robot.commands.DriveCurveRight;
-
 import org.usfirst.frc.team4041.robot.commands.FeedWithController;
 import org.usfirst.frc.team4041.robot.commands.GrabWithControllerUp;
 import org.usfirst.frc.team4041.robot.commands.GrabWithControllerDown;
@@ -51,10 +47,8 @@ public class OI {
     	
     	//start driver xbox controller buttons *********************************
     	XD_buttonA.toggleWhenPressed(new PickUpWithController());
-    	
     	XD_buttonB.toggleWhenPressed(new UnloadWithController());
     	XD_buttonLeftBumper.toggleWhenPressed(new FeedWithController());
-    	XD_buttonRightBumper.toggleWhenPressed(new ShootWithController());
     	XD_buttonSelect.toggleWhenPressed(new RotateCameraFoward());
     	XD_buttonStart.toggleWhenPressed(new RotateCameraBack());
     	//end driver xbox controller buttons *********************************
@@ -65,11 +59,9 @@ public class OI {
     	XA_button1.toggleWhenPressed(new EngulfWithController());
     	XA_button3.toggleWhenPressed(new EjectWithController());
     	
-    	XA_buttonRightTrigger.toggleWhenPressed(new ClimbWithController());
+    	XA_buttonStart.toggleWhenPressed(new ShootWithController());
     	
-    	XA_buttonStart.toggleWhenPressed(new DriveStraight(5.0, -0.45));
-    	XA_buttonLeftBumper.toggleWhenPressed(new DriveCurveLeft(5.0));
-    	XA_buttonRightBumper.toggleWhenPressed(new DriveCurveRight(5.0));
+    	XA_buttonRightTrigger.toggleWhenPressed(new ClimbWithController());
     	//end assistant xbox controller buttons *********************************
     }
     

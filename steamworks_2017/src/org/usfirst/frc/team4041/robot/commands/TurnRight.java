@@ -2,32 +2,32 @@ package org.usfirst.frc.team4041.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-public class DriveCurveRight extends CommandBase {
-
-	private static double distance;
+public class TurnRight extends CommandBase {
 	
+	private static double angle = 0;
 	private static boolean finishedDriving = false; 
 	
-    public DriveCurveRight() {
-    	// some random default values we used during testing
-    	this(7.5);
+    public TurnRight() {
+    	this(angle);
     }
-    
-	public DriveCurveRight(double Distance) {
+	
+	public TurnRight(double angle_in) {
 		requires((Subsystem) driveTrain);
-		distance = Distance;
+		angle = angle_in;
     }
 	
     // Called just before this Command runs the first time
     protected void initialize() {
     	//System.out.println("drive foward init");
     	driveTrain.getLeftEncoder().reset();
-    	driveTrain.resetLeftEncoder();
+    	driveTrain.getRightEncoder().reset();
+    	driveTrain.getGyro().reset();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	finishedDriving = driveTrain.driveCurveRight(distance);
+    	//System.out.println("drive foward execute");
+    	finishedDriving = driveTrain.turnRight(angle);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -40,7 +40,6 @@ public class DriveCurveRight extends CommandBase {
     protected void end() {
     	//System.out.println("drive forward end");
     	driveTrain.stop();
-    	driveTrain.resetLeftEncoder();
     }
 
     // Called when another command which requires one or more of the same
@@ -48,7 +47,6 @@ public class DriveCurveRight extends CommandBase {
     protected void interrupted() {
     	//System.out.println("drive foward interrupted");
     	driveTrain.stop();
-    	driveTrain.resetLeftEncoder();
     }
     
 }

@@ -9,7 +9,7 @@ public class DriveStraight extends CommandBase {
 	private static boolean finishedDriving = false; 
 	
     public DriveStraight() {
-    	this(distance, speed);
+    	this(speed, distance);
     }
 	
 	public DriveStraight(double distance_in, double speed_in) {

@@ -42,11 +42,12 @@ public class DriveTrain extends Subsystem {
 
     public void initialize() {
 		robotDrive.setExpiration(0.1);
-		leftEncoder.reset();
-		rightEncoder.reset();
+
 		leftEncoder.setDistancePerPulse(0.0027777778);
 		rightEncoder.setDistancePerPulse(0.0027777778);
-		rightEncoder.setPIDSourceType(PIDSourceType.kDisplacement);
+		
+		leftEncoder.reset();
+		rightEncoder.reset();
 	
 		try {
 			spiGyro.reset();
@@ -87,10 +88,6 @@ public class DriveTrain extends Subsystem {
     public double getAngle(){
     	return spiGyro.getAngle();
     }
-
-    public RobotDrive getTrain() {
-        return robotDrive;
-    }
     
     public Encoder getRightEncoder() {
         return rightEncoder;
@@ -100,61 +97,31 @@ public class DriveTrain extends Subsystem {
         return leftEncoder;
     }
     
-    public void resetLeftEncoder(){
-    	leftEncoder.reset();
-    }
-    
-    public double getLeftDistance(){
-    	return leftEncoder.getDistance();
-    }
-    
-    public double getRightDistance(){
-    	return rightEncoder.getDistance();
-    }
-    
-    public boolean driveCurveLeft(double distance){
+    public boolean turnLeft(double in_angle){
     	
-    	boolean finished = true;
-    	double finishAngle = -15.0;
-    	double currentDistance = Math.abs(rightEncoder.getDistance());
-    	if(distance >  currentDistance){
-    		finished = false;
-    		double angle = spiGyro.getAngle(); // get current heading
-    		if((currentDistance/distance) > .60){
-        		
-        		robotDrive.drive(0.45, ((finishAngle+angle)*Kp)); // drive towards heading 0
-        		Timer.delay(0.004); 
-    		}
-    		else{
-        		robotDrive.drive(0.45, -angle*Kp); // drive towards heading 0
-        		Timer.delay(0.004);
-    		}
-    	}
     	SmartDashboard.putData("Gyro", spiGyro);
-    	SmartDashboard.putData("rightEncoder", rightEncoder);
-    	return finished;
-    }
-    
-    public boolean driveCurveRight(double distance){
+    	double angle = spiGyro.getAngle(); 
+    	boolean retVal = true;
     	
-    	boolean finished = true;
-    	double finishAngle = 15.0;
-    	double currentDistance = Math.abs(rightEncoder.getDistance());
-    	if(distance >  currentDistance){
-    		finished = false;
-    		double angle = spiGyro.getAngle(); // get current heading
-    		if((currentDistance/distance) > .60){
-        		robotDrive.drive(0.45, ((finishAngle+angle)*Kp)); // drive towards heading 0
-        		Timer.delay(0.004); 
-    		}
-    		else{
-    			robotDrive.drive(0.45, -angle*Kp); // drive towards heading 0
-        		Timer.delay(0.004);
-    		}
+    	if(angle >= in_angle){
+    		robotDrive.tankDrive(0,0.5);
+    		retVal = false;
+    		
     	}
+    	return retVal;
+    }
+    public boolean turnRight(double in_angle){
+    	
     	SmartDashboard.putData("Gyro", spiGyro);
-    	SmartDashboard.putData("rightEncoder", rightEncoder);
-    	return finished;
+    	double angle = spiGyro.getAngle(); 
+    	boolean retVal = true;
+    	
+    	if(angle <= in_angle){
+    		robotDrive.tankDrive(0.5,0);
+    		retVal = false;
+    		
+    	}
+    	return retVal;
     }
     
     public boolean driveStraight(double speed, double distance){
@@ -164,17 +131,25 @@ public class DriveTrain extends Subsystem {
     	SmartDashboard.putData("rightEncoder", rightEncoder);
     	
     	boolean finished = true;
+    	double leftDistance = Math.abs(leftEncoder.getDistance());
+    	double rightDistance = Math.abs(rightEncoder.getDistance());
     	
-    	if(distance >  Math.abs(leftEncoder.getDistance()) && distance > Math.abs(rightEncoder.getDistance())){
+    	if(distance >= leftDistance && distance >= rightDistance){
     		
     		finished = false;
     		double angle = spiGyro.getAngle(); // get current heading
     		robotDrive.drive(speed, -angle*Kp); // drive towards heading 0
     		Timer.delay(0.004);     
-        	
+    		System.out.println("!!!!!keep going!!!!!");
+    	}
+    	else{
+    		System.out.println("!!!!!!we gone far enough!!!!!");
+    		System.out.println("leftDistance: " + leftDistance);
+    		System.out.println("rightDistance: " + rightDistance);
     	}
     	SmartDashboard.putData("Gyro", spiGyro);
     	SmartDashboard.putData("leftEncoder", leftEncoder);
+    	
     	SmartDashboard.putData("rightEncoder", rightEncoder);
     	return finished;
     }

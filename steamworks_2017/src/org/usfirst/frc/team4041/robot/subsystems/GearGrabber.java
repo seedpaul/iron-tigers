@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.Spark;
 
 public class GearGrabber extends Subsystem {
 
-	static final Spark grabberSpark = new Spark(RobotMap.grabberSpark);;
+	static final Spark grabberSpark = new Spark(RobotMap.grabberSpark);
 	static final DigitalInput centerSwitch = new DigitalInput(RobotMap.centerSwitch);
 	private static GearGrabber instance;
 	

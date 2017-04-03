@@ -3,11 +3,13 @@ package org.usfirst.frc.team4041.robot;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import org.usfirst.frc.team4041.robot.commandGroups.*;
 import org.usfirst.frc.team4041.robot.commands.*;
 
 
@@ -15,8 +17,9 @@ public class Robot extends IterativeRobot {
 	
 	CameraServer server;
 	Command autonousCommand;
-	SendableChooser<CommandBase> autoChooser;
-
+//	SendableChooser<CommandGroup> autoChooser;
+	SendableChooser<Command> autoChooser;
+	
 	public void robotInit() {
 		
 		 server = CameraServer.getInstance();
@@ -26,11 +29,17 @@ public class Robot extends IterativeRobot {
 		 CommandBase.init();
 		 SmartDashboard.putData(Scheduler.getInstance());
 		 
-		 autoChooser = new SendableChooser<CommandBase>();
-		 autoChooser.addDefault("Drive Straight", new DriveStraight(5.2, 0.55));
+		 autoChooser = new SendableChooser<Command>();
+		 autoChooser.addDefault("Drive Straight", new DriveStraight(5,0.4));
 		 
-		 autoChooser.addObject("Turn Left", new DriveCurveLeft());
-		 autoChooser.addObject("Turn Right", new DriveCurveRight());
+//		 autoChooser = new SendableChooser<CommandGroup>();
+//		 autoChooser.addDefault("Drive Straight", new autonomous_straight());
+//		 
+//		 autoChooser.addObject("Turn Left", new autonomous_left(false));
+//		 autoChooser.addObject("Turn Left w/shooter", new autonomous_left(true));
+//		 
+//		 autoChooser.addObject("Turn Right", new autonomous_right(false));
+//		 autoChooser.addObject("Turn Right w/shooter", new autonomous_right(true));
 		 
 		 SmartDashboard.putData("Autonomous Mode Selection:", autoChooser);
 	}
