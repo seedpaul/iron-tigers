@@ -3,13 +3,11 @@ package org.usfirst.frc.team4041.robot;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.usfirst.frc.team4041.robot.commandGroups.*;
 import org.usfirst.frc.team4041.robot.commands.*;
 
 
@@ -17,8 +15,9 @@ public class Robot extends IterativeRobot {
 	
 	CameraServer server;
 	Command autonousCommand;
-//	SendableChooser<CommandGroup> autoChooser;
+	Command driveCommand;
 	SendableChooser<Command> autoChooser;
+	SendableChooser<Command> driveChooser;
 	
 	public void robotInit() {
 		
@@ -32,6 +31,10 @@ public class Robot extends IterativeRobot {
 		 autoChooser = new SendableChooser<Command>();
 		 autoChooser.addDefault("Drive Straight", new DriveStraight(5,0.4));
 		 
+		 driveChooser = new SendableChooser<Command>();
+		 driveChooser.addDefault("Tank", new TankDriveWithController());
+		 driveChooser.addDefault("Arcade", new ArcadeDriveWithController());
+		 
 //		 autoChooser = new SendableChooser<CommandGroup>();
 //		 autoChooser.addDefault("Drive Straight", new autonomous_straight());
 //		 
@@ -42,6 +45,7 @@ public class Robot extends IterativeRobot {
 //		 autoChooser.addObject("Turn Right w/shooter", new autonomous_right(true));
 		 
 		 SmartDashboard.putData("Autonomous Mode Selection:", autoChooser);
+		 SmartDashboard.putData("Drive Mode Selection:", driveChooser);
 	}
 
 	public Robot() {
@@ -59,9 +63,9 @@ public class Robot extends IterativeRobot {
     }
 
     public void teleopInit() {
-    	
-        Command driveTrainControls = new DriveWithController();
-        driveTrainControls.start();
+        
+        driveCommand = (Command) driveChooser.getSelected();
+        driveCommand.start();
         
         Command initCamera = new RotateCameraBack();
         initCamera.start();
@@ -75,7 +79,7 @@ public class Robot extends IterativeRobot {
         Scheduler.getInstance().run();
 
         if (((Subsystem) CommandBase.driveTrain).getCurrentCommand() == null) {
-            Scheduler.getInstance().add(new DriveWithController());
+            Scheduler.getInstance().add(driveCommand);
         }
     }
 

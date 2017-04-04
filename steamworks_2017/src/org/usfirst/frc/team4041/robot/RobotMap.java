@@ -48,6 +48,9 @@ public class RobotMap {
 	public static final int rightStickY = 5;
 	public static final int leftStickY = 1;
 	
+	public static final int rightStickX = 4;
+	public static final int leftStickX = 0;
+	
 	public static final int rightTrigger = 3;
 	public static final int leftTrigger = 3;
 	public static final int rightTrigger_generic = 8;

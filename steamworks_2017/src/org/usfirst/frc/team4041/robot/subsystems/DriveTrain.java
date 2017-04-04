@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.SPI;
@@ -12,7 +13,7 @@ import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.Timer;
 
 import org.usfirst.frc.team4041.robot.RobotMap;
-import org.usfirst.frc.team4041.robot.commands.DriveWithController;
+import org.usfirst.frc.team4041.robot.commands.TankDriveWithController;
 
 public class DriveTrain extends Subsystem {
 	
@@ -67,11 +68,19 @@ public class DriveTrain extends Subsystem {
     }
 
     protected void initDefaultCommand() {
-        setDefaultCommand(new DriveWithController());
+        setDefaultCommand(new TankDriveWithController());
     }
 
     public void tankDrive(double right, double left) { 
     	robotDrive.tankDrive(right, left, true);
+    	SmartDashboard.putData("Gyro", spiGyro);
+    	SmartDashboard.putData("leftEncoder", leftEncoder);
+    	SmartDashboard.putData("rightEncoder", rightEncoder);
+    }
+    
+    public void arcadeDrive(Joystick driverController, int moveAxis, int turnAxis) { 
+
+    	robotDrive.arcadeDrive(driverController.getRawAxis(1), (-1*driverController.getRawAxis(4)),true);
     	SmartDashboard.putData("Gyro", spiGyro);
     	SmartDashboard.putData("leftEncoder", leftEncoder);
     	SmartDashboard.putData("rightEncoder", rightEncoder);

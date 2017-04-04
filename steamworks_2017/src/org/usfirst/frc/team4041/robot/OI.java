@@ -84,17 +84,17 @@ public class OI {
     }
 
     public static double getRightStickY() {
-        return deadzone(-xboxDriver.getRawAxis(RobotMap.rightStickY));
+    	return deadzone(-xboxDriver.getRawAxis(RobotMap.rightStickY));
     }
 
-	  public boolean getRightTrigger() {
-	  double triggerValue = xboxDriver.getRawAxis(RobotMap.rightTrigger);
-	  if (triggerValue < 0) {
-	      return true;
-	  } else {
-	      return false;
-	  }
+    public boolean getRightTrigger() {
+	double triggerValue = xboxDriver.getRawAxis(RobotMap.rightTrigger);
+	if (triggerValue < 0) {
+		return true;
+	} else {
+		return false;
 	}
+}
 
     public boolean getLeftTrigger() {
         double triggerValue = xboxDriver.getRawAxis(RobotMap.leftTrigger);
@@ -103,5 +103,9 @@ public class OI {
         } else {
             return false;
         }
+    }
+
+    public static Joystick getDriveController() {
+        return xboxDriver;
     }
 }
