@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class EjectWithController extends CommandBase {
 	
-	static final double suckerSpeed = 0.4;
+	static final double suckerSpeed = 0.65;
 
     public EjectWithController() {
         requires((Subsystem) picker);

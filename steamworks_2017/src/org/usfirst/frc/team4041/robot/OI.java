@@ -48,9 +48,12 @@ public class OI {
     	//start driver xbox controller buttons *********************************
     	XD_buttonA.toggleWhenPressed(new PickUpWithController());
     	XD_buttonB.toggleWhenPressed(new UnloadWithController());
+    	
     	XD_buttonLeftBumper.toggleWhenPressed(new FeedWithController());
+    	XD_buttonRightBumper.toggleWhenPressed(new ClimbWithController());
     	XD_buttonSelect.toggleWhenPressed(new RotateCameraFoward());
     	XD_buttonStart.toggleWhenPressed(new RotateCameraBack());
+    	
     	//end driver xbox controller buttons *********************************
     	
     	//start assistant xbox controller buttons ***********************************

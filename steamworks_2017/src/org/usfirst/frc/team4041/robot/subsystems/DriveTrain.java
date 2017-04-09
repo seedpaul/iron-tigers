@@ -42,7 +42,7 @@ public class DriveTrain extends Subsystem {
     }
 
     public void initialize() {
-		robotDrive.setExpiration(0.1);
+		robotDrive.setExpiration(1);
 
 		leftEncoder.setDistancePerPulse(0.0027777778);
 		rightEncoder.setDistancePerPulse(0.0027777778);

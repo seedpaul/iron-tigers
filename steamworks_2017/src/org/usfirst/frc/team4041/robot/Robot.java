@@ -22,8 +22,8 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		
 		 server = CameraServer.getInstance();
-		 server.startAutomaticCapture();
-		 //server.startAutomaticCapture(1);
+		 server.startAutomaticCapture(0);
+		 server.startAutomaticCapture(1);
 		 
 		 CommandBase.init();
 		 SmartDashboard.putData(Scheduler.getInstance());
