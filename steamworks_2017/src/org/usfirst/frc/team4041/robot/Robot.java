@@ -1,6 +1,7 @@
 package org.usfirst.frc.team4041.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;

@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class EngulfWithController extends CommandBase {
 	
-	static final double suckerSpeed = -0.75;
+	static final double suckerSpeed = -0.85;
 
     public EngulfWithController() {
         requires((Subsystem) picker);

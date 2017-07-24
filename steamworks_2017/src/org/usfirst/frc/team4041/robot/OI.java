@@ -1,9 +1,10 @@
 package org.usfirst.frc.team4041.robot;
 
+import org.usfirst.frc.team4041.robot.commandGroups.GrabAndPickUpWithController;
 import org.usfirst.frc.team4041.robot.commands.ClimbWithController;
 import org.usfirst.frc.team4041.robot.commands.FeedWithController;
 import org.usfirst.frc.team4041.robot.commands.GrabWithControllerUp;
-import org.usfirst.frc.team4041.robot.commands.GrabWithControllerDown;
+//import org.usfirst.frc.team4041.robot.commands.GrabWithControllerDown;
 import org.usfirst.frc.team4041.robot.commands.PickUpWithController;
 import org.usfirst.frc.team4041.robot.commands.ShootWithController;
 import org.usfirst.frc.team4041.robot.commands.UnloadWithController;
@@ -30,18 +31,16 @@ public class OI {
 	static final JoystickButton XD_buttonLeftTrigger = new JoystickButton(xboxDriver, RobotMap.leftTrigger);
 
 	static final Joystick xboxAssistant = new Joystick(RobotMap.xboxControllerAssistant);
-	static final JoystickButton XA_button1 = new JoystickButton(xboxAssistant, RobotMap.button1);
-	static final JoystickButton XA_button2 = new JoystickButton(xboxAssistant, RobotMap.button2);
-	static final JoystickButton XA_button3 = new JoystickButton(xboxAssistant, RobotMap.button3);
-	static final JoystickButton XA_button4 = new JoystickButton(xboxAssistant, RobotMap.button4);
-	static final JoystickButton XA_buttonStart = new JoystickButton(xboxAssistant, RobotMap.buttonStart_generic);
-	static final JoystickButton XA_buttonSelect = new JoystickButton(xboxAssistant, RobotMap.buttonSelect_generic);
+	static final JoystickButton XA_buttonA = new JoystickButton(xboxAssistant, RobotMap.buttonA);
+	static final JoystickButton XA_buttonB = new JoystickButton(xboxAssistant, RobotMap.buttonB);
+	static final JoystickButton XA_buttonX = new JoystickButton(xboxAssistant, RobotMap.buttonX);
+	static final JoystickButton XA_buttonY = new JoystickButton(xboxAssistant, RobotMap.buttonY);
+	static final JoystickButton XA_buttonStart = new JoystickButton(xboxAssistant, RobotMap.buttonStart);
+	static final JoystickButton XA_buttonSelect = new JoystickButton(xboxAssistant, RobotMap.buttonSelect);
 	static final JoystickButton XA_buttonRightBumper = new JoystickButton(xboxAssistant, RobotMap.buttonBumperRight);
 	static final JoystickButton XA_buttonLeftBumper = new JoystickButton(xboxAssistant, RobotMap.buttonBumperLeft);
-	static final JoystickButton XA_buttonRightTrigger = new JoystickButton(xboxAssistant, RobotMap.rightTrigger_generic);
-	static final JoystickButton XA_buttonLeftTrigger = new JoystickButton(xboxAssistant, RobotMap.leftTrigger_generic);
-	static final JoystickButton XA_rightJoystickPush = new JoystickButton(xboxAssistant, RobotMap.rightJoystickPush);
-	static final JoystickButton XA_lefttJoystickPush = new JoystickButton(xboxAssistant, RobotMap.leftJoystickPush);
+	static final JoystickButton XA_buttonRightTrigger = new JoystickButton(xboxAssistant, RobotMap.rightTrigger);
+	static final JoystickButton XA_buttonLeftTrigger = new JoystickButton(xboxAssistant, RobotMap.leftTrigger);
 	
     public void init() {
     	
@@ -53,18 +52,17 @@ public class OI {
     	XD_buttonRightBumper.toggleWhenPressed(new ClimbWithController());
     	XD_buttonSelect.toggleWhenPressed(new RotateCameraFoward());
     	XD_buttonStart.toggleWhenPressed(new RotateCameraBack());
-    	
     	//end driver xbox controller buttons *********************************
     	
     	//start assistant xbox controller buttons ***********************************
-    	XA_button2.toggleWhenPressed(new GrabWithControllerDown());
-    	XA_button4.toggleWhenPressed(new GrabWithControllerUp());
-    	XA_button1.toggleWhenPressed(new EngulfWithController());
-    	XA_button3.toggleWhenPressed(new EjectWithController());
+    	XA_buttonA.toggleWhenPressed(new GrabAndPickUpWithController());
+    	XA_buttonY.toggleWhenPressed(new GrabWithControllerUp());
+    	
+    	XA_buttonX.toggleWhenPressed(new EngulfWithController());
+    	XA_buttonB.toggleWhenPressed(new EjectWithController());
     	
     	XA_buttonStart.toggleWhenPressed(new ShootWithController());
-    	
-    	XA_buttonRightTrigger.toggleWhenPressed(new ClimbWithController());
+    	XA_buttonRightBumper.toggleWhenPressed(new ClimbWithController());
     	//end assistant xbox controller buttons *********************************
     }
     

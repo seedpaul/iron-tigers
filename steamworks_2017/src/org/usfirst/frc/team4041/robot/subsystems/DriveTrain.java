@@ -146,10 +146,9 @@ public class DriveTrain extends Subsystem {
     	if(distance >= leftDistance && distance >= rightDistance){
     		
     		finished = false;
-    		double angle = spiGyro.getAngle(); // get current heading
+    		double angle = spiGyro.getAngle(); // get current headinge
     		robotDrive.drive(speed, -angle*Kp); // drive towards heading 0
     		Timer.delay(0.004);     
-    		System.out.println("!!!!!keep going!!!!!");
     	}
     	else{
     		System.out.println("!!!!!!we gone far enough!!!!!");

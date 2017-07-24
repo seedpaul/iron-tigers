@@ -45,4 +45,9 @@ public abstract class CommandBase extends Command
     	
         super();
     }
+    
+    public CommandBase(Double timeout){
+    	
+    	super(timeout);
+    }
 }

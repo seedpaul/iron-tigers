@@ -31,19 +31,12 @@ public class RobotMap {
 	public static final int buttonB = 2;
 	public static final int buttonX = 3;
 	public static final int buttonY = 4;
-
-	public static final int button1 = 1;
-	public static final int button2 = 2;
-	public static final int button3 = 3;
-	public static final int button4 = 4;
 	
 	public static final int buttonBumperLeft = 5;
 	public static final int buttonBumperRight = 6;
 	
 	public static final int buttonSelect = 7;
 	public static final int buttonStart = 8;
-	public static final int buttonSelect_generic = 9;
-	public static final int buttonStart_generic = 10;
 	
 	public static final int rightStickY = 5;
 	public static final int leftStickY = 1;
@@ -53,9 +46,7 @@ public class RobotMap {
 	
 	public static final int rightTrigger = 3;
 	public static final int leftTrigger = 3;
-	public static final int rightTrigger_generic = 8;
-	public static final int leftTrigger_generic = 7;
-	
+
 	public static final int rightJoystickPush = 12;
 	public static final int leftJoystickPush = 11;
 	//end xbox *****************************************

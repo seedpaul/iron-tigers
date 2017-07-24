@@ -6,7 +6,7 @@ public class ShootWithController extends CommandBase {
 	
 	static final double shooterSpeed = 0.50;
 	static final double feederSpeed = -0.75;
-	static final double waterfallSpeed = -0.35;
+	static final double waterfallSpeed = -0.65;
 	static final double thresholdLow = 550.0;
 	static final double thresholdHigh = 575.0;
 
@@ -26,6 +26,8 @@ public class ShootWithController extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	shooter.startShooter(shooterSpeed);
+    	//feeder.startFeeder(feederSpeed);
+		//waterfall.startWaterfall(waterfallSpeed);
    		if(shooter.getShooterSpeed() > thresholdLow && shooter.getShooterSpeed() < thresholdHigh){
    			feeder.startFeeder(feederSpeed);
    			waterfall.startWaterfall(waterfallSpeed);

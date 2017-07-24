@@ -35,6 +35,12 @@ public class GearGrabber extends Subsystem {
     public void startGrabber(double speed){
     	
     	grabberSpark.set(speed);
+    	try {
+			Thread.sleep(650);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+    	this.stopGrabber();
     }
     
     public void stopGrabber(){
