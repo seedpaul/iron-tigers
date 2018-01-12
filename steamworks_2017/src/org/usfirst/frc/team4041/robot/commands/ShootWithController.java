@@ -27,6 +27,7 @@ public class ShootWithController extends CommandBase {
     protected void execute() {
     	shooter.startShooter(shooterSpeed);
     	//feeder.startFeeder(feederSpeed);
+    	//feeder.startFeeder(feederSpeed);
 		//waterfall.startWaterfall(waterfallSpeed);
    		if(shooter.getShooterSpeed() > thresholdLow && shooter.getShooterSpeed() < thresholdHigh){
    			feeder.startFeeder(feederSpeed);
