@@ -58,7 +58,6 @@ public class TurnToAngle extends CommandBase {
     	else {
     		complete = true;
     	}
-    	
     }
     
 
