@@ -1,15 +1,19 @@
 package org.usfirst.frc.team4041.robot;
 
+import org.usfirst.frc.team4041.robot.commands.DriveStraight;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 public class OI {
 
 	static final Joystick xboxDriver = new Joystick(RobotMap.xboxControllerDriver);
+	static final JoystickButton buttonA = new JoystickButton(xboxDriver, 1);
 	
     public void init() {
     	
     	//start driver xbox controller buttons *********************************
+    	buttonA.toggleWhenPressed(new DriveStraight(60,0.5));
 
     	//end driver xbox controller buttons *********************************
 

@@ -1,12 +1,12 @@
 package org.usfirst.frc.team4041.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.PIDSourceType;
-import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.Talon;
@@ -21,7 +21,7 @@ public class DriveTrain extends Subsystem {
 	static final Talon rightTalon = new Talon(RobotMap.rightDriveTalon);
 	static final ADXRS450_Gyro spiGyro = new ADXRS450_Gyro(SPI.Port.kOnboardCS0);
 	
-	static final RobotDrive robotDrive = new RobotDrive(leftTalon, rightTalon);
+	static final DifferentialDrive robotDrive = new DifferentialDrive(leftTalon, rightTalon);
 	static final Encoder leftEncoder = new Encoder(RobotMap.leftEncooderDIO1, RobotMap.leftEncooderDIO2, false, Encoder.EncodingType.k4X);//e4t
 	static final Encoder rightEncoder = new Encoder(RobotMap.rightEncooderDIO1, RobotMap.rightEncooderDIO12, true, Encoder.EncodingType.k4X);//e4p
 
