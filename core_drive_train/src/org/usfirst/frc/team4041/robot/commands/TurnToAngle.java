@@ -16,7 +16,7 @@ public class TurnToAngle extends CommandBase {
     	requires((Subsystem) driveTrain);
     }
     
-    public TurnToAngle(int angle) {
+    public TurnToAngle(double angle) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	this();

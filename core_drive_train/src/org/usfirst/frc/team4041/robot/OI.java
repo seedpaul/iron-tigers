@@ -1,6 +1,6 @@
 package org.usfirst.frc.team4041.robot;
 
-import org.usfirst.frc.team4041.robot.commands.DriveStraight;
+import org.usfirst.frc.team4041.robot.commandGroups.autonomous_center_right;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -13,7 +13,8 @@ public class OI {
     public void init() {
     	
     	//start driver xbox controller buttons *********************************
-    	buttonA.toggleWhenPressed(new DriveStraight(60,0.5));
+    	//buttonA.toggleWhenPressed(new DriveStraight(60,0.5));
+    	buttonA.toggleWhenPressed(new autonomous_center_right());
 
     	//end driver xbox controller buttons *********************************
 
