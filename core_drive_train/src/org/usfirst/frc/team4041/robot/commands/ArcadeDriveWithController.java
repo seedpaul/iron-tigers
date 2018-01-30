@@ -19,8 +19,8 @@ public class ArcadeDriveWithController extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {   
- 
-    	driveTrain.arcadeDrive(OI.getDriveController(),RobotMap.rightStickY,RobotMap.leftStickX);
+    	//													move					turn
+    	driveTrain.arcadeDrive(OI.getDriveController(),RobotMap.leftStickY,RobotMap.rightStickX);
     }
     
     // Make this return true when this Command no longer needs to run execute()

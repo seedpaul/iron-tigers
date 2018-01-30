@@ -1,5 +1,6 @@
 package org.usfirst.frc.team4041.robot.commands;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -43,7 +44,8 @@ public class TurnToAngle extends CommandBase {
     private void turnCounterClockWise(double measuredAngle) {
     	// turn left
     	if(measuredAngle > targetAngle){
-    		driveTrain.tankDrive(-0.4,0.4);
+    		driveTrain.tankDrive(-0.5,0.5);
+    		Timer.delay(0.004);
     	}
     	else {
     		complete = true;
@@ -53,14 +55,14 @@ public class TurnToAngle extends CommandBase {
     private void turnClockWise(double measuredAngle) {
     	//turn right
     	if(measuredAngle < targetAngle){
-    		driveTrain.tankDrive(0.4,-0.4);
+    		driveTrain.tankDrive(0.5,-0.5);
+    		Timer.delay(0.004);
     	}
     	else {
     		complete = true;
     	}
     }
     
-
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
         return complete;

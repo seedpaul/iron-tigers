@@ -1,22 +1,26 @@
 package org.usfirst.frc.team4041.robot;
 
-import org.usfirst.frc.team4041.robot.commands.waveArm;
+import org.usfirst.frc.team4041.robot.commands.CannonDownWithController;
+import org.usfirst.frc.team4041.robot.commands.CannonUpWithController;
+import org.usfirst.frc.team4041.robot.commands.FireCannonWithController;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import edu.wpi.first.wpilibj.command.Command;
 
 public class OI {
 	
 	static final Joystick xboxDriver = new Joystick(RobotMap.xboxController);
 
-	static final JoystickButton buttonRightTrigger = new JoystickButton(xboxDriver, RobotMap.rightTrigger_generic);
+	static final JoystickButton buttonBumperRight = new JoystickButton(xboxDriver, RobotMap.buttonBumperRight);
+	static final JoystickButton buttonY = new JoystickButton(xboxDriver, RobotMap.buttonY);
+	static final JoystickButton buttonA = new JoystickButton(xboxDriver, RobotMap.buttonA);
 
 	private static double governor = -0.75;
 	
     public void init() {
-    	
-    	buttonRightTrigger.toggleWhenPressed(new waveArm());
+    	buttonBumperRight.toggleWhenPressed(new FireCannonWithController());
+    	buttonY.toggleWhenActive(new CannonUpWithController());
+    	buttonA.toggleWhenActive(new CannonDownWithController());
 
     }
     

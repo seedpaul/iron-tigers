@@ -2,17 +2,20 @@ package org.usfirst.frc.team4041.robot.commands;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
  */
 public class DriveStraight extends CommandBase {
 	private double myDistance;
-	private double mySpeed;
+	private double targetSpeed;
+	private double currentSpeed;
 	private double leftEncoderDistance;
 	private double rightEncoderDistance;
 	private boolean complete;
-	private static double Kp = 0.027777777777778;
+	//private static double Kp = 0.027777777777778;
+	private static double Kp = 0.095;
 
     private DriveStraight() {
         // Use requires() here to declare subsystem dependencies
@@ -25,11 +28,12 @@ public class DriveStraight extends CommandBase {
         // eg. requires(chassis);
     	this();
     	myDistance = distance;
-    	mySpeed = speed;
+    	targetSpeed = speed;
     }
     // Called just before this Command runs the first time
     protected void initialize() {
     	complete = false;
+    	currentSpeed = 0.0;
     	leftEncoderDistance = 0.0;
     	rightEncoderDistance = 0.0;
     	driveTrain.resetLeftEncoder();
@@ -39,14 +43,18 @@ public class DriveStraight extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
- 
+    	
+    	if(currentSpeed < targetSpeed) {
+    		currentSpeed += 0.01;
+    	}
     	leftEncoderDistance = driveTrain.getLeftEncoderDistance();
     	rightEncoderDistance = driveTrain.getRightEncoderDistance();
     	
     	if (leftEncoderDistance <= myDistance || rightEncoderDistance <= myDistance) {
     		double angle = driveTrain.getGyroAngle(); // get current heading
-    		driveTrain.autoDrive(mySpeed, -(angle*Kp)); // drive towards heading 0
-    		Timer.delay(0.004); 
+    		SmartDashboard.putNumber("Angle", angle);
+    		driveTrain.autoDrive(currentSpeed, -(angle*Kp)); // drive towards heading 0
+    		Timer.delay(0.04); 
     	} else {
     		complete = true;
     	}

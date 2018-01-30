@@ -1,65 +1,139 @@
 package org.usfirst.frc.team4041.robot;
 
+import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import org.usfirst.frc.team4041.robot.commandGroups.AutonomousAutoZone;
+import org.usfirst.frc.team4041.robot.commandGroups.AutonomousCenterLeftSwitch;
+import org.usfirst.frc.team4041.robot.commandGroups.AutonomousCenterRightSwitch;
+import org.usfirst.frc.team4041.robot.commandGroups.AutonomousLeftLeftScale;
+import org.usfirst.frc.team4041.robot.commandGroups.AutonomousLeftLeftSwitch;
+import org.usfirst.frc.team4041.robot.commandGroups.AutonomousRightRightScale;
+import org.usfirst.frc.team4041.robot.commandGroups.AutonomousRightRightSwitch;
 import org.usfirst.frc.team4041.robot.commands.*;
 
-
 public class Robot extends IterativeRobot {
-	
+
 	Command driveCommand;
-	SendableChooser<Command> driveChooser;
-	
+	CameraServer server;
+	SendableChooser<String> positionChooser;
+
 	public void robotInit() {
-		 
-		 CommandBase.init();
-		 SmartDashboard.putData(Scheduler.getInstance());
+
+		server = CameraServer.getInstance();
+		server.startAutomaticCapture(0);
+		server.startAutomaticCapture(1);
+
+		CommandBase.init();
+		SmartDashboard.putData(Scheduler.getInstance());
+
+		positionChooser = new SendableChooser<String>();
+
+		positionChooser.addObject("Left", "L");
+		positionChooser.addDefault("Center", "C");
+		positionChooser.addObject("Right", "R");
+
+		SmartDashboard.putData("Position Selection:", positionChooser);
 
 	}
 
 	public Robot() {
-		
+
 	}
-    public void autonomousInit() {
 
-    }
+	public void autonomousInit() {
 
-    public void autonomousPeriodic() {
+		CommandGroup autoCommand = autoSelection(DriverStation.getInstance().getGameSpecificMessage(), positionChooser.getSelected());
+		autoCommand.start();
+	}
 
-    }
+	public void autonomousPeriodic() {
 
-    public void teleopInit() {
-        
-        driveCommand = (Command) new ArcadeDriveWithController();
-        driveCommand.start();
-        
-        SmartDashboard.putData(Scheduler.getInstance());
-        
-    }
+	}
 
-    public void teleopPeriodic() {
-    	
-        Scheduler.getInstance().run();
+	public void teleopInit() {
 
-        if (((Subsystem) CommandBase.driveTrain).getCurrentCommand() == null) {
-            Scheduler.getInstance().add(driveCommand);
-        }
-    }
+		driveCommand = (Command) new ArcadeDriveWithController();
+		driveCommand.start();
 
-    public void disabledInit() {
+		SmartDashboard.putData(Scheduler.getInstance());
 
-    }
+	}
 
-    public void testPeriodic() {
+	public void teleopPeriodic() {
 
-    }
-	
-	public void disable(){
+		Scheduler.getInstance().run();
 
+		if (((Subsystem) CommandBase.driveTrain).getCurrentCommand() == null) {
+			Scheduler.getInstance().add(driveCommand);
+		}
+	}
+
+	public void disabledInit() {
+
+	}
+
+	public void testPeriodic() {
+
+	}
+
+	public void disable() {
+
+	}
+
+	public CommandGroup autoSelection(String FMSData, String Position) {
+
+		CommandGroup RunThisAutoCommand = null;
+
+		if (Position.equals("C")) {
+			// we're in the center
+			if (FMSData.substring(0, 1).equals("L")) {
+				// run auto center-left
+				RunThisAutoCommand = new AutonomousCenterLeftSwitch();
+			} else {
+				// run auto center-right
+				RunThisAutoCommand = new AutonomousCenterRightSwitch();
+			}
+
+		} else if (Position.equals("R")) {
+			// We're on the right
+			if (FMSData.substring(1, 2).equals("R")) {
+				// run auto right scale
+				RunThisAutoCommand = new AutonomousRightRightScale();
+			} else {
+				if (FMSData.substring(0, 1).equals("R")) {
+					// run auto right switch
+					RunThisAutoCommand = new AutonomousRightRightSwitch();
+				} else {
+					// run auto drive to zone
+					RunThisAutoCommand = new AutonomousAutoZone();
+				}
+			}
+
+		} else {
+			// w're on the left
+			if (FMSData.substring(1, 2).equals("L")) {
+				// run auto left scale
+				RunThisAutoCommand = new AutonomousLeftLeftScale();
+
+			} else {
+				if (FMSData.substring(0, 1).equals("L")) {
+					// run auto left switch
+					RunThisAutoCommand = new AutonomousLeftLeftSwitch();
+				} else {
+					// run auto drive to zone
+					RunThisAutoCommand = new AutonomousAutoZone();
+				}
+			}
+
+		}
+		return RunThisAutoCommand;
 	}
 }

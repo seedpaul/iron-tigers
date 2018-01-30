@@ -7,9 +7,9 @@ import org.usfirst.frc.team4041.robot.commands.TurnRight;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-public class autonomous_right extends CommandGroup {
+public class Autonomous_CenterRight_Switch extends CommandGroup {
 
-    public autonomous_right(boolean shoot) {
+    public Autonomous_CenterRight_Switch(boolean shoot) {
     	
     	if(shoot){
     		addParallel(new ShootInAutonomous(), 15);

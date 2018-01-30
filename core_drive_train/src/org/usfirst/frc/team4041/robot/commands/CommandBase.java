@@ -8,6 +8,10 @@ import org.usfirst.frc.team4041.robot.OI;
 public abstract class CommandBase extends Command 
 { 
     public static DriveTrain driveTrain;
+    public static Elevator elevator;
+    public static ClawExtend clawExtend;
+    public static ClawIntake clawIntake;
+    public static Lift lift;
 
     public static OI oi;
 
@@ -15,10 +19,15 @@ public abstract class CommandBase extends Command
     public static void init() {
 
         driveTrain  = DriveTrain.getInstance();
+        elevator = Elevator.getInstance();
+        clawExtend = ClawExtend.getInstance();
+        clawIntake = ClawIntake.getInstance();
+        lift = Lift.getInstance();
         
         oi = new OI();
         oi.init();
     }
+    
 
     //Constructor
     public CommandBase(String name) {

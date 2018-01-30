@@ -9,25 +9,25 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class autonomous_center_right extends CommandGroup {
+public class AutonomousRightRightSwitch extends CommandGroup {
 
-    public autonomous_center_right() {
-
+    public AutonomousRightRightSwitch() {
+    	//ToDo: Change to fit sequence
     	DriveTrain driveTrain  = DriveTrain.getInstance();
-    	double speed = 0.5;
-    	double angle = 35;
+    	double speed = 0.45;
+    	double angle = 45;
     	double timeout = 10;
     	
     	driveTrain.resetGyro();
     	driveTrain.resetLeftEncoder();
     	driveTrain.resetRightEncoder();
 
-    	addSequential(new DriveStraight(18, speed), timeout);
+    	addSequential(new DriveStraight(12, speed), timeout);
     	addSequential(new TurnToAngle(angle), timeout);
-    	addSequential(new DriveStraight(54,speed), timeout);
+    	addSequential(new DriveStraight(66,speed), timeout);
     	addSequential(new TurnToAngle(-angle), timeout);
-    	addSequential(new DriveStraight(24, speed), timeout);
+    	addSequential(new DriveStraight(42, speed), timeout);
+    	
+    	System.out.println("run auto right switch");
     }
 }
-
-
