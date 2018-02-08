@@ -8,18 +8,18 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  *
  */
-public class Lift extends Subsystem {
+public class ClimbingLift extends Subsystem {
 
 	static final Talon liftTalon = new Talon(RobotMap.liftTalonPWM);
-	private static Lift instance;
+	private static ClimbingLift instance;
 
-	public Lift() {
+	public ClimbingLift() {
 		initialize();
 	}
 
-	public static Lift getInstance() {
+	public static ClimbingLift getInstance() {
 		if (instance == null) {
-			instance = new Lift();
+			instance = new ClimbingLift();
 		}
 		return instance;
 	}

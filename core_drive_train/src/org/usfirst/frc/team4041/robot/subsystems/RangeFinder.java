@@ -7,8 +7,7 @@ public class RangeFinder extends Subsystem {
 
     // ToDo: put range finder Digital IO port in robot map
 													//ping,echo
-	private static final AnalogInput leftSensor = new AnalogInput(0);
-	private static final AnalogInput rightSensor = new AnalogInput(1);
+	private static final AnalogInput sensor = new AnalogInput(0);
 	
 	private static RangeFinder instance;
 	
@@ -34,12 +33,9 @@ public class RangeFinder extends Subsystem {
         //setDefaultCommand(new MySpecialCommand());
     }
     
-    public double getLeftSensorDistance() {
-    	return leftSensor.getAverageVoltage()/scalingFactor;
+    public double getSensorDistance() {
+    	return sensor.getAverageVoltage()/scalingFactor;
     }
     
-    public double getRightSensorDistance() {
-    	return rightSensor.getAverageVoltage()/scalingFactor;
-    }
 }
 

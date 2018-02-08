@@ -11,7 +11,7 @@ public abstract class CommandBase extends Command
     public static Elevator elevator;
     public static ClawExtend clawExtend;
     public static ClawIntake clawIntake;
-    public static Lift lift;
+    public static ClimbingLift lift;
 
     public static OI oi;
 
@@ -22,7 +22,7 @@ public abstract class CommandBase extends Command
         elevator = Elevator.getInstance();
         clawExtend = ClawExtend.getInstance();
         clawIntake = ClawIntake.getInstance();
-        lift = Lift.getInstance();
+        lift = ClimbingLift.getInstance();
         
         oi = new OI();
         oi.init();

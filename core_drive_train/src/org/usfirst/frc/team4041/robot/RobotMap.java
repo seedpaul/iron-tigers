@@ -12,12 +12,16 @@ public class RobotMap {
 	public static final int rightEncoderPt1 = 2;
 	public static final int rightEncoderPt2 = 3;
 	
+	public static final int elevatorEncoderPt1 = 4;
+	public static final int elevatorEncoderPt2 = 5;
+	
 	public static final int elevatorSparkPWM = 0;
 	public static final int clawExtendSparkPWM = 1;
 	public static final int clawIntakeRightSparkPWM = 2;
 	public static final int clawIntakeLeftSparkPWM = 3;
 	public static final int liftTalonPWM = 4;
 	
+	public static final int potDIO = 3;
 
 	//start xbox *****************************************
 	public static final int xboxControllerDriver = 0;
@@ -43,8 +47,8 @@ public class RobotMap {
 	public static final int rightTrigger = 3;
 	public static final int leftTrigger = 3;
 
-	public static final int rightJoystickPush = 12;
-	public static final int leftJoystickPush = 11;
+	public static final int rightJoystickPush = 12;//new controller may be different
+	public static final int leftJoystickPush = 11;//new controller may be different
 	//end xbox *****************************************
 	
 	public static final double DEADZONE_MAGIC_NUMBER = .15;

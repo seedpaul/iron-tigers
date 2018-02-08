@@ -35,6 +35,7 @@ public class DriveTrain extends Subsystem {
 	static final ADXRS450_Gyro spiGyro = new ADXRS450_Gyro(SPI.Port.kOnboardCS0);
 	
 	static final RangeFinder rangeFinder = RangeFinder.getInstance();
+	static final ClawExtend clawExtend = ClawExtend.getInstance();
 	
     private static DriveTrain instance;
     
@@ -59,8 +60,8 @@ public class DriveTrain extends Subsystem {
 		leftEncoder.setDistancePerPulse(distancePerPulse);
 		rightEncoder.setDistancePerPulse(distancePerPulse);
 		
-		leftEncoder.reset();
-		rightEncoder.reset();
+		//leftEncoder.reset();
+		//rightEncoder.reset();
 		
 		//ToDo: what the hell is set saftey enabled?
 		robotDrive.setSafetyEnabled(false);
@@ -96,12 +97,11 @@ public class DriveTrain extends Subsystem {
     
     private void addInfoToDashBoard(){
     	
-    	SmartDashboard.putNumber("Left Ultrasonic Distance", rangeFinder.getLeftSensorDistance());
-    	SmartDashboard.putNumber("Right Ultrasonic Distance", rangeFinder.getRightSensorDistance());
-    	
+    	SmartDashboard.putNumber("Ultrasonic Distance", rangeFinder.getSensorDistance());
     	SmartDashboard.putData("Gyro", spiGyro);
     	SmartDashboard.putData("leftEncoder", leftEncoder);
     	SmartDashboard.putData("rightEncoder", rightEncoder);
+    	SmartDashboard.putNumber("Claw Angle", Math.round(clawExtend.getAngle()));
     }
     
     public void stop(){
