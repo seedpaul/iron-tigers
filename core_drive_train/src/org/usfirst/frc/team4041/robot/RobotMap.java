@@ -15,11 +15,11 @@ public class RobotMap {
 	public static final int elevatorEncoderPt1 = 4;
 	public static final int elevatorEncoderPt2 = 5;
 	
-	public static final int elevatorSparkPWM = 0;
+	public static final int elevatorVictorSPPWM = 0;
 	public static final int clawExtendSparkPWM = 1;
 	public static final int clawIntakeRightSparkPWM = 2;
 	public static final int clawIntakeLeftSparkPWM = 3;
-	public static final int liftTalonPWM = 4;
+	public static final int liftVictorSPPWM = 4;
 	
 	public static final int potDIO = 3;
 

@@ -51,14 +51,14 @@ public class OI {
     	Command clawExtendDown = new ClawExtendDownWithController();
     	Command clawExtendUp = new ClawExtendUpWithController();
     	
-    	buttonA.whenPressed(clawExtendDown);
-    	buttonY.whenPressed(clawExtendUp);
+    	buttonX.whenPressed(clawExtendDown);
+    	buttonB.whenPressed(clawExtendUp);
     	
     	Command elevatorUp = new ElevatorUpWithControllerSimple();
     	Command elevatorDown = new ElevatorDownWithControllerSimple();
     	
-    	buttonX.whenPressed(elevatorUp);
-    	buttonB.whenPressed(elevatorDown);
+    	buttonY.toggleWhenPressed(elevatorUp);
+    	buttonA.toggleWhenPressed(elevatorDown);
     }
 
     public static Joystick getDriveController() {

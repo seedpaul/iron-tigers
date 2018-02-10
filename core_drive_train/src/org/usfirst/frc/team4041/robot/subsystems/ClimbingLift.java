@@ -3,6 +3,7 @@ package org.usfirst.frc.team4041.robot.subsystems;
 import org.usfirst.frc.team4041.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -10,7 +11,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class ClimbingLift extends Subsystem {
 
-	static final Talon liftTalon = new Talon(RobotMap.liftTalonPWM);
+	static final VictorSP liftVictor = new VictorSP(RobotMap.liftVictorSPPWM);
 	private static ClimbingLift instance;
 
 	public ClimbingLift() {
@@ -30,19 +31,19 @@ public class ClimbingLift extends Subsystem {
     }
     
     private void initialize() {
-		liftTalon.setSafetyEnabled(false);
+		liftVictor.setSafetyEnabled(false);
 	}
 
 	public void up() {
-		liftTalon.set(0.3);
+		liftVictor.set(0.3);
 	}
 
 	public void down() {
-		liftTalon.set(-0.3);
+		liftVictor.set(-0.3);
 	}
 
 	public void stop() {
-		liftTalon.stopMotor();
+		liftVictor.stopMotor();
 	}
 }
 

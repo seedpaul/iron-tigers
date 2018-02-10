@@ -66,7 +66,7 @@ public class ClawExtend extends PIDSubsystem {
 		this.setSetpoint(setPoint);
 		this.setInputRange(minInput, maxInput);
 		this.setOutputRange(minOutput, maxOutput);
-		this.enable();
+		//this.enable();
 	}
     
 	public void up() {
