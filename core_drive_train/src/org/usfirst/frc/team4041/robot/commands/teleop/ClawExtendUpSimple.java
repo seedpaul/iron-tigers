@@ -3,11 +3,7 @@ package org.usfirst.frc.team4041.robot.commands.teleop;
 import org.usfirst.frc.team4041.robot.commands.teleop.CommandBase;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-/**
- *
- */
 public class ClawExtendUpSimple extends CommandBase {
 	
 

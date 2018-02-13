@@ -2,11 +2,6 @@ package org.usfirst.frc.team4041.robot.commands.teleop;
 
 import org.usfirst.frc.team4041.robot.commands.teleop.CommandBase;
 
-import edu.wpi.first.wpilibj.command.Subsystem;
-
-/**
- *
- */
 public class ElevatorDownPID extends CommandBase {
 
     public ElevatorDownPID() {

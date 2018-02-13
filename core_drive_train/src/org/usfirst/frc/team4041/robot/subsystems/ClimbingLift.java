@@ -2,13 +2,9 @@ package org.usfirst.frc.team4041.robot.subsystems;
 
 import org.usfirst.frc.team4041.robot.RobotMap;
 
-import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-/**
- *
- */
 public class ClimbingLift extends Subsystem {
 
 	static final VictorSP liftVictor = new VictorSP(RobotMap.liftVictorSPPWM);

@@ -5,7 +5,6 @@ import org.usfirst.frc.team4041.robot.commands.auto.Auto_TurnToAngle;
 import org.usfirst.frc.team4041.robot.subsystems.DriveTrain;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import edu.wpi.first.wpilibj.command.Scheduler;
 
 /**
  *
