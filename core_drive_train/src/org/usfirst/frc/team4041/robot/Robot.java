@@ -10,14 +10,15 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.usfirst.frc.team4041.robot.commandGroups.AutonomousAutoZone;
-import org.usfirst.frc.team4041.robot.commandGroups.AutonomousCenterLeftSwitch;
-import org.usfirst.frc.team4041.robot.commandGroups.AutonomousCenterRightSwitch;
-import org.usfirst.frc.team4041.robot.commandGroups.AutonomousLeftLeftScale;
-import org.usfirst.frc.team4041.robot.commandGroups.AutonomousLeftLeftSwitch;
-import org.usfirst.frc.team4041.robot.commandGroups.AutonomousRightRightScale;
-import org.usfirst.frc.team4041.robot.commandGroups.AutonomousRightRightSwitch;
-import org.usfirst.frc.team4041.robot.commands.*;
+import org.usfirst.frc.team4041.robot.commandGroups.auto.AutonomousAutoZone;
+import org.usfirst.frc.team4041.robot.commandGroups.auto.AutonomousCenterLeftSwitch;
+import org.usfirst.frc.team4041.robot.commandGroups.auto.AutonomousCenterRightSwitch;
+import org.usfirst.frc.team4041.robot.commandGroups.auto.AutonomousLeftLeftScale;
+import org.usfirst.frc.team4041.robot.commandGroups.auto.AutonomousLeftLeftSwitch;
+import org.usfirst.frc.team4041.robot.commandGroups.auto.AutonomousRightRightScale;
+import org.usfirst.frc.team4041.robot.commandGroups.auto.AutonomousRightRightSwitch;
+import org.usfirst.frc.team4041.robot.commands.teleop.ArcadeDrive;
+import org.usfirst.frc.team4041.robot.commands.teleop.CommandBase;
 
 public class Robot extends IterativeRobot {
 
@@ -55,12 +56,11 @@ public class Robot extends IterativeRobot {
 	}
 
 	public void autonomousPeriodic() {
-
 	}
 
 	public void teleopInit() {
 
-		driveCommand = (Command) new ArcadeDriveWithController();
+		driveCommand = (Command) new ArcadeDrive();
 		driveCommand.start();
 
 		SmartDashboard.putData(Scheduler.getInstance());

@@ -1,4 +1,6 @@
-package org.usfirst.frc.team4041.robot.commands;
+package org.usfirst.frc.team4041.robot.commands.auto;
+
+import org.usfirst.frc.team4041.robot.commands.teleop.CommandBase;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -6,18 +8,18 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  *
  */
-public class TurnToAngle extends CommandBase {
+public class Auto_TurnToAngle extends CommandBase {
 	
 	private double targetAngle;
 	private boolean complete;
 
-    private TurnToAngle() {
+    private Auto_TurnToAngle() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires((Subsystem) driveTrain);
     }
     
-    public TurnToAngle(double angle) {
+    public Auto_TurnToAngle(double angle) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	this();

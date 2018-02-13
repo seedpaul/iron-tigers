@@ -1,7 +1,7 @@
-package org.usfirst.frc.team4041.robot.commandGroups;
+package org.usfirst.frc.team4041.robot.commandGroups.auto;
 
-import org.usfirst.frc.team4041.robot.commands.DriveStraight;
-import org.usfirst.frc.team4041.robot.commands.TurnToAngle;
+import org.usfirst.frc.team4041.robot.commands.auto.Auto_DriveStraight;
+import org.usfirst.frc.team4041.robot.commands.auto.Auto_TurnToAngle;
 import org.usfirst.frc.team4041.robot.subsystems.DriveTrain;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -22,11 +22,11 @@ public class AutonomousAutoZone extends CommandGroup {
     	driveTrain.resetLeftEncoder();
     	driveTrain.resetRightEncoder();
 
-    	addSequential(new DriveStraight(12, speed), timeout);
-    	addSequential(new TurnToAngle(angle), timeout);
-    	addSequential(new DriveStraight(66,speed), timeout);
-    	addSequential(new TurnToAngle(-angle), timeout);
-    	addSequential(new DriveStraight(42, speed), timeout);
+    	addSequential(new Auto_DriveStraight(12, speed), timeout);
+    	addSequential(new Auto_TurnToAngle(angle), timeout);
+    	addSequential(new Auto_DriveStraight(66,speed), timeout);
+    	addSequential(new Auto_TurnToAngle(-angle), timeout);
+    	addSequential(new Auto_DriveStraight(42, speed), timeout);
     	
     	System.out.println("run auto drive to zone");
     }

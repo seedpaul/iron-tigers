@@ -1,4 +1,6 @@
-package org.usfirst.frc.team4041.robot.commands;
+package org.usfirst.frc.team4041.robot.commands.auto;
+
+import org.usfirst.frc.team4041.robot.commands.teleop.CommandBase;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -7,7 +9,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
-public class DriveStraight extends CommandBase {
+public class Auto_DriveStraight extends CommandBase {
 	private double myDistance;
 	private double targetSpeed;
 	private double currentSpeed;
@@ -17,13 +19,13 @@ public class DriveStraight extends CommandBase {
 	//private static double Kp = 0.027777777777778;
 	private static double Kp = 0.095;
 
-    private DriveStraight() {
+    private Auto_DriveStraight() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires((Subsystem) driveTrain);
     }
     
-    public DriveStraight(double distance, double speed) {
+    public Auto_DriveStraight(double distance, double speed) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	this();

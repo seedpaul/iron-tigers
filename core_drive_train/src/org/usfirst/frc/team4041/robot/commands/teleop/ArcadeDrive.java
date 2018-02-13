@@ -1,13 +1,14 @@
-package org.usfirst.frc.team4041.robot.commands;
+package org.usfirst.frc.team4041.robot.commands.teleop;
 
 import org.usfirst.frc.team4041.robot.OI;
 import org.usfirst.frc.team4041.robot.RobotMap;
+import org.usfirst.frc.team4041.robot.commands.teleop.CommandBase;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-public class ArcadeDriveWithController extends CommandBase {
+public class ArcadeDrive extends CommandBase {
 	
-    public ArcadeDriveWithController(){
+    public ArcadeDrive(){
     	
 		requires((Subsystem) driveTrain);
     }
@@ -20,7 +21,7 @@ public class ArcadeDriveWithController extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {   
     	//													move					turn
-    	driveTrain.arcadeDrive(OI.getDriveController(),RobotMap.leftStickY,RobotMap.rightStickX);
+    	driveTrain.arcadeDrive(OI.getDriverController(),RobotMap.leftStickY,RobotMap.rightStickX);
     }
     
     // Make this return true when this Command no longer needs to run execute()

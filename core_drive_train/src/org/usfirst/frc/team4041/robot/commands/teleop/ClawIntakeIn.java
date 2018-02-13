@@ -1,27 +1,27 @@
-package org.usfirst.frc.team4041.robot.commands;
+package org.usfirst.frc.team4041.robot.commands.teleop;
+
+import org.usfirst.frc.team4041.robot.commands.teleop.CommandBase;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  *
  */
-public class ElevatorUpWithControllerSimple extends CommandBase {
+public class ClawIntakeIn extends CommandBase {
 
-    public ElevatorUpWithControllerSimple() {
+    public ClawIntakeIn() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires((Subsystem) elevator);
-
+    	requires((Subsystem) clawIntake);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	elevator.disablePID();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	elevator.upSimple();
+    	clawIntake.in();
 
     }
 
@@ -32,14 +32,14 @@ public class ElevatorUpWithControllerSimple extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-    	elevator.stop();
+    	clawIntake.stop();
 
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	elevator.stop();
+    	clawIntake.stop();
 
     }
 }

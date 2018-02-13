@@ -1,17 +1,18 @@
-package org.usfirst.frc.team4041.robot.commands;
+package org.usfirst.frc.team4041.robot.commands.teleop;
+
+import org.usfirst.frc.team4041.robot.commands.teleop.CommandBase;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  *
  */
-public class LiftDownWithController extends CommandBase {
+public class ClawIntakeOut extends CommandBase {
 
-    public LiftDownWithController() {
+    public ClawIntakeOut() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires((Subsystem) lift);
-
+    	requires((Subsystem) clawIntake);
     }
 
     // Called just before this Command runs the first time
@@ -20,7 +21,7 @@ public class LiftDownWithController extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	lift.down();
+    	clawIntake.out();
 
     }
 
@@ -31,14 +32,14 @@ public class LiftDownWithController extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-    	lift.stop();
+    	clawIntake.stop();
 
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	lift.stop();
+    	clawIntake.stop();
 
     }
 }

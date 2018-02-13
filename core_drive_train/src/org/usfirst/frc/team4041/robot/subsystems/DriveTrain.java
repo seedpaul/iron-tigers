@@ -4,20 +4,18 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
-import edu.wpi.first.wpilibj.Talon;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.Encoder;
 
 import org.usfirst.frc.team4041.robot.RobotMap;
-import org.usfirst.frc.team4041.robot.commands.ArcadeDriveWithController;
+import org.usfirst.frc.team4041.robot.commands.teleop.ArcadeDrive;
+//import org.usfirst.frc.team4041.robot.subsystems.PID.ClawExtendPID;
 
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
+ 
 public class DriveTrain extends Subsystem {
 	
 	static final WPI_TalonSRX leftFront = new WPI_TalonSRX(RobotMap.leftFrontDriveTalonSRX);
@@ -35,7 +33,7 @@ public class DriveTrain extends Subsystem {
 	static final ADXRS450_Gyro spiGyro = new ADXRS450_Gyro(SPI.Port.kOnboardCS0);
 	
 	static final RangeFinder rangeFinder = RangeFinder.getInstance();
-	static final ClawExtend clawExtend = ClawExtend.getInstance();
+	//static final ClawExtendPID clawExtendPID = ClawExtendPID.getInstance();
 	
     private static DriveTrain instance;
     
@@ -77,7 +75,7 @@ public class DriveTrain extends Subsystem {
 
     //Audrey was here, paul was here too!
     protected void initDefaultCommand() {
-        setDefaultCommand(new ArcadeDriveWithController());
+        setDefaultCommand(new ArcadeDrive());
     }
     
     public void autoDrive(double speed, double rotation) {
@@ -101,7 +99,7 @@ public class DriveTrain extends Subsystem {
     	SmartDashboard.putData("Gyro", spiGyro);
     	SmartDashboard.putData("leftEncoder", leftEncoder);
     	SmartDashboard.putData("rightEncoder", rightEncoder);
-    	SmartDashboard.putNumber("Claw Angle", Math.round(clawExtend.getAngle()));
+    	//SmartDashboard.putNumber("Claw Angle", Math.round(clawExtendPID.getAngle()));
     }
     
     public void stop(){

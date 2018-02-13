@@ -2,10 +2,10 @@ package org.usfirst.frc.team4041.robot;
 
 public class RobotMap {
 
-	public static final int leftFrontDriveTalonSRX = 1;
-	public static final int leftRearDriveTalonSRX = 2;
-	public static final int rightFrontDriveTalonSRX = 3;
-	public static final int rightRearDriveTalonSRX = 4;
+	public static final int leftFrontDriveTalonSRX = 3;
+	public static final int leftRearDriveTalonSRX = 4;
+	public static final int rightFrontDriveTalonSRX = 1;
+	public static final int rightRearDriveTalonSRX = 2;
 	
 	public static final int leftEncoderPt1 = 0;
 	public static final int leftEncoderPt2 = 1;
@@ -15,7 +15,7 @@ public class RobotMap {
 	public static final int elevatorEncoderPt1 = 4;
 	public static final int elevatorEncoderPt2 = 5;
 	
-	public static final int elevatorVictorSPPWM = 0;
+	public static final int elevatorTalonPWM = 9;
 	public static final int clawExtendSparkPWM = 1;
 	public static final int clawIntakeRightSparkPWM = 2;
 	public static final int clawIntakeLeftSparkPWM = 3;
@@ -25,7 +25,7 @@ public class RobotMap {
 
 	//start xbox *****************************************
 	public static final int xboxControllerDriver = 0;
-	//public static final int xboxControllerAssistant = 1;
+	public static final int xboxControllerOperator = 1;
 	
 	public static final int buttonA = 1;
 	public static final int buttonB = 2;
@@ -47,8 +47,8 @@ public class RobotMap {
 	public static final int rightTrigger = 3;
 	public static final int leftTrigger = 3;
 
-	public static final int rightJoystickPush = 12;//new controller may be different
-	public static final int leftJoystickPush = 11;//new controller may be different
+	public static final int rightJoystickPush = 12;
+	public static final int leftJoystickPush = 11;
 	//end xbox *****************************************
 	
 	public static final double DEADZONE_MAGIC_NUMBER = .15;

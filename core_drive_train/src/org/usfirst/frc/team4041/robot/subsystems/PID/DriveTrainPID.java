@@ -1,18 +1,18 @@
-package org.usfirst.frc.team4041.robot.subsystems;
+package org.usfirst.frc.team4041.robot.subsystems.PID;
 
-import edu.wpi.first.wpilibj.command.PIDSubsystem;
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.usfirst.frc.team4041.robot.RobotMap;
+import org.usfirst.frc.team4041.robot.commands.teleop.ArcadeDrive;
+
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
-import edu.wpi.first.wpilibj.ADXRS450_Gyro;
-import edu.wpi.first.wpilibj.Encoder;
-
-import org.usfirst.frc.team4041.robot.RobotMap;
-import org.usfirst.frc.team4041.robot.commands.ArcadeDriveWithController;
-
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import edu.wpi.first.wpilibj.command.PIDSubsystem;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class DriveTrainPID extends PIDSubsystem {
 
@@ -93,7 +93,7 @@ public class DriveTrainPID extends PIDSubsystem {
 	}
 
 	protected void initDefaultCommand() {
-		setDefaultCommand(new ArcadeDriveWithController());
+		setDefaultCommand(new ArcadeDrive());
 	}
 
 	public void autoDrive(double speed, double rotation) {
