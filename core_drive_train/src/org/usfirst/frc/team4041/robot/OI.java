@@ -1,13 +1,6 @@
 package org.usfirst.frc.team4041.robot;
 
-import org.usfirst.frc.team4041.robot.commands.teleop.ClawExtendDownSimple;
-import org.usfirst.frc.team4041.robot.commands.teleop.ClawExtendUpSimple;
-import org.usfirst.frc.team4041.robot.commands.teleop.ClawIntakeIn;
-import org.usfirst.frc.team4041.robot.commands.teleop.ClawIntakeOut;
-import org.usfirst.frc.team4041.robot.commands.teleop.ElevatorDownSimple;
-import org.usfirst.frc.team4041.robot.commands.teleop.ElevatorUpSimple;
-import org.usfirst.frc.team4041.robot.commands.teleop.LiftDown;
-import org.usfirst.frc.team4041.robot.commands.teleop.LiftUp;
+import org.usfirst.frc.team4041.robot.commands.teleop.*;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -20,53 +13,56 @@ public class OI {
 	static final JoystickButton buttonB_dr = new JoystickButton(xboxDriver, RobotMap.buttonB);
 	static final JoystickButton buttonX_dr = new JoystickButton(xboxDriver, RobotMap.buttonX);
 	
-	static final JoystickButton buttonY_dr = new JoystickButton(xboxDriver, RobotMap.buttonY);
-	static final JoystickButton buttonA_dr = new JoystickButton(xboxDriver, RobotMap.buttonA);
-	
 	static final JoystickButton buttonBumperLeft_dr = new JoystickButton(xboxDriver, RobotMap.buttonBumperLeft);
 	static final JoystickButton buttonBumperRight_dr = new JoystickButton(xboxDriver, RobotMap.buttonBumperRight);
+	
+	//static final JoystickButton buttonY_dr = new JoystickButton(xboxDriver, RobotMap.buttonY);
+	//static final JoystickButton buttonA_dr = new JoystickButton(xboxDriver, RobotMap.buttonA);
 
-	static final JoystickButton buttonStart_dr = new JoystickButton(xboxDriver, RobotMap.buttonStart);
-	static final JoystickButton buttonSelect_dr = new JoystickButton(xboxDriver, RobotMap.buttonSelect);
+	//static final JoystickButton buttonStart_dr = new JoystickButton(xboxDriver, RobotMap.buttonStart);
+	//static final JoystickButton buttonSelect_dr = new JoystickButton(xboxDriver, RobotMap.buttonSelect);
+	
+	//static final JoystickButton buttonTriggerRT_dr = new JoystickButton(xboxDriver, RobotMap.rightTrigger);
+	//static final JoystickButton buttonTriggerLT_dr = new JoystickButton(xboxDriver, RobotMap.leftTrigger);
 	
 	//*****************************************************************************************
-	static final Joystick xboxOperator = new Joystick(RobotMap.xboxControllerOperator);
+	static final Joystick xboxAssist = new Joystick(RobotMap.xboxControllerAssist);
 	
-	static final JoystickButton buttonB_op = new JoystickButton(xboxOperator, RobotMap.buttonB);
-	static final JoystickButton buttonX_op = new JoystickButton(xboxOperator, RobotMap.buttonX);
+	static final JoystickButton buttonY_as = new JoystickButton(xboxAssist, RobotMap.buttonY);
+	static final JoystickButton buttonA_as = new JoystickButton(xboxAssist, RobotMap.buttonA);
 	
-	static final JoystickButton buttonY_op = new JoystickButton(xboxOperator, RobotMap.buttonY);
-	static final JoystickButton buttonA_op = new JoystickButton(xboxOperator, RobotMap.buttonA);
+	static final JoystickButton buttonStart_as = new JoystickButton(xboxAssist, RobotMap.buttonStart);
+	static final JoystickButton buttonSelect_as = new JoystickButton(xboxAssist, RobotMap.buttonSelect);
 	
-	static final JoystickButton buttonBumperLeft_op = new JoystickButton(xboxOperator, RobotMap.buttonBumperLeft);
-	static final JoystickButton buttonBumperRight_op = new JoystickButton(xboxOperator, RobotMap.buttonBumperRight);
+	//static final JoystickButton buttonB_as = new JoystickButton(xboxAssist, RobotMap.buttonB);
+	//static final JoystickButton buttonX_as = new JoystickButton(xboxAssist, RobotMap.buttonX);
+	
+	//static final JoystickButton buttonBumperLeft_as = new JoystickButton(xboxAssist, RobotMap.buttonBumperLeft);
+	//static final JoystickButton buttonBumperRight_as = new JoystickButton(xboxAssist, RobotMap.buttonBumperRight);
 
-	static final JoystickButton buttonStart_op = new JoystickButton(xboxOperator, RobotMap.buttonStart);
-	static final JoystickButton buttonSelect_op = new JoystickButton(xboxOperator, RobotMap.buttonSelect);
-	
     public void init() {
     	
-    	Command clawExtendDown = new ClawExtendDownSimple();
-    	Command clawExtendUp = new ClawExtendUpSimple();
-    	Command elevatorUpSimple = new ElevatorUpSimple();
-    	Command elevatorDownSimple = new ElevatorDownSimple();
+    	Command clawExtendDown = new ClawExtendDown();
+    	Command clawExtendUp = new ClawExtendUp();
+    	Command elevatorUpSimple = new ElevatorUpPID();
+    	Command elevatorDownSimple = new ElevatorDownPID();
     	Command liftDown = new LiftDown();
     	Command liftUp = new LiftUp();
     	Command clawIntakeIn = new ClawIntakeOut();
     	Command clawIntakeOut = new ClawIntakeIn();
     	
     	//start driver xbox controller buttons *********************************
-    	buttonStart_dr.toggleWhenPressed(liftDown);
-    	buttonSelect_dr.toggleWhenPressed(liftUp);
-    	
-    	buttonBumperRight_dr.toggleWhenPressed(clawIntakeOut);
-    	buttonBumperLeft_dr.toggleWhenPressed(clawIntakeIn);
+    	buttonBumperRight_dr.whileHeld(elevatorUpSimple);
+    	buttonBumperLeft_dr.whileHeld(elevatorDownSimple);
 
     	buttonX_dr.whenPressed(clawExtendDown);
     	buttonB_dr.whenPressed(clawExtendUp);
     	    	
-    	buttonY_dr.toggleWhenPressed(elevatorUpSimple);
-    	buttonA_dr.toggleWhenPressed(elevatorDownSimple);
+    	buttonY_as.toggleWhenPressed(clawIntakeIn);
+    	buttonA_as.toggleWhenPressed(clawIntakeOut);
+    	
+    	buttonStart_as.whileHeld(liftDown);
+    	buttonSelect_as.whileHeld(liftUp);
     }
 
     public static Joystick getDriverController() {
@@ -74,6 +70,6 @@ public class OI {
     }
     
     public static Joystick getOperatorController() {
-        return xboxOperator;
+        return xboxAssist;
     }
 }

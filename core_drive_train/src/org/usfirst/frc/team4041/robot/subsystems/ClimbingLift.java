@@ -34,7 +34,7 @@ public class ClimbingLift extends Subsystem {
 	}
 
 	public void up() {
-		liftVictor.set(0.6);
+		liftVictor.set(0.4);
 	}
 
 	public void down() {

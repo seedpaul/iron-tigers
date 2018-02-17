@@ -7,12 +7,12 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  *
  */
-public class ClawExtendDownSimple extends CommandBase {
+public class ClawExtendDown extends CommandBase {
 
-    public ClawExtendDownSimple() {
+    public ClawExtendDown() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires((Subsystem) clawExtend);
+    	requires((Subsystem) clawExtendPID);
     }
 
     // Called just before this Command runs the first time
@@ -22,7 +22,7 @@ public class ClawExtendDownSimple extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	clawExtend.down();
+    	clawExtendPID.down();
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -33,11 +33,13 @@ public class ClawExtendDownSimple extends CommandBase {
     // Called once after isFinished returns true
     protected void end() {
     	System.out.println("down command end");
+    	clawExtendPID.stop();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	clawExtendPID.stop();
     	this.end();
     	
     }

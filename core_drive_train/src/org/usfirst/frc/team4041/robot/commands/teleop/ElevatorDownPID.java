@@ -1,13 +1,12 @@
 package org.usfirst.frc.team4041.robot.commands.teleop;
 
 import org.usfirst.frc.team4041.robot.commands.teleop.CommandBase;
+import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class ElevatorDownPID extends CommandBase {
 
     public ElevatorDownPID() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
-    	//requires((Subsystem) elevatorPID);
+    	requires((Subsystem) elevatorPID);
     }
 
     // Called just before this Command runs the first time
@@ -18,7 +17,7 @@ public class ElevatorDownPID extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	//elevatorPID.down();
+    	elevatorPID.down();
     }
 
     // Make this return true when this Command no longer needs to run execute()

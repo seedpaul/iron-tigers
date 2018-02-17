@@ -32,7 +32,7 @@ public class DriveTrain extends Subsystem {
 	static final Encoder rightEncoder = new Encoder(RobotMap.rightEncoderPt1, RobotMap.rightEncoderPt2, false, Encoder.EncodingType.k4X);
 	static final ADXRS450_Gyro spiGyro = new ADXRS450_Gyro(SPI.Port.kOnboardCS0);
 	
-	static final RangeFinder rangeFinder = RangeFinder.getInstance();
+	//static final RangeFinder rangeFinder = RangeFinder.getInstance();
 	//static final ClawExtendPID clawExtendPID = ClawExtendPID.getInstance();
 	
     private static DriveTrain instance;
@@ -61,7 +61,7 @@ public class DriveTrain extends Subsystem {
 		//leftEncoder.reset();
 		//rightEncoder.reset();
 		
-		//ToDo: what the hell is set saftey enabled?
+		//ToDo: what the hell is set safety enabled?
 		robotDrive.setSafetyEnabled(false);
 		
 		try {
@@ -90,12 +90,16 @@ public class DriveTrain extends Subsystem {
     
 	public void arcadeDrive(Joystick driverController, int moveAxis, int turnAxis) {
     	addInfoToDashBoard();
-    	robotDrive.arcadeDrive(-driverController.getRawAxis(moveAxis), (driverController.getRawAxis(turnAxis)),true);
+    	
+    	double move = -driverController.getRawAxis(moveAxis) * 0.7;
+    	double turn = driverController.getRawAxis(turnAxis) * 0.7;
+    	
+    	robotDrive.arcadeDrive(move,turn,true);
     }
     
     private void addInfoToDashBoard(){
     	
-    	SmartDashboard.putNumber("Ultrasonic Distance", rangeFinder.getSensorDistance());
+    	//SmartDashboard.putNumber("Ultrasonic Distance", rangeFinder.getSensorDistance());
     	SmartDashboard.putData("Gyro", spiGyro);
     	SmartDashboard.putData("leftEncoder", leftEncoder);
     	SmartDashboard.putData("rightEncoder", rightEncoder);

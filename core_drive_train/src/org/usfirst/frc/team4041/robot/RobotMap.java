@@ -25,7 +25,7 @@ public class RobotMap {
 
 	//start xbox *****************************************
 	public static final int xboxControllerDriver = 0;
-	public static final int xboxControllerOperator = 1;
+	public static final int xboxControllerAssist = 1;
 	
 	public static final int buttonA = 1;
 	public static final int buttonB = 2;
