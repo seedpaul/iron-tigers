@@ -40,13 +40,17 @@ public class ClawIntake extends Subsystem {
 	}
 
 	public void in() {
-		clawIntakeLeftSpark.set(0.75);//clockwise
-		clawIntakeRightSpark.set(-0.75);//counter-clockwise
+		clawIntakeLeftSpark.set(-0.75);//clockwise
+		clawIntakeRightSpark.set(0.75);//counter-clockwise
 	}
 
 	public void out() {
-		clawIntakeLeftSpark.set(-0.75);//counter-clockwise
-		clawIntakeRightSpark.set(0.75);//clockwise
+		clawIntakeLeftSpark.set(0.75);//counter-clockwise
+		clawIntakeRightSpark.set(-0.75);//clockwise
+	}
+	public void slow() {
+		clawIntakeLeftSpark.set(-0.20);//clockwise
+		clawIntakeRightSpark.set(0.20);//counter-clockwise
 	}
 
 	public void stop() {

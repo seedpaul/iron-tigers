@@ -15,6 +15,7 @@ public class ClawExtendPID extends PIDSubsystem {
 	private static double maxInput = 60.0;
 	private static double minOutput = -0.7;
 	private static double maxOutput = 0.3;
+	private static double auto_maxOutput = 0.2;
 	private static double absoluteTolerance = 1.0;
 	private static double setPoint = 0.0;
 	
@@ -22,6 +23,8 @@ public class ClawExtendPID extends PIDSubsystem {
 	private static double i = 0.002;
 	private static double d = 0.01;
 	private static double f = 0.0;
+	
+	private static boolean allowChange = true;
 	
 	private static double fullRange = 10000.0;
 	private static double offset = -515.0;
@@ -67,11 +70,19 @@ public class ClawExtendPID extends PIDSubsystem {
 		this.getPIDController().setContinuous(false);
 		this.setSetpoint(setPoint);
 		this.setInputRange(minInput, maxInput);
-		this.setOutputRange(minOutput, maxOutput);
+		this.setOutputRange(minOutput, auto_maxOutput);
 		this.enable();
+	}
+	
+	private void changeMaxOuptut() {
+		if(allowChange){
+			this.setOutputRange(minOutput, maxOutput);
+			allowChange = false;
+		}
 	}
     
 	public void up() {
+		this.changeMaxOuptut();
 		setPoint += increment;
 		this.setSetpoint(setPoint);
 		//Timer.delay(1);
@@ -80,6 +91,7 @@ public class ClawExtendPID extends PIDSubsystem {
 	}
 
 	public void down() {
+		this.changeMaxOuptut();
 		setPoint -= increment;
 		this.setSetpoint(setPoint);
 		//Timer.delay(1);
@@ -92,11 +104,20 @@ public class ClawExtendPID extends PIDSubsystem {
 		SmartDashboard.putNumber("claw angle:",this.getMutedAngle());
 	}
 	
+	public void moveToHorizontal() {
+		this.setOutputRange(minOutput, auto_maxOutput);
+		this.setSetpoint(0.0);
+	}
+	
     public double getAngle() {
     	SmartDashboard.putNumber("claw angle:",this.getMutedAngle());
     	return Math.round(angle.get());
     	
     }
+    
+	public boolean isComplete() {
+		return this.onTarget();
+	}
     
 	private double getMutedAngle() {
 		return Math.round(angle.get());

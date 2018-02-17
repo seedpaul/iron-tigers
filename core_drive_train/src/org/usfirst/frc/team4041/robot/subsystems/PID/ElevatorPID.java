@@ -78,6 +78,21 @@ public class ElevatorPID extends PIDSubsystem {
     	elevatorTalon.pidWrite(output); // this is where the computed output value fromthe PIDController is applied to the motor
     	addInfoToDashBoard();
     }
+    
+    public void upToSwitchHeight() {
+    	this.setSetpoint(switchHeight);
+    	addInfoToDashBoard();
+    }
+    
+    public void upToScaleHeight() {
+    	this.setSetpoint(scaleHeight);
+    	addInfoToDashBoard();
+    }
+    
+    public void upToTransportHeight() {
+    	this.setSetpoint(transportHeight);
+    	addInfoToDashBoard();
+    }
 	
 	public void up() {
 		currentSetPointIndex = (currentSetPointIndex < 3)? currentSetPointIndex + 1: 3;
@@ -89,6 +104,10 @@ public class ElevatorPID extends PIDSubsystem {
 		currentSetPointIndex = (currentSetPointIndex > 0)? currentSetPointIndex - 1: 0;
 		this.setSetpoint(setPoints[currentSetPointIndex]);
 		addInfoToDashBoard();
+	}
+	
+	public boolean isComplete() {
+		return this.onTarget();
 	}
 	
 	public void teleopUp() {

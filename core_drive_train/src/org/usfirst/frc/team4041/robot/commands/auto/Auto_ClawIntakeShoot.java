@@ -1,27 +1,31 @@
-package org.usfirst.frc.team4041.robot.commands.teleop;
+package org.usfirst.frc.team4041.robot.commands.auto;
 
 import org.usfirst.frc.team4041.robot.commands.teleop.CommandBase;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
  */
-public class ClawIntakeIn extends CommandBase {
+public class Auto_ClawIntakeShoot extends CommandBase {
 
-    public ClawIntakeIn() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+
+    public Auto_ClawIntakeShoot() {
+
     	requires((Subsystem) clawIntake);
     }
+    
 
     // Called just before this Command runs the first time
     protected void initialize() {
+
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	clawIntake.in();
+    	clawIntake.out();
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -31,14 +35,12 @@ public class ClawIntakeIn extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-    	clawIntake.slow();
-
+    	
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	clawIntake.slow();
 
     }
 }
