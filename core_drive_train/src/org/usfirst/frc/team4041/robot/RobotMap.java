@@ -12,8 +12,8 @@ public class RobotMap {
 	public static final int rightEncoderPt1 = 2;
 	public static final int rightEncoderPt2 = 3;
 	
-	public static final int elevatorEncoderPt1 = 4;
-	public static final int elevatorEncoderPt2 = 5;
+	public static final int elevatorEncoderPt1 = 6;
+	public static final int elevatorEncoderPt2 = 7;
 	
 	public static final int elevatorTalonPWM = 9;
 	public static final int clawExtendSparkPWM = 1;

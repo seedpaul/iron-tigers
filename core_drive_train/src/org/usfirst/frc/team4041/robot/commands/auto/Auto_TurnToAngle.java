@@ -14,14 +14,11 @@ public class Auto_TurnToAngle extends CommandBase {
 	private boolean complete;
 
     private Auto_TurnToAngle() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+
     	requires((Subsystem) driveTrain);
     }
     
     public Auto_TurnToAngle(double angle) {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
     	this();
     	targetAngle = angle;
     }
@@ -46,7 +43,7 @@ public class Auto_TurnToAngle extends CommandBase {
     private void turnCounterClockWise(double measuredAngle) {
     	// turn left
     	if(measuredAngle > targetAngle){
-    		driveTrain.tankDrive(-0.5,0.5);
+    		driveTrain.tankDrive(-0.4,0.4);
     		Timer.delay(0.004);
     	}
     	else {
@@ -57,7 +54,7 @@ public class Auto_TurnToAngle extends CommandBase {
     private void turnClockWise(double measuredAngle) {
     	//turn right
     	if(measuredAngle < targetAngle){
-    		driveTrain.tankDrive(0.5,-0.5);
+    		driveTrain.tankDrive(0.4,-0.4);
     		Timer.delay(0.004);
     	}
     	else {

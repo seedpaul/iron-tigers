@@ -12,10 +12,10 @@ public class ClawExtendPID extends PIDSubsystem {
 	
 	//range of motion is about 75 degrees
 	private static double minInput = 0.0;
-	private static double maxInput = 60.0;
-	private static double minOutput = -0.7;
+	private static double maxInput = 85.0;
+	private static double minOutput = -0.8;
 	private static double maxOutput = 0.3;
-	private static double auto_maxOutput = 0.2;
+	private static double auto_maxOutput = 0.3;
 	private static double absoluteTolerance = 1.0;
 	private static double setPoint = 0.0;
 	
@@ -106,7 +106,17 @@ public class ClawExtendPID extends PIDSubsystem {
 	
 	public void moveToHorizontal() {
 		this.setOutputRange(minOutput, auto_maxOutput);
-		this.setSetpoint(0.0);
+		this.setSetpoint(10.0);
+	}
+	
+	public void moveToVertical() {
+		this.setOutputRange(minOutput, auto_maxOutput);
+		this.setSetpoint(70.0);
+	}
+	
+	public void moveToScaleShoot() {
+		this.setOutputRange(minOutput, auto_maxOutput);
+		this.setSetpoint(50.0);
 	}
 	
     public double getAngle() {

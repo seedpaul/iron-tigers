@@ -12,30 +12,34 @@ import edu.wpi.first.wpilibj.Encoder;
 import org.usfirst.frc.team4041.robot.RobotMap;
 import org.usfirst.frc.team4041.robot.commands.teleop.ArcadeDrive;
 //import org.usfirst.frc.team4041.robot.subsystems.PID.ClawExtendPID;
+import org.usfirst.frc.team4041.robot.subsystems.PID.ElevatorPID;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
  
 public class DriveTrain extends Subsystem {
 	
-	static final WPI_TalonSRX leftFront = new WPI_TalonSRX(RobotMap.leftFrontDriveTalonSRX);
-	static final WPI_TalonSRX leftRear = new WPI_TalonSRX(RobotMap.leftRearDriveTalonSRX);
-	static final WPI_TalonSRX rightFront = new WPI_TalonSRX(RobotMap.rightFrontDriveTalonSRX);
-	static final WPI_TalonSRX rightRear = new WPI_TalonSRX(RobotMap.rightRearDriveTalonSRX);
+	private static final WPI_TalonSRX leftFront = new WPI_TalonSRX(RobotMap.leftFrontDriveTalonSRX);
+	private static final WPI_TalonSRX leftRear = new WPI_TalonSRX(RobotMap.leftRearDriveTalonSRX);
+	private static final WPI_TalonSRX rightFront = new WPI_TalonSRX(RobotMap.rightFrontDriveTalonSRX);
+	private static final WPI_TalonSRX rightRear = new WPI_TalonSRX(RobotMap.rightRearDriveTalonSRX);
 
-	static final SpeedControllerGroup drivetrainLeft = new SpeedControllerGroup(leftFront, leftRear);
-	static final SpeedControllerGroup drivetrainRight = new SpeedControllerGroup(rightFront, rightRear);
-	static final DifferentialDrive robotDrive = new DifferentialDrive(drivetrainLeft,drivetrainRight);
+	private static final SpeedControllerGroup drivetrainLeft = new SpeedControllerGroup(leftFront, leftRear);
+	private static final SpeedControllerGroup drivetrainRight = new SpeedControllerGroup(rightFront, rightRear);
+	private static final DifferentialDrive robotDrive = new DifferentialDrive(drivetrainLeft,drivetrainRight);
 	
 	//ToDo: put encoder locations in RobotMap
-	static final Encoder leftEncoder = new Encoder(RobotMap.leftEncoderPt1, RobotMap.leftEncoderPt2, true, Encoder.EncodingType.k4X);
-	static final Encoder rightEncoder = new Encoder(RobotMap.rightEncoderPt1, RobotMap.rightEncoderPt2, false, Encoder.EncodingType.k4X);
-	static final ADXRS450_Gyro spiGyro = new ADXRS450_Gyro(SPI.Port.kOnboardCS0);
+	private static final Encoder leftEncoder = new Encoder(RobotMap.leftEncoderPt1, RobotMap.leftEncoderPt2, true, Encoder.EncodingType.k4X);
+	private static final Encoder rightEncoder = new Encoder(RobotMap.rightEncoderPt1, RobotMap.rightEncoderPt2, false, Encoder.EncodingType.k4X);
+	private static final ADXRS450_Gyro spiGyro = new ADXRS450_Gyro(SPI.Port.kOnboardCS0);
 	
-	//static final RangeFinder rangeFinder = RangeFinder.getInstance();
-	//static final ClawExtendPID clawExtendPID = ClawExtendPID.getInstance();
+	private final double turningScaleLowElevator = 0.7;
+	private final double powerScaleLowElevator = 0.7;
+	private final double turningScaleHighElevator = 0.4;
+	private final double powerScaleHighElevator = 0.4;
 	
     private static DriveTrain instance;
+    private static ElevatorPID elevator;
     
     private DriveTrain() {
     	
@@ -58,8 +62,10 @@ public class DriveTrain extends Subsystem {
 		leftEncoder.setDistancePerPulse(distancePerPulse);
 		rightEncoder.setDistancePerPulse(distancePerPulse);
 		
-		//leftEncoder.reset();
-		//rightEncoder.reset();
+		elevator = ElevatorPID.getInstance();
+		
+		leftEncoder.reset();
+		rightEncoder.reset();
 		
 		//ToDo: what the hell is set safety enabled?
 		robotDrive.setSafetyEnabled(false);
@@ -73,7 +79,6 @@ public class DriveTrain extends Subsystem {
 		addInfoToDashBoard();
     }
 
-    //Audrey was here, paul was here too!
     protected void initDefaultCommand() {
         setDefaultCommand(new ArcadeDrive());
     }
@@ -89,21 +94,28 @@ public class DriveTrain extends Subsystem {
     }
     
 	public void arcadeDrive(Joystick driverController, int moveAxis, int turnAxis) {
+		
     	addInfoToDashBoard();
     	
-    	double move = -driverController.getRawAxis(moveAxis) * 0.7;
-    	double turn = driverController.getRawAxis(turnAxis) * 0.7;
+    	double turningScalingFactor = turningScaleLowElevator;
+    	double powerScalingFactor = powerScaleLowElevator;
+    	
+    	if(elevator.getCurrentElevatorHeight() > elevator.highTreshold) {
+    		turningScalingFactor = turningScaleHighElevator;
+        	powerScalingFactor = powerScaleHighElevator;
+    	}
+    	
+    	double move = -driverController.getRawAxis(moveAxis) * powerScalingFactor;
+    	double turn = driverController.getRawAxis(turnAxis) * turningScalingFactor;
     	
     	robotDrive.arcadeDrive(move,turn,true);
     }
     
     private void addInfoToDashBoard(){
-    	
-    	//SmartDashboard.putNumber("Ultrasonic Distance", rangeFinder.getSensorDistance());
+
     	SmartDashboard.putData("Gyro", spiGyro);
     	SmartDashboard.putData("leftEncoder", leftEncoder);
     	SmartDashboard.putData("rightEncoder", rightEncoder);
-    	//SmartDashboard.putNumber("Claw Angle", Math.round(clawExtendPID.getAngle()));
     }
     
     public void stop(){

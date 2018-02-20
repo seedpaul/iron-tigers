@@ -16,24 +16,21 @@ public class Auto_DriveStraight extends CommandBase {
 	private double leftEncoderDistance;
 	private double rightEncoderDistance;
 	private boolean complete;
-	//private static double Kp = 0.027777777777778;
 	private static double Kp = 0.095;
 
-    private Auto_DriveStraight() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+    private Auto_DriveStraight() {;
     	requires((Subsystem) driveTrain);
     }
     
     public Auto_DriveStraight(double distance, double speed) {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
     	this();
     	myDistance = distance;
     	targetSpeed = speed;
+    	initialize();
     }
-    // Called just before this Command runs the first time
+
     protected void initialize() {
+    	
     	complete = false;
     	currentSpeed = 0.0;
     	leftEncoderDistance = 0.0;

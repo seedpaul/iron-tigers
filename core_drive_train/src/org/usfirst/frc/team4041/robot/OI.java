@@ -52,8 +52,8 @@ public class OI {
     	Command clawIntakeOut = new ClawIntakeIn();
     	
     	//start driver xbox controller buttons *********************************
-    	buttonA_dr.toggleWhenPressed(clawIntakeIn);
-    	buttonY_dr.toggleWhenPressed(clawIntakeOut);
+    	buttonY_dr.toggleWhenPressed(clawIntakeIn);
+    	buttonA_dr.toggleWhenPressed(clawIntakeOut);
 
     	buttonX_dr.whenPressed(clawExtendDown);
     	buttonB_dr.whenPressed(clawExtendUp);

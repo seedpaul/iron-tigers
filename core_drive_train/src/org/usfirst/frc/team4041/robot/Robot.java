@@ -1,5 +1,6 @@
 package org.usfirst.frc.team4041.robot;
 
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -22,14 +23,13 @@ import org.usfirst.frc.team4041.robot.commands.teleop.CommandBase;
 public class Robot extends IterativeRobot {
 
 	Command driveCommand;
-	//CameraServer server;
+	CameraServer server;
 	SendableChooser<String> positionChooser;
 
 	public void robotInit() {
 
-//		server = CameraServer.getInstance();
-//		server.startAutomaticCapture(0);
-//		server.startAutomaticCapture(1);
+		server = CameraServer.getInstance();
+		server.startAutomaticCapture(0);
 
 		CommandBase.init();
 		SmartDashboard.putData(Scheduler.getInstance());
@@ -49,11 +49,31 @@ public class Robot extends IterativeRobot {
 	}
 
 	public void autonomousInit() {
-		CommandGroup autoCommand = autoSelection(DriverStation.getInstance().getGameSpecificMessage(), positionChooser.getSelected());
-		autoCommand.start();
+		
+		int retries = 100;//try 100 times
+        String gameData = DriverStation.getInstance().getGameSpecificMessage();
+        while (gameData.length() < 2 && retries > 0) {
+            retries--;
+            try {
+                Thread.sleep(5);
+            } catch (InterruptedException ie) {
+                // Just ignore the interrupted exception
+            }
+            gameData = DriverStation.getInstance().getGameSpecificMessage();
+        }
+        
+        if (gameData.length() > 2) {
+    		CommandGroup autoCommand = autoSelection(gameData, positionChooser.getSelected());
+    		autoCommand.start(); 	
+        }else {
+        	//we ran out of retries
+        	//and need to do something to at least score auto zone points
+        }  
+		
 	}
 
 	public void autonomousPeriodic() {
+		Scheduler.getInstance().run();
 	}
 
 	public void teleopInit() {

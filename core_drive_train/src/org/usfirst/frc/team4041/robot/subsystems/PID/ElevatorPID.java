@@ -18,12 +18,13 @@ public class ElevatorPID extends PIDSubsystem {
 	
 	private static double minOutput = -0.8;
 	private static double maxOutput = 0.4;
-	private static double absoluteTolerance = 0.1;
+	private static double absoluteTolerance = 4.0;
 	
 	private static double startingHeight = 0.0;
 	private static double transportHeight = 300.0;
-	private static double switchHeight = 1000.0;
+	private static double switchHeight = 1200.0;
 	private static double scaleHeight = 3850.0;
+	public double highTreshold = 2500.0;
 	
 	private static double[] setPoints = {startingHeight,transportHeight,switchHeight,scaleHeight};
 	private static int currentSetPointIndex = 0; 
@@ -51,7 +52,7 @@ public class ElevatorPID extends PIDSubsystem {
 		
 		elevatorTalon.setSafetyEnabled(false);
 		elevatorEncoder.setDistancePerPulse(1);
-		elevatorEncoder.setPIDSourceType(PIDSourceType.kDisplacement);
+		//elevatorEncoder.setPIDSourceType(PIDSourceType.kDisplacement);
 		elevatorEncoder.reset();
 		
 		this.setAbsoluteTolerance(absoluteTolerance);
@@ -71,11 +72,11 @@ public class ElevatorPID extends PIDSubsystem {
 
     protected double returnPIDInput() {
     	addInfoToDashBoard();
-    	return elevatorEncoder.pidGet(); // returns the sensor value that is providing the feedback for the system
+    	return elevatorEncoder.getDistance(); // returns the sensor value that is providing the feedback for the system
     }
 
     protected void usePIDOutput(double output) {
-    	elevatorTalon.pidWrite(output); // this is where the computed output value fromthe PIDController is applied to the motor
+    	elevatorTalon.pidWrite(output); // this is where the computed output value from the PIDController is applied to the motor
     	addInfoToDashBoard();
     }
     
@@ -127,7 +128,12 @@ public class ElevatorPID extends PIDSubsystem {
 			this.disable();
 		}
 	}
-
+	
+	public double getCurrentElevatorHeight() {
+		return elevatorEncoder.getDistance(); 
+	}
+	
+ 
 	public void stop() {
 		elevatorTalon.stopMotor();
 		addInfoToDashBoard();

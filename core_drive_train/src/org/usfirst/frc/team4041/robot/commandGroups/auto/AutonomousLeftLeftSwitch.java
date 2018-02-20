@@ -1,6 +1,7 @@
 package org.usfirst.frc.team4041.robot.commandGroups.auto;
 
 import org.usfirst.frc.team4041.robot.commands.auto.Auto_ClawExtendToHorizontal;
+import org.usfirst.frc.team4041.robot.commands.auto.Auto_ClawExtendToVertical;
 import org.usfirst.frc.team4041.robot.commands.auto.Auto_ClawIntakeShoot;
 import org.usfirst.frc.team4041.robot.commands.auto.Auto_DriveStraight;
 import org.usfirst.frc.team4041.robot.commands.auto.Auto_ElevatorToSwitch;
@@ -15,33 +16,27 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class AutonomousLeftLeftSwitch extends CommandGroup {
 
     public AutonomousLeftLeftSwitch() {
-    	//ToDo: Change to fit sequence
+
+    	System.out.println("run auto left left switch");
+    	
     	DriveTrain driveTrain  = DriveTrain.getInstance();
     	double speed = 0.45;
-    	double angle = 45;
-    	double default_timeout = 10;
-    	double shoot_timeout = 2;
+    	double angle = 90;
+    	double default_timeout = 7;
+    	double short_timeout = 2;
     	
     	driveTrain.resetGyro();
     	driveTrain.resetLeftEncoder();
     	driveTrain.resetRightEncoder();
 
-    	//Step 1
-    	addSequential(new Auto_DriveStraight(12, speed), default_timeout);
-    	//Step 2
+
+    	addSequential(new Auto_ClawExtendToVertical(),1);
+    	addSequential(new Auto_DriveStraight(110, speed), default_timeout);
     	addSequential(new Auto_TurnToAngle(angle), default_timeout);
-    	//Step 3
-    	addSequential(new Auto_DriveStraight(66,speed), default_timeout);
-    	//Step 4
-    	addSequential(new Auto_TurnToAngle(-angle), default_timeout);
-    	//Step 5
-    	addSequential(new Auto_ElevatorToSwitch(),default_timeout);
-    	//Step 6
-    	addSequential(new Auto_ClawExtendToHorizontal(),default_timeout);
-    	//Step 7
-    	addSequential(new Auto_ClawIntakeShoot(),shoot_timeout);
-    	
-		System.out.println("run auto left switch");
+    	addSequential(new Auto_ElevatorToSwitch(), default_timeout);
+    	addSequential(new Auto_DriveStraight(2, speed), default_timeout);
+    	addSequential(new Auto_ClawExtendToHorizontal(),short_timeout);
+    	addSequential(new Auto_ClawIntakeShoot(),short_timeout);
 
     }
 }
