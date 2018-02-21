@@ -113,13 +113,13 @@ public class ElevatorPID extends PIDSubsystem {
 	
 	public void teleopUp() {
 		this.disablePID();
-		elevatorTalon.set(-0.7);
+		elevatorTalon.set(-0.8);
 		addInfoToDashBoard();
 	}
 	
 	public void teleopDown() {
 		this.disablePID();
-		elevatorTalon.set(0.4);
+		elevatorTalon.set(0.8);
 		addInfoToDashBoard();
 	}
 	
