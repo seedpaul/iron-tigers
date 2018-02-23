@@ -17,8 +17,6 @@ public class Cannon extends Subsystem {
 
 	private static final Solenoid solenoidCannon = new Solenoid(0);
 	private static final Relay spikeLight = new Relay(RobotMap.spike_relay_light,Relay.Direction.kForward);
-	//private static final Solenoid solenoidValue = new Solenoid(1);
-
 
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
@@ -35,9 +33,7 @@ public class Cannon extends Subsystem {
 		return instance;
 	}
 
-	public void initialize() {
-
-	}
+	public void initialize() {}
 	
 	public void close() { 
 		solenoidCannon.set(false);

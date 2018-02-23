@@ -1,23 +1,28 @@
 package org.usfirst.frc.team4041.robot;
 
-import org.usfirst.frc.team4041.robot.commands.waveArm;
+
+import org.usfirst.frc.team4041.robot.commands.CannonDownWithController;
+import org.usfirst.frc.team4041.robot.commands.CannonUpWithController;
+import org.usfirst.frc.team4041.robot.commands.FireCannonWithController;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import edu.wpi.first.wpilibj.command.Command;
 
 public class OI {
 	
 	static final Joystick xboxDriver = new Joystick(RobotMap.xboxController);
 
 	static final JoystickButton buttonRightTrigger = new JoystickButton(xboxDriver, RobotMap.rightTrigger_generic);
+	static final JoystickButton button4 = new JoystickButton(xboxDriver, RobotMap.button2_generic);
+	static final JoystickButton button2 = new JoystickButton(xboxDriver, RobotMap.button4_generic);
 
 	private static double governor = -0.75;
 	
     public void init() {
     	
-    	buttonRightTrigger.toggleWhenPressed(new waveArm());
-
+    	buttonRightTrigger.whenPressed(new FireCannonWithController());
+    	button4.whileHeld(new CannonUpWithController());
+    	button2.whileHeld(new CannonDownWithController());
     }
     
     private static double deadzone(double d) {
@@ -30,12 +35,12 @@ public class OI {
     }
     
     public static double getLeftStickY() {
-    	double LSY = xboxDriver.getRawAxis(RobotMap.leftStickY);
+    	double LSY = xboxDriver.getRawAxis(RobotMap.leftStickY_generic);
     	return deadzone(governor * LSY);
     }
 
     public static double getRightStickY() {
-    	double RSY = xboxDriver.getRawAxis(RobotMap.rightStickY);
+    	double RSY = xboxDriver.getRawAxis(RobotMap.rightStickY_generic);
     	return deadzone(governor * RSY);
     }
 
