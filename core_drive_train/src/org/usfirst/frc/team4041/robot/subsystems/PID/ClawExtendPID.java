@@ -52,7 +52,6 @@ public class ClawExtendPID extends PIDSubsystem {
     }
 
     protected double returnPIDInput() {
-    	SmartDashboard.putNumber("claw angle:",this.getMutedAngle());
     	return Math.round(angle.get());// returns the sensor value that is providing the feedback for the system
     }
 
@@ -61,8 +60,6 @@ public class ClawExtendPID extends PIDSubsystem {
     }
 
 	private void initialize() {
-		
-		System.out.println("initialize ClawExtend PIDSubsystem");
 		
 		clawExtendSpark.setSafetyEnabled(false);
 		
@@ -85,23 +82,16 @@ public class ClawExtendPID extends PIDSubsystem {
 		this.changeMaxOuptut();
 		setPoint += increment;
 		this.setSetpoint(setPoint);
-		//Timer.delay(1);
-		System.out.println(this.getSetpoint());
-		SmartDashboard.putNumber("claw angle:",this.getMutedAngle());
 	}
 
 	public void down() {
 		this.changeMaxOuptut();
 		setPoint -= increment;
 		this.setSetpoint(setPoint);
-		//Timer.delay(1);
-		System.out.println(this.getSetpoint());
-		SmartDashboard.putNumber("claw angle:",this.getMutedAngle());
 	}
 
 	public void stop() {
 		clawExtendSpark.stopMotor();
-		SmartDashboard.putNumber("claw angle:",this.getMutedAngle());
 	}
 	
 	public void moveToHorizontal() {
@@ -120,16 +110,10 @@ public class ClawExtendPID extends PIDSubsystem {
 	}
 	
     public double getAngle() {
-    	SmartDashboard.putNumber("claw angle:",this.getMutedAngle());
     	return Math.round(angle.get());
-    	
     }
     
 	public boolean isComplete() {
 		return this.onTarget();
-	}
-    
-	private double getMutedAngle() {
-		return Math.round(angle.get());
 	}
 }

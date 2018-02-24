@@ -113,7 +113,6 @@ public class DriveTrain extends Subsystem {
     
     private void addInfoToDashBoard(){
 
-    	SmartDashboard.putData("Gyro", spiGyro);
     	SmartDashboard.putData("leftEncoder", leftEncoder);
     	SmartDashboard.putData("rightEncoder", rightEncoder);
     }

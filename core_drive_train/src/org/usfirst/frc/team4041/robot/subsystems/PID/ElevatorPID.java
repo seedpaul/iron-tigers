@@ -52,7 +52,6 @@ public class ElevatorPID extends PIDSubsystem {
 		
 		elevatorTalon.setSafetyEnabled(false);
 		elevatorEncoder.setDistancePerPulse(1);
-		//elevatorEncoder.setPIDSourceType(PIDSourceType.kDisplacement);
 		elevatorEncoder.reset();
 		
 		this.setAbsoluteTolerance(absoluteTolerance);
@@ -66,8 +65,6 @@ public class ElevatorPID extends PIDSubsystem {
 	}
 	
 	public void initDefaultCommand() {
-		// Set the default command for a subsystem here.
-		// setDefaultCommand(new MySpecialCommand());
 	}
 
     protected double returnPIDInput() {
@@ -141,6 +138,5 @@ public class ElevatorPID extends PIDSubsystem {
 	
     private void addInfoToDashBoard(){
     	SmartDashboard.putData("elevatorEncoder", elevatorEncoder);
-    	SmartDashboard.putData("elevatorSpark", elevatorTalon);
     }
 }

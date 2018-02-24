@@ -4,9 +4,6 @@ import org.usfirst.frc.team4041.robot.commands.teleop.CommandBase;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-/**
- *
- */
 public class ElevatorDownSimple extends CommandBase {
 
     public ElevatorDownSimple() {

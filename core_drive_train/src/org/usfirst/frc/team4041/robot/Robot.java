@@ -3,6 +3,7 @@ package org.usfirst.frc.team4041.robot;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -25,6 +26,7 @@ public class Robot extends IterativeRobot {
 	Command driveCommand;
 	CameraServer server;
 	SendableChooser<String> positionChooser;
+	public static Timer matchTimer;
 
 	public void robotInit() {
 
@@ -32,7 +34,6 @@ public class Robot extends IterativeRobot {
 		server.startAutomaticCapture(0);
 
 		CommandBase.init();
-		SmartDashboard.putData(Scheduler.getInstance());
 
 		positionChooser = new SendableChooser<String>();
 
@@ -81,8 +82,9 @@ public class Robot extends IterativeRobot {
 		driveCommand = (Command) new ArcadeDrive();
 		driveCommand.start();
 		
-		SmartDashboard.putData(Scheduler.getInstance());
-
+		matchTimer = new Timer();
+		matchTimer.start();
+	
 	}
 
 	public void teleopPeriodic() {

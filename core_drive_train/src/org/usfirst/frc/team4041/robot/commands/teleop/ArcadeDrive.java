@@ -20,7 +20,7 @@ public class ArcadeDrive extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {   
-    	//													move					turn
+    	//												move					turn
     	driveTrain.arcadeDrive(OI.getDriverController(),RobotMap.leftStickY,RobotMap.rightStickX);
     }
     

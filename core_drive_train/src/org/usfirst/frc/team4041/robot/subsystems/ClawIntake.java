@@ -5,9 +5,6 @@ import org.usfirst.frc.team4041.robot.RobotMap;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-/**
- *
- */
 public class ClawIntake extends Subsystem {
 	
 	static final Spark clawIntakeLeftSpark = new Spark(RobotMap.clawIntakeRightSparkPWM);
@@ -25,9 +22,6 @@ public class ClawIntake extends Subsystem {
 		}
 		return instance;
 	}
-
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.

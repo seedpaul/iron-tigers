@@ -4,9 +4,6 @@ import org.usfirst.frc.team4041.robot.commands.teleop.CommandBase;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-/**
- *
- */
 public class ClawExtendDown extends CommandBase {
 
     public ClawExtendDown() {
@@ -17,7 +14,6 @@ public class ClawExtendDown extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	System.out.println("initialize down command");
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -32,7 +28,6 @@ public class ClawExtendDown extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-    	System.out.println("down command end");
     	clawExtendPID.stop();
     }
 

@@ -1,5 +1,6 @@
 package org.usfirst.frc.team4041.robot.subsystems;
 
+import org.usfirst.frc.team4041.robot.Robot;
 import org.usfirst.frc.team4041.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.VictorSP;
@@ -34,7 +35,10 @@ public class ClimbingLift extends Subsystem {
 	}
 
 	public void up() {
-		liftVictor.set(0.4);
+		
+		if (Robot.matchTimer.get() > 100) {
+			liftVictor.set(0.4);
+		}
 	}
 
 	public void down() {
