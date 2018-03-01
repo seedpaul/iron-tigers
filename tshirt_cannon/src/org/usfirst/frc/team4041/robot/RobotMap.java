@@ -12,6 +12,7 @@ public class RobotMap {
 	public static final int leftDriveJaguar = 0;
 	public static final int rightDriveJaguar = 1;
 	public static final int cannonTalon = 2;
+	public static final int testVictor = 9;
 	
 	public static final double Stop = 0.0;
 	public static final double DEADZONE_MAGIC_NUMBER = .15;

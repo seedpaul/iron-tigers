@@ -10,6 +10,7 @@ public abstract class CommandBase extends Command
     public static DriveTrain driveTrain;
     public static Cannon cannon;
     public static Angler angler;
+    public static Speaker speaker;
     
     public static OI oi;
 
@@ -19,7 +20,8 @@ public abstract class CommandBase extends Command
         driveTrain  = DriveTrain.getInstance();
         cannon = Cannon.getInstance();
         angler = Angler.getInstance();
-        
+        speaker = Speaker.getInstance();
+
         oi = new OI();
         oi.init();
     }
