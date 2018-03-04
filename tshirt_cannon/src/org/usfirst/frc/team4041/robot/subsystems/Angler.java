@@ -32,11 +32,11 @@ public class Angler extends Subsystem {
 	}
 	
 	public void up() { 
-		talon.set(-1);
+		talon.set(1);
 	}
 
 	public void down() { 
-		talon.set(1);
+		talon.set(-1);
 	}
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
