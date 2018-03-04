@@ -106,7 +106,7 @@ public class ClawExtendPID extends PIDSubsystem {
 	
 	public void moveToScaleShoot() {
 		this.setOutputRange(minOutput, auto_maxOutput);
-		this.setSetpoint(50.0);
+		this.setSetpoint(40.0);
 	}
 	
     public double getAngle() {

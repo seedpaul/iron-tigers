@@ -20,6 +20,7 @@ import org.usfirst.frc.team4041.robot.commandGroups.auto.AutonomousRightRightSca
 import org.usfirst.frc.team4041.robot.commandGroups.auto.AutonomousRightRightSwitch;
 import org.usfirst.frc.team4041.robot.commands.teleop.ArcadeDrive;
 import org.usfirst.frc.team4041.robot.commands.teleop.CommandBase;
+import org.usfirst.frc.team4041.robot.subsystems.PID.ElevatorPID;
 
 public class Robot extends IterativeRobot {
 
@@ -84,6 +85,9 @@ public class Robot extends IterativeRobot {
 		
 		matchTimer = new Timer();
 		matchTimer.start();
+		
+		ElevatorPID ewl= ElevatorPID.getInstance();
+		ewl.disable();
 	
 	}
 

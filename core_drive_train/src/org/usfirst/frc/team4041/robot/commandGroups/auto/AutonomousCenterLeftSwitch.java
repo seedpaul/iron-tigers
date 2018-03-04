@@ -21,7 +21,7 @@ public class AutonomousCenterLeftSwitch extends CommandGroup {
 
     	DriveTrain driveTrain  = DriveTrain.getInstance();
     	double speed = 0.45;
-    	double angle = 45.0;
+    	double angle = -40.0;
     	double default_timeout = 10.0;
     	double short_timeout = 1.0;
     	
@@ -37,19 +37,19 @@ public class AutonomousCenterLeftSwitch extends CommandGroup {
     	addSequential(new Auto_DriveStraight(12, speed), default_timeout);
     	//step :2
     	System.out.println("step: 2");
-    	addSequential(new Auto_TurnToAngle(-angle), default_timeout);
+    	addSequential(new Auto_TurnToAngle(angle), default_timeout);
     	//step :3
     	System.out.println("step: 3");
-    	addSequential(new Auto_DriveStraight(60,speed), default_timeout);
+    	addSequential(new Auto_DriveStraight(74,speed), default_timeout);
     	//step :4
     	System.out.println("step: 4");
-    	addSequential(new Auto_TurnToAngle(angle), default_timeout);
+    	addSequential(new Auto_TurnToAngle(-angle), default_timeout);
     	//step :5
     	System.out.println("step: 5");
     	addSequential(new Auto_ElevatorToSwitch(),short_timeout);
     	//step :6
     	System.out.println("step: 6");
-    	addSequential(new Auto_DriveStraight(7, speed), default_timeout);
+    	addSequential(new Auto_DriveStraight(12, speed), default_timeout);
     	//step :7
     	System.out.println("step: 7");
     	addSequential(new Auto_ClawExtendToHorizontal(),short_timeout);

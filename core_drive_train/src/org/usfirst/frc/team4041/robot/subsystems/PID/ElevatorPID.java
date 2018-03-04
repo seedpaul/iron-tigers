@@ -22,8 +22,8 @@ public class ElevatorPID extends PIDSubsystem {
 	
 	private static double startingHeight = 0.0;
 	private static double transportHeight = 300.0;
-	private static double switchHeight = 1200.0;
-	private static double scaleHeight = 3850.0;
+	private static double switchHeight = 1350.0;
+	private static double scaleHeight = 3450.0;
 	public double highTreshold = 2500.0;
 	
 	private static double[] setPoints = {startingHeight,transportHeight,switchHeight,scaleHeight};
@@ -39,6 +39,10 @@ public class ElevatorPID extends PIDSubsystem {
 	public ElevatorPID() {
 		super("ElevatorPID",p,i,d,f);
 		initialize();
+	}
+	
+	public void resetEncoder() {
+		elevatorEncoder.reset();
 	}
 
 	public static ElevatorPID getInstance() {
@@ -78,16 +82,19 @@ public class ElevatorPID extends PIDSubsystem {
     }
     
     public void upToSwitchHeight() {
+    	//elevatorEncoder.reset();
     	this.setSetpoint(switchHeight);
     	addInfoToDashBoard();
     }
     
     public void upToScaleHeight() {
+    	//elevatorEncoder.reset();
     	this.setSetpoint(scaleHeight);
     	addInfoToDashBoard();
     }
     
     public void upToTransportHeight() {
+    	//elevatorEncoder.reset();
     	this.setSetpoint(transportHeight);
     	addInfoToDashBoard();
     }

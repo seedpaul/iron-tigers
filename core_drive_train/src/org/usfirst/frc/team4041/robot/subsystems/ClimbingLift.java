@@ -36,7 +36,9 @@ public class ClimbingLift extends Subsystem {
 
 	public void up() {
 		
-		if (Robot.matchTimer.get() > 100) {
+		boolean allowLift = Robot.matchTimer.get() > 100;
+		System.out.println("Allow Lift: " + allowLift);
+		if (allowLift) {
 			liftVictor.set(0.4);
 		}
 	}

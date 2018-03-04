@@ -25,7 +25,7 @@ public class Auto_ClawIntakeShoot extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	clawIntake.out();
+    	clawIntake.shoot();
     }
 
     // Make this return true when this Command no longer needs to run execute()

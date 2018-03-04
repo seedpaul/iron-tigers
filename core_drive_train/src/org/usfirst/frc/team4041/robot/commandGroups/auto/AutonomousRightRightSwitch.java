@@ -16,11 +16,12 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class AutonomousRightRightSwitch extends CommandGroup {
 
     public AutonomousRightRightSwitch() {
-    	System.out.println("run auto right right switch");
+    	
+System.out.println("run auto right right switch");
     	
     	DriveTrain driveTrain  = DriveTrain.getInstance();
     	double speed = 0.45;
-    	double angle = -90;
+    	double angle = -68;
     	double default_timeout = 7;
     	double short_timeout = 2;
     	
@@ -28,13 +29,19 @@ public class AutonomousRightRightSwitch extends CommandGroup {
     	driveTrain.resetLeftEncoder();
     	driveTrain.resetRightEncoder();
 
-
+    	//STep 0
     	addSequential(new Auto_ClawExtendToVertical(),1);
-    	addSequential(new Auto_DriveStraight(110, speed), default_timeout);
+    	//STep2
+    	addSequential(new Auto_DriveStraight(125, speed), default_timeout);
+    	//Step 3
     	addSequential(new Auto_TurnToAngle(angle), default_timeout);
+    	//Step 4
     	addSequential(new Auto_ElevatorToSwitch(), default_timeout);
-    	addSequential(new Auto_DriveStraight(2, speed), default_timeout);
+    	//Step 5
+    	addSequential(new Auto_DriveStraight(8, speed), default_timeout);
+    	//Step 6
     	addSequential(new Auto_ClawExtendToHorizontal(),short_timeout);
+    	//Step 7
     	addSequential(new Auto_ClawIntakeShoot(),short_timeout);
     }
 }
