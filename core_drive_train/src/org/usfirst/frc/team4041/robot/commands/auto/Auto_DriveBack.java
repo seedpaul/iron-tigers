@@ -4,11 +4,7 @@ import org.usfirst.frc.team4041.robot.commands.teleop.CommandBase;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-/**
- *
- */
 public class Auto_DriveBack extends CommandBase {
 	private double myDistance;
 	private double targetSpeed;
@@ -51,7 +47,6 @@ public class Auto_DriveBack extends CommandBase {
     	
     	if (leftEncoderDistance >= myDistance || rightEncoderDistance >= myDistance) {
     		double angle = driveTrain.getGyroAngle(); // get current heading
-    		SmartDashboard.putNumber("Angle", angle);
     		driveTrain.autoDrive(-currentSpeed, -(angle*Kp)); // drive towards heading 0
     		Timer.delay(0.04); 
     	} else {

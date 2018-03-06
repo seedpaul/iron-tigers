@@ -11,7 +11,6 @@ import edu.wpi.first.wpilibj.Encoder;
 
 import org.usfirst.frc.team4041.robot.RobotMap;
 import org.usfirst.frc.team4041.robot.commands.teleop.ArcadeDrive;
-//import org.usfirst.frc.team4041.robot.subsystems.PID.ClawExtendPID;
 import org.usfirst.frc.team4041.robot.subsystems.PID.ElevatorPID;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
@@ -35,8 +34,8 @@ public class DriveTrain extends Subsystem {
 	
 	private final double turningScaleLowElevator = 0.7;
 	private final double powerScaleLowElevator = 0.7;
-	private final double turningScaleHighElevator = 0.4;
-	private final double powerScaleHighElevator = 0.5;
+	private final double turningScaleHighElevator = 0.6;
+	private final double powerScaleHighElevator = 0.4;
 	
     private static DriveTrain instance;
     private static ElevatorPID elevator;

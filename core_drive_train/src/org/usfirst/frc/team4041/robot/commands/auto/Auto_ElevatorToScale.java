@@ -1,10 +1,7 @@
 package org.usfirst.frc.team4041.robot.commands.auto;
 
 import org.usfirst.frc.team4041.robot.commands.teleop.CommandBase;
-
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Auto_ElevatorToScale extends CommandBase {
 
@@ -17,7 +14,6 @@ public class Auto_ElevatorToScale extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	//elevatorPID.resetEncoder();
     }
 
     // Called repeatedly when this Command is scheduled to run

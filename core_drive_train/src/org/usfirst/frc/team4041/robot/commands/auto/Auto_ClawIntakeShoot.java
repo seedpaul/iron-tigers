@@ -1,14 +1,8 @@
 package org.usfirst.frc.team4041.robot.commands.auto;
 
 import org.usfirst.frc.team4041.robot.commands.teleop.CommandBase;
-
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-/**
- *
- */
 public class Auto_ClawIntakeShoot extends CommandBase {
 
 
