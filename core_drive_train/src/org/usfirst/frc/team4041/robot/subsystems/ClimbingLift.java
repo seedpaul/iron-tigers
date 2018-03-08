@@ -10,6 +10,9 @@ public class ClimbingLift extends Subsystem {
 
 	static final VictorSP liftVictor = new VictorSP(RobotMap.liftVictorSPPWM);
 	private static ClimbingLift instance;
+	
+	private static double upSpeed = 0.7;
+	private static double downSpeed = -0.95;
 
 	public ClimbingLift() {
 		initialize();
@@ -38,13 +41,13 @@ public class ClimbingLift extends Subsystem {
 		
 		boolean allowLift = Robot.matchTimer.get() > 100;
 		System.out.println("Allow Lift: " + allowLift);
-		if (allowLift) {
-			liftVictor.set(0.6);
+		if (true) {
+			liftVictor.set(upSpeed);
 		}
 	}
 
 	public void down() {
-		liftVictor.set(-0.95);
+		liftVictor.set(downSpeed);
 	}
 
 	public void stop() {

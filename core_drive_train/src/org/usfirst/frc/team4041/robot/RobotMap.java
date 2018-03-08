@@ -7,8 +7,8 @@ public class RobotMap {
 	public static final int rightFrontDriveTalonSRX = 1;
 	public static final int rightRearDriveTalonSRX = 2;
 	
-	public static final int leftEncoderPt1 = 0;
-	public static final int leftEncoderPt2 = 1;
+	public static final int leftEncoderPt1 = 4;
+	public static final int leftEncoderPt2 = 5;
 	public static final int rightEncoderPt1 = 2;
 	public static final int rightEncoderPt2 = 3;
 	

@@ -3,7 +3,6 @@ package org.usfirst.frc.team4041.robot.subsystems.PID;
 import org.usfirst.frc.team4041.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
