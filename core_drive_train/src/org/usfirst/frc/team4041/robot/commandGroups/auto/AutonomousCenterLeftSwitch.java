@@ -22,7 +22,7 @@ public class AutonomousCenterLeftSwitch extends CommandGroup {
     	DriveTrain driveTrain  = DriveTrain.getInstance();
     	double speed = 0.45;
     	double angle = -40.0;
-    	double default_timeout = 10.0;
+    	double default_timeout = 5.0;
     	double short_timeout = 1.0;
     	
     	driveTrain.resetGyro();
@@ -49,7 +49,7 @@ public class AutonomousCenterLeftSwitch extends CommandGroup {
     	addSequential(new Auto_ElevatorToSwitch(),short_timeout);
     	//step :6
     	System.out.println("step: 6");
-    	addSequential(new Auto_DriveStraight(12, speed), default_timeout);
+    	addSequential(new Auto_DriveStraight(10, speed), default_timeout);
     	//step :7
     	System.out.println("step: 7");
     	addSequential(new Auto_ClawExtendToHorizontal(),short_timeout);

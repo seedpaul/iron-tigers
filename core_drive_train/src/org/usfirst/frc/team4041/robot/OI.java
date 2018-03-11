@@ -55,10 +55,10 @@ public class OI {
     	buttonY_dr.toggleWhenPressed(clawIntakeIn);
     	buttonA_dr.toggleWhenPressed(clawIntakeOut);
 
-    	buttonX_dr.whenPressed(clawExtendDown);
-    	buttonB_dr.whenPressed(clawExtendUp);
+    	buttonB_dr.whenPressed(clawExtendDown);
+    	buttonX_dr.whenPressed(clawExtendUp);
     	
-    	//start assitant xbox controller buttons *********************************    	
+    	//start assitant xbox controller buttons ********************************* 
     	buttonY_as.whileHeld(elevatorUp);
     	buttonA_as.whileHeld(elevatorDown);
     	

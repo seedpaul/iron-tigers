@@ -21,7 +21,7 @@ public class RobotMap {
 	public static final int clawIntakeLeftSparkPWM = 3;
 	public static final int liftVictorSPPWM = 4;
 	
-	public static final int potDIO = 3;
+	public static final int potAIO = 0;
 
 	//start xbox *****************************************
 	public static final int xboxControllerDriver = 0;

@@ -39,7 +39,7 @@ public class Auto_DriveStraight extends CommandBase {
     protected void execute() {
     	
     	if(currentSpeed < targetSpeed) {
-    		currentSpeed += 0.01;
+    		currentSpeed += 0.025;
     	}
     	leftEncoderDistance = driveTrain.getLeftEncoderDistance();
     	rightEncoderDistance = driveTrain.getRightEncoderDistance();

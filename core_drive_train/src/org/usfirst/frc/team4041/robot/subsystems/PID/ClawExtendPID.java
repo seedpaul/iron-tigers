@@ -6,16 +6,17 @@ import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class ClawExtendPID extends PIDSubsystem {
 	
 	//range of motion is about 75 degrees
 	private static double minInput = 0.0;
-	private static double maxInput = 85.0;
+	private static double maxInput = 80.0;
 	private static double minOutput = -0.8;
 	private static double maxOutput = 0.3;
 	private static double auto_maxOutput = 0.3;
-	private static double absoluteTolerance = 1.0;
+	private static double absoluteTolerance = 2.0;
 	private static double setPoint = 0.0;
 	
 	private static double p = -0.025;
@@ -25,13 +26,13 @@ public class ClawExtendPID extends PIDSubsystem {
 	
 	private static boolean allowChange = true;
 	
-	private static double fullRange = 10000.0;
-	private static double offset = -515.0;
+	private static double fullRange = 200.0;
+	private static double offset = 0.0;
 
 	// for each button click move arm by 5 degrees
 	int increment = 10;
 	private static final Spark clawExtendSpark = new Spark(RobotMap.clawExtendSparkPWM);
-	private static AnalogInput potInput = new AnalogInput(RobotMap.potDIO);
+	private static AnalogInput potInput = new AnalogInput(RobotMap.potAIO);
 	private static AnalogPotentiometer angle = new AnalogPotentiometer(potInput, fullRange, offset);
 	private static ClawExtendPID instance;
 	
@@ -68,6 +69,7 @@ public class ClawExtendPID extends PIDSubsystem {
 		this.setInputRange(minInput, maxInput);
 		this.setOutputRange(minOutput, auto_maxOutput);
 		this.enable();
+		addInfoToDashBoard();
 	}
 	
 	private void changeMaxOuptut() {
@@ -79,33 +81,49 @@ public class ClawExtendPID extends PIDSubsystem {
     
 	public void up() {
 		this.changeMaxOuptut();
-		setPoint += increment;
+		if((setPoint + increment) < maxInput){
+			setPoint += increment;
+		}
+		else {
+			setPoint = maxInput; 
+		}
 		this.setSetpoint(setPoint);
+		addInfoToDashBoard();
 	}
 
 	public void down() {
 		this.changeMaxOuptut();
-		setPoint -= increment;
+		if((setPoint - increment) > minInput){
+			setPoint -= increment;
+		}
+		else {
+			setPoint = minInput; 
+		}
 		this.setSetpoint(setPoint);
+		addInfoToDashBoard();
 	}
 
 	public void stop() {
 		clawExtendSpark.stopMotor();
+		addInfoToDashBoard();
 	}
 	
 	public void moveToHorizontal() {
 		this.setOutputRange(minOutput, auto_maxOutput);
 		this.setSetpoint(10.0);
+		addInfoToDashBoard();
 	}
 	
 	public void moveToVertical() {
 		this.setOutputRange(minOutput, auto_maxOutput);
 		this.setSetpoint(70.0);
+		addInfoToDashBoard();
 	}
 	
 	public void moveToScaleShoot() {
 		this.setOutputRange(minOutput, auto_maxOutput);
 		this.setSetpoint(40.0);
+		addInfoToDashBoard();
 	}
 	
     public double getAngle() {
@@ -115,4 +133,10 @@ public class ClawExtendPID extends PIDSubsystem {
 	public boolean isComplete() {
 		return this.onTarget();
 	}
+	
+    private void addInfoToDashBoard(){
+
+    	SmartDashboard.putNumber("pot", getAngle());
+    	SmartDashboard.putData("angle", angle);
+    }
 }

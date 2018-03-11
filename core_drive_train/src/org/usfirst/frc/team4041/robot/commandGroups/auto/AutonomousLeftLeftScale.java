@@ -31,7 +31,7 @@ public class AutonomousLeftLeftScale extends CommandGroup {
     	//step0
     	addSequential(new Auto_ClawExtendToVertical(),1);
     	//Step 1
-    	addSequential(new Auto_DriveStraight(238, speed), default_timeout);
+    	addSequential(new Auto_DriveStraight(241, speed), default_timeout);
     	//Step 2
     	addSequential(new Auto_TurnToAngle(angle), default_timeout);
     	//Step 3
