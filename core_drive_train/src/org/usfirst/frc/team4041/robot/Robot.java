@@ -1,5 +1,6 @@
 package org.usfirst.frc.team4041.robot;
 
+import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -26,14 +27,17 @@ public class Robot extends IterativeRobot {
 
 	Command driveCommand;
 	CameraServer server;
+	UsbCamera cam;
 	SendableChooser<String> positionChooser;
 	public static Timer matchTimer;
 
 	public void robotInit() {
 
 		server = CameraServer.getInstance();
-		server.startAutomaticCapture(0);
-
+		cam = server.startAutomaticCapture(0);
+		cam.setResolution(320, 240);
+		cam.setFPS(20);
+		
 		CommandBase.init();
 
 		positionChooser = new SendableChooser<String>();
