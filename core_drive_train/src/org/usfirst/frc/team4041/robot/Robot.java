@@ -17,6 +17,8 @@ import org.usfirst.frc.team4041.robot.commandGroups.auto.AutonomousCenterLeftSwi
 import org.usfirst.frc.team4041.robot.commandGroups.auto.AutonomousCenterRightSwitch;
 import org.usfirst.frc.team4041.robot.commandGroups.auto.AutonomousLeftLeftScale;
 import org.usfirst.frc.team4041.robot.commandGroups.auto.AutonomousLeftLeftSwitch;
+import org.usfirst.frc.team4041.robot.commandGroups.auto.AutonomousLeftRightScale;
+import org.usfirst.frc.team4041.robot.commandGroups.auto.AutonomousRightLeftScale;
 import org.usfirst.frc.team4041.robot.commandGroups.auto.AutonomousRightRightScale;
 import org.usfirst.frc.team4041.robot.commandGroups.auto.AutonomousRightRightSwitch;
 import org.usfirst.frc.team4041.robot.commands.teleop.ArcadeDrive;
@@ -141,7 +143,7 @@ public class Robot extends IterativeRobot {
 					RunThisAutoCommand = new AutonomousRightRightSwitch();
 				} else {
 					// run auto drive to zone
-					RunThisAutoCommand = new AutonomousAutoZone();
+					RunThisAutoCommand = new AutonomousRightLeftScale();
 				}
 			}
 
@@ -157,7 +159,7 @@ public class Robot extends IterativeRobot {
 					RunThisAutoCommand = new AutonomousLeftLeftSwitch();
 				} else {
 					// run auto drive to zone
-					RunThisAutoCommand = new AutonomousAutoZone();
+					RunThisAutoCommand = new AutonomousLeftRightScale();
 				}
 			}
 

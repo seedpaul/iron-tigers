@@ -9,11 +9,12 @@ public class AutonomousRightLeftScale extends CommandGroup {
 
     public AutonomousRightLeftScale() {
     	
-    	System.out.println("run auto right right scale");
+    	System.out.println("run auto right left scale");
     	
     	DriveTrain driveTrain  = DriveTrain.getInstance();
     	double speed = 0.35;
-    	double angle = -37;
+    	double smallAngle = 37;
+    	double largeAngle = -68;
     	double default_timeout = 7;
     	double med_timeout = 4;
     	double short_timeout = 2;
@@ -24,15 +25,15 @@ public class AutonomousRightLeftScale extends CommandGroup {
     	
 
     	//step0
-    	addSequential(new Auto_ClawExtendToVertical(),1);
+    	addSequential(new Auto_ClawExtendToVertical(),short_timeout);
     	//Step 1 - straight
-    	addSequential(new Auto_DriveStraight(241, speed), default_timeout);
+    	addSequential(new Auto_DriveStraight(175, speed), default_timeout);
     	//Step 2 - turn left
-    	addSequential(new Auto_TurnToAngle(angle), default_timeout);
+    	addSequential(new Auto_TurnToAngle(largeAngle), default_timeout);
     	//Step 3 - straight
-    	addSequential(new Auto_DriveStraight(241, speed), default_timeout);
+    	addSequential(new Auto_DriveStraight(200, speed), default_timeout);
     	//Step 4 - turn right
-    	addSequential(new Auto_TurnToAngle(angle), default_timeout);
+    	addSequential(new Auto_TurnToAngle(smallAngle), default_timeout);
     	//Step 5 
     	addSequential(new Auto_ElevatorToScale(), med_timeout);
     	//Step 6
