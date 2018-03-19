@@ -17,7 +17,7 @@ public class AutonomousLeftRightScale extends CommandGroup {
     	System.out.println("run auto left right scale");
     	
     	DriveTrain driveTrain  = DriveTrain.getInstance();
-    	double speed = 0.40;
+    	double speed = 0.4;
     	double smallAngle = -103;
     	double largeAngle = 90;
     	double default_timeout = 7;

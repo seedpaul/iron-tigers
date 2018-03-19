@@ -27,7 +27,7 @@ public class Auto_DriveStraight extends CommandBase {
     protected void initialize() {
     	
     	complete = false;
-    	currentSpeed = 0.0;
+    	currentSpeed = 0.2;
     	leftEncoderDistance = 0.0;
     	rightEncoderDistance = 0.0;
     	driveTrain.resetLeftEncoder();
