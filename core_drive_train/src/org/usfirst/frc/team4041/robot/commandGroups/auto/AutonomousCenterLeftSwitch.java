@@ -24,6 +24,7 @@ public class AutonomousCenterLeftSwitch extends CommandGroup {
     	double angle = -40.0;
     	double default_timeout = 5.0;
     	double short_timeout = 1.0;
+    	double super_short_timeout = .5;
     	
     	driveTrain.resetGyro();
     	driveTrain.resetLeftEncoder();
@@ -31,7 +32,7 @@ public class AutonomousCenterLeftSwitch extends CommandGroup {
     	
     	//step:0
     	System.out.println("step: 0");
-    	addSequential(new Auto_ClawExtendToVertical(),short_timeout);
+    	addSequential(new Auto_ClawExtendToVertical(),super_short_timeout);
     	//step :1
     	System.out.println("step: 1");
     	addSequential(new Auto_DriveStraight(12, speed), default_timeout);

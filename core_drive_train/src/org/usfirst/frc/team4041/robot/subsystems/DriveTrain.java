@@ -32,8 +32,9 @@ public class DriveTrain extends Subsystem {
 	private static final Encoder rightEncoder = new Encoder(RobotMap.rightEncoderPt1, RobotMap.rightEncoderPt2, false, Encoder.EncodingType.k4X);
 	private static final ADXRS450_Gyro spiGyro = new ADXRS450_Gyro(SPI.Port.kOnboardCS0);
 	
-	private final double turningScaleLowElevator = 0.85;
-	private final double powerScaleLowElevator = 0.85;
+	private final double turningScaleLowElevator = 0.7;
+	private final double powerScaleLowElevator = 0.8;
+	
 	private final double turningScaleHighElevator = 0.6;
 	private final double powerScaleHighElevator = 0.4;
 	

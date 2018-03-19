@@ -11,17 +11,17 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class ClawExtendPID extends PIDSubsystem {
 	
 	//range of motion is about 75 degrees
-	private static double minInput = 0.0;
-	private static double maxInput = 80.0;
-	private static double minOutput = -0.8;
+	private static double minInput = 50.0;
+	private static double maxInput = 125.0;
+	private static double minOutput = -0.85;
 	private static double maxOutput = 0.3;
 	private static double auto_maxOutput = 0.3;
 	private static double absoluteTolerance = 2.0;
-	private static double setPoint = 0.0;
+	private static double setPoint = 50.0;
 	
-	private static double p = -0.025;
-	private static double i = 0.002;
-	private static double d = 0.01;
+	private static double p = -0.017;
+	private static double i = 0.0;
+	private static double d = 0.0;
 	private static double f = 0.0;
 	
 	private static boolean allowChange = true;
@@ -52,7 +52,7 @@ public class ClawExtendPID extends PIDSubsystem {
     }
 
     protected double returnPIDInput() {
-    	return Math.round(angle.get());// returns the sensor value that is providing the feedback for the system
+    	return angle.get();// returns the sensor value that is providing the feedback for the system
     }
 
     protected void usePIDOutput(double output) {
@@ -87,6 +87,7 @@ public class ClawExtendPID extends PIDSubsystem {
 		else {
 			setPoint = maxInput; 
 		}
+		System.out.println(setPoint);
 		this.setSetpoint(setPoint);
 		addInfoToDashBoard();
 	}
@@ -99,6 +100,7 @@ public class ClawExtendPID extends PIDSubsystem {
 		else {
 			setPoint = minInput; 
 		}
+		System.out.println(setPoint);
 		this.setSetpoint(setPoint);
 		addInfoToDashBoard();
 	}
@@ -110,19 +112,19 @@ public class ClawExtendPID extends PIDSubsystem {
 	
 	public void moveToHorizontal() {
 		this.setOutputRange(minOutput, auto_maxOutput);
-		this.setSetpoint(10.0);
+		this.setSetpoint(50.0);
 		addInfoToDashBoard();
 	}
 	
 	public void moveToVertical() {
 		this.setOutputRange(minOutput, auto_maxOutput);
-		this.setSetpoint(70.0);
+		this.setSetpoint(120.0);
 		addInfoToDashBoard();
 	}
 	
 	public void moveToScaleShoot() {
 		this.setOutputRange(minOutput, auto_maxOutput);
-		this.setSetpoint(40.0);
+		this.setSetpoint(85.0);
 		addInfoToDashBoard();
 	}
 	

@@ -22,7 +22,7 @@ public class ElevatorPID extends PIDSubsystem {
 	private static double startingHeight = 0.0;
 	private static double transportHeight = 300.0;
 	private static double switchHeight = 1350.0;
-	private static double scaleHeight = 3450.0;
+	private static double scaleHeight = 3800.0;
 	public double highTreshold = 2500.0;
 	
 	private static double[] setPoints = {startingHeight,transportHeight,switchHeight,scaleHeight};

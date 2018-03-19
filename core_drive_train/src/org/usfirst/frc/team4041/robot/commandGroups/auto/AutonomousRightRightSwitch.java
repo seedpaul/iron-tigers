@@ -24,13 +24,14 @@ System.out.println("run auto right right switch");
     	double angle = -68;
     	double default_timeout = 7;
     	double short_timeout = 2;
+    	double super_short_timeout = .5;
     	
     	driveTrain.resetGyro();
     	driveTrain.resetLeftEncoder();
     	driveTrain.resetRightEncoder();
 
     	//STep 0
-    	addSequential(new Auto_ClawExtendToVertical(),1);
+    	addSequential(new Auto_ClawExtendToVertical(),super_short_timeout);
     	//STep2
     	addSequential(new Auto_DriveStraight(125, speed), default_timeout);
     	//Step 3
