@@ -36,17 +36,17 @@ public class AutonomousLeftRightScale extends CommandGroup {
     	//Step 2 - turn left
     	addSequential(new Auto_TurnToAngle(largeAngle), default_timeout);
     	//Step 3 - straight
-    	addSequential(new Auto_DriveStraight(230, speed), default_timeout);
+    	addSequential(new Auto_DriveStraight(160, speed), default_timeout);
     	//Step 4 - turn right
-    	addSequential(new Auto_TurnToAngle(smallAngle), default_timeout);
+    	//addSequential(new Auto_TurnToAngle(smallAngle), default_timeout);
     	//Step 5 
     	addSequential(new Auto_ClawExtendToScaleShoot(),short_timeout);
     	//Step 6
-    	addSequential(new Auto_ElevatorToScale(), med_timeout);
+    	//addSequential(new Auto_ElevatorToScale(), med_timeout);
     	//Step 7
-    	addSequential(new Auto_DriveStraight(35, speed), default_timeout);
+    	//addSequential(new Auto_DriveStraight(35, speed), default_timeout);
     	//Step 8
-    	addSequential(new Auto_ClawIntakeShoot(),short_timeout);
+    	//addSequential(new Auto_ClawIntakeShoot(),short_timeout);
 
     }
 }

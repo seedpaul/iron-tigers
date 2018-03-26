@@ -50,7 +50,7 @@ public class AutonomousCenterLeftSwitch extends CommandGroup {
     	addSequential(new Auto_ElevatorToSwitch(),short_timeout);
     	//step :6
     	System.out.println("step: 6");
-    	addSequential(new Auto_DriveStraight(10, speed), default_timeout);
+    	addSequential(new Auto_DriveStraight(10, speed), 2.0);
     	//step :7
     	System.out.println("step: 7");
     	addSequential(new Auto_ClawExtendToHorizontal(),short_timeout);
