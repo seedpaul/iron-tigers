@@ -3,8 +3,10 @@ package org.usfirst.frc.team4041.robot.commandGroups.auto;
 import org.usfirst.frc.team4041.robot.commands.auto.Auto_ClawExtendToScaleShoot;
 import org.usfirst.frc.team4041.robot.commands.auto.Auto_ClawExtendToVertical;
 import org.usfirst.frc.team4041.robot.commands.auto.Auto_ClawIntakeShoot;
+import org.usfirst.frc.team4041.robot.commands.auto.Auto_DriveBack;
 import org.usfirst.frc.team4041.robot.commands.auto.Auto_DriveStraight;
 import org.usfirst.frc.team4041.robot.commands.auto.Auto_ElevatorToScale;
+import org.usfirst.frc.team4041.robot.commands.auto.Auto_ElevatorToStarting;
 import org.usfirst.frc.team4041.robot.commands.auto.Auto_TurnToAngle;
 import org.usfirst.frc.team4041.robot.subsystems.DriveTrain;
 
@@ -19,6 +21,7 @@ public class AutonomousLeftLeftScale extends CommandGroup {
     	DriveTrain driveTrain  = DriveTrain.getInstance();
     	double speed = 0.35;
     	double angle = 28;
+    	double large_angle = 90;
     	double default_timeout = 7;
     	double med_timeout = 4;
     	double short_timeout = 2;
@@ -39,7 +42,13 @@ public class AutonomousLeftLeftScale extends CommandGroup {
     	//Step 4
     	addSequential(new Auto_ElevatorToScale(), med_timeout);
     	//Step 5
-    	addSequential(new Auto_ClawIntakeShoot(),short_timeout);
+    	addSequential(new Auto_ClawIntakeShoot(), short_timeout);
+    	
+    	//addSequential(new Auto_DriveBack(30, speed));
+    	//Step 6
+    	addSequential(new Auto_ElevatorToStarting(), med_timeout);
+    	//Step 7
+    	addSequential(new Auto_TurnToAngle(large_angle), default_timeout);
 
     }
 }

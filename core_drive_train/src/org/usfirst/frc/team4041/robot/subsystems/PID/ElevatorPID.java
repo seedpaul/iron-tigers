@@ -92,9 +92,9 @@ public class ElevatorPID extends PIDSubsystem {
     	addInfoToDashBoard();
     }
     
-    public void upToTransportHeight() {
+    public void moveToStartingHeight() {
     	//elevatorEncoder.reset();
-    	this.setSetpoint(transportHeight);
+    	this.setSetpoint(startingHeight);
     	addInfoToDashBoard();
     }
 	
@@ -116,13 +116,13 @@ public class ElevatorPID extends PIDSubsystem {
 	
 	public void teleopUp() {
 		this.disablePID();
-		elevatorTalon.set(-0.9);
+		elevatorTalon.set(-1);
 		addInfoToDashBoard();
 	}
 	
 	public void teleopDown() {
 		this.disablePID();
-		elevatorTalon.set(0.9);
+		elevatorTalon.set(1);
 		addInfoToDashBoard();
 	}
 	

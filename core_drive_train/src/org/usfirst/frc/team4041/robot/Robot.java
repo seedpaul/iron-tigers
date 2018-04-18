@@ -138,13 +138,13 @@ public class Robot extends IterativeRobot {
 				// run auto right scale
 				RunThisAutoCommand = new AutonomousRightRightScale();
 			} else {
-				if (FMSData.substring(0, 1).equals("R")) {
-					// run auto right switch
-					RunThisAutoCommand = new AutonomousRightRightSwitch();
-				} else {
+//				if (FMSData.substring(0, 1).equals("R")) {
+//					// run auto right switch
+//					RunThisAutoCommand = new AutonomousRightRightSwitch();
+//				} else {
 					// run auto drive to zone
 					RunThisAutoCommand = new AutonomousRightLeftScale();
-				}
+//				}
 			}
 
 		} else {
@@ -154,13 +154,13 @@ public class Robot extends IterativeRobot {
 				RunThisAutoCommand = new AutonomousLeftLeftScale();
 
 			} else {
-				if (FMSData.substring(0, 1).equals("L")) {
-					// run auto left switch
-					RunThisAutoCommand = new AutonomousLeftLeftSwitch();
-				} else {
+//				if (FMSData.substring(0, 1).equals("L")) {
+//					// run auto left switch
+//					RunThisAutoCommand = new AutonomousLeftLeftSwitch();
+//				} else {
 					// run auto drive to zone
 					RunThisAutoCommand = new AutonomousLeftRightScale();
-				}
+//				}
 			}
 
 		}

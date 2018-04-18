@@ -28,24 +28,25 @@ public class Auto_DriveBack extends CommandBase {
     protected void initialize() {
     	
     	complete = false;
-    	currentSpeed = 0.0;
+    	currentSpeed = 0.2;
     	leftEncoderDistance = 0.0;
     	rightEncoderDistance = 0.0;
     	driveTrain.resetLeftEncoder();
     	driveTrain.resetRightEncoder();
     	driveTrain.resetGyro();
+    	
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	
     	if(currentSpeed < targetSpeed) {
-    		currentSpeed -= 0.01;
+    		currentSpeed += 0.05;
     	}
     	leftEncoderDistance = driveTrain.getLeftEncoderDistance();
     	rightEncoderDistance = driveTrain.getRightEncoderDistance();
     	
-    	if (leftEncoderDistance >= myDistance || rightEncoderDistance >= myDistance) {
+    	if (-myDistance <= leftEncoderDistance && -myDistance <= rightEncoderDistance) {
     		double angle = driveTrain.getGyroAngle(); // get current heading
     		driveTrain.autoDrive(-currentSpeed, -(angle*Kp)); // drive towards heading 0
     		Timer.delay(0.04); 

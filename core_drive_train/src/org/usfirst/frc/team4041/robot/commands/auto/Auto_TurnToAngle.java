@@ -12,7 +12,8 @@ public class Auto_TurnToAngle extends CommandBase {
 	
 	private double targetAngle;
 	private boolean complete;
-
+	private double speed = 0.6; //comp speed = 0.6
+	
     private Auto_TurnToAngle() {
 
     	requires((Subsystem) driveTrain);
@@ -43,7 +44,7 @@ public class Auto_TurnToAngle extends CommandBase {
     private void turnCounterClockWise(double measuredAngle) {
     	// turn left
     	if(measuredAngle > targetAngle){
-    		driveTrain.tankDrive(-0.6,0.6);
+    		driveTrain.tankDrive(-speed,speed);
     		Timer.delay(0.004);
     	}
     	else {
@@ -54,7 +55,7 @@ public class Auto_TurnToAngle extends CommandBase {
     private void turnClockWise(double measuredAngle) {
     	//turn right
     	if(measuredAngle < targetAngle){
-    		driveTrain.tankDrive(0.6,-0.6);
+    		driveTrain.tankDrive(speed,-speed);
     		Timer.delay(0.004);
     	}
     	else {

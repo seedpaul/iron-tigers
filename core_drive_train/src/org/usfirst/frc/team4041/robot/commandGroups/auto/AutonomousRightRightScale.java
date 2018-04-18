@@ -14,6 +14,7 @@ public class AutonomousRightRightScale extends CommandGroup {
     	DriveTrain driveTrain  = DriveTrain.getInstance();
     	double speed = 0.35;
     	double angle = -28;
+    	double large_angle = -90;
     	double default_timeout = 7;
     	double med_timeout = 4;
     	double short_timeout = 2;
@@ -35,6 +36,12 @@ public class AutonomousRightRightScale extends CommandGroup {
     	addSequential(new Auto_ElevatorToScale(), med_timeout);
     	//Step 5
     	addSequential(new Auto_ClawIntakeShoot(),short_timeout);
+    	
+    	//addSequential(new Auto_DriveBack(30, speed));
+    	//Step 6
+    	addSequential(new Auto_ElevatorToStarting(), med_timeout);
+    	//Step 7
+    	addSequential(new Auto_TurnToAngle(large_angle), default_timeout);
 
     }
 }

@@ -35,8 +35,8 @@ public class DriveTrain extends Subsystem {
 	private final double turningScaleLowElevator = 0.7;
 	private final double powerScaleLowElevator = 0.8;
 	
-	private final double turningScaleHighElevator = 0.6;
-	private final double powerScaleHighElevator = 0.4;
+	private final double turningScaleHighElevator = 0.7;
+	private final double powerScaleHighElevator = 0.5;
 	
     private static DriveTrain instance;
     private static ElevatorPID elevator;
