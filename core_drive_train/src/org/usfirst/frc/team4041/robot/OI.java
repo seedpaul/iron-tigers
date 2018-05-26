@@ -50,6 +50,7 @@ public class OI {
     	Command liftUp = new LiftUp();
     	Command clawIntakeIn = new ClawIntakeOut();
     	Command clawIntakeOut = new ClawIntakeIn();
+    	Command clawIntakeStop = new ClawIntakeStop();
     	
     	//start driver xbox controller buttons *********************************
     	buttonY_dr.toggleWhenPressed(clawIntakeIn);
@@ -64,6 +65,8 @@ public class OI {
     	
     	buttonX_as.whileHeld(liftDown);
     	buttonB_as.whileHeld(liftUp);
+    	
+    	buttonBumperRight_dr.whenPressed(clawIntakeStop);
     }
 
     public static Joystick getDriverController() {

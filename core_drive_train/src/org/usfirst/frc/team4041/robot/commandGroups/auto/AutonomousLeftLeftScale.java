@@ -19,7 +19,7 @@ public class AutonomousLeftLeftScale extends CommandGroup {
     	System.out.println("run auto left left scale");
     	
     	DriveTrain driveTrain  = DriveTrain.getInstance();
-    	double speed = 0.35;
+    	double speed = 0.4;
     	double angle = 28;
     	double large_angle = 90;
     	double default_timeout = 7;
@@ -34,7 +34,7 @@ public class AutonomousLeftLeftScale extends CommandGroup {
     	//Step 0
     	addSequential(new Auto_ClawExtendToVertical(),super_short_timeout);
     	//Step 1
-    	addSequential(new Auto_DriveStraight(228, speed), default_timeout);
+    	addSequential(new Auto_DriveStraight(230, speed), default_timeout);
     	//Step 2
     	addSequential(new Auto_TurnToAngle(angle), default_timeout);
     	//Step 3

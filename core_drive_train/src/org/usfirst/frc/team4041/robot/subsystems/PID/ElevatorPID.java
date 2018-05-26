@@ -16,7 +16,7 @@ public class ElevatorPID extends PIDSubsystem {
 	private static double maxInput = 3850.0;
 	
 	private static double minOutput = -0.8;
-	private static double maxOutput = 0.4;
+	private static double maxOutput = 0.5;
 	private static double absoluteTolerance = 4.0;
 	
 	private static double startingHeight = 0.0;

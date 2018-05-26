@@ -25,7 +25,7 @@ public class AutonomousCenterLeftSwitch extends CommandGroup {
     	System.out.println("run auto center-left with parallel");
 
     	DriveTrain driveTrain  = DriveTrain.getInstance();
-    	double speed = 0.40;
+    	double speed = 0.50;
     	double angle = -40.0;
     	double default_timeout = 5.0;
     	double short_timeout = 1.0;
@@ -45,16 +45,16 @@ public class AutonomousCenterLeftSwitch extends CommandGroup {
     	addSequential(new Auto_TurnToAngle(angle), default_timeout);
 
     	System.out.println("step: 3");
-    	addSequential(new Auto_DriveStraight(74,speed), default_timeout);
+    	addSequential(new Auto_DriveStraight(65,speed), default_timeout);
 
     	System.out.println("step: 4");
-    	addSequential(new Auto_TurnToAngle(-angle), default_timeout);
+    	addSequential(new Auto_TurnToAngle(45), default_timeout);
 
     	System.out.println("step: 5");
     	addParallel(new Auto_ElevatorToSwitch(),short_timeout);
 
     	System.out.println("step: 6");
-    	addSequential(new Auto_DriveStraight(10, speed), 2.0);
+    	addSequential(new Auto_DriveStraight(7, speed), 2.0);
 
     	System.out.println("step: 7");
     	addSequential(new Auto_ClawExtendToHorizontal(),short_timeout);
@@ -68,10 +68,10 @@ public class AutonomousCenterLeftSwitch extends CommandGroup {
     	//start get second cube
     	
     	System.out.println("step: 10");
-    	addSequential(new Auto_DriveBack(60,speed),default_timeout);
+    	addSequential(new Auto_DriveBack(38,speed),default_timeout);
 
     	System.out.println("step: 11");
-    	addSequential(new Auto_TurnToAngle(22.0), default_timeout);
+    	addSequential(new Auto_TurnToAngle(40.0), default_timeout);
     	
       	System.out.println("step: 12");
       	addParallel(new Auto_ElevatorToStarting(),short_timeout);
@@ -80,16 +80,16 @@ public class AutonomousCenterLeftSwitch extends CommandGroup {
      	addSequential(new Auto_ClawIntakeEngulf(),short_timeout);
 
     	System.out.println("step: 14");
-    	addSequential(new Auto_DriveStraight(61,speed), default_timeout);
+    	addSequential(new Auto_DriveStraight(49,speed), default_timeout);
 
     	System.out.println("step: 15");
-    	addSequential(new Auto_DriveBack(34,speed),default_timeout);
+    	addSequential(new Auto_DriveBack(15,speed),default_timeout);
     	
      	System.out.println("step: 16");
      	addSequential(new Auto_ClawIntakeSlow(),short_timeout);
     	
     	System.out.println("step: 17");
-    	addSequential(new Auto_TurnToAngle(-35.0), default_timeout);
+    	addSequential(new Auto_TurnToAngle(-40.0), default_timeout);
     	
     	System.out.println("step: 18");
     	addParallel(new Auto_ElevatorToSwitch(),short_timeout);

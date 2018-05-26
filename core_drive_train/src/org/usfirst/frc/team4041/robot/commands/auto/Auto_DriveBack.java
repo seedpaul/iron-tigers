@@ -41,7 +41,7 @@ public class Auto_DriveBack extends CommandBase {
     protected void execute() {
     	
     	if(currentSpeed < targetSpeed) {
-    		currentSpeed += 0.05;
+    		currentSpeed += 0.095;
     	}
     	leftEncoderDistance = driveTrain.getLeftEncoderDistance();
     	rightEncoderDistance = driveTrain.getRightEncoderDistance();

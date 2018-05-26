@@ -33,7 +33,7 @@ public class AutonomousCenterRightSwitch extends CommandGroup {
     	addSequential(new Auto_TurnToAngle(angle), default_timeout);
     	//step :3
     	System.out.println("step: 3");
-    	addSequential(new Auto_DriveStraight(60,speed), default_timeout);
+    	addSequential(new Auto_DriveStraight(40,speed), default_timeout);
     	//step :4
     	System.out.println("step: 4");
     	addSequential(new Auto_TurnToAngle(-angle), default_timeout);
@@ -42,13 +42,13 @@ public class AutonomousCenterRightSwitch extends CommandGroup {
     	addParallel(new Auto_ElevatorToSwitch(),short_timeout);
     	//step :6
     	System.out.println("step: 6");
-    	addSequential(new Auto_DriveStraight(30, speed), 2.0);
+    	addSequential(new Auto_DriveStraight(18, speed), 2.0);
     	//step :7
     	System.out.println("step: 7");
     	addSequential(new Auto_ClawExtendToHorizontal(),short_timeout);
     	//step :8
     	System.out.println("step: 8");
-    	addSequential(new Auto_ClawIntakeShoot(),short_timeout);
+    	addSequential(new Auto_ClawIntakeShoot(),super_short_timeout);
     	
     	System.out.println("step: 9");
     	addSequential(new Auto_ClawIntakeStop(),short_timeout);
@@ -58,7 +58,7 @@ public class AutonomousCenterRightSwitch extends CommandGroup {
     	addSequential(new Auto_DriveBack(50,speed),default_timeout);
 
     	System.out.println("step: 11");
-    	addSequential(new Auto_TurnToAngle(-33.0), default_timeout);
+    	addSequential(new Auto_TurnToAngle(-30.0), default_timeout);
     	
     	System.out.println("step: 12");
     	addParallel(new Auto_ElevatorToStarting(),short_timeout);
@@ -67,10 +67,10 @@ public class AutonomousCenterRightSwitch extends CommandGroup {
      	addSequential(new Auto_ClawIntakeEngulf(),short_timeout);
      	
     	System.out.println("step: 14");
-    	addSequential(new Auto_DriveStraight(58,speed), default_timeout);
+    	addSequential(new Auto_DriveStraight(60,speed), default_timeout);
 
     	System.out.println("step: 15");
-    	addSequential(new Auto_DriveBack(37,speed),default_timeout);
+    	addSequential(new Auto_DriveBack(15,speed),default_timeout);
     	
     	System.out.println("step: 16");
      	addSequential(new Auto_ClawIntakeSlow(),short_timeout);
@@ -82,7 +82,7 @@ public class AutonomousCenterRightSwitch extends CommandGroup {
     	addParallel(new Auto_ElevatorToSwitch(),short_timeout);
 
        	System.out.println("step: 19");
-    	addSequential(new Auto_DriveStraight(68,speed), default_timeout);
+    	addSequential(new Auto_DriveStraight(40,speed), default_timeout);
     	
     	System.out.println("step: 20");
     	addSequential(new Auto_ClawIntakeShoot(),short_timeout);

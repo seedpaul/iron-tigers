@@ -52,8 +52,16 @@ public class ClawIntake extends Subsystem {
 	}
 
 	public void stop() {
+		System.out.println("stop");
 		clawIntakeLeftSpark.stopMotor();
 		clawIntakeRightSpark.stopMotor();
+	}
+	
+	public void adjustable(double OperatorSpeed) {
+		if(OperatorSpeed > 0) {
+			clawIntakeLeftSpark.set(OperatorSpeed);//counter-clockwise
+			clawIntakeRightSpark.set(-OperatorSpeed);//clockwise
+		}
 	}
 }
 

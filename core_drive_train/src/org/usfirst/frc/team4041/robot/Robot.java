@@ -22,12 +22,14 @@ import org.usfirst.frc.team4041.robot.commandGroups.auto.AutonomousRightLeftScal
 import org.usfirst.frc.team4041.robot.commandGroups.auto.AutonomousRightRightScale;
 import org.usfirst.frc.team4041.robot.commandGroups.auto.AutonomousRightRightSwitch;
 import org.usfirst.frc.team4041.robot.commands.teleop.ArcadeDrive;
+import org.usfirst.frc.team4041.robot.commands.teleop.ClawIntakeOutAdjustable;
 import org.usfirst.frc.team4041.robot.commands.teleop.CommandBase;
 import org.usfirst.frc.team4041.robot.subsystems.PID.ElevatorPID;
 
 public class Robot extends IterativeRobot {
 
 	Command driveCommand;
+	Command adjustable;
 	CameraServer server;
 	UsbCamera cam;
 	SendableChooser<String> positionChooser;
@@ -89,12 +91,15 @@ public class Robot extends IterativeRobot {
 		driveCommand = (Command) new ArcadeDrive();
 		driveCommand.start();
 		
+		adjustable = (Command) new ClawIntakeOutAdjustable();
+		adjustable.start();
+		
 		matchTimer = new Timer();
 		matchTimer.start();
 		
 		ElevatorPID ewl= ElevatorPID.getInstance();
 		ewl.disable();
-	
+		
 	}
 
 	public void teleopPeriodic() {
@@ -103,6 +108,9 @@ public class Robot extends IterativeRobot {
 
 		if (((Subsystem) CommandBase.driveTrain).getCurrentCommand() == null) {
 			Scheduler.getInstance().add(driveCommand);
+		}
+		if (((Subsystem) CommandBase.clawIntake).getCurrentCommand() == null) {
+			Scheduler.getInstance().add(adjustable);
 		}
 	}
 
