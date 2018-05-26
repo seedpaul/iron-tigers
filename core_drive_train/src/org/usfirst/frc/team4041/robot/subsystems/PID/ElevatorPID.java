@@ -126,6 +126,18 @@ public class ElevatorPID extends PIDSubsystem {
 		addInfoToDashBoard();
 	}
 	
+	public void teleopUpSlow() {
+		this.disablePID();
+		elevatorTalon.set(-0.4);
+		addInfoToDashBoard();
+	}
+	
+	public void teleopDownSlow() {
+		this.disablePID();
+		elevatorTalon.set(0.4);
+		addInfoToDashBoard();
+	}
+	
 	private void disablePID() {
 		if(this.getPIDController().isEnabled()) {
 			this.disable();

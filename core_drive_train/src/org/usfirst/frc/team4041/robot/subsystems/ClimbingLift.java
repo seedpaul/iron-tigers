@@ -45,9 +45,17 @@ public class ClimbingLift extends Subsystem {
 			liftVictor.set(upSpeed);
 		}
 	}
-
+	
 	public void down() {
 		liftVictor.set(downSpeed);
+	}
+	
+	public void upSlow() {
+		liftVictor.set(0.5);
+	}
+
+	public void downSlow() {
+		liftVictor.set(-0.5);
 	}
 
 	public void stop() {

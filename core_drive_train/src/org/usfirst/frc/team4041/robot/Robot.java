@@ -25,6 +25,7 @@ import org.usfirst.frc.team4041.robot.commands.teleop.ArcadeDrive;
 import org.usfirst.frc.team4041.robot.commands.teleop.ClawIntakeOutAdjustable;
 import org.usfirst.frc.team4041.robot.commands.teleop.CommandBase;
 import org.usfirst.frc.team4041.robot.subsystems.PID.ElevatorPID;
+import org.usfirst.frc.team4041.robot.subsystems.PID.ClawExtendPID;
 
 public class Robot extends IterativeRobot {
 
@@ -87,6 +88,8 @@ public class Robot extends IterativeRobot {
 	}
 
 	public void teleopInit() {
+		
+		
 
 		driveCommand = (Command) new ArcadeDrive();
 		driveCommand.start();
@@ -99,6 +102,9 @@ public class Robot extends IterativeRobot {
 		
 		ElevatorPID ewl= ElevatorPID.getInstance();
 		ewl.disable();
+		ClawExtendPID ce = ClawExtendPID.getInstance();
+		ce.disable();
+		
 		
 	}
 
