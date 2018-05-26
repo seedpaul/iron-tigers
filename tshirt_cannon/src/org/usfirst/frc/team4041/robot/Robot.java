@@ -4,8 +4,6 @@ package org.usfirst.frc.team4041.robot;
 import org.usfirst.frc.team4041.robot.commands.CommandBase;
 import org.usfirst.frc.team4041.robot.commands.TankDriveWithController;
 import org.usfirst.frc.team4041.robot.subsystems.Cannon;
-
-import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -13,15 +11,14 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Robot extends IterativeRobot {
 
 	public static OI oi;
-	Compressor c = new Compressor();
-
+    private Cannon cannon;
 	@Override
 	public void robotInit() {
 		
-		c.setClosedLoopControl(true);
-		
 		oi = new OI();
 		CommandBase.init();
+		cannon = Cannon.getInstance();
+		cannon.c.setClosedLoopControl(true);
 	}
 
 	@Override
@@ -49,13 +46,12 @@ public class Robot extends IterativeRobot {
         if (((Subsystem) CommandBase.driveTrain).getCurrentCommand() == null) {
             Scheduler.getInstance().add(new TankDriveWithController());
         }
-    	
-    	if(c.getPressureSwitchValue()){
-    		Cannon.lightOn();
-    	}
-    	else{
-    		Cannon.lightOff();
-    	}
+        
+		if(cannon.c.getPressureSwitchValue()){
+			cannon.lightOn();
+		} else{
+			cannon.lightOn();
+		}
     }
 
 	@Override

@@ -1,7 +1,6 @@
 package org.usfirst.frc.team4041.robot.subsystems;
 
 import edu.wpi.first.wpilibj.Relay;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -21,9 +20,7 @@ public class Speaker extends Subsystem {
 		return instance;
 	}
 	
-	public void initialize() {
-
-	}
+	public void initialize() {}
 	
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
@@ -31,13 +28,7 @@ public class Speaker extends Subsystem {
 	}
 	
 	public void on() { 
-		
-		
-			spike.set(Relay.Value.kForward);
-			//Timer.delay(0.05);
-			//spike.set(Relay.Value.kOff);
-			//Timer.delay(0.05);
-		
+		spike.set(Relay.Value.kForward);
 	}
 
 
@@ -45,6 +36,5 @@ public class Speaker extends Subsystem {
 		spike.set(Relay.Value.kOff);
 	}
 
-	
 }
 

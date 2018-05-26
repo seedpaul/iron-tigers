@@ -4,6 +4,7 @@ package org.usfirst.frc.team4041.robot.subsystems;
 
 import org.usfirst.frc.team4041.robot.RobotMap;
 
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -14,6 +15,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Cannon extends Subsystem {
 
 	private static Cannon instance;
+	public Compressor c = new Compressor();
 
 	private static final Solenoid solenoidCannon = new Solenoid(0);
 	private static final Relay spikeLight = new Relay(RobotMap.spike_relay_light,Relay.Direction.kForward);
@@ -33,7 +35,9 @@ public class Cannon extends Subsystem {
 		return instance;
 	}
 
-	public void initialize() {}
+	public void initialize() {
+		
+	}
 	
 	public void close() { 
 		solenoidCannon.set(false);
@@ -41,6 +45,7 @@ public class Cannon extends Subsystem {
 
 	public void open() { 
 
+		System.out.println("fire cannon");
 		solenoidCannon.set(true);// open cannon
 		try {
 			Thread.sleep(2000);
@@ -52,14 +57,22 @@ public class Cannon extends Subsystem {
 		solenoidCannon.clearAllPCMStickyFaults();
 
 	}
+	public void toggleCompressors() {
+		
+		if(c.getClosedLoopControl()) {
+			c.setClosedLoopControl(false);
+		}else {
+			c.setClosedLoopControl(true);
+		}
+	}
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
 		//setDefaultCommand(new MySpecialCommand());
 	}
-	public static void lightOn(){
+	public void lightOn(){
 		spikeLight.set(Relay.Value.kOn);
 	}
-	public static void lightOff(){
+	public void lightOff(){
 		spikeLight.set(Relay.Value.kOff);
 	}
 
