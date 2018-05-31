@@ -1,8 +1,8 @@
 
 package org.usfirst.frc.team4041.robot;
 
+import org.usfirst.frc.team4041.robot.commands.ArcadeDriveWithController;
 import org.usfirst.frc.team4041.robot.commands.CommandBase;
-import org.usfirst.frc.team4041.robot.commands.TankDriveWithController;
 import org.usfirst.frc.team4041.robot.subsystems.Cannon;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -44,7 +44,7 @@ public class Robot extends IterativeRobot {
         Scheduler.getInstance().run();
 
         if (((Subsystem) CommandBase.driveTrain).getCurrentCommand() == null) {
-            Scheduler.getInstance().add(new TankDriveWithController());
+            Scheduler.getInstance().add(new ArcadeDriveWithController());
         }
         
 		if(cannon.c.getPressureSwitchValue()){

@@ -2,8 +2,9 @@ package org.usfirst.frc.team4041.robot.subsystems;
 
 import org.usfirst.frc.team4041.robot.RobotMap;
 import edu.wpi.first.wpilibj.Jaguar;
-import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
 public class DriveTrain extends Subsystem {
 
@@ -11,8 +12,9 @@ public class DriveTrain extends Subsystem {
 
 	static final Jaguar leftJaguar = new Jaguar(RobotMap.leftDriveJaguar);
 	static final Jaguar rightJaguar = new Jaguar(RobotMap.rightDriveJaguar);
-	static final RobotDrive robotDrive = new RobotDrive(leftJaguar, rightJaguar);
-
+	static final DifferentialDrive robotDrive = new DifferentialDrive(leftJaguar,rightJaguar);
+	private final double turningScaleLowElevator = 0.7;
+	private final double powerScaleLowElevator = 0.8;
 
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
@@ -38,6 +40,17 @@ public class DriveTrain extends Subsystem {
 	public void tankDrive(double right, double left) { 
 		robotDrive.tankDrive(right, left, true);
 	}
+	
+	public void arcadeDrive(Joystick driverController, int moveAxis, int turnAxis) {
+    	
+    	double turningScalingFactor = turningScaleLowElevator;
+    	double powerScalingFactor = powerScaleLowElevator;
+    	
+    	double move = -driverController.getRawAxis(moveAxis) * powerScalingFactor;
+    	double turn = driverController.getRawAxis(turnAxis) * turningScalingFactor;
+    	
+    	robotDrive.arcadeDrive(move,turn,true);
+    }
 
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.

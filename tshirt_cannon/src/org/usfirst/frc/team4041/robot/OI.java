@@ -49,5 +49,9 @@ public class OI {
     	double RSY = xboxDriver.getRawAxis(RobotMap.rightStickY);
     	return deadzone(governor * RSY);
     }
+    
+    public static Joystick getController() {
+    	return xboxDriver;
+    }
 
 }
