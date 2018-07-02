@@ -18,7 +18,7 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 		CommandBase.init();
 		cannon = Cannon.getInstance();
-		cannon.c.setClosedLoopControl(true);
+		cannon.compressor.setClosedLoopControl(true);
 	}
 
 	@Override
@@ -47,10 +47,12 @@ public class Robot extends IterativeRobot {
             Scheduler.getInstance().add(new ArcadeDriveWithController());
         }
         
-		if(cannon.c.getPressureSwitchValue()){
+		if(cannon.compressor.getPressureSwitchValue()){
 			cannon.lightOn();
+			cannon.fansOff();
 		} else{
-			cannon.lightOn();
+			cannon.lightOff();
+			cannon.fansOn();
 		}
     }
 

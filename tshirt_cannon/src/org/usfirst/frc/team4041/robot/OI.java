@@ -44,9 +44,19 @@ public class OI {
     	double LSY = xboxDriver.getRawAxis(RobotMap.leftStickY);
     	return deadzone(governor * LSY);
     }
+    
+    public static double getLeftStickX() {
+    	double LSY = xboxDriver.getRawAxis(RobotMap.leftStickX);
+    	return deadzone(governor * LSY);
+    }
 
     public static double getRightStickY() {
     	double RSY = xboxDriver.getRawAxis(RobotMap.rightStickY);
+    	return deadzone(governor * RSY);
+    }
+    
+    public static double getRightStickX() {
+    	double RSY = xboxDriver.getRawAxis(RobotMap.rightStickX);
     	return deadzone(governor * RSY);
     }
     

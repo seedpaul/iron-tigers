@@ -13,8 +13,8 @@ public class DriveTrain extends Subsystem {
 	static final Jaguar leftJaguar = new Jaguar(RobotMap.leftDriveJaguar);
 	static final Jaguar rightJaguar = new Jaguar(RobotMap.rightDriveJaguar);
 	static final DifferentialDrive robotDrive = new DifferentialDrive(leftJaguar,rightJaguar);
-	private final double turningScaleLowElevator = 0.7;
-	private final double powerScaleLowElevator = 0.8;
+	private final double turningScale = 0.8;
+	private final double powerScale = 0.8;
 
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
@@ -43,11 +43,8 @@ public class DriveTrain extends Subsystem {
 	
 	public void arcadeDrive(Joystick driverController, int moveAxis, int turnAxis) {
     	
-    	double turningScalingFactor = turningScaleLowElevator;
-    	double powerScalingFactor = powerScaleLowElevator;
-    	
-    	double move = -driverController.getRawAxis(moveAxis) * powerScalingFactor;
-    	double turn = driverController.getRawAxis(turnAxis) * turningScalingFactor;
+    	double move = -driverController.getRawAxis(moveAxis) * this.powerScale;
+    	double turn = driverController.getRawAxis(turnAxis) * this.turningScale;
     	
     	robotDrive.arcadeDrive(move,turn,true);
     }

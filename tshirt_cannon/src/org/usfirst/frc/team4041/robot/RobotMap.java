@@ -9,10 +9,16 @@ package org.usfirst.frc.team4041.robot;
 public class RobotMap {
 	
 	public static final int xboxController = 0;
+	
 	public static final int leftDriveJaguar = 0;
 	public static final int rightDriveJaguar = 1;
-	public static final int cannonTalon = 2;
-	public static final int testVictor = 9;
+	public static final int cannonJaquar = 2;
+	
+	public static final int firingSolenoid = 0;
+	
+	public static final int spike_relay_light = 1;
+	public static final int spike_relay_fans = 2;
+	public static final int spike_relay_speaker = 3;
 	
 	public static final double Stop = 0.0;
 	public static final double DEADZONE_MAGIC_NUMBER = .15;
@@ -43,8 +49,6 @@ public class RobotMap {
 	
 	public static final int rightJoystickPush_generic = 12;
 	public static final int leftJoystickPush_generic = 11;
-
-	public static final int spike_relay_light = 1;
 	
 	//start xbox *****************************************
 	public static final int controller_xbox = 0;
