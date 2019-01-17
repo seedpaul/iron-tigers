@@ -7,15 +7,14 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.Robot;
+import frc.robot.CommandBase;
 import frc.robot.OI;
 
-public class ArcadeDrive extends Command {
+public class ArcadeDrive extends CommandBase {
   public ArcadeDrive() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.driveTrain);
+    requires(driveTrain);
   }
 
   // Called just before this Command runs the first time
@@ -26,7 +25,7 @@ public class ArcadeDrive extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.driveTrain.arcade(OI.XboxDriver);
+    driveTrain.arcade(OI.XboxDriver);
   }
 
   // Make this return true when this Command no longer needs to run execute()

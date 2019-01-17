@@ -20,9 +20,7 @@ import frc.robot.subsystems.DriveTrain;
  * project.
  */
 public class Robot extends TimedRobot {
-  public static DriveTrain driveTrain = DriveTrain.getInstance();
   private ArcadeDrive driveCommand;
-  public static OI m_oi;
 
   /**
    * This function is run when the robot is first started up and should be
@@ -30,8 +28,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    m_oi = new OI();
-    m_oi.init();
+
   }
 
   /**
@@ -101,7 +98,7 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
 
-    if (Robot.driveTrain.getCurrentCommand()==null){
+    if (CommandBase.driveTrain.getCurrentCommand()==null){
       Scheduler.getInstance().add(driveCommand);
     }
   }

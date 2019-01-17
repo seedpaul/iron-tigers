@@ -7,14 +7,13 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.Robot;
+import frc.robot.CommandBase;
 
-public class ResetDriveTrainEncoders extends Command {
+public class ResetDriveTrainEncoders extends CommandBase {
   public ResetDriveTrainEncoders() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.driveTrain);
+    requires(driveTrain);
   }
 
   // Called just before this Command runs the first time
@@ -25,7 +24,7 @@ public class ResetDriveTrainEncoders extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.driveTrain.resetEncoders();
+    driveTrain.resetEncoders();
     System.out.println("reset encoders");
   }
 
