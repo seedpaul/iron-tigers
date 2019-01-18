@@ -18,7 +18,6 @@ public class FrontLift extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   //TODO:we need an encoder to control height
-  //need talonSRX
 
   private final WPI_TalonSRX frontLiftRight = new WPI_TalonSRX(RobotMap.SRXFrontLiftRight);
   private final WPI_TalonSRX frontLiftLeft = new WPI_TalonSRX(RobotMap.SRXFrontLiftLeft);
