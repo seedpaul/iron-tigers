@@ -19,6 +19,22 @@ public class Elevator extends Subsystem {
   //TODO:we need two motor controllers for two 775s
   //TODO:we need encoder for elevator height control
 
+  private static Elevator instance;
+
+  private Elevator(){
+    init();
+  }
+
+  private void init(){
+
+  }
+
+  public static Elevator getInstance() {
+    if(instance == null){
+      instance = new Elevator();
+    }
+    return instance;
+  }
 
   @Override
   public void initDefaultCommand() {
