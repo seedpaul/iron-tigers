@@ -28,6 +28,10 @@ public class RobotMap {
   public static int SRXBackRight = 2;
   public static int SRXBackLeft = 4;
 
+  public static int SRXFrontLiftRight = 5;
+  public static int SRXFrontLiftLeft = 6;
+  //TODO: numbers for wiring
+
   public static int leftEncoderChannelA = 4;
   public static int leftEncoderChannelB = 5;
   public static int rightEncoderChannelA = 2;

@@ -14,6 +14,7 @@ import frc.robot.subsystems.*;
 public abstract class CommandBase extends Command {
   public static DriveTrain driveTrain;
   public static Elevator elevator;
+  public static FrontLift frontLift;
 
   public static OI oi;
 
@@ -22,6 +23,7 @@ public abstract class CommandBase extends Command {
 
       driveTrain  = DriveTrain.getInstance();
       elevator = Elevator.getInstance();
+      frontLift = FrontLift.getInstance();
       
       oi = new OI();
       oi.init();
