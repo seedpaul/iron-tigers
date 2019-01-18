@@ -7,7 +7,7 @@
 
 package frc.robot.commands;
 
-import frc.robot.CommandBase;
+import frc.robot.commands.CommandBase;
 
 public class ResetDriveTrainEncoders extends CommandBase {
   public ResetDriveTrainEncoders() {
