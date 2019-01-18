@@ -32,7 +32,6 @@ public abstract class CommandBase extends Command {
 
   //Constructor
   public CommandBase(String name) {
-    
       super(name);
   }
 
