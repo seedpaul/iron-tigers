@@ -7,6 +7,8 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+import frc.robot.RobotMap;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -16,8 +18,10 @@ public class Elevator extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  //TODO:we need two motor controllers for two 775s
   //TODO:we need encoder for elevator height control
+
+  private static WPI_VictorSPX elevatorRight = new WPI_VictorSPX(RobotMap.SPXElevatorRight);
+  private static WPI_VictorSPX elevatorLeft = new WPI_VictorSPX(RobotMap.SPXElevatorLeft);
 
   private static Elevator instance;
 

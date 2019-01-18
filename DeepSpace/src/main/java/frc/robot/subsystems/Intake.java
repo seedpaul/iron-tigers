@@ -15,6 +15,10 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Intake extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
+  //TODO: one motor controller
+  //need one victorSP
+
+
 
   @Override
   public void initDefaultCommand() {

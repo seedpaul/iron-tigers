@@ -30,7 +30,10 @@ public class RobotMap {
 
   public static int SRXFrontLiftRight = 5;
   public static int SRXFrontLiftLeft = 6;
-  //TODO: numbers for wiring
+  
+  public static int SPXElevatorRight = 7;
+  public static int SPXElevatorLeft = 8;
+
 
   public static int leftEncoderChannelA = 4;
   public static int leftEncoderChannelB = 5;

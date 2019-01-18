@@ -16,6 +16,7 @@ public class RearLift extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   //TODO:we need one motor controller
+  //need one VictorSP
   //TODO:we need an encoder to control height
 
   @Override

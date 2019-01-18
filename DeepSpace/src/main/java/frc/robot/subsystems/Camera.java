@@ -12,16 +12,9 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  * Add your docs here.
  */
-public class IntakeElbow extends Subsystem {
+public class Camera extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-
-  //TODO:we need a motor controller
-  //one victorSP
-  //TODO: encoder for angle control
-
-
-
 
   @Override
   public void initDefaultCommand() {
