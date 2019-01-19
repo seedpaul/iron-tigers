@@ -15,6 +15,9 @@ public abstract class CommandBase extends Command {
   public static DriveTrain driveTrain;
   public static Elevator elevator;
   public static FrontLift frontLift;
+  public static Intake intake;
+  public static IntakeElbow intakeElbow;
+  public static RearLift rearLift;
 
   public static OI oi;
 

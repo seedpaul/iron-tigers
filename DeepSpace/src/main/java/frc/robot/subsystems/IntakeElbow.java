@@ -7,7 +7,9 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.RobotMap;
 
 /**
  * Add your docs here.
@@ -15,10 +17,10 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class IntakeElbow extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-
-  //TODO:we need a motor controller
-  //one victorSP
+  
   //TODO: encoder for angle control
+
+  private static VictorSP intakeElbow = new VictorSP(RobotMap.SPIntakeElbow);
 
 
 

@@ -7,7 +7,9 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.RobotMap;
 
 /**
  * Add your docs here.
@@ -15,9 +17,10 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class RearLift extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  //TODO:we need one motor controller
-  //need one VictorSP
+
   //TODO:we need an encoder to control height
+
+  private static VictorSP rearLift = new VictorSP(RobotMap.SPRearLift);
 
   @Override
   public void initDefaultCommand() {

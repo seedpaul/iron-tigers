@@ -6,7 +6,8 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot.subsystems;
-
+import frc.robot.RobotMap;
+import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -15,10 +16,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Intake extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  //TODO: one motor controller
-  //need one victorSP
 
-
+  private static VictorSP intake = new VictorSP(RobotMap.SPIntake);
 
   @Override
   public void initDefaultCommand() {

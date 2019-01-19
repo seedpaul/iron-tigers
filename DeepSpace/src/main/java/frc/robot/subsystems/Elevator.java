@@ -18,8 +18,6 @@ public class Elevator extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  //TODO:we need encoder for elevator height control
-
   private static WPI_VictorSPX elevatorRight = new WPI_VictorSPX(RobotMap.SPXElevatorRight);
   private static WPI_VictorSPX elevatorLeft = new WPI_VictorSPX(RobotMap.SPXElevatorLeft);
 
