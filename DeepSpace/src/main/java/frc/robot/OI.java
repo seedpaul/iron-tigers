@@ -46,9 +46,21 @@ public class OI {
 
   public static Joystick XboxDriver = new Joystick(RobotMap.xboxControllerDriver);
   public static JoystickButton aButton = new JoystickButton(XboxDriver,RobotMap.buttonA);
+  // public static JoystickButton bButton = new JoystickButton(XboxDriver,RobotMap.buttonB);
+
+  // public static JoystickButton xButton = new JoystickButton(XboxDriver,RobotMap.buttonX);
+  // public static JoystickButton yButton = new JoystickButton(XboxDriver,RobotMap.buttonY);
+
+  // public static JoystickButton bumperRight = new JoystickButton(XboxDriver,RobotMap.buttonBumperRight);
 
   public void init(){
+
     aButton.whenPressed(new ResetDriveTrainEncoders());
+    // bButton.whenPressed(new TurnToAngle());
+    // bumperRight.whenPressed(new TurnToAngle2());
+
+    // xButton.whenPressed(new EnablePID());
+    // yButton.whenPressed(new disablePID());
   }
   
 }

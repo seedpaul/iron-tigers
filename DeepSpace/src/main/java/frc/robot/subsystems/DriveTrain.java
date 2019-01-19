@@ -7,19 +7,29 @@
 
 package frc.robot.subsystems;
 
+
+import frc.robot.RobotMap;
+
+import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.PIDOutput;
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.RobotMap;
+
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.kauailabs.navx.frc.AHRS;
 
 /**
  * Add your docs here.
  */
-public class DriveTrain extends Subsystem {
+public class DriveTrain extends Subsystem implements PIDOutput{
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   private final WPI_TalonSRX frontRight = new WPI_TalonSRX(RobotMap.SRXFrontRight);
@@ -32,12 +42,21 @@ public class DriveTrain extends Subsystem {
 
   private final DifferentialDrive robotDrive = new DifferentialDrive(leftSCG, rightSCG);
 
-  private final Encoder leftEncoder = new Encoder(RobotMap.leftEncoderChannelA, RobotMap.leftEncoderChannelB, true, Encoder.EncodingType.k4X);
-  private final Encoder rightEncoder = new Encoder(RobotMap.rightEncoderChannelA, RobotMap.rightEncoderChannelB, false, Encoder.EncodingType.k4X);
+  private final Encoder leftEncoder = new Encoder(RobotMap.leftEncoderChannelA, RobotMap.leftEncoderChannelB, true, Encoder.EncodingType.k1X);
+  private final Encoder rightEncoder = new Encoder(RobotMap.rightEncoderChannelA, RobotMap.rightEncoderChannelB, false, Encoder.EncodingType.k1X);
 
   //TODO:we need a gyro or the navX 
+  private AHRS ahrs;
+  private PIDController turnController;
+  private double rotateToAngleRate;
 
   private static DriveTrain instance;
+
+  static final double kP = 0.00;
+  static final double kI = 0.00;
+  static final double kD = 0.00;
+  static final double kF = 0.00;
+  static final double kToleranceDegrees = 2.0f;
 
   private DriveTrain(){
     init();
@@ -61,6 +80,25 @@ public class DriveTrain extends Subsystem {
     rightEncoder.setDistancePerPulse(distancePerPulse);
     leftEncoder.reset();
     rightEncoder.reset();
+
+    try {
+            ahrs = new AHRS(SPI.Port.kMXP); 
+        } catch (RuntimeException ex ) {
+            DriverStation.reportError("Error instantiating navX MXP:  " + ex.getMessage(), true);
+        }
+
+        turnController = new PIDController(kP, kI, kD, kF, ahrs, this);
+        turnController.setInputRange(-180.0f,  180.0f);
+        turnController.setOutputRange(-1, 1);
+        turnController.setAbsoluteTolerance(kToleranceDegrees);
+        turnController.setContinuous(true);
+
+        turnController.enable();
+        
+        /* Add the PID Controller to the Test-mode dashboard, allowing manual  */
+        /* tuning of the Turn Controller's P, I and D coefficients.            */
+        /* Typically, only the P value needs to be modified.                   */
+        //LiveWindow.addActuator("DriveSystem", "RotateController", turnController);
   }
 
   @Override
@@ -87,4 +125,51 @@ public class DriveTrain extends Subsystem {
     leftEncoder.reset();
     rightEncoder.reset();
   }
+
+  @Override
+  /* This function is invoked periodically by the PID Controller, */
+  /* based upon navX MXP yaw angle input and PID Coefficients.    */
+  public void pidWrite(double output) {
+      rotateToAngleRate = output;
+  }
+
+  public void turn90(){
+    turnController.setSetpoint(90.0f);
+    applyPID();
+  }
+
+  public void turn180(){
+    turnController.setSetpoint(179.9f);
+    applyPID();
+  }
+
+  public void turn270(){
+    turnController.setSetpoint(269.9f);
+    applyPID();
+  }
+
+  public void turn360(){
+    turnController.setSetpoint(359.9f);
+    applyPID();
+  }
+
+  private void applyPID(){
+    
+    System.out.println("applyPid:" + rotateToAngleRate);
+    robotDrive.curvatureDrive(0.0, rotateToAngleRate, true);
+    Timer.delay(0.6);
+  }
+
+  public void resetAHRS(){
+    ahrs.reset();
+  }
+
+  public void enablePID(){
+    turnController.enable();
+  };
+
+  public void disablePID(){
+    turnController.disable();
+  };
+
 }
