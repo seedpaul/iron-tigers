@@ -46,14 +46,13 @@ public class DriveTrain extends Subsystem implements PIDOutput{
   private final Encoder leftEncoder = new Encoder(RobotMap.leftEncoderChannelA, RobotMap.leftEncoderChannelB, true, Encoder.EncodingType.k1X);
   private final Encoder rightEncoder = new Encoder(RobotMap.rightEncoderChannelA, RobotMap.rightEncoderChannelB, false, Encoder.EncodingType.k1X);
 
-  //TODO:we need a gyro or the navX 
   private AHRS ahrs;
   private PIDController turnController;
   private double rotateToAngleRate;
 
   private static DriveTrain instance;
 
-  static final double kP = 0.00;
+  static final double kP = 0.02;
   static final double kI = 0.00;
   static final double kD = 0.00;
   static final double kF = 0.00;
@@ -99,7 +98,7 @@ public class DriveTrain extends Subsystem implements PIDOutput{
         /* Add the PID Controller to the Test-mode dashboard, allowing manual  */
         /* tuning of the Turn Controller's P, I and D coefficients.            */
         /* Typically, only the P value needs to be modified.                   */
-        //LiveWindow.addActuator("DriveSystem", "RotateController", turnController);
+        LiveWindow.addActuator("DriveSystem", "RotateController", turnController);
   }
 
   @Override
