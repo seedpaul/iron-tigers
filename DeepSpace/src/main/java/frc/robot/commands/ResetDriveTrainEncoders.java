@@ -13,7 +13,7 @@ public class ResetDriveTrainEncoders extends CommandBase {
   public ResetDriveTrainEncoders() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(driveTrain);
+    //requires(driveTrain);
   }
 
   // Called just before this Command runs the first time
@@ -24,7 +24,7 @@ public class ResetDriveTrainEncoders extends CommandBase {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    driveTrain.resetEncoders();
+    //driveTrain.resetEncoders();
     System.out.println("reset encoders");
   }
 
