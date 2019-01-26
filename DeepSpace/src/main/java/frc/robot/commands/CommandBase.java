@@ -19,6 +19,7 @@ public abstract class CommandBase extends Command {
   public static IntakeElbow intakeElbow;
   public static RearLift rearLift;
   public static TalonTest talonTest;
+  public static Camera camera;
   
   public static OI oi;
 
@@ -29,6 +30,7 @@ public abstract class CommandBase extends Command {
       elevator = Elevator.getInstance();
       frontLift = FrontLift.getInstance();
       talonTest = TalonTest.getInstance();
+      camera = Camera.getInstance();
       
       oi = new OI();
       oi.init();

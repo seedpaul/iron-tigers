@@ -9,7 +9,6 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
-import com.ctre.phoenix.motorcontrol.FollowerType;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
@@ -72,6 +71,11 @@ public class TalonTest extends Subsystem {
     testSRX5.configPeakOutputForward(1, 30);
     testSRX5.configPeakOutputReverse(-1, 30);
 
+    testSRX5.configPeakCurrentLimit(3, 30);
+		testSRX5.configPeakCurrentDuration(5, 30);
+		testSRX5.configContinuousCurrentLimit(1, 30);
+		testSRX5.enableCurrentLimit(false); // Honor initial setting
+
     testSRX5.configAllowableClosedloopError(0, 0, 30);
 
 		testSRX5.config_kF(0, 0.0, 30);
@@ -93,6 +97,7 @@ public class TalonTest extends Subsystem {
     if(currentPosition < (LiftPositions.Position.length-1)){
       currentPosition++;
       setPosition(currentPosition);
+      System.out.println("current:" + testSRX5.getOutputCurrent());
     }
 
   }
@@ -102,6 +107,7 @@ public class TalonTest extends Subsystem {
     if(currentPosition > 0){
       currentPosition--;
       setPosition(currentPosition);
+      System.out.println("current:" + testSRX5.getOutputCurrent());
     }
   }
 
@@ -109,8 +115,22 @@ public class TalonTest extends Subsystem {
 
     //counterclockwise is up, 
     testSRX5.set(ControlMode.Position, LiftPositions.Position[position]);
+    testSRX5.getSelectedSensorPosition();
+    System.out.println("Sensor:"+testSRX5.getSelectedSensorPosition());
     System.out.println("INDEX:"+position);
     System.out.println("VALUE:"+ LiftPositions.Position[position] + "\n");
+  }
+
+  public void limitCurrent(){
+    System.out.println("limitCurrent");
+    System.out.println("current:" + testSRX5.getOutputCurrent());
+    testSRX5.enableCurrentLimit(true);
+  }
+
+  public void unlimitCurrent(){
+    System.out.println("unlimitCurrent");
+    System.out.println("current:" + testSRX5.getOutputCurrent());
+    testSRX5.enableCurrentLimit(false);
   }
 
 
