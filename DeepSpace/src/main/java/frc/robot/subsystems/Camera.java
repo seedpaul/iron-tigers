@@ -7,10 +7,12 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.cscore.CvSink;
 import edu.wpi.cscore.UsbCamera;
+import edu.wpi.cscore.VideoSink;
+import edu.wpi.cscore.VideoSource.ConnectionStrategy;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.networktables.*;
 
 /**
  * Add your docs here.
@@ -19,14 +21,11 @@ public class Camera extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  private UsbCamera camLeft = CameraServer.getInstance().startAutomaticCapture("CamLeft", 0);
-  private UsbCamera camRight = CameraServer.getInstance().startAutomaticCapture("CamRight", 1);
-  
-  private static Camera instance;
+  private UsbCamera camLeft;
+  private UsbCamera camRight;
+  private VideoSink sink;
 
-  private NetworkTableInstance inst;
-  private NetworkTable table;
-  private NetworkTableEntry entry;
+  private static Camera instance;
   
 
   private Camera(){
@@ -43,11 +42,20 @@ public class Camera extends Subsystem {
 
   private void init(){
 
-    inst = NetworkTableInstance.getDefault();
-    table = inst.getTable("");
-    entry = table.getEntry("CameraSelection");
-    entry.setString(camRight.getName());
+    System.out.println("camera init");
 
+    camLeft = CameraServer.getInstance().startAutomaticCapture("CamLeft", 0);
+    camRight = CameraServer.getInstance().startAutomaticCapture("CamRight", 1);
+
+    camLeft.setResolution(640,480);
+    camRight.setResolution(640,480);
+
+    camLeft.setConnectionStrategy(ConnectionStrategy.kKeepOpen);
+    camRight.setConnectionStrategy(ConnectionStrategy.kKeepOpen);
+
+    sink = CameraServer.getInstance().getServer();
+
+    sink.setSource(camLeft);
   }
 
   @Override
@@ -58,14 +66,12 @@ public class Camera extends Subsystem {
 
   public void showCameraLeft(){
     System.out.println("showLeft");
-    entry.setString(camLeft.getName());
-    table.notify();
+    sink.setSource(camLeft);
   }
 
   public void showCameraRight(){
     System.out.println("showRight");
-    entry.setString(camRight.getName());
-    table.notify();
+    sink.setSource(camRight);
   }
 
 }
