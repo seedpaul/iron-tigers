@@ -7,7 +7,6 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.cscore.CvSink;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.cscore.VideoSink;
 import edu.wpi.cscore.VideoSource.ConnectionStrategy;
@@ -21,9 +20,9 @@ public class Camera extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  private UsbCamera camLeft;
-  private UsbCamera camRight;
-  private VideoSink sink;
+  private UsbCamera camLeft = CameraServer.getInstance().startAutomaticCapture("CamLeft", 0);
+  private UsbCamera camRight = CameraServer.getInstance().startAutomaticCapture("CamRight", 1);
+  private final VideoSink sink = CameraServer.getInstance().getServer();
 
   private static Camera instance;
   
@@ -44,17 +43,16 @@ public class Camera extends Subsystem {
 
     System.out.println("camera init");
 
-    camLeft = CameraServer.getInstance().startAutomaticCapture("CamLeft", 0);
-    camRight = CameraServer.getInstance().startAutomaticCapture("CamRight", 1);
-
     camLeft.setResolution(640,480);
     camRight.setResolution(640,480);
+
+    camLeft.setFPS(30);
+    camRight.setFPS(30);
 
     camLeft.setConnectionStrategy(ConnectionStrategy.kKeepOpen);
     camRight.setConnectionStrategy(ConnectionStrategy.kKeepOpen);
 
-    sink = CameraServer.getInstance().getServer();
-
+    //default to left camera
     sink.setSource(camLeft);
   }
 
