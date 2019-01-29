@@ -1,6 +1,6 @@
 package frc.robot;
 
-public class LiftPositions{
+public class ElevatorPositions{
 
     private static int baseIncrement = 18192;
 

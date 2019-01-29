@@ -34,8 +34,8 @@ public class RobotMap {
   public static int SRXFrontLiftRight = 5;
   public static int SRXFrontLiftLeft = 6;
   
-  public static int SPXElevatorRight = 7;
-  public static int SPXElevatorLeft = 8;
+  public static int SRXElevator = 5;
+  public static int SPXElevator = 7;
 //*******************end can*****************************/
 
 //*********************Start PWM***************************/

@@ -13,7 +13,7 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
-import frc.robot.LiftPositions;
+import frc.robot.ElevatorPositions;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -46,11 +46,11 @@ public class TalonTest extends Subsystem {
 
   private void init(){
 
-    testSRX5.set(ControlMode.PercentOutput,0);
-    testSPX7.set(ControlMode.Follower,0);
-    
     testSRX5.configFactoryDefault();
     testSPX7.configFactoryDefault();
+
+    testSRX5.set(ControlMode.PercentOutput,0);
+    testSPX7.set(ControlMode.Follower,0);
 
     testSRX5.setNeutralMode(NeutralMode.Brake);
     testSPX7.setNeutralMode(NeutralMode.Brake);
@@ -61,8 +61,8 @@ public class TalonTest extends Subsystem {
     testSRX5.configForwardSoftLimitEnable(true);
     testSRX5.configReverseSoftLimitEnable(true);
 
-    testSRX5.configForwardSoftLimitThreshold(LiftPositions.getHighestPosition());
-    testSRX5.configReverseSoftLimitThreshold(LiftPositions.getHomePosition());
+    testSRX5.configForwardSoftLimitThreshold(ElevatorPositions.getHighestPosition());
+    testSRX5.configReverseSoftLimitThreshold(ElevatorPositions.getHomePosition());
 
     testSRX5.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 30);
     
@@ -94,7 +94,7 @@ public class TalonTest extends Subsystem {
 
   public void up(){
 
-    if(currentPosition < (LiftPositions.Position.length-1)){
+    if(currentPosition < (ElevatorPositions.Position.length-1)){
       currentPosition++;
       setPosition(currentPosition);
       System.out.println("current:" + testSRX5.getOutputCurrent());
@@ -114,11 +114,11 @@ public class TalonTest extends Subsystem {
   private void setPosition(int position){
 
     //counterclockwise is up, 
-    testSRX5.set(ControlMode.Position, LiftPositions.Position[position]);
+    testSRX5.set(ControlMode.Position, ElevatorPositions.Position[position]);
     testSRX5.getSelectedSensorPosition();
     System.out.println("Sensor:"+testSRX5.getSelectedSensorPosition());
     System.out.println("INDEX:"+position);
-    System.out.println("VALUE:"+ LiftPositions.Position[position] + "\n");
+    System.out.println("VALUE:"+ ElevatorPositions.Position[position] + "\n");
   }
 
   public void limitCurrent(){
