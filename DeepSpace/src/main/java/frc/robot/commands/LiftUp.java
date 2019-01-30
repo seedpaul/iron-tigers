@@ -12,7 +12,7 @@ import frc.robot.commands.CommandBase;
 public class LiftUp extends CommandBase {
   public LiftUp() {
     // Use requires() here to declare subsystem dependencies
-    requires(elevator);
+    requires(frontLift);
   }
 
   // Called just before this Command runs the first time
@@ -23,7 +23,8 @@ public class LiftUp extends CommandBase {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    elevator.up();
+    frontLift.up();
+    System.out.println("sensorValue: "+frontLift.getSensorValue());
   }
 
   // Make this return true when this Command no longer needs to run execute()

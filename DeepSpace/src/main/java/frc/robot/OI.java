@@ -52,18 +52,23 @@ public class OI {
   public static JoystickButton yButton = new JoystickButton(XboxDriver,RobotMap.buttonY);
 
   public static JoystickButton bumperRight = new JoystickButton(XboxDriver,RobotMap.buttonBumperRight);
+  public static JoystickButton bumperLeft = new JoystickButton(XboxDriver,RobotMap.buttonBumperLeft);
+
+  public static JoystickButton startButton = new JoystickButton(XboxDriver,RobotMap.buttonStart);
+
 
   public void init(){
 
-    bButton.whenPressed(new LiftUp());
-    aButton.whenPressed(new LiftDown());
-
-    // bumperRight.whenPressed(new TurnToAngle2());
+    bButton.whenPressed(new ElevatorUp());
+    aButton.whenPressed(new ElevatorDown());
 
     xButton.whenPressed(new EnableCurrentLimit());
     yButton.whenPressed(new disableCurrentLimit());
 
-    bumperRight.whenPressed(new ToggleCameras());
+    bumperRight.whenPressed(new LiftUp());
+    bumperLeft.whenPressed(new LiftDown());
+
+    startButton.whenPressed(new ToggleCameras());
   }
   
 }
