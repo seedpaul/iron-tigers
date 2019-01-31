@@ -39,6 +39,7 @@ public class RearLift extends Subsystem {
   }
 
 
+  //this is where we do all our intilization
   private void init(){
 
     rearLiftSRX.set(ControlMode.PercentOutput,0);
