@@ -10,7 +10,7 @@ package frc.robot;
 /**
  * Add your docs here.
  */
-public class LiftPositions {
+public class FrontLiftPositions {
     private static int habIncrement = 18192;
 
     private static final int home = 0;

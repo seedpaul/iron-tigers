@@ -11,10 +11,9 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
-import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import frc.robot.RobotMap;
-import frc.robot.LiftPositions;
+import frc.robot.FrontLiftPositions;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -24,8 +23,8 @@ public class FrontLift extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  private final TalonSRX liftTalonSRX = new TalonSRX(RobotMap.SRXLift);
-  private final VictorSPX liftVictorSPX = new VictorSPX(RobotMap.SPXLift);
+  private final TalonSRX liftTalonSRX = new TalonSRX(RobotMap.SRXFrontLift);
+  private final VictorSPX liftVictorSPX = new VictorSPX(RobotMap.SPXFrontLift);
 
   private int currentPosition = 0;
 
@@ -51,8 +50,8 @@ public class FrontLift extends Subsystem {
     liftTalonSRX.configForwardSoftLimitEnable(true);
     liftTalonSRX.configReverseSoftLimitEnable(true);
 
-    liftTalonSRX.configForwardSoftLimitThreshold(LiftPositions.getHighestPosition());
-    liftTalonSRX.configReverseSoftLimitThreshold(LiftPositions.getHomePosition());
+    liftTalonSRX.configForwardSoftLimitThreshold(FrontLiftPositions.getHighestPosition());
+    liftTalonSRX.configReverseSoftLimitThreshold(FrontLiftPositions.getHomePosition());
 
     liftTalonSRX.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 30);
     
@@ -82,7 +81,7 @@ public class FrontLift extends Subsystem {
 
   public void up(){
 
-    if(currentPosition < (LiftPositions.Position.length-1)){
+    if(currentPosition < (FrontLiftPositions.Position.length-1)){
       currentPosition++;
       setPosition(currentPosition);
       System.out.println("frontLiftUp");
@@ -102,11 +101,11 @@ public class FrontLift extends Subsystem {
   private void setPosition(int position){
 
     //counterclockwise is up, 
-    liftTalonSRX.set(ControlMode.Position, LiftPositions.Position[position]);
+    liftTalonSRX.set(ControlMode.Position, FrontLiftPositions.Position[position]);
     liftTalonSRX.getSelectedSensorPosition();
     //System.out.println("Sensor:"+liftTalonSRX.getSelectedSensorPosition());
     // System.out.println("INDEX:"+position);
-    System.out.println("Target VALUE:"+ LiftPositions.Position[position] + "\n");
+    System.out.println("Target VALUE:"+ FrontLiftPositions.Position[position] + "\n");
   }
 
   public int getSensorValue(){

@@ -31,8 +31,10 @@ public class RobotMap {
   public static int SRXBackRight = 2;
   public static int SRXBackLeft = 4;
 
-  public static int SRXLift = 7;
-  public static int SPXLift = 10;
+  public static int SRXFrontLift = 7;
+  public static int SPXFrontLift = 10;
+
+  public static int SRXRearLift = 6;
   
   public static int SRXElevator = 5;
   public static int SPXElevator = 9;
@@ -41,7 +43,6 @@ public class RobotMap {
 //*********************Start PWM***************************/
   public static int SPIntake = 0;
   public static int SPIntakeElbow = 1;
-  public static int SPRearLift = 2;
 //**********************End PWM****************************/
 
   public static int leftEncoderChannelA = 4;
