@@ -26,8 +26,9 @@ public class RobotMap {
 
 
   //*********************start can********************/
-  public static int SRXFrontRight = 1;
-  public static int SRXFrontLeft = 3;
+  public static int SPXFrontRight = 11;
+  public static int SPXFrontLeft = 12;
+  
   public static int SRXBackRight = 2;
   public static int SRXBackLeft = 4;
 
