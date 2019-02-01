@@ -24,7 +24,7 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import com.kauailabs.navx.frc.AHRS;
 
 /**
@@ -33,8 +33,8 @@ import com.kauailabs.navx.frc.AHRS;
 public class DriveTrain extends Subsystem implements PIDOutput{
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  private final WPI_TalonSRX frontRight = new WPI_TalonSRX(RobotMap.SRXFrontRight);
-  private final WPI_TalonSRX frontLeft = new WPI_TalonSRX(RobotMap.SRXFrontLeft);
+  private final WPI_VictorSPX frontRight = new WPI_VictorSPX(RobotMap.SPXFrontRight);
+  private final WPI_VictorSPX frontLeft = new WPI_VictorSPX(RobotMap.SPXFrontLeft);
   private final WPI_TalonSRX backRight = new WPI_TalonSRX(RobotMap.SRXBackRight);
   private final WPI_TalonSRX backLeft = new WPI_TalonSRX(RobotMap.SRXBackLeft);
 

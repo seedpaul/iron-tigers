@@ -26,11 +26,14 @@ public class RobotMap {
 
 
   //*********************start can********************/
+  
+  //*****Draintrain********************
   public static int SPXFrontRight = 11;
   public static int SPXFrontLeft = 12;
   
   public static int SRXBackRight = 2;
   public static int SRXBackLeft = 4;
+  //*****Draintrain********************
 
   public static int SRXFrontLift = 7;
   public static int SPXFrontLift = 10;

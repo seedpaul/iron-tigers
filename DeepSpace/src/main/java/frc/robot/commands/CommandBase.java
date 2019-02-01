@@ -12,7 +12,7 @@ import frc.robot.OI;
 import frc.robot.subsystems.*;
 
 public abstract class CommandBase extends Command {
-  //public static DriveTrain driveTrain;
+  public static DriveTrain driveTrain;
   public static Elevator elevator;
   public static FrontLift frontLift;
   public static Intake intake;
@@ -26,7 +26,7 @@ public abstract class CommandBase extends Command {
   //initializes all of static variables
   public static void init() {
 
-      //driveTrain  = DriveTrain.getInstance();
+      driveTrain  = DriveTrain.getInstance();
       elevator = Elevator.getInstance();
       frontLift = FrontLift.getInstance();
       talonTest = TalonTest.getInstance();

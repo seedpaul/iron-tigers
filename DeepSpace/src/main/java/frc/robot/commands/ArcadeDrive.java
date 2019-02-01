@@ -14,7 +14,7 @@ public class ArcadeDrive extends CommandBase {
   public ArcadeDrive() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    //requires(driveTrain);
+    requires(driveTrain);
   }
 
   // Called just before this Command runs the first time
@@ -25,7 +25,7 @@ public class ArcadeDrive extends CommandBase {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    //driveTrain.arcade(OI.XboxDriver);
+    driveTrain.arcade(OI.XboxDriver);
   }
 
   // Make this return true when this Command no longer needs to run execute()
