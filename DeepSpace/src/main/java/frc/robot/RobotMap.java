@@ -42,12 +42,10 @@ public class RobotMap {
   
   public static int SRXElevator = 5;
   public static int SPXElevator = 9;
-//*******************end can*****************************/
 
-//*********************Start PWM***************************/
-  public static int SPIntake = 0;
-  public static int SPIntakeElbow = 1;
-//**********************End PWM****************************/
+  public static int SPXIntake = 0;
+  public static int SRXIntakeElbow = 1;
+//*******************end can*****************************/
 
   public static int leftEncoderChannelA = 4;
   public static int leftEncoderChannelB = 5;

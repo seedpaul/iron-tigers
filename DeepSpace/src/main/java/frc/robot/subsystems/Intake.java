@@ -17,7 +17,7 @@ public class Intake extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  private static VictorSP intake = new VictorSP(RobotMap.SPIntake);
+  private static VictorSP intake = new VictorSP(RobotMap.SPXIntake);
 
   @Override
   public void initDefaultCommand() {
