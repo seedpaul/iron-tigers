@@ -43,7 +43,9 @@ public class RobotMap {
   public static int SRXElevator = 5;
   public static int SPXElevator = 9;
 
-  public static int SPXIntake = 0;
+  public static int TalonIntakeClaw = 0;
+  public static int VictorIntakeWheels = 0;
+
   public static int SRXIntakeElbow = 1;
 //*******************end can*****************************/
 
