@@ -62,8 +62,8 @@ public class OI {
     bButton.whenPressed(new ElevatorUp());
     aButton.whenPressed(new ElevatorDown());
 
-    xButton.whenPressed(new EnableCurrentLimit());
-    yButton.whenPressed(new disableCurrentLimit());
+    xButton.whenPressed(new openFlipper());
+    yButton.whenPressed(new closeFlipper());
 
     bumperRight.whenPressed(new LiftUp());
     bumperLeft.whenPressed(new LiftDown());

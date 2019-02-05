@@ -8,6 +8,8 @@
 package frc.robot.subsystems;
 import frc.robot.RobotMap;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+
+import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -18,6 +20,9 @@ public class IntakeClaw extends Subsystem {
   // here. Call these from Commands.
 
   private static TalonSRX intakeClaw = new TalonSRX(RobotMap.TalonIntakeClaw);
+  private static Servo flipper1Servo = new Servo(0);
+  private static Servo flipper2Servo = new Servo(1);
+  private static Servo flipper3Servo = new Servo(2);
 
   private static IntakeClaw instance;
 
@@ -26,7 +31,9 @@ public class IntakeClaw extends Subsystem {
   }
 
   private void init(){
-
+    flipper1Servo.setSpeed(1.0);
+    flipper2Servo.setSpeed(1.0);
+    flipper3Servo.setSpeed(1.0);
   }
 
   public static IntakeClaw getInstance(){
@@ -38,6 +45,17 @@ public class IntakeClaw extends Subsystem {
 
   public void open(){}
   public void close(){}
+
+  public void extendFlippers(){
+    flipper1Servo.set(0.0);
+    flipper2Servo.set(0.0);
+    flipper3Servo.set(1.0);
+  }
+  public void retractFlippers(){
+    flipper1Servo.set(1.0);
+    flipper2Servo.set(1.0);
+    flipper3Servo.set(0.0);
+  }
 
   @Override
   public void initDefaultCommand() {

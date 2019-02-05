@@ -7,12 +7,11 @@
 
 package frc.robot.commands;
 
-import frc.robot.commands.CommandBase;
 
-public class EnableCurrentLimit extends CommandBase {
-  public EnableCurrentLimit() {
+public class openFlipper extends CommandBase {
+  public openFlipper() {
     // Use requires() here to declare subsystem dependencies
-    requires(talonTest);
+    requires(intakeClaw);
   }
 
   // Called just before this Command runs the first time
@@ -23,13 +22,13 @@ public class EnableCurrentLimit extends CommandBase {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    talonTest.limitCurrent();
+    intakeClaw.extendFlippers();
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return true;
+    return false;
   }
 
   // Called once after isFinished returns true
