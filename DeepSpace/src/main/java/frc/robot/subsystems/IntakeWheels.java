@@ -29,7 +29,8 @@ public class IntakeWheels extends Subsystem {
   }
 
   private void init(){
-
+    intakeWheels.configPeakOutputForward(1);
+    intakeWheels.configPeakOutputReverse(1);
   }
 
   public static IntakeWheels getInstance(){

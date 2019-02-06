@@ -1,3 +1,4 @@
+
 /*----------------------------------------------------------------------------*/
 /* Copyright (c) 2018 FIRST. All Rights Reserved.                             */
 /* Open Source Software - may be modified and shared by FRC teams. The code   */
@@ -23,7 +24,7 @@ public class IntakeClaw extends Subsystem {
   private static Servo flipper1Servo = new Servo(0);
   private static Servo flipper2Servo = new Servo(1);
   private static Servo flipper3Servo = new Servo(2);
-
+//hi
   private static IntakeClaw instance;
 
   private IntakeClaw(){
