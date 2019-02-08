@@ -44,31 +44,84 @@ public class OI {
   // until it is finished as determined by it's isFinished method.
   // button.whenReleased(new ExampleCommand());
 
+
+  //************************* Main Driver *********************************//
   public static Joystick XboxDriver = new Joystick(RobotMap.xboxControllerDriver);
-  public static JoystickButton aButton = new JoystickButton(XboxDriver,RobotMap.buttonA);
-  public static JoystickButton bButton = new JoystickButton(XboxDriver,RobotMap.buttonB);
 
-  public static JoystickButton xButton = new JoystickButton(XboxDriver,RobotMap.buttonX);
-  public static JoystickButton yButton = new JoystickButton(XboxDriver,RobotMap.buttonY);
+  public static JoystickButton buttonA_dr = new JoystickButton(XboxDriver,RobotMap.buttonA);
+  public static JoystickButton buttonB_dr = new JoystickButton(XboxDriver,RobotMap.buttonB);
+  public static JoystickButton buttonX_dr = new JoystickButton(XboxDriver,RobotMap.buttonX);
+  public static JoystickButton buttonY_dr = new JoystickButton(XboxDriver,RobotMap.buttonY);
 
-  public static JoystickButton bumperRight = new JoystickButton(XboxDriver,RobotMap.buttonBumperRight);
-  public static JoystickButton bumperLeft = new JoystickButton(XboxDriver,RobotMap.buttonBumperLeft);
+  public static JoystickButton buttonBumperRight_dr = new JoystickButton(XboxDriver,RobotMap.buttonBumperRight);
+  public static JoystickButton buttonBumperLeftt_dr = new JoystickButton(XboxDriver,RobotMap.buttonBumperLeft);
 
-  public static JoystickButton startButton = new JoystickButton(XboxDriver,RobotMap.buttonStart);
+  public static JoystickButton startButton_dr = new JoystickButton(XboxDriver,RobotMap.buttonStart);
 
 
+//************************ Assistant Driver ********************************//
+public static Joystick XboxAssist = new Joystick(RobotMap.xboxControllerAssist);
+
+  public static JoystickButton buttonBumperRight_as = new JoystickButton(XboxAssist,RobotMap.buttonBumperRight);
+  public static JoystickButton buttonBumperLeft_as = new JoystickButton(XboxAssist,RobotMap.buttonBumperLeft);
+
+  public static JoystickButton buttonA_as = new JoystickButton(XboxAssist,RobotMap.buttonA);
+  public static JoystickButton buttonY_as = new JoystickButton(XboxAssist,RobotMap.buttonY);
+
+  public static JoystickButton buttonX_as = new JoystickButton(XboxAssist,RobotMap.buttonX);
+  public static JoystickButton buttonB_as = new JoystickButton(XboxAssist,RobotMap.buttonB);
+
+
+//************************************* Robot with claw mechanism *********************************************//
   public void init(){
 
-    bButton.whenPressed(new ElevatorUp());
-    aButton.whenPressed(new ElevatorDown());
+    //********** Main Driver *********//
+    //TODO: enter commands into butons
+    // buttonB_dr.whenPressed(command); //grab ball
+    // buttonY_dr.whenPressed(command); //open claw total
 
-    xButton.whenPressed(new openFlipper());
-    yButton.whenPressed(new closeFlipper());
+    // buttonA_dr.whenPressed(command); //close claw total
+    // buttonX_dr.whenPressed(command); //grab panel
 
-    bumperRight.whenPressed(new LiftUp());
-    bumperLeft.whenPressed(new LiftDown());
+    // buttonBumperRight_dr.whenPressed(command); //deliver ball
 
-    startButton.whenPressed(new ToggleCameras());
+    // startButton_dr.whenPressed(new ToggleCameras());
+
+    //********* Assist Driver ********//
+    buttonY_as.whenPressed(new ElevatorUp());
+    buttonA_as.whenPressed(new ElevatorDown());
+
+    //TODO: Make an up to leven 6 and up to level 9
+    buttonBumperRight_as.whenPressed(new LiftUp()); //level 9
+    buttonBumperLeft_as.whenPressed(new LiftUp()); //level 6
+
   }
+
+//************************************ Robot with Wheel intake **************************************//
+  //TODO: make sure the controlls for Mark's panel pick-up is figured out (the flipper )
+
+  // public void init(){
+    
+  //   //************ Main Driver *********//
+  //TODO: enter commands into buttons
+  //   buttonA_dr.whenPressed(command); //wheels in (pick up ball)
+  //   buttonY_dr.whenPressed(command); //wheels out (shoot ball)
+
+  //   buttonB_dr.whenPressed(command); //elbow down
+  //   buttonX_dr.whenPressed(command); //elbow up
+
+  //   startButton_dr.whenPressed(new ToggleCameras());
+
+  //   //********** Assistant Driver **********//
+  //   buttonY_as.whenPressed(new ElevatorUp());
+  //   buttonA_as.whenPressed(new ElevatorDown());
+
+  //   buttonB_as.whenPressed(new openFlipper());
+  //   buttonX_as.whenPressed(new closeFlipper());
+
+  //   //TODO: Make an up to leven 6 and up to level 9
+  //   buttonBumperRight_as.whenPressed(new LiftUp()); //level 9
+  //   buttonBumperLeft_as.whenPressed(new LiftUp()); //level 6
+  // }
   
 }
