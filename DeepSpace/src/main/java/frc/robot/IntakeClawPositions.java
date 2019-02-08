@@ -12,42 +12,46 @@ package frc.robot;
  */
 public class IntakeClawPositions {
     
-    private static int currentPosition = 0;
-    private static int tightest = 100;
-    private static int widest = 18192;
-    private static int loadHatchPanel = 0;
-    private static int releaseHatchPanel = 0;
+    private static int currentPosition;
+
+    private static int load_release_HatchPanel = 0;//fully closed
     private static int holdHatchPanel = 0;
     private static int clampBall = 0;
     private static int releaseBall = 0;
-    private static int pickUpBall = 0;
-    private static int clawIntakeIncrement = 100;
-
-
+    private static int loadBall = 0;//fully open
 
     public static int getMax(){
-        return elbowMax;
+        return loadBall;
     }
 
     public static int getMin(){
-        return elbowMin;
+        return load_release_HatchPanel;
     }
 
-    public static int up(){
-        //move position up one increment
-        if(currentPosition < (elbowMax-clawIntakeIncrement)){
-            currentPosition+=clawIntakeIncrement;
-          }
-          return currentPosition;
+    public static int loadHatchPanel(){
+        currentPosition = load_release_HatchPanel;
+        return load_release_HatchPanel;
+        
     }
 
-    public static int down(){
-        //move down one increment
-        if(currentPosition > (elbowMin+clawIntakeIncrement)){
-            currentPosition-=clawIntakeIncrement;
-          }
+    public static int holdHatchPanel(){
+        currentPosition = load_release_HatchPanel;
+        return holdHatchPanel;
+    }
 
-          return currentPosition;
+    public static int clampBall(){
+        currentPosition = load_release_HatchPanel;
+        return clampBall;
+    }
+
+    public static int releaseBall(){
+        currentPosition = load_release_HatchPanel;
+        return releaseBall;
+    }
+
+    public static int loadBall(){
+        currentPosition = load_release_HatchPanel;
+        return loadBall;
     }
     
 }
