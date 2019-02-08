@@ -8,7 +8,11 @@
 
 package frc.robot.subsystems;
 import frc.robot.RobotMap;
+import frc.robot.IntakeClawPositions;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -34,7 +38,40 @@ public class IntakeClaw extends Subsystem {
   private void init(){
     flipper1Servo.setSpeed(1.0);
     flipper2Servo.setSpeed(1.0);
-    flipper3Servo.setSpeed(1.0);
+    flipper3Servo.setSpeed(1.0);    
+    
+    intakeClaw.set(ControlMode.PercentOutput,0);
+    intakeClaw.configFactoryDefault();
+    intakeClaw.setNeutralMode(NeutralMode.Brake);
+
+    //this is a very important line of code in order to make foward on motor line up with foward on encoder
+    intakeClaw.setSensorPhase(true);
+
+    intakeClaw.configForwardSoftLimitEnable(true);
+    intakeClaw.configReverseSoftLimitEnable(true);
+
+    // tightest to widest
+    //load/release hatch panel
+    //hold hatch panel
+    //clamp ball
+    //ball release position
+    //ball pick up
+
+    intakeClaw.configForwardSoftLimitThreshold(IntakeClawPositions.getMax());
+    intakeClaw.configReverseSoftLimitThreshold(IntakeClawPositions.getMin());
+
+    intakeClaw.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 30);
+    
+    intakeClaw.configNominalOutputForward(0,30);
+    intakeClaw.configNominalOutputReverse(0,30);
+    intakeClaw.configPeakOutputForward(1, 30);
+    intakeClaw.configPeakOutputReverse(-1, 30);
+
+    // intakeClaw.configPeakCurrentLimit(3, 30);
+    // intakeClaw.configPeakCurrentDuration(5, 30);
+    // intakeClaw.configContinuousCurrentLimit(1, 30);
+    // intakeClaw.enableCurrentLimit(false); // Honor initial setting
+
   }
 
   public static IntakeClaw getInstance(){
@@ -44,8 +81,24 @@ public class IntakeClaw extends Subsystem {
     return instance;
   }
 
-  public void open(){}
-  public void close(){}
+  public void loadHatchPanel(){
+    intakeClaw.set(ControlMode.Position, IntakeClawPositions.loadHatchPanel());
+  }
+  public void holdHatchPanel(){
+    intakeClaw.set(ControlMode.Position, IntakeClawPositions.holdHatchPanel());
+  }
+  
+  public void clampBall(){
+    intakeClaw.set(ControlMode.Position, IntakeClawPositions.clampBall());
+  }
+  public void releaseBall(){
+    intakeClaw.set(ControlMode.Position, IntakeClawPositions.releaseBall());
+    extendFlippers();
+  }
+  public void loadBall(){
+    intakeClaw.set(ControlMode.Position, IntakeClawPositions.loadBall());
+  }
+
 
   public void extendFlippers(){
     flipper1Servo.set(0.0);

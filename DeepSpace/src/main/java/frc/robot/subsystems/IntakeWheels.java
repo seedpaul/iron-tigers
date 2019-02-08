@@ -8,7 +8,7 @@
 
 package frc.robot.subsystems;
 import frc.robot.RobotMap;
-
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
@@ -21,6 +21,8 @@ public class IntakeWheels extends Subsystem {
   // here. Call these from Commands.
 
   private static VictorSPX intakeWheels = new VictorSPX(RobotMap.VictorIntakeWheels);
+  private static VictorSPX intakeflipper = new VictorSPX(RobotMap.VictorIntakeFlipper);
+  private static Encoder flipper = new Encoder(RobotMap.flipperEncoderChannelA,RobotMap.flipperEncoderChannelB);
 
   private static IntakeWheels instance;
 
@@ -41,6 +43,11 @@ public class IntakeWheels extends Subsystem {
 
   }
 
+//TODO:function open flipper
+//TODO:function close flipper
+//TODO:function wheels intake
+//TODO:function wheels output
+//TODO:function wheels hold -- we may be able to automatically do with by monitoring the voltage
 
 
   @Override
