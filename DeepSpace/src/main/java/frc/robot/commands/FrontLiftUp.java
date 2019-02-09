@@ -9,10 +9,10 @@ package frc.robot.commands;
 
 import frc.robot.commands.CommandBase;
 
-public class LiftUp extends CommandBase {
-  public LiftUp() {
+public class FrontLiftUp extends CommandBase {
+  public FrontLiftUp() {
     // Use requires() here to declare subsystem dependencies
-    requires(frontLift);
+    requires(frontLift); 
   }
 
   // Called just before this Command runs the first time

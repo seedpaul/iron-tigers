@@ -26,18 +26,11 @@ public class RearLift extends Subsystem {
 
   private static RearLift instance;
 
+  private int currentPosition = 0;
+
   private RearLift(){
     init();
   }
-
-  public static RearLift getInstance(){
-    if (instance == null){
-      instance = new RearLift();
-    }
-
-    return instance;
-  }
-
 
   //this is where we do all our intilization
   private void init(){
@@ -66,6 +59,47 @@ public class RearLift extends Subsystem {
     rearLiftSRX.configPeakCurrentDuration(5, 30);
     rearLiftSRX.configContinuousCurrentLimit(1, 30);
     rearLiftSRX.enableCurrentLimit(false); // Honor initial setting
+  }
+
+  public static RearLift getInstance(){
+    if (instance == null){
+      instance = new RearLift();
+    }
+
+    return instance;
+  }
+
+  public void up(){
+
+    if(currentPosition < (RearLiftPositions.Position.length-1)){
+      currentPosition++;
+      setPosition(currentPosition);
+      System.out.println("rearLiftUp");
+    }
+
+  }
+
+  public void down(){
+
+    if(currentPosition > 0){
+      currentPosition--;
+      setPosition(currentPosition);
+      System.out.println("rearLiftDown");
+    }
+  }
+
+  private void setPosition(int position){
+
+    //counterclockwise is up, 
+    rearLiftSRX.set(ControlMode.Position, RearLiftPositions.Position[position]);
+    rearLiftSRX.getSelectedSensorPosition();
+    //System.out.println("Sensor:"+liftTalonSRX.getSelectedSensorPosition());
+    // System.out.println("INDEX:"+position);
+    System.out.println("Target VALUE:"+ RearLiftPositions.Position[position] + "\n");
+  }
+
+  public int getSensorValue(){
+    return rearLiftSRX.getSelectedSensorPosition();
   }
 
   @Override

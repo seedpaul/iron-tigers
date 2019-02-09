@@ -24,8 +24,6 @@ public class IntakeElbow extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   
-  //TODO: encoder for angle control
-
   private static TalonSRX intakeElbowSRX = new TalonSRX(RobotMap.SRXIntakeElbow);
 
   private static IntakeElbow instance;
