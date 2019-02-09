@@ -12,7 +12,7 @@ import frc.robot.commands.CommandBase;
 public class ElevatorUp extends CommandBase {
   public ElevatorUp() {
     // Use requires() here to declare subsystem dependencies
-    requires(elevator);
+    // requires(elevator);
   }
 
   // Called just before this Command runs the first time
@@ -23,7 +23,7 @@ public class ElevatorUp extends CommandBase {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    elevator.up();
+    // elevator.up();
   }
 
   // Make this return true when this Command no longer needs to run execute()

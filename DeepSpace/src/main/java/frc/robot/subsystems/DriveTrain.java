@@ -9,7 +9,7 @@ package frc.robot.subsystems;
 
 
 import frc.robot.RobotMap;
-
+import frc.robot.commands.ArcadeDrive;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Joystick;
@@ -52,11 +52,13 @@ public class DriveTrain extends Subsystem implements PIDOutput{
 
   private static DriveTrain instance;
 
-  static final double kP = 0.02;
+  static final double kP = 0.012;
   static final double kI = 0.00;
   static final double kD = 0.00;
   static final double kF = 0.00;
   static final double kToleranceDegrees = 2.0f;
+
+  int counter = 0;
 
   private DriveTrain(){
     init();
@@ -82,29 +84,29 @@ public class DriveTrain extends Subsystem implements PIDOutput{
     rightEncoder.reset();
 
     try {
-            ahrs = new AHRS(SPI.Port.kMXP); 
-        } catch (RuntimeException ex ) {
-            DriverStation.reportError("Error instantiating navX MXP:  " + ex.getMessage(), true);
-        }
+        ahrs = new AHRS(SPI.Port.kMXP); 
+    } catch (RuntimeException ex ) {
+        DriverStation.reportError("Error instantiating navX MXP:  " + ex.getMessage(), true);
+    }
 
-        turnController = new PIDController(kP, kI, kD, kF, ahrs, this);
-        turnController.setInputRange(-180.0f,  180.0f);
-        turnController.setOutputRange(-1, 1);
-        turnController.setAbsoluteTolerance(kToleranceDegrees);
-        turnController.setContinuous(true);
+    turnController = new PIDController(kP, kI, kD, kF, ahrs, this);
+    turnController.setInputRange(-180.0f,  180.0f);
+    turnController.setOutputRange(-1, 1);
+    turnController.setAbsoluteTolerance(kToleranceDegrees);
+    turnController.setContinuous(true);
 
-        turnController.enable();
-        
-        /* Add the PID Controller to the Test-mode dashboard, allowing manual  */
-        /* tuning of the Turn Controller's P, I and D coefficients.            */
-        /* Typically, only the P value needs to be modified.                   */
-        LiveWindow.addActuator("DriveSystem", "RotateController", turnController);
+    turnController.disable();
+    
+    /* Add the PID Controller to the Test-mode dashboard, allowing manual  */
+    /* tuning of the Turn Controller's P, I and D coefficients.            */
+    /* Typically, only the P value needs to be modified.                   */
+    LiveWindow.addActuator("DriveSystem", "RotateController", turnController);
   }
 
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
+    setDefaultCommand(new ArcadeDrive());
   }
 
   public void arcade(Joystick driver){
@@ -131,16 +133,24 @@ public class DriveTrain extends Subsystem implements PIDOutput{
   /* based upon navX MXP yaw angle input and PID Coefficients.    */
   public void pidWrite(double output) {
       rotateToAngleRate = output;
+      updateBot();
   }
 
-  public void turn90(){
+  private void updateBot(){
+
+    if(counter % 250 == 0){
+      robotDrive.curvatureDrive(0.0, rotateToAngleRate, true);
+    }
+  }
+
+  public void turn90(Joystick driver){
     turnController.setSetpoint(90.0f);
-    applyPID();
+    applyPID(driver);
   }
 
-  public void turn180(){
+  public void turn180(Joystick driver){
     turnController.setSetpoint(179.9f);
-    applyPID();
+    applyPID(driver);
   }
 
   public void turn270(){
@@ -153,11 +163,20 @@ public class DriveTrain extends Subsystem implements PIDOutput{
     applyPID();
   }
 
+  private void applyPID(Joystick driver){
+    
+    System.out.println("applyPid:" + rotateToAngleRate);
+    robotDrive.curvatureDrive(-driver.getRawAxis(RobotMap.leftStickY), rotateToAngleRate, true);
+    System.out.println("rotateToAngleRate:" + rotateToAngleRate);
+    //Timer.delay(0.4);
+  }
+
   private void applyPID(){
     
     System.out.println("applyPid:" + rotateToAngleRate);
     robotDrive.curvatureDrive(0.0, rotateToAngleRate, true);
-    Timer.delay(0.6);
+    System.out.println("rotateToAngleRate:" + rotateToAngleRate);
+    Timer.delay(0.4);
   }
 
   public void resetAHRS(){
@@ -166,10 +185,12 @@ public class DriveTrain extends Subsystem implements PIDOutput{
 
   public void enablePID(){
     turnController.enable();
+    System.out.println("PID Enabled");
   };
 
   public void disablePID(){
     turnController.disable();
+    System.out.println("PID Disabled");
   };
 
 }
