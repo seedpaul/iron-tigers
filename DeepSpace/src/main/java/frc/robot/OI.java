@@ -99,8 +99,8 @@ public class OI {
     // buttonA_as.whenPressed(new ElevatorDown());
 
     //TODO: Make an up to leven 6 and up to level 9
-    // buttonBumperRight_as.whenPressed(new LiftUp()); //level 9
-    // buttonBumperLeft_as.whenPressed(new LiftUp()); //level 6
+    //buttonBumperRight_as.whenPressed(new ClimbLevelNine()); //level 9
+    //buttonBumperLeft_as.whenPressed(new ClimbLevelSix()); //level 6
 
   }
 
@@ -127,8 +127,8 @@ public class OI {
   //   buttonX_as.whenPressed(new closeFlipper());
 
   //   //TODO: Make an up to leven 6 and up to level 9
-  //   buttonBumperRight_as.whenPressed(new LiftUp()); //level 9
-  //   buttonBumperLeft_as.whenPressed(new LiftUp()); //level 6
+  //   buttonBumperRight_as.whenPressed(new ClimbLevelNine()); //level 9
+  //    buttonBumperLeft_as.whenPressed(new ClimbLevelSix()); //level 6
   // }
   
 }
