@@ -5,15 +5,17 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commandGroups;
+package frc.robot.command_groups;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import frc.robot.commands.*;
 
-public class ClimbLevelNine extends CommandGroup {
+
+public class HabAuto extends CommandGroup {
   /**
    * Add your docs here.
    */
-  public ClimbLevelNine() {
+  public HabAuto() {
     // Add Commands here:
     // e.g. addSequential(new Command1());
     // addSequential(new Command2());
@@ -31,12 +33,20 @@ public class ClimbLevelNine extends CommandGroup {
     // a CommandGroup containing them would require both the chassis and the
     // arm.
 
-    //Step 1 - deploy front lift to level 9
-    //Step 2 - front and rear lift down (parallel)
-    //Step 3 - drive forward 
-    //Step 4 - front lift up into bot
-    //Step 5 - drive forward
-    //Step 6 - rear lift up into bot
-    //Step 7 - drive forward
+    //Step 1 - Deploy front lift 
+    addSequential(new FrontLiftDown());
+
+    //Step 2 - Drive forward 
+    addSequential(new DriveForward());
+
+    //Step 3 - deploy rear lift 
+    addSequential(new RearLiftDown());
+
+    //step 4 - drive forward 
+    addSequential(new DriveForward());
+
+    //step 5 - return front lift + back lift to bot
+    addParallel(new FrontLiftUp());
+    addSequential(new RearLiftUp());
   }
 }

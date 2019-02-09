@@ -5,16 +5,20 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commandGroups;
+package frc.robot.command_groups;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import frc.robot.commands.LiftDown;
+import frc.robot.commands.DriveForward;
+import frc.robot.commands.FrontLiftDown;
+import frc.robot.commands.FrontLiftUp;
+import frc.robot.commands.RearLiftDown;
+import frc.robot.commands.RearLiftUp;
 
-public class HabAuto extends CommandGroup {
+public class ClimbLevelNine extends CommandGroup {
   /**
    * Add your docs here.
    */
-  public HabAuto() {
+  public ClimbLevelNine() {
     // Add Commands here:
     // e.g. addSequential(new Command1());
     // addSequential(new Command2());
@@ -32,18 +36,26 @@ public class HabAuto extends CommandGroup {
     // a CommandGroup containing them would require both the chassis and the
     // arm.
 
-    //TODO: make FrontLiftDown command
-    //Step 1 - Deploy front lift (sequential)
+    //Step 1 - deploy front lift to level 9
+    addSequential(new FrontLiftDown());
 
-    //TODO: Drive forward command
-    //Step 2 - Drive forward (sequential)
+    //Step 2 - front and rear lift down (parallel)
+    addParallel(new FrontLiftDown());
+    addSequential(new RearLiftDown());
 
-    //TODO: make RearLiftDown command
-    //Step 3 - deploy rear lift (sequential)
+    //Step 3 - drive forward 
+    addSequential(new DriveForward());
 
-    //step 4 - drive forward (sequential)
+    //Step 4 - front lift up into bot
+    addSequential(new FrontLiftUp());
 
-    //TODO: make RearLiftUp ad FrontLiftUp commands
-    //step 5 - return front lift + back lift (parallel)
+    //Step 5 - drive forward
+    addSequential(new DriveForward());
+
+    //Step 6 - rear lift up into bot
+    addSequential(new RearLiftUp());
+
+    //Step 7 - drive forward
+    addSequential(new DriveForward());
   }
 }

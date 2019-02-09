@@ -9,6 +9,8 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.commandGroups.ClimbLevelNine;
+import frc.robot.commandGroups.ClimbLevelSix;
 import frc.robot.commands.*;
 
 /**
@@ -92,8 +94,8 @@ public static Joystick XboxAssist = new Joystick(RobotMap.xboxControllerAssist);
     buttonA_as.whenPressed(new ElevatorDown());
 
     //TODO: Make an up to leven 6 and up to level 9
-    buttonBumperRight_as.whenPressed(new LiftUp()); //level 9
-    buttonBumperLeft_as.whenPressed(new LiftUp()); //level 6
+    buttonBumperRight_as.whenPressed(new ClimbLevelNine()); //level 9
+    buttonBumperLeft_as.whenPressed(new ClimbLevelSix()); //level 6
 
   }
 

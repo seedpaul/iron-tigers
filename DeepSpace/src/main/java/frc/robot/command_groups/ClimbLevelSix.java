@@ -5,9 +5,14 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commandGroups;
+package frc.robot.command_groups;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import frc.robot.commands.DriveForward;
+import frc.robot.commands.FrontLiftDown;
+import frc.robot.commands.FrontLiftUp;
+import frc.robot.commands.RearLiftDown;
+import frc.robot.commands.RearLiftUp;
 
 public class ClimbLevelSix extends CommandGroup {
   /**
@@ -32,12 +37,26 @@ public class ClimbLevelSix extends CommandGroup {
     // arm.
 
     //Step 1 - deploy front lift to level 6 
+    addSequential(new FrontLiftDown());
+
     //Step 2 - front and rear lift down (parallel)
+    addParallel(new FrontLiftDown());
+    addSequential(new RearLiftDown());
+
     //Step 3 - drive forward 
+    addSequential(new DriveForward());
+
     //Step 4 - front lift up into bot
+    addSequential(new FrontLiftUp());
+
     //Step 5 - drive forward
+    addSequential(new DriveForward());
+
     //Step 6 - rear lift up into bot
+    addSequential(new RearLiftUp());
+
     //Step 7 - drive forward
+    addSequential(new DriveForward());
 
   }
 }
