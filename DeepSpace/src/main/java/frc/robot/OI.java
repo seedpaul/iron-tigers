@@ -9,8 +9,8 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.robot.commandGroups.ClimbLevelNine;
-import frc.robot.commandGroups.ClimbLevelSix;
+import frc.robot.command_groups.ClimbLevelNine;
+import frc.robot.command_groups.ClimbLevelSix;
 import frc.robot.commands.*;
 
 /**
@@ -78,7 +78,7 @@ public static Joystick XboxAssist = new Joystick(RobotMap.xboxControllerAssist);
   public void init(){
 
     //********** Main Driver *********//
-    //TODO: enter commands into butons
+    //TODO: create commands for claw and enter
     // buttonB_dr.whenPressed(command); //grab ball
     // buttonY_dr.whenPressed(command); //open claw total
 
@@ -93,7 +93,6 @@ public static Joystick XboxAssist = new Joystick(RobotMap.xboxControllerAssist);
     buttonY_as.whenPressed(new ElevatorUp());
     buttonA_as.whenPressed(new ElevatorDown());
 
-    //TODO: Make an up to leven 6 and up to level 9
     buttonBumperRight_as.whenPressed(new ClimbLevelNine()); //level 9
     buttonBumperLeft_as.whenPressed(new ClimbLevelSix()); //level 6
 
@@ -105,7 +104,7 @@ public static Joystick XboxAssist = new Joystick(RobotMap.xboxControllerAssist);
   // public void init(){
     
   //   //************ Main Driver *********//
-  //TODO: enter commands into buttons
+  //TODO: create commands for wheels and enter
   //   buttonA_dr.whenPressed(command); //wheels in (pick up ball)
   //   buttonY_dr.whenPressed(command); //wheels out (shoot ball)
 
@@ -121,9 +120,8 @@ public static Joystick XboxAssist = new Joystick(RobotMap.xboxControllerAssist);
   //   buttonB_as.whenPressed(new openFlipper());
   //   buttonX_as.whenPressed(new closeFlipper());
 
-  //   //TODO: Make an up to leven 6 and up to level 9
-  //   buttonBumperRight_as.whenPressed(new LiftUp()); //level 9
-  //   buttonBumperLeft_as.whenPressed(new LiftUp()); //level 6
+  //   buttonBumperRight_as.whenPressed(new ClimbLevelNine()); //level 9
+  //   buttonBumperLeft_as.whenPressed(new ClimbLevelSix()); //level 6
   // }
   
 }
