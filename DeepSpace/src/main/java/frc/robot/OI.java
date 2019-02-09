@@ -53,47 +53,54 @@ public class OI {
   public static JoystickButton buttonX_dr = new JoystickButton(XboxDriver,RobotMap.buttonX);
   public static JoystickButton buttonY_dr = new JoystickButton(XboxDriver,RobotMap.buttonY);
 
-  public static JoystickButton buttonBumperRight_dr = new JoystickButton(XboxDriver,RobotMap.buttonBumperRight);
-  public static JoystickButton buttonBumperLeftt_dr = new JoystickButton(XboxDriver,RobotMap.buttonBumperLeft);
+  // public static JoystickButton buttonBumperRight_dr = new JoystickButton(XboxDriver,RobotMap.buttonBumperRight);
+  // public static JoystickButton buttonBumperLeftt_dr = new JoystickButton(XboxDriver,RobotMap.buttonBumperLeft);
 
   public static JoystickButton startButton_dr = new JoystickButton(XboxDriver,RobotMap.buttonStart);
 
 
 //************************ Assistant Driver ********************************//
-public static Joystick XboxAssist = new Joystick(RobotMap.xboxControllerAssist);
+// public static Joystick XboxAssist = new Joystick(RobotMap.xboxControllerAssist);
 
-  public static JoystickButton buttonBumperRight_as = new JoystickButton(XboxAssist,RobotMap.buttonBumperRight);
-  public static JoystickButton buttonBumperLeft_as = new JoystickButton(XboxAssist,RobotMap.buttonBumperLeft);
+//   public static JoystickButton buttonBumperRight_as = new JoystickButton(XboxAssist,RobotMap.buttonBumperRight);
+//   public static JoystickButton buttonBumperLeft_as = new JoystickButton(XboxAssist,RobotMap.buttonBumperLeft);
 
-  public static JoystickButton buttonA_as = new JoystickButton(XboxAssist,RobotMap.buttonA);
-  public static JoystickButton buttonY_as = new JoystickButton(XboxAssist,RobotMap.buttonY);
+//   public static JoystickButton buttonA_as = new JoystickButton(XboxAssist,RobotMap.buttonA);
+//   public static JoystickButton buttonY_as = new JoystickButton(XboxAssist,RobotMap.buttonY);
 
-  public static JoystickButton buttonX_as = new JoystickButton(XboxAssist,RobotMap.buttonX);
-  public static JoystickButton buttonB_as = new JoystickButton(XboxAssist,RobotMap.buttonB);
+//   public static JoystickButton buttonX_as = new JoystickButton(XboxAssist,RobotMap.buttonX);
+//   public static JoystickButton buttonB_as = new JoystickButton(XboxAssist,RobotMap.buttonB);
 
 
 //************************************* Robot with claw mechanism *********************************************//
   public void init(){
 
-    //********** Main Driver *********//
+    //********** Main Driver *****************************************************//
     //TODO: enter commands into butons
-    // buttonB_dr.whenPressed(command); //grab ball
-    // buttonY_dr.whenPressed(command); //open claw total
 
     // buttonA_dr.whenPressed(command); //close claw total
+    // buttonB_dr.whenPressed(command); //grab ball
+    // buttonY_dr.whenPressed(command); //open claw total
+    // buttonX_dr.whenPressed(command); //grab panel
+    // buttonBumperRight_dr.whenPressed(command); //deliver ball
+    
+    buttonA_dr.whenPressed(new EnablePID()); //close claw total
+    buttonY_dr.whenPressed(new disablePID()); //open claw total
+    startButton_dr.whenPressed(new ToggleCameras());
+
+    buttonB_dr.whenPressed(new TurnToAngle()); //grab ball
+    buttonX_dr.whenPressed(new TurnToAngle2()); //grab panel
+
+    // buttonY_dr.whenPressed(command); //open claw total
     // buttonX_dr.whenPressed(command); //grab panel
 
-    // buttonBumperRight_dr.whenPressed(command); //deliver ball
-
-    // startButton_dr.whenPressed(new ToggleCameras());
-
-    //********* Assist Driver ********//
-    buttonY_as.whenPressed(new ElevatorUp());
-    buttonA_as.whenPressed(new ElevatorDown());
+    //********* Assist Driver *******************************************************//
+    // buttonY_as.whenPressed(new ElevatorUp());
+    // buttonA_as.whenPressed(new ElevatorDown());
 
     //TODO: Make an up to leven 6 and up to level 9
-    buttonBumperRight_as.whenPressed(new LiftUp()); //level 9
-    buttonBumperLeft_as.whenPressed(new LiftUp()); //level 6
+    // buttonBumperRight_as.whenPressed(new LiftUp()); //level 9
+    // buttonBumperLeft_as.whenPressed(new LiftUp()); //level 6
 
   }
 

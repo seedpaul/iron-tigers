@@ -25,7 +25,7 @@ public class ResetDriveTrainEncoders extends CommandBase {
   @Override
   protected void execute() {
     //driveTrain.resetEncoders();
-    System.out.println("reset encoders");
+    // System.out.println("reset encoders");
   }
 
   // Make this return true when this Command no longer needs to run execute()
