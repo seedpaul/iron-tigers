@@ -69,23 +69,16 @@ public class RearLift extends Subsystem {
     return instance;
   }
 
-  public void up(){
-
-    if(currentPosition < (RearLiftPositions.Position.length-1)){
-      currentPosition++;
-      setPosition(currentPosition);
-      System.out.println("rearLiftUp");
-    }
-
+  public void upToLevel6(){
+    setPosition(RearLiftPositions.habLevel6);
   }
 
-  public void down(){
+  public void upToLevel19(){
+    setPosition(RearLiftPositions.habLevel19);
+  }
 
-    if(currentPosition > 0){
-      currentPosition--;
-      setPosition(currentPosition);
-      System.out.println("rearLiftDown");
-    }
+  public void home(){
+    setPosition(RearLiftPositions.home);
   }
 
   private void setPosition(int position){

@@ -11,13 +11,12 @@ package frc.robot;
  * Add your docs here.
  */
 public class FrontLiftPositions {
-    private static int habIncrement = 18192;
 
-    private static final int home = 0;
+    public static final int home = 0;
 
-    private static final int habLevel6 = habIncrement*2;
-    private static final int habLevel19 = habIncrement*4;
-    private static final int habLevelClimbUp = habIncrement*6;
+    public static final int habLevel6 = 6;
+    public static final int habLevel19 = 19;
+    public static final int habLevelClimbUp = 35;
 
     public static final int[] Position = {home, habLevel6, habLevel19, habLevelClimbUp};
 

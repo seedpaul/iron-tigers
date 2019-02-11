@@ -14,11 +14,11 @@ import frc.robot.commands.FrontLiftUp;
 import frc.robot.commands.RearLiftDown;
 import frc.robot.commands.RearLiftUp;
 
-public class ClimbLevelNine extends CommandGroup {
+public class ClimbLevel6 extends CommandGroup {
   /**
    * Add your docs here.
    */
-  public ClimbLevelNine() {
+  public ClimbLevel6() {
     // Add Commands here:
     // e.g. addSequential(new Command1());
     // addSequential(new Command2());
@@ -36,7 +36,7 @@ public class ClimbLevelNine extends CommandGroup {
     // a CommandGroup containing them would require both the chassis and the
     // arm.
 
-    //Step 1 - deploy front lift to level 9
+    //Step 1 - deploy front lift to level 6 
     addSequential(new FrontLiftDown());
 
     //Step 2 - front and rear lift down (parallel)
@@ -57,5 +57,6 @@ public class ClimbLevelNine extends CommandGroup {
 
     //Step 7 - drive forward
     addSequential(new DriveForward());
+
   }
 }

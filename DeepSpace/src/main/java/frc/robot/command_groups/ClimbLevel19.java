@@ -8,17 +8,13 @@
 package frc.robot.command_groups;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import frc.robot.commands.DriveForward;
-import frc.robot.commands.FrontLiftDown;
-import frc.robot.commands.FrontLiftUp;
-import frc.robot.commands.RearLiftDown;
-import frc.robot.commands.RearLiftUp;
+import frc.robot.commands.*;
 
-public class ClimbLevelSix extends CommandGroup {
+public class ClimbLevel19 extends CommandGroup {
   /**
    * Add your docs here.
    */
-  public ClimbLevelSix() {
+  public ClimbLevel19() {
     // Add Commands here:
     // e.g. addSequential(new Command1());
     // addSequential(new Command2());
@@ -36,7 +32,7 @@ public class ClimbLevelSix extends CommandGroup {
     // a CommandGroup containing them would require both the chassis and the
     // arm.
 
-    //Step 1 - deploy front lift to level 6 
+    //Step 1 - deploy front lift to level 9
     addSequential(new FrontLiftDown());
 
     //Step 2 - front and rear lift down (parallel)
@@ -57,6 +53,5 @@ public class ClimbLevelSix extends CommandGroup {
 
     //Step 7 - drive forward
     addSequential(new DriveForward());
-
   }
 }

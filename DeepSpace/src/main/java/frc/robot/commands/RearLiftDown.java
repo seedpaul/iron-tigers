@@ -13,7 +13,7 @@ public class RearLiftDown extends CommandBase {
   public RearLiftDown() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(rearLift);
+    //requires(rearLift);
   }
 
   // Called just before this Command runs the first time
@@ -24,8 +24,8 @@ public class RearLiftDown extends CommandBase {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    rearLift.down();
-    System.out.println("sensorValue: "+rearLift.getSensorValue());
+    //rearLift.down();
+    //System.out.println("sensorValue: "+rearLift.getSensorValue());
   }
 
   // Make this return true when this Command no longer needs to run execute()

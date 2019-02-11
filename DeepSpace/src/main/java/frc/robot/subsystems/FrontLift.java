@@ -79,23 +79,16 @@ public class FrontLift extends Subsystem {
     return instance;
   }
 
-  public void up(){
-
-    if(currentPosition < (FrontLiftPositions.Position.length-1)){
-      currentPosition++;
-      setPosition(currentPosition);
-      System.out.println("frontLiftUp");
-    }
-
+  public void gotoToLevel6position(){
+    setPosition(FrontLiftPositions.habLevel6);
   }
 
-  public void down(){
+  public void goToLevel9Position(){
+    setPosition(FrontLiftPositions.habLevel19);
+  }
 
-    if(currentPosition > 0){
-      currentPosition--;
-      setPosition(currentPosition);
-      System.out.println("frontLiftDown");
-    }
+  public void goToHome(){
+    setPosition(FrontLiftPositions.home);
   }
 
   private void setPosition(int position){
