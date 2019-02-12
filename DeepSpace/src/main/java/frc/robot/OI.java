@@ -60,13 +60,13 @@ public class OI {
 
 
 //************************ Assistant Driver ********************************//
-// public static Joystick XboxAssist = new Joystick(RobotMap.xboxControllerAssist);
+ public static Joystick XboxAssist = new Joystick(RobotMap.xboxControllerAssist);
 
 //   public static JoystickButton buttonBumperRight_as = new JoystickButton(XboxAssist,RobotMap.buttonBumperRight);
 //   public static JoystickButton buttonBumperLeft_as = new JoystickButton(XboxAssist,RobotMap.buttonBumperLeft);
 
-//   public static JoystickButton buttonA_as = new JoystickButton(XboxAssist,RobotMap.buttonA);
-//   public static JoystickButton buttonY_as = new JoystickButton(XboxAssist,RobotMap.buttonY);
+   public static JoystickButton buttonA_as = new JoystickButton(XboxAssist,RobotMap.buttonA);
+   public static JoystickButton buttonY_as = new JoystickButton(XboxAssist,RobotMap.buttonY);
 
 //   public static JoystickButton buttonX_as = new JoystickButton(XboxAssist,RobotMap.buttonX);
 //   public static JoystickButton buttonB_as = new JoystickButton(XboxAssist,RobotMap.buttonB);
@@ -95,8 +95,8 @@ public class OI {
     // buttonX_dr.whenPressed(command); //grab panel
 
     //********* Assist Driver *******************************************************//
-    // buttonY_as.whenPressed(new ElevatorUp());
-    // buttonA_as.whenPressed(new ElevatorDown());
+    buttonY_as.whenPressed(new ElevatorUp());
+    buttonA_as.whenPressed(new ElevatorDown());
 
     //TODO: Make an up to leven 6 and up to level 9
     //buttonBumperRight_as.whenPressed(new ClimbLevelNine()); //level 9
