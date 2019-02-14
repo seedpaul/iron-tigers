@@ -7,12 +7,12 @@
 
 package frc.robot.commands;
 
+import frc.robot.commands.CommandBase;
 
-
-public class EnablePID extends CommandBase {
-  public EnablePID() {
+public class FrontLiftHome extends CommandBase {
+  public FrontLiftHome() {
     // Use requires() here to declare subsystem dependencies
-    //requires(driveTrain);
+    requires(frontLift);
   }
 
   // Called just before this Command runs the first time
@@ -23,7 +23,8 @@ public class EnablePID extends CommandBase {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    //driveTrain.enablePID();
+    frontLift.goToHome();
+    // System.out.println("sensorValue: "+frontLift.getSensorValue());
   }
 
   // Make this return true when this Command no longer needs to run execute()

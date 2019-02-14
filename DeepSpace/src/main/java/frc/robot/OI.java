@@ -60,13 +60,13 @@ public class OI {
 
 
 //************************ Assistant Driver ********************************//
- public static Joystick XboxAssist = new Joystick(RobotMap.xboxControllerAssist);
+//  public static Joystick XboxAssist = new Joystick(RobotMap.xboxControllerAssist);
 
 //   public static JoystickButton buttonBumperRight_as = new JoystickButton(XboxAssist,RobotMap.buttonBumperRight);
 //   public static JoystickButton buttonBumperLeft_as = new JoystickButton(XboxAssist,RobotMap.buttonBumperLeft);
 
-   public static JoystickButton buttonA_as = new JoystickButton(XboxAssist,RobotMap.buttonA);
-   public static JoystickButton buttonY_as = new JoystickButton(XboxAssist,RobotMap.buttonY);
+  //  public static JoystickButton buttonA_as = new JoystickButton(XboxAssist,RobotMap.buttonA);
+  //  public static JoystickButton buttonY_as = new JoystickButton(XboxAssist,RobotMap.buttonY);
 
 //   public static JoystickButton buttonX_as = new JoystickButton(XboxAssist,RobotMap.buttonX);
 //   public static JoystickButton buttonB_as = new JoystickButton(XboxAssist,RobotMap.buttonB);
@@ -84,19 +84,19 @@ public class OI {
     // buttonX_dr.whenPressed(command); //grab panel
     // buttonBumperRight_dr.whenPressed(command); //deliver ball
     
-    buttonA_dr.whenPressed(new EnablePID()); //close claw total
-    buttonY_dr.whenPressed(new disablePID()); //open claw total
+    // buttonA_dr.whenPressed(new EnablePID()); //close claw total
+    // buttonY_dr.whenPressed(new disablePID()); //open claw total
     startButton_dr.whenPressed(new ToggleCameras());
 
-    buttonB_dr.whenPressed(new TurnToAngle()); //grab ball
-    buttonX_dr.whenPressed(new TurnToAngle2()); //grab panel
+    buttonB_dr.whenPressed(new FrontLiftClimb()); //grab ball
+    buttonX_dr.whenPressed(new FrontLiftHome()); //grab panel
 
-    // buttonY_dr.whenPressed(command); //open claw total
-    // buttonX_dr.whenPressed(command); //grab panel
+    buttonY_dr.whenPressed(new FrontLiftUp()); //open claw total
+    buttonA_dr.whenPressed(new FrontLiftDown()); //grab panel
 
     //********* Assist Driver *******************************************************//
-    buttonY_as.whenPressed(new ElevatorUp());
-    buttonA_as.whenPressed(new ElevatorDown());
+    // buttonY_as.whenPressed(new ElevatorUp());
+    // buttonA_as.whenPressed(new ElevatorDown());
 
     //TODO: Make an up to leven 6 and up to level 9
     //buttonBumperRight_as.whenPressed(new ClimbLevelNine()); //level 9

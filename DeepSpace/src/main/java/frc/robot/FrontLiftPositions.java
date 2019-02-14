@@ -12,19 +12,17 @@ package frc.robot;
  */
 public class FrontLiftPositions {
 
-    public static final int home = 0;
+    public static final int home = 150000;
 
-    public static final int habLevel6 = 6;
-    public static final int habLevel19 = 19;
-    public static final int habLevelClimbUp = 35;
+    public static final int habLevel6 = 50000;
+    public static final int habLevel19 = 100000;
+    public static final int habClimb = 0;
 
-    public static final int[] Position = {home, habLevel6, habLevel19, habLevelClimbUp};
-
-    public static int getHighestPosition(){
-    return Position[Position.length-1];
+    public static int geLowestPosition(){
+        return habClimb;
     }
 
     public static int getHomePosition(){
-    return Position[0];
+        return home;
     }
 }

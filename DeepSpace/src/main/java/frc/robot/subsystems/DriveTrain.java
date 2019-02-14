@@ -30,7 +30,7 @@ import com.kauailabs.navx.frc.AHRS;
 /**
  * Add your docs here.
  */
-public class DriveTrain extends Subsystem implements PIDOutput{
+public class DriveTrain extends Subsystem{// implements PIDOutput{
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   private final WPI_VictorSPX frontRight = new WPI_VictorSPX(RobotMap.SPXFrontRight);
@@ -43,12 +43,12 @@ public class DriveTrain extends Subsystem implements PIDOutput{
 
   private final DifferentialDrive robotDrive = new DifferentialDrive(leftSCG, rightSCG);
 
-  private final Encoder leftEncoder = new Encoder(RobotMap.leftEncoderChannelA, RobotMap.leftEncoderChannelB, true, Encoder.EncodingType.k1X);
-  private final Encoder rightEncoder = new Encoder(RobotMap.rightEncoderChannelA, RobotMap.rightEncoderChannelB, false, Encoder.EncodingType.k1X);
+  // private final Encoder leftEncoder = new Encoder(RobotMap.leftEncoderChannelA, RobotMap.leftEncoderChannelB, true, Encoder.EncodingType.k1X);
+  // private final Encoder rightEncoder = new Encoder(RobotMap.rightEncoderChannelA, RobotMap.rightEncoderChannelB, false, Encoder.EncodingType.k1X);
 
-  private AHRS ahrs;
-  private PIDController turnController;
-  private double rotateToAngleRate;
+  // private AHRS ahrs;
+  // private PIDController turnController;
+  // private double rotateToAngleRate;
 
   private static DriveTrain instance;
 
@@ -75,32 +75,32 @@ public class DriveTrain extends Subsystem implements PIDOutput{
   private void init(){
     robotDrive.setExpiration(1);
     robotDrive.setSafetyEnabled(true);
-    double circumference = 18.8496;
-    double pulsesPerRevolution = 360;
-    double distancePerPulse = circumference/pulsesPerRevolution;
-    leftEncoder.setDistancePerPulse(distancePerPulse);
-    rightEncoder.setDistancePerPulse(distancePerPulse);
-    leftEncoder.reset();
-    rightEncoder.reset();
+    // double circumference = 18.8496;
+    // double pulsesPerRevolution = 360;
+    // double distancePerPulse = circumference/pulsesPerRevolution;
+    // leftEncoder.setDistancePerPulse(distancePerPulse);
+    // rightEncoder.setDistancePerPulse(distancePerPulse);
+    // leftEncoder.reset();
+    // rightEncoder.reset();
 
-    try {
-        ahrs = new AHRS(SPI.Port.kMXP); 
-    } catch (RuntimeException ex ) {
-        DriverStation.reportError("Error instantiating navX MXP:  " + ex.getMessage(), true);
-    }
+    // try {
+    //     ahrs = new AHRS(SPI.Port.kMXP); 
+    // } catch (RuntimeException ex ) {
+    //     DriverStation.reportError("Error instantiating navX MXP:  " + ex.getMessage(), true);
+    // }
 
-    turnController = new PIDController(kP, kI, kD, kF, ahrs, this);
-    turnController.setInputRange(-180.0f,  180.0f);
-    turnController.setOutputRange(-1, 1);
-    turnController.setAbsoluteTolerance(kToleranceDegrees);
-    turnController.setContinuous(true);
+    // turnController = new PIDController(kP, kI, kD, kF, ahrs, this);
+    // turnController.setInputRange(-180.0f,  180.0f);
+    // turnController.setOutputRange(-1, 1);
+    // turnController.setAbsoluteTolerance(kToleranceDegrees);
+    // turnController.setContinuous(true);
 
-    turnController.disable();
+    // turnController.disable();
     
     /* Add the PID Controller to the Test-mode dashboard, allowing manual  */
     /* tuning of the Turn Controller's P, I and D coefficients.            */
     /* Typically, only the P value needs to be modified.                   */
-    LiveWindow.addActuator("DriveSystem", "RotateController", turnController);
+    // LiveWindow.addActuator("DriveSystem", "RotateController", turnController);
   }
 
   @Override
@@ -114,83 +114,83 @@ public class DriveTrain extends Subsystem implements PIDOutput{
     double speed = -driver.getRawAxis(RobotMap.leftStickY);
     double turn = driver.getRawAxis(RobotMap.rightStickX);
     robotDrive.arcadeDrive(speed, turn, true);
-    addInfoToDashboard();
+    // addInfoToDashboard();
   }
 
-  private void addInfoToDashboard(){
-    SmartDashboard.putData("leftEncoder", leftEncoder);
-    SmartDashboard.putData("rightEncoder", rightEncoder);
+  // private void addInfoToDashboard(){
+  //   SmartDashboard.putData("leftEncoder", leftEncoder);
+  //   SmartDashboard.putData("rightEncoder", rightEncoder);
 
-  }
+  // }
 
-  public void resetEncoders(){
-    leftEncoder.reset();
-    rightEncoder.reset();
-  }
+  // public void resetEncoders(){
+  //   leftEncoder.reset();
+  //   rightEncoder.reset();
+  // }
 
-  @Override
+  // @Override
   /* This function is invoked periodically by the PID Controller, */
   /* based upon navX MXP yaw angle input and PID Coefficients.    */
-  public void pidWrite(double output) {
-      rotateToAngleRate = output;
-      updateBot();
-  }
+  // public void pidWrite(double output) {
+  //     rotateToAngleRate = output;
+  //     //updateBot();
+  // }
 
-  private void updateBot(){
+  // private void updateBot(){
 
-    if(counter % 250 == 0){
-      robotDrive.curvatureDrive(0.0, rotateToAngleRate, true);
-    }
-  }
+  //   if(counter % 250 == 0){
+  //     robotDrive.curvatureDrive(0.0, rotateToAngleRate, true);
+  //   }
+  // }
 
-  public void turn90(Joystick driver){
-    turnController.setSetpoint(90.0f);
-    applyPID(driver);
-  }
+  // public void turn90(Joystick driver){
+  //   turnController.setSetpoint(90.0f);
+  //   applyPID(driver);
+  // }
 
-  public void turn180(Joystick driver){
-    turnController.setSetpoint(179.9f);
-    applyPID(driver);
-  }
+  // public void turn180(Joystick driver){
+  //   turnController.setSetpoint(179.9f);
+  //   applyPID(driver);
+  // }
 
-  public void turn270(){
-    turnController.setSetpoint(269.9f);
-    applyPID();
-  }
+  // public void turn270(){
+  //   turnController.setSetpoint(269.9f);
+  //   applyPID();
+  // }
 
-  public void turn360(){
-    turnController.setSetpoint(359.9f);
-    applyPID();
-  }
+  // public void turn360(){
+  //   turnController.setSetpoint(359.9f);
+  //   applyPID();
+  // }
 
-  private void applyPID(Joystick driver){
+  // private void applyPID(Joystick driver){
     
-    System.out.println("applyPid:" + rotateToAngleRate);
-    robotDrive.curvatureDrive(-driver.getRawAxis(RobotMap.leftStickY), rotateToAngleRate, true);
-    System.out.println("rotateToAngleRate:" + rotateToAngleRate);
-    //Timer.delay(0.4);
-  }
+  //   System.out.println("applyPid:" + rotateToAngleRate);
+  //   robotDrive.curvatureDrive(-driver.getRawAxis(RobotMap.leftStickY), rotateToAngleRate, true);
+  //   System.out.println("rotateToAngleRate:" + rotateToAngleRate);
+  //   //Timer.delay(0.4);
+  // }
 
-  private void applyPID(){
+  // private void applyPID(){
     
-    System.out.println("applyPid:" + rotateToAngleRate);
-    robotDrive.curvatureDrive(0.0, rotateToAngleRate, true);
-    System.out.println("rotateToAngleRate:" + rotateToAngleRate);
-    Timer.delay(0.4);
-  }
+  //   System.out.println("applyPid:" + rotateToAngleRate);
+  //   robotDrive.curvatureDrive(0.0, rotateToAngleRate, true);
+  //   System.out.println("rotateToAngleRate:" + rotateToAngleRate);
+  //   //Timer.delay(0.4);
+  // }
 
-  public void resetAHRS(){
-    ahrs.reset();
-  }
+  // public void resetAHRS(){
+  //   ahrs.reset();
+  // }
 
-  public void enablePID(){
-    turnController.enable();
-    System.out.println("PID Enabled");
-  };
+  // public void enablePID(){
+  //   turnController.enable();
+  //   System.out.println("PID Enabled");
+  // };
 
-  public void disablePID(){
-    turnController.disable();
-    System.out.println("PID Disabled");
-  };
+  // public void disablePID(){
+  //   turnController.disable();
+  //   System.out.println("PID Disabled");
+  // };
 
 }

@@ -31,7 +31,6 @@ public class Robot extends TimedRobot {
   public void robotInit() {
 
     CommandBase.init();
-    Camera camera = Camera.getInstance();
   }
 
   /**
@@ -102,9 +101,9 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
 
-    // if (CommandBase.driveTrain.getCurrentCommand() == null){
-    //   Scheduler.getInstance().add(driveCommand);
-    // }
+    if (CommandBase.driveTrain.getCurrentCommand() == null){
+      Scheduler.getInstance().add(driveCommand);
+    }
   }
 
   /**
