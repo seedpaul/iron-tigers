@@ -55,8 +55,8 @@ public class FrontLift extends Subsystem {
     
     liftTalonSRX.configNominalOutputForward(0,30);
     liftTalonSRX.configNominalOutputReverse(0,30);
-    liftTalonSRX.configPeakOutputForward(1, 30);
-    liftTalonSRX.configPeakOutputReverse(-1, 30);
+    liftTalonSRX.configPeakOutputForward(0.75, 30);
+    liftTalonSRX.configPeakOutputReverse(-0.75, 30);
 
     liftTalonSRX.configAllowableClosedloopError(0, 0, 30);
 
@@ -65,9 +65,16 @@ public class FrontLift extends Subsystem {
 		liftTalonSRX.config_kI(0, 0.0, 30);
     liftTalonSRX.config_kD(0, 1.0, 30);
 
+
+    liftTalonSRX.configPeakCurrentLimit(3, 30);
+    liftTalonSRX.configPeakCurrentDuration(5, 30);
+    liftTalonSRX.configContinuousCurrentLimit(1, 30);
+    liftTalonSRX.enableCurrentLimit(false); // Honor initial setting
+
     liftVictorSPX.follow(liftTalonSRX);
-    //pre-flight checklist to make sure lift is all the way @ bottom
-    liftTalonSRX.setSelectedSensorPosition(FrontLiftPositions.home,0,30);
+    
+    //pre-flight checklist to make sure lift is all the way up
+    liftTalonSRX.setSelectedSensorPosition(FrontLiftPositions.front_home,0,30);
     
     // use this as starting position if the front lift was left in the down position
     //liftTalonSRX.setSelectedSensorPosition(FrontLiftPositions.habClimb,0,30);
@@ -81,19 +88,19 @@ public class FrontLift extends Subsystem {
   }
 
   public void climb(){
-    setPosition(FrontLiftPositions.habClimb);
+    setPosition(FrontLiftPositions.front_habClimb);
   }
 
   public void gotoToLevel6position(){
-    setPosition(FrontLiftPositions.habLevel6);
+    setPosition(FrontLiftPositions.front_habLevel6);
   }
 
   public void goToLevel19Position(){
-    setPosition(FrontLiftPositions.habLevel19);
+    setPosition(FrontLiftPositions.front_habLevel19);
   }
 
   public void goToHome(){
-    setPosition(FrontLiftPositions.home);
+    setPosition(FrontLiftPositions.front_home);
   }
 
   private void setPosition(int position){

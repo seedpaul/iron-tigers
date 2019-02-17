@@ -7,15 +7,12 @@
 
 package frc.robot.commands;
 
-import frc.robot.subsystems.RearLift;
 import frc.robot.commands.CommandBase;
 
-
-public class RearLiftUp extends CommandBase {
-  public RearLiftUp() {
+public class FrontLiftHab19 extends CommandBase {
+  public FrontLiftHab19() {
     // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
-    //requires(rearLift);
+    requires(frontLift); 
   }
 
   // Called just before this Command runs the first time
@@ -26,8 +23,8 @@ public class RearLiftUp extends CommandBase {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    //rearLift.up();
-    //System.out.println("sensorValue: "+rearLift.getSensorValue());
+    frontLift.goToLevel19Position();
+    //System.out.println("sensorValue: "+frontLift.getSensorValue());
   }
 
   // Make this return true when this Command no longer needs to run execute()

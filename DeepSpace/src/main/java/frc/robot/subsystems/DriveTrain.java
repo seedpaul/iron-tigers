@@ -41,7 +41,7 @@ public class DriveTrain extends Subsystem{// implements PIDOutput{
   private final SpeedControllerGroup rightSCG = new SpeedControllerGroup(frontRight, backRight);
   private final SpeedControllerGroup leftSCG = new SpeedControllerGroup(frontLeft, backLeft);
 
-  private final DifferentialDrive robotDrive = new DifferentialDrive(leftSCG, rightSCG);
+  // private final DifferentialDrive robotDrive = new DifferentialDrive(leftSCG, rightSCG);
 
   // private final Encoder leftEncoder = new Encoder(RobotMap.leftEncoderChannelA, RobotMap.leftEncoderChannelB, true, Encoder.EncodingType.k1X);
   // private final Encoder rightEncoder = new Encoder(RobotMap.rightEncoderChannelA, RobotMap.rightEncoderChannelB, false, Encoder.EncodingType.k1X);
@@ -73,8 +73,8 @@ public class DriveTrain extends Subsystem{// implements PIDOutput{
   }
 
   private void init(){
-    robotDrive.setExpiration(1);
-    robotDrive.setSafetyEnabled(true);
+    // robotDrive.setExpiration(1);
+    // robotDrive.setSafetyEnabled(true);
     // double circumference = 18.8496;
     // double pulsesPerRevolution = 360;
     // double distancePerPulse = circumference/pulsesPerRevolution;
@@ -113,7 +113,7 @@ public class DriveTrain extends Subsystem{// implements PIDOutput{
 
     double speed = -driver.getRawAxis(RobotMap.leftStickY);
     double turn = driver.getRawAxis(RobotMap.rightStickX);
-    robotDrive.arcadeDrive(speed, turn, true);
+    //robotDrive.arcadeDrive(speed, turn, true);
     // addInfoToDashboard();
   }
 

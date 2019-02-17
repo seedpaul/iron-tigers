@@ -59,12 +59,12 @@ public class Elevator extends Subsystem {
     elevatorSRX.configNominalOutputForward(0,30);
     elevatorSRX.configNominalOutputReverse(0,30);
     elevatorSRX.configPeakOutputForward(1, 30);
-    elevatorSRX.configPeakOutputReverse(-1, 30);
+    elevatorSRX.configPeakOutputReverse(-0.5, 30);
 
     elevatorSRX.configAllowableClosedloopError(0, 0, 30);
 
 		elevatorSRX.config_kF(0, 0.0, 30);
-		elevatorSRX.config_kP(0, 0.15, 30);
+		elevatorSRX.config_kP(0, 0.5, 30);
 		elevatorSRX.config_kI(0, 0.0, 30);
     elevatorSRX.config_kD(0, 1.0, 30);
 
@@ -97,6 +97,11 @@ public class Elevator extends Subsystem {
       setPosition(currentPosition);
       System.out.println("current:" + elevatorSRX.getOutputCurrent());
     }
+  }
+
+  public void goToHome(){
+
+    setPosition(ElevatorPositions.home);
   }
 
   private void setPosition(int position){

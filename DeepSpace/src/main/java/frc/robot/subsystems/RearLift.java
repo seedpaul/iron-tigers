@@ -26,8 +26,6 @@ public class RearLift extends Subsystem {
 
   private static RearLift instance;
 
-  private int currentPosition = 0;
-
   private RearLift(){
     init();
   }
@@ -35,18 +33,19 @@ public class RearLift extends Subsystem {
   //this is where we do all our intilization
   private void init(){
 
-    rearLiftSRX.set(ControlMode.PercentOutput,0);
     rearLiftSRX.configFactoryDefault();
+
+    rearLiftSRX.set(ControlMode.PercentOutput,0);
     rearLiftSRX.setNeutralMode(NeutralMode.Brake);
 
     //this is a very important line of code in order to make foward on motor line up with foward on encoder
-    rearLiftSRX.setSensorPhase(true);
+    rearLiftSRX.setSensorPhase(false);
 
-    rearLiftSRX.configForwardSoftLimitEnable(true);
-    rearLiftSRX.configReverseSoftLimitEnable(true);
+    // rearLiftSRX.configForwardSoftLimitEnable(true);
+    // rearLiftSRX.configReverseSoftLimitEnable(true);
 
-    rearLiftSRX.configForwardSoftLimitThreshold(RearLiftPositions.getHighestPosition());
-    rearLiftSRX.configReverseSoftLimitThreshold(RearLiftPositions.getHomePosition());
+    rearLiftSRX.configForwardSoftLimitThreshold(RearLiftPositions.getHomePosition());
+    rearLiftSRX.configReverseSoftLimitThreshold(RearLiftPositions.getHighestPosition());
 
     rearLiftSRX.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 30);
     
@@ -55,10 +54,19 @@ public class RearLift extends Subsystem {
     rearLiftSRX.configPeakOutputForward(1, 30);
     rearLiftSRX.configPeakOutputReverse(-1, 30);
 
-    rearLiftSRX.configPeakCurrentLimit(3, 30);
-    rearLiftSRX.configPeakCurrentDuration(5, 30);
-    rearLiftSRX.configContinuousCurrentLimit(1, 30);
-    rearLiftSRX.enableCurrentLimit(false); // Honor initial setting
+    rearLiftSRX.configAllowableClosedloopError(0, 0, 30);
+
+		rearLiftSRX.config_kF(0, 0.0, 30);
+		rearLiftSRX.config_kP(0, 0.5, 30);
+		rearLiftSRX.config_kI(0, 0.0, 30);
+    rearLiftSRX.config_kD(0, 1.0, 30);
+
+    // rearLiftSRX.configPeakCurrntLimit(3, 30);
+    // rearLiftSRX.configPeakCurrentDuration(5, 30);
+    // rearLiftSRX.configContinuousCurrentLimit(1, 30);
+    // rearLiftSRX.enableCurrentLimit(false); // Honor initial setting
+
+    rearLiftSRX.setSelectedSensorPosition(RearLiftPositions.rear_home,0,30);
   }
 
   public static RearLift getInstance(){
@@ -69,26 +77,26 @@ public class RearLift extends Subsystem {
     return instance;
   }
 
-  public void upToLevel6(){
-    setPosition(RearLiftPositions.habLevel6);
+  public void goToLevel6(){
+    System.out.println("goToLevel6\n");
+    setPosition(RearLiftPositions.rear_habLevel6);
   }
 
-  public void upToLevel19(){
-    setPosition(RearLiftPositions.habLevel19);
+  public void goToLevel19(){
+    System.out.println("goToLevel19\n");
+    setPosition(RearLiftPositions.rear_habLevel19);
   }
 
-  public void home(){
-    setPosition(RearLiftPositions.home);
+  public void goToHome(){
+    System.out.println("goToHome\n");
+    setPosition(RearLiftPositions.rear_home);
   }
 
   private void setPosition(int position){
 
-    //counterclockwise is up, 
-    rearLiftSRX.set(ControlMode.Position, RearLiftPositions.Position[position]);
+    rearLiftSRX.set(ControlMode.Position, position);
     rearLiftSRX.getSelectedSensorPosition();
-    //System.out.println("Sensor:"+liftTalonSRX.getSelectedSensorPosition());
-    // System.out.println("INDEX:"+position);
-    System.out.println("Target VALUE:"+ RearLiftPositions.Position[position] + "\n");
+    System.out.println("Target VALUE:"+ position + "\n");
   }
 
   public int getSensorValue(){

@@ -9,11 +9,11 @@ package frc.robot.commands;
 
 import frc.robot.commands.CommandBase;
 
-public class ResetDriveTrainEncoders extends CommandBase {
-  public ResetDriveTrainEncoders() {
+public class RearLiftHab6 extends CommandBase {
+  public RearLiftHab6() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    //requires(driveTrain);
+    requires(rearLift);
   }
 
   // Called just before this Command runs the first time
@@ -24,8 +24,8 @@ public class ResetDriveTrainEncoders extends CommandBase {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    //driveTrain.resetEncoders();
-    // System.out.println("reset encoders");
+    rearLift.goToLevel6();
+    //System.out.println("sensorValue: "+rearLift.getSensorValue());
   }
 
   // Make this return true when this Command no longer needs to run execute()

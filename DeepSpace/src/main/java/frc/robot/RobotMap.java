@@ -45,7 +45,7 @@ public class RobotMap {
 
   public static int TalonIntakeClaw = 0;
   public static int VictorIntakeWheels = 0;
-  public static int VictorIntakeFlipper = 0;
+  public static int VictorIntakeFlipper = 8;
 
   public static int SRXIntakeElbow = 1;
 //*******************end can*****************************/
@@ -55,8 +55,7 @@ public class RobotMap {
   public static int rightEncoderChannelA = 2;
   public static int rightEncoderChannelB = 3;
 
-  public static int flipperEncoderChannelA = 6;
-  public static int flipperEncoderChannelB = 7;
+  public static int flipperEncoder = 0;
 
   	//start xbox *****************************************
 	public static final int xboxControllerDriver = 0;
