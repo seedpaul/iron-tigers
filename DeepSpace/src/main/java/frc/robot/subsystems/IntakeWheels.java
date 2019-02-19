@@ -4,8 +4,6 @@
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
-//harris wuz here
-
 package frc.robot.subsystems;
 import frc.robot.RobotMap;
 import edu.wpi.first.wpilibj.Counter;
@@ -16,10 +14,6 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
-
-/**
- * Add your docs here.
- */
 public class IntakeWheels extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
@@ -28,12 +22,11 @@ public class IntakeWheels extends Subsystem {
   private static final TalonSRX intakeflipper = new TalonSRX(RobotMap.VictorIntakeFlipper);
   private static final DigitalInput boschMotorDigitalInput = new DigitalInput(RobotMap.flipperEncoder);
   private static final Counter motorCounter = new Counter(boschMotorDigitalInput);
+  
   private static int position = 150000;
-  private static Boolean opening = true;
-
-  // 174.9 ping per revolution
   private static final int openPosition = 2000000;
   private static final int closePosition = 10000;
+
 
   private static IntakeWheels instance;
 
@@ -48,22 +41,6 @@ public class IntakeWheels extends Subsystem {
   }
 
   public void periodic() {
-
-    // System.out.println("current: " + position);
-    // System.out.println("motorCounter.get(): " + motorCounter.get() + "\n");
-    // System.out.println("intakeflipper.getMotorOutputVoltage(): " + intakeflipper.getMotorOutputVoltage());
-
-    if(Math.abs(intakeflipper.getMotorOutputVoltage()) > 10.0){
-      
-      System.out.println("were applying voltage to the motor. " + Math.abs(intakeflipper.getMotorOutputVoltage())+ "volts");
-      if (opening) {
-        position += motorCounter.get();
-      } else {
-        position -= motorCounter.get();
-      }
-      // reset the counter to zero
-      motorCounter.reset();
-    }
   }
 
   public static IntakeWheels getInstance(){
@@ -75,17 +52,13 @@ public class IntakeWheels extends Subsystem {
   }
 
   public boolean openFlipper(){
-    System.out.println("openFlipper");
-    opening = true;
     intakeflipper.set(ControlMode.PercentOutput, 1.0);
-    return position <= openPosition ;
+    return true;
   }
 
   public boolean closeFlipper(){
-    System.out.println("closeFlipper");
-    opening = false;
     intakeflipper.set(ControlMode.PercentOutput, -1.0);
-    return position >= closePosition;
+    return true;
   }
 
   public void stopFlipper(){

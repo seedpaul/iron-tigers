@@ -57,14 +57,14 @@ public class RearLift extends Subsystem {
     rearLiftSRX.configAllowableClosedloopError(0, 0, 30);
 
 		rearLiftSRX.config_kF(0, 0.0, 30);
-		rearLiftSRX.config_kP(0, 0.5, 30);
+		rearLiftSRX.config_kP(0, 1.0, 30);
 		rearLiftSRX.config_kI(0, 0.0, 30);
     rearLiftSRX.config_kD(0, 1.0, 30);
 
-    // rearLiftSRX.configPeakCurrntLimit(3, 30);
-    // rearLiftSRX.configPeakCurrentDuration(5, 30);
-    // rearLiftSRX.configContinuousCurrentLimit(1, 30);
-    // rearLiftSRX.enableCurrentLimit(false); // Honor initial setting
+    rearLiftSRX.configPeakCurrentLimit(35, 30);
+    rearLiftSRX.configPeakCurrentDuration(120, 30);
+    rearLiftSRX.configContinuousCurrentLimit(25, 30);
+    rearLiftSRX.enableCurrentLimit(true);
 
     rearLiftSRX.setSelectedSensorPosition(RearLiftPositions.rear_home,0,30);
   }
@@ -78,17 +78,17 @@ public class RearLift extends Subsystem {
   }
 
   public void goToLevel6(){
-    System.out.println("goToLevel6\n");
+    // System.out.println("goToLevel6\n");
     setPosition(RearLiftPositions.rear_habLevel6);
   }
 
   public void goToLevel19(){
-    System.out.println("goToLevel19\n");
+    // System.out.println("goToLevel19\n");
     setPosition(RearLiftPositions.rear_habLevel19);
   }
 
   public void goToHome(){
-    System.out.println("goToHome\n");
+    // System.out.println("goToHome\n");
     setPosition(RearLiftPositions.rear_home);
   }
 
@@ -96,7 +96,7 @@ public class RearLift extends Subsystem {
 
     rearLiftSRX.set(ControlMode.Position, position);
     rearLiftSRX.getSelectedSensorPosition();
-    System.out.println("Target VALUE:"+ position + "\n");
+    // System.out.println("Target VALUE:"+ position + "\n");
   }
 
   public int getSensorValue(){

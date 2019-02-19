@@ -8,7 +8,6 @@
 package frc.robot.command_groups;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import frc.robot.commands.DriveForward;
 import frc.robot.commands.*;
 
 public class ClimbLevel6 extends CommandGroup {
@@ -30,7 +29,7 @@ public class ClimbLevel6 extends CommandGroup {
     //Step 3 - Deploy rear lift and start 
     //  front lift omn it way down
     addParallel(new RearLiftHab6());
-    addParallel(new FrontLiftClimb());
+    addParallel(new FrontLiftClimbStep1());
 
     //Step 4 - Drive forward 
     addSequential(new DriveForward()); // until about ITS OVER 9000 DUBBAH BRAP BRAP BRAP 

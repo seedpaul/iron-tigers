@@ -55,13 +55,13 @@ public class FrontLift extends Subsystem {
     
     liftTalonSRX.configNominalOutputForward(0,30);
     liftTalonSRX.configNominalOutputReverse(0,30);
-    liftTalonSRX.configPeakOutputForward(0.75, 30);
-    liftTalonSRX.configPeakOutputReverse(-0.75, 30);
+    liftTalonSRX.configPeakOutputForward(1.0, 30);
+    liftTalonSRX.configPeakOutputReverse(-1.0, 30);
 
     liftTalonSRX.configAllowableClosedloopError(0, 0, 30);
 
 		liftTalonSRX.config_kF(0, 0.0, 30);
-		liftTalonSRX.config_kP(0, 0.75, 30);
+		liftTalonSRX.config_kP(0, 1.0, 30);
 		liftTalonSRX.config_kI(0, 0.0, 30);
     liftTalonSRX.config_kD(0, 1.0, 30);
 
@@ -75,9 +75,10 @@ public class FrontLift extends Subsystem {
     
     //pre-flight checklist to make sure lift is all the way up
     liftTalonSRX.setSelectedSensorPosition(FrontLiftPositions.front_home,0,30);
+    //liftTalonSRX.setSelectedSensorPosition(FrontLiftPositions.front_home - 1000,0,30);
     
     // use this as starting position if the front lift was left in the down position
-    //liftTalonSRX.setSelectedSensorPosition(FrontLiftPositions.habClimb,0,30);
+    //liftTalonSRX.setSelectedSensorPosition(FrontLiftPositions.front_habClimbStep2 ,0,30);
   }
 
   public static FrontLift getInstance(){
@@ -87,8 +88,12 @@ public class FrontLift extends Subsystem {
     return instance;
   }
 
-  public void climb(){
-    setPosition(FrontLiftPositions.front_habClimb);
+  public void climbStep2(){
+    setPosition(FrontLiftPositions.front_habClimbStep2);
+  }
+
+  public void climbStep1(){
+    setPosition(FrontLiftPositions.front_habClimbStep1);
   }
 
   public void gotoToLevel6position(){
@@ -107,7 +112,7 @@ public class FrontLift extends Subsystem {
 
     //counterclockwise is up, 
     liftTalonSRX.set(ControlMode.Position, position);
-    System.out.println("Target VALUE:"+ position + "\n");
+    // System.out.println("Target VALUE:"+ position + "\n");
   }
 
   public int getSensorValue(){

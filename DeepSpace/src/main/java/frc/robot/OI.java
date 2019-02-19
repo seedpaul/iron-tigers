@@ -10,6 +10,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.*;
+import frc.robot.command_groups.*;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -54,27 +55,35 @@ public class OI {
     // buttonB_dr.whenPressed(command); //grab ball
     // buttonY_dr.whenPressed(command); //open claw total
     // buttonX_dr.whenPressed(command); //grab panel
-    // buttonBumperRight_dr.whenPressed(command); //deliver ball
+
+    // buttonBumperRight_dr.whenPressed(command); //deliver ball - command group?
     
     // buttonA_dr.whenPressed(new EnablePID()); //close claw total
     // buttonY_dr.whenPressed(new disablePID()); //open claw total
+
+    // startButton_dr.whenPressed(new FlipperClose()); //- is this for wheels or claw?
+
     startButton_dr.whenPressed(new ToggleCameras());
-    // startButton_dr.whenPressed(new FlipperClose());
 
-    // buttonB_dr.whenPressed(new FrontLiftClimb()); //grab ball
-    // buttonX_dr.whenPressed(new FrontLiftHome()); //grab panel
+    buttonB_dr.whenPressed(new FrontLiftClimbStep2());
+    buttonX_dr.whenPressed(new FrontLiftHome());
 
-    // buttonY_dr.whenPressed(new FrontLiftUp()); //open claw total
-    // buttonA_dr.whenPressed(new FrontLiftDown()); //grab panel
+    // buttonY_dr.whenPressed(new FrontLiftUp()); 
+    // buttonA_dr.whenPressed(new FrontLiftDown()); 
 
     //********* Assist Driver *******************************************************//
-    buttonY_dr.whenPressed(new FlipperOpen());
-    // buttonX_dr.whenPressed(new RearLiftHab6());
-    buttonA_dr.whenPressed(new FlipperClose());
+    //TODO: Change all "_dr" to "_as"
+    // buttonB_dr.whenPressed(new DriveStraight(38.0,0.2));
+    // buttonX_dr.whenPressed(new FrontLiftClimbStep1());
 
-    //TODO: Make an up to level 6 and up to level 9
-    // buttonBumperRight_dr.whenPressed(new ElevatorDown()); //level 9
-    // buttonBumperLeft_dr.whenPressed(new ElevatorUp()); //level 6
+    // buttonY_dr.whenPressed(new ElevatorUp());
+    // buttonA_dr.whenPressed(new ElevatorDown());
+
+    buttonY_dr.whenPressed(new RearLiftHome());
+    buttonA_dr.whenPressed(new RearLiftHab19());
+
+    buttonBumperRight_dr.whenPressed(new ClimbLevel19()); 
+    buttonBumperLeft_dr.whenPressed(new FrontLiftHome()); 
 
   }
   

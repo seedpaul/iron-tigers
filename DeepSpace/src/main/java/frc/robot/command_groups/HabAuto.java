@@ -22,7 +22,7 @@ public class HabAuto extends CommandGroup {
     // addParallel(new Command1());
 
     //Step 1 - Deploy front lift 
-    addSequential(new FrontLiftClimb());
+    addSequential(new FrontLiftClimbStep1());
 
     //Step 2 - Drive forward 
     addSequential(new DriveForward());

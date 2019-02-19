@@ -76,13 +76,13 @@ public class IntakeElbow extends Subsystem {
   public void up(){
     intakeElbowSRX.set(ControlMode.Position, ElbowPositions.up());
     intakeElbowSRX.getSelectedSensorPosition();
-    System.out.println("Sensor:"+intakeElbowSRX.getSelectedSensorPosition());
+    // System.out.println("Sensor:"+intakeElbowSRX.getSelectedSensorPosition());
   }
 
   public void down(){
     intakeElbowSRX.set(ControlMode.Position, ElbowPositions.down());
     intakeElbowSRX.getSelectedSensorPosition();
-    System.out.println("Sensor:"+intakeElbowSRX.getSelectedSensorPosition());
+    // System.out.println("Sensor:"+intakeElbowSRX.getSelectedSensorPosition());
   }
 
   

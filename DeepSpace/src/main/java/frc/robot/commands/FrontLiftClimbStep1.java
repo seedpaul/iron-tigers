@@ -9,8 +9,8 @@ package frc.robot.commands;
 
 import frc.robot.commands.CommandBase;
 
-public class FrontLiftClimb extends CommandBase {
-  public FrontLiftClimb() {
+public class FrontLiftClimbStep1 extends CommandBase {
+  public FrontLiftClimbStep1() {
     // Use requires() here to declare subsystem dependencies
     requires(frontLift);
   }
@@ -23,7 +23,7 @@ public class FrontLiftClimb extends CommandBase {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    frontLift.climb();
+    frontLift.climbStep1();
     // System.out.println("sensorValue: "+frontLift.getSensorValue());
   }
 

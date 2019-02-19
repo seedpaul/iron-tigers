@@ -41,7 +41,7 @@ public class Camera extends Subsystem {
 
   private void init(){
 
-    System.out.println("camera init");
+    // System.out.println("camera init");
 
     camLeft.setResolution(640,480);
     camRight.setResolution(640,480);
@@ -63,12 +63,12 @@ public class Camera extends Subsystem {
   }
 
   public void showCameraLeft(){
-    System.out.println("showLeft");
+    // System.out.println("showLeft");
     sink.setSource(camLeft);
   }
 
   public void showCameraRight(){
-    System.out.println("showRight");
+    // System.out.println("showRight");
     sink.setSource(camRight);
   }
 

@@ -26,14 +26,13 @@ public class RobotMap {
 
 
   //*********************start can********************/
-  
-  //*****Draintrain********************
-  public static int SPXFrontRight = 11;
-  public static int SPXFrontLeft = 12;
-  
-  public static int SRXBackRight = 2;
-  public static int SRXBackLeft = 4;
-  //*****Draintrain********************
+    //*****Start Draintrain********************
+    public static int SPXFrontRight = 11;
+    public static int SPXFrontLeft = 12;
+    
+    public static int SRXBackRight = 2;
+    public static int SRXBackLeft = 4;
+    //*****End  Draintrain********************
 
   public static int SRXFrontLift = 7;
   public static int SPXFrontLift = 10;
@@ -50,6 +49,7 @@ public class RobotMap {
   public static int SRXIntakeElbow = 1;
 //*******************end can*****************************/
 
+//****************** DIO ports for encoders**************/
   public static int leftEncoderChannelA = 4;
   public static int leftEncoderChannelB = 5;
   public static int rightEncoderChannelA = 2;
@@ -57,7 +57,7 @@ public class RobotMap {
 
   public static int flipperEncoder = 0;
 
-  	//start xbox *****************************************
+//start xbox *****************************************
 	public static final int xboxControllerDriver = 0;
 	public static final int xboxControllerAssist = 1;
 	
@@ -83,7 +83,8 @@ public class RobotMap {
 
 	public static final int rightJoystickPush = 12;
 	public static final int leftJoystickPush = 11;
-	//end xbox *****************************************
+
+  //end xbox *****************************************
 
 
 }

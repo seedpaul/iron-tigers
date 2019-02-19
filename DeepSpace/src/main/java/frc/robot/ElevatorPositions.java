@@ -4,15 +4,15 @@ public class ElevatorPositions{
 
     public static final int home = 0;
 
-    private static final int hatchLevel1 = 3000;
-    private static final int hatchLevel2 = 9000;
-    private static final int hatchLevel3 = 15000;
+    private static final int hatchLevel1 = 2000; //1
+    private static final int hatchLevel2 = 10000; //3
+    private static final int hatchLevel3 = 17000; //5
 
-    private static final int cargoLevel1 = 1500;
-    private static final int cargoLevel2 = 6000;
-    private static final int cargoLevel3 = 12000;
+    private static final int cargoLevel1 = 5000; //2
+    private static final int cargoLevel2 = 12000; //4
+    private static final int cargoLevel3 = 19000; //6
 
-    public static final int[] Position = {home,cargoLevel1,hatchLevel1,cargoLevel2,hatchLevel2,cargoLevel3,hatchLevel3};
+    public static final int[] Position = {home,hatchLevel1,cargoLevel1,hatchLevel2,cargoLevel2,hatchLevel3,cargoLevel3};
 
     public static int getHighestPosition(){
     return Position[Position.length-1];

@@ -85,7 +85,7 @@ public class Elevator extends Subsystem {
     if(currentPosition < (ElevatorPositions.Position.length-1)){
       currentPosition++;
       setPosition(currentPosition);
-      System.out.println("current:" + elevatorSRX.getOutputCurrent());
+      // System.out.println("current:" + elevatorSRX.getOutputCurrent());
     }
 
   }
@@ -95,7 +95,7 @@ public class Elevator extends Subsystem {
     if(currentPosition > 0){
       currentPosition--;
       setPosition(currentPosition);
-      System.out.println("current:" + elevatorSRX.getOutputCurrent());
+      // System.out.println("current:" + elevatorSRX.getOutputCurrent());
     }
   }
 
@@ -109,9 +109,9 @@ public class Elevator extends Subsystem {
     //counterclockwise is up, 
     elevatorSRX.set(ControlMode.Position, ElevatorPositions.Position[position]);
     elevatorSRX.getSelectedSensorPosition();
-    System.out.println("Sensor:"+elevatorSRX.getSelectedSensorPosition());
-    System.out.println("INDEX:"+position);
-    System.out.println("VALUE:"+ ElevatorPositions.Position[position] + "\n");
+    // System.out.println("Sensor:"+elevatorSRX.getSelectedSensorPosition());
+    // System.out.println("INDEX:"+position);
+    // System.out.println("VALUE:"+ ElevatorPositions.Position[position] + "\n");
   }
 
   @Override
