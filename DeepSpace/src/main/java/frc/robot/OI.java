@@ -65,8 +65,8 @@ public class OI {
 //   public static JoystickButton buttonBumperRight_as = new JoystickButton(XboxAssist,RobotMap.buttonBumperRight);
 //   public static JoystickButton buttonBumperLeft_as = new JoystickButton(XboxAssist,RobotMap.buttonBumperLeft);
 
-//   public static JoystickButton buttonA_as = new JoystickButton(XboxAssist,RobotMap.buttonA);
-//   public static JoystickButton buttonY_as = new JoystickButton(XboxAssist,RobotMap.buttonY);
+  // public static JoystickButton buttonA_as = new JoystickButton(XboxAssist,RobotMap.buttonA);
+  // public static JoystickButton buttonY_as = new JoystickButton(XboxAssist,RobotMap.buttonY);
 
 //   public static JoystickButton buttonX_as = new JoystickButton(XboxAssist,RobotMap.buttonX);
 //   public static JoystickButton buttonB_as = new JoystickButton(XboxAssist,RobotMap.buttonB);
@@ -86,6 +86,7 @@ public class OI {
     
     buttonA_dr.whenPressed(new EnablePID()); //close claw total
     buttonY_dr.whenPressed(new disablePID()); //open claw total
+
     startButton_dr.whenPressed(new ToggleCameras());
 
     buttonB_dr.whenPressed(new TurnToAngle()); //grab ball
@@ -98,7 +99,6 @@ public class OI {
     // buttonY_as.whenPressed(new ElevatorUp());
     // buttonA_as.whenPressed(new ElevatorDown());
 
-    //TODO: Make an up to leven 6 and up to level 9
     //buttonBumperRight_as.whenPressed(new ClimbLevelNine()); //level 9
     //buttonBumperLeft_as.whenPressed(new ClimbLevelSix()); //level 6
 
@@ -126,9 +126,8 @@ public class OI {
   //   buttonB_as.whenPressed(new openFlipper());
   //   buttonX_as.whenPressed(new closeFlipper());
 
-  //   //TODO: Make an up to leven 6 and up to level 9
-  //   buttonBumperRight_as.whenPressed(new ClimbLevelNine()); //level 9
-  //    buttonBumperLeft_as.whenPressed(new ClimbLevelSix()); //level 6
+  //   buttonBumperRight_as.whenPressed(new ClimbLevelNine());
+  //   buttonBumperLeft_as.whenPressed(new ClimbLevelSix()); 
   // }
   
 }
