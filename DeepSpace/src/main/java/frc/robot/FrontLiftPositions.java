@@ -7,9 +7,6 @@
 
 package frc.robot;
 
-/**
- * Add your docs here.
- */
 public class FrontLiftPositions {
 
     public static final int front_home = 150000;
@@ -17,7 +14,7 @@ public class FrontLiftPositions {
     public static final int front_habLevel6 = 60000;
 
     public static final int front_habClimbStep1 = 37500;
-    public static final int front_habClimbStep2 = 27500;
+    public static final int front_habClimbStep2 = 17500;
 
     public static int geLowestPosition(){
         return front_habClimbStep2;

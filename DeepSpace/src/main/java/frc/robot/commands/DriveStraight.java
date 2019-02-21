@@ -61,7 +61,6 @@ public class DriveStraight extends CommandBase {
     		currentSpeed += 0.095;
 		}
 		
-
     	leftEncoderDistance = driveTrain.getLeftEncoderDistance();
     	rightEncoderDistance = driveTrain.getRightEncoderDistance();
     	

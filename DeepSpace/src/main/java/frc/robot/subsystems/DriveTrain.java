@@ -13,24 +13,16 @@ import frc.robot.commands.ArcadeDrive;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
-import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
-
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import com.kauailabs.navx.frc.AHRS;
 
-/**
- * Add your docs here.
- */
 public class DriveTrain extends Subsystem{
 
   private final WPI_VictorSPX frontRight = new WPI_VictorSPX(RobotMap.SPXFrontRight);
@@ -43,12 +35,10 @@ public class DriveTrain extends Subsystem{
 
   private final DifferentialDrive robotDrive = new DifferentialDrive(leftSCG, rightSCG);
 
-  private final Encoder leftEncoder = new Encoder(RobotMap.leftEncoderChannelA, RobotMap.leftEncoderChannelB, true, Encoder.EncodingType.k2X);
-  private final Encoder rightEncoder = new Encoder(RobotMap.rightEncoderChannelA, RobotMap.rightEncoderChannelB, false, Encoder.EncodingType.k2X);
+  private final Encoder leftEncoder = new Encoder(RobotMap.leftEncoderChannelA, RobotMap.leftEncoderChannelB, true, Encoder.EncodingType.k1X);
+  private final Encoder rightEncoder = new Encoder(RobotMap.rightEncoderChannelA, RobotMap.rightEncoderChannelB, false, Encoder.EncodingType.k1X);
 
   private AHRS ahrs;
-  private PIDController turnController;
-  private double rotateToAngleRate;
 
   private static DriveTrain instance;
 
@@ -78,11 +68,14 @@ public class DriveTrain extends Subsystem{
     backLeft.setNeutralMode(NeutralMode.Coast);
     robotDrive.setExpiration(1);
     robotDrive.setSafetyEnabled(true);
+
     double circumference = 18.8496;
     double pulsesPerRevolution = 256;
     double distancePerPulse = circumference/pulsesPerRevolution;
+
     leftEncoder.setDistancePerPulse(distancePerPulse);
     rightEncoder.setDistancePerPulse(distancePerPulse);
+    
     leftEncoder.setReverseDirection(false);
     rightEncoder.setReverseDirection(true);
     leftEncoder.reset();

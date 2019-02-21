@@ -32,13 +32,13 @@ public class ClimbLevel6 extends CommandGroup {
     addParallel(new FrontLiftClimbStep1());
 
     //Step 4 - Drive forward 
-    addSequential(new DriveForward()); // until about ITS OVER 9000 DUBBAH BRAP BRAP BRAP 
+    addSequential(new DriveStraight(0,0)); // until about ITS OVER 9000 DUBBAH BRAP BRAP BRAP 
 
     //Step 5 - deploy rear lift 
     addSequential(new RearLiftHome());
 
     //step 6 - drive forward 
-    addParallel(new DriveForward());
+    addParallel(new DriveStraight(0,0));
     addParallel(new FrontLiftHome());
 
   }

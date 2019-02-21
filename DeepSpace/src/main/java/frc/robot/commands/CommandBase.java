@@ -18,7 +18,7 @@ public abstract class CommandBase extends Command {
   public static FrontLift frontLift;
   // public static IntakeClaw intakeClaw;
   public static IntakeWheels intakeWheels;
-  // public static IntakeElbow intakeElbow;
+  public static IntakeElbow intakeElbow;
   public static RearLift rearLift;
   public static Camera camera;
   
@@ -33,8 +33,8 @@ public abstract class CommandBase extends Command {
     camera = Camera.getInstance();
     // intakeClaw =IntakeClaw.getInstance();
     intakeWheels= IntakeWheels.getInstance();
-    // intakeElbow =IntakeElbow.getInstance();
-    rearLift= RearLift.getInstance();
+    intakeElbow = IntakeElbow.getInstance();
+    rearLift = RearLift.getInstance();
 
     oi = new OI();
     oi.init();

@@ -65,11 +65,10 @@ public class FrontLift extends Subsystem {
 		liftTalonSRX.config_kI(0, 0.0, 30);
     liftTalonSRX.config_kD(0, 1.0, 30);
 
-
-    liftTalonSRX.configPeakCurrentLimit(3, 30);
-    liftTalonSRX.configPeakCurrentDuration(5, 30);
-    liftTalonSRX.configContinuousCurrentLimit(1, 30);
-    liftTalonSRX.enableCurrentLimit(false); // Honor initial setting
+    liftTalonSRX.configPeakCurrentLimit(50, 30);
+    liftTalonSRX.configPeakCurrentDuration(700, 30);
+    liftTalonSRX.configContinuousCurrentLimit(30, 30);
+    liftTalonSRX.enableCurrentLimit(true);
 
     liftVictorSPX.follow(liftTalonSRX);
     

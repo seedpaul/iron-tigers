@@ -16,10 +16,6 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 
-
-/**
- * Add your docs here.
- */
 public class IntakeElbow extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
@@ -33,10 +29,11 @@ public class IntakeElbow extends Subsystem {
   }
 
   private void init(){
+
+    //pulse per revolution = 4096
+
     intakeElbowSRX.configFactoryDefault();
-
     intakeElbowSRX.set(ControlMode.PercentOutput,0);
-
     intakeElbowSRX.setNeutralMode(NeutralMode.Brake);
 
     //this is a very important line of code
@@ -58,12 +55,13 @@ public class IntakeElbow extends Subsystem {
     intakeElbowSRX.configAllowableClosedloopError(0, 0, 30);
 
 		intakeElbowSRX.config_kF(0, 0.0, 30);
-		intakeElbowSRX.config_kP(0, 0.15, 30);
+		intakeElbowSRX.config_kP(0, 0.75, 30);
 		intakeElbowSRX.config_kI(0, 0.0, 30);
     intakeElbowSRX.config_kD(0, 1.0, 30);
 
     //pre-flight checklist to make sure lift is all the way @ bottom
-    intakeElbowSRX.setSelectedSensorPosition(0,0,30);
+    intakeElbowSRX.setSelectedSensorPosition(ElbowPositions.getMax(),0,30);
+    //intakeElbowSRX.setSelectedSensorPosition(2225,0,30);
   }
 
   public static IntakeElbow getInstance() {
@@ -76,16 +74,16 @@ public class IntakeElbow extends Subsystem {
   public void up(){
     intakeElbowSRX.set(ControlMode.Position, ElbowPositions.up());
     intakeElbowSRX.getSelectedSensorPosition();
-    // System.out.println("Sensor:"+intakeElbowSRX.getSelectedSensorPosition());
+  }
+
+  public void stop(){
+    intakeElbowSRX.set(ControlMode.PercentOutput, 0.0);
   }
 
   public void down(){
     intakeElbowSRX.set(ControlMode.Position, ElbowPositions.down());
     intakeElbowSRX.getSelectedSensorPosition();
-    // System.out.println("Sensor:"+intakeElbowSRX.getSelectedSensorPosition());
   }
-
-  
 
   @Override
   public void initDefaultCommand() {

@@ -9,11 +9,10 @@ package frc.robot.commands;
 
 import frc.robot.commands.CommandBase;
 
-public class DriveForward extends CommandBase {
-  public DriveForward() {
+public class IntakeWheelsInjest extends CommandBase {
+  public IntakeWheelsInjest() {
     // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
-    requires(driveTrain);
+    requires(intakeWheels);
   }
 
   // Called just before this Command runs the first time
@@ -24,6 +23,7 @@ public class DriveForward extends CommandBase {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    intakeWheels.injest();
   }
 
   // Make this return true when this Command no longer needs to run execute()
