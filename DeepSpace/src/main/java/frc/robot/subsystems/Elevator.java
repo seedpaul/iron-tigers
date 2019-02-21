@@ -59,12 +59,12 @@ public class Elevator extends Subsystem {
     elevatorSRX.configNominalOutputForward(0,30);
     elevatorSRX.configNominalOutputReverse(0,30);
     elevatorSRX.configPeakOutputForward(1, 30);
-    elevatorSRX.configPeakOutputReverse(-1, 30);
+    elevatorSRX.configPeakOutputReverse(-0.5, 30);
 
     elevatorSRX.configAllowableClosedloopError(0, 0, 30);
 
 		elevatorSRX.config_kF(0, 0.0, 30);
-		elevatorSRX.config_kP(0, 0.15, 30);
+		elevatorSRX.config_kP(0, 0.5, 30);
 		elevatorSRX.config_kI(0, 0.0, 30);
     elevatorSRX.config_kD(0, 1.0, 30);
 
@@ -85,7 +85,7 @@ public class Elevator extends Subsystem {
     if(currentPosition < (ElevatorPositions.Position.length-1)){
       currentPosition++;
       setPosition(currentPosition);
-      System.out.println("current:" + elevatorSRX.getOutputCurrent());
+      // System.out.println("current:" + elevatorSRX.getOutputCurrent());
     }
 
   }
@@ -95,8 +95,13 @@ public class Elevator extends Subsystem {
     if(currentPosition > 0){
       currentPosition--;
       setPosition(currentPosition);
-      System.out.println("current:" + elevatorSRX.getOutputCurrent());
+      // System.out.println("current:" + elevatorSRX.getOutputCurrent());
     }
+  }
+
+  public void goToHome(){
+
+    setPosition(ElevatorPositions.home);
   }
 
   private void setPosition(int position){
@@ -104,9 +109,9 @@ public class Elevator extends Subsystem {
     //counterclockwise is up, 
     elevatorSRX.set(ControlMode.Position, ElevatorPositions.Position[position]);
     elevatorSRX.getSelectedSensorPosition();
-    System.out.println("Sensor:"+elevatorSRX.getSelectedSensorPosition());
-    System.out.println("INDEX:"+position);
-    System.out.println("VALUE:"+ ElevatorPositions.Position[position] + "\n");
+    // System.out.println("Sensor:"+elevatorSRX.getSelectedSensorPosition());
+    // System.out.println("INDEX:"+position);
+    // System.out.println("VALUE:"+ ElevatorPositions.Position[position] + "\n");
   }
 
   @Override

@@ -7,12 +7,14 @@
 
 package frc.robot.commands;
 
-import frc.robot.commands.CommandBase;
 
-public class ElevatorDown extends CommandBase {
-  public ElevatorDown() {
+public class FlipperOpen extends CommandBase {
+
+  private static boolean complete = false;
+  
+  public FlipperOpen() {
     // Use requires() here to declare subsystem dependencies
-    requires(elevator);
+    requires(intakeWheels);
   }
 
   // Called just before this Command runs the first time
@@ -23,18 +25,19 @@ public class ElevatorDown extends CommandBase {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    elevator.down();
+    complete = intakeWheels.openFlipper();
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return true;
+    return complete;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    intakeWheels.stopFlipper();
   }
 
   // Called when another command which requires one or more of the same

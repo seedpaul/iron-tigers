@@ -8,11 +8,7 @@
 package frc.robot.command_groups;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import frc.robot.commands.DriveForward;
-import frc.robot.commands.FrontLiftDown;
-import frc.robot.commands.FrontLiftUp;
-import frc.robot.commands.RearLiftDown;
-import frc.robot.commands.RearLiftUp;
+import frc.robot.commands.*;
 
 public class ClimbLevel6 extends CommandGroup {
   /**
@@ -22,41 +18,28 @@ public class ClimbLevel6 extends CommandGroup {
     // Add Commands here:
     // e.g. addSequential(new Command1());
     // addSequential(new Command2());
-    // these will run in order.
+    // addParallel(new Command1());
 
-    // To run multiple commands at the same time,
-    // use addParallel()
-    // e.g. addParallel(new Command1());
-    // addSequential(new Command2());
-    // Command1 and Command2 will run in parallel.
+    //Step 1 - Elevator all the way down
+    addSequential(new ElevatorHome());
 
-    // A command group will require all of the subsystems that each member
-    // would require.
-    // e.g. if Command1 requires chassis, and Command2 requires arm,
-    // a CommandGroup containing them would require both the chassis and the
-    // arm.
+    //Step 2 - Deploy front lift 
+    addSequential(new FrontLiftHab6());
 
-    //Step 1 - deploy front lift to level 6 
-    addSequential(new FrontLiftDown());
+    //Step 3 - Deploy rear lift and start 
+    //  front lift omn it way down
+    addParallel(new RearLiftHab6());
+    addParallel(new FrontLiftClimbStep1());
 
-    //Step 2 - front and rear lift down (parallel)
-    addParallel(new FrontLiftDown());
-    addSequential(new RearLiftDown());
+    //Step 4 - Drive forward 
+    addSequential(new DriveStraight(0,0)); // until about ITS OVER 9000 DUBBAH BRAP BRAP BRAP 
 
-    //Step 3 - drive forward 
-    addSequential(new DriveForward());
+    //Step 5 - deploy rear lift 
+    addSequential(new RearLiftHome());
 
-    //Step 4 - front lift up into bot
-    addSequential(new FrontLiftUp());
-
-    //Step 5 - drive forward
-    addSequential(new DriveForward());
-
-    //Step 6 - rear lift up into bot
-    addSequential(new RearLiftUp());
-
-    //Step 7 - drive forward
-    addSequential(new DriveForward());
+    //step 6 - drive forward 
+    addParallel(new DriveStraight(0,0));
+    addParallel(new FrontLiftHome());
 
   }
 }

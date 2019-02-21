@@ -8,12 +8,11 @@
 package frc.robot.commands;
 
 import frc.robot.commands.CommandBase;
-import frc.robot.OI;
 
-public class TurnToAngle extends CommandBase {
-  public TurnToAngle() {
+public class FrontLiftClimbStep2 extends CommandBase {
+  public FrontLiftClimbStep2() {
     // Use requires() here to declare subsystem dependencies
-    requires(driveTrain);
+    requires(frontLift);
   }
 
   // Called just before this Command runs the first time
@@ -24,13 +23,14 @@ public class TurnToAngle extends CommandBase {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    driveTrain.turn90(OI.XboxDriver);
+    frontLift.climbStep2();
+    // System.out.println("sensorValue: "+frontLift.getSensorValue());
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return true;
   }
 
   // Called once after isFinished returns true

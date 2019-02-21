@@ -9,10 +9,11 @@ package frc.robot.commands;
 
 import frc.robot.commands.CommandBase;
 
-public class FrontLiftUp extends CommandBase {
-  public FrontLiftUp() {
+public class RearLiftHab6 extends CommandBase {
+  public RearLiftHab6() {
     // Use requires() here to declare subsystem dependencies
-    //requires(frontLift); 
+    // eg. requires(chassis);
+    requires(rearLift);
   }
 
   // Called just before this Command runs the first time
@@ -23,8 +24,8 @@ public class FrontLiftUp extends CommandBase {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    //frontLift.up();
-    //System.out.println("sensorValue: "+frontLift.getSensorValue());
+    rearLift.goToLevel6();
+    //System.out.println("sensorValue: "+rearLift.getSensorValue());
   }
 
   // Make this return true when this Command no longer needs to run execute()

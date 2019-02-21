@@ -26,8 +26,6 @@ public class FrontLift extends Subsystem {
   private final TalonSRX liftTalonSRX = new TalonSRX(RobotMap.SRXFrontLift);
   private final VictorSPX liftVictorSPX = new VictorSPX(RobotMap.SPXFrontLift);
 
-  private int currentPosition = 0;
-
   private static FrontLift instance;
 
   private FrontLift(){
@@ -50,26 +48,36 @@ public class FrontLift extends Subsystem {
     liftTalonSRX.configForwardSoftLimitEnable(true);
     liftTalonSRX.configReverseSoftLimitEnable(true);
 
-    liftTalonSRX.configForwardSoftLimitThreshold(FrontLiftPositions.getHighestPosition());
-    liftTalonSRX.configReverseSoftLimitThreshold(FrontLiftPositions.getHomePosition());
+    liftTalonSRX.configForwardSoftLimitThreshold(FrontLiftPositions.getHomePosition());
+    liftTalonSRX.configReverseSoftLimitThreshold(FrontLiftPositions.geLowestPosition());
 
     liftTalonSRX.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 30);
     
     liftTalonSRX.configNominalOutputForward(0,30);
     liftTalonSRX.configNominalOutputReverse(0,30);
-    liftTalonSRX.configPeakOutputForward(1, 30);
-    liftTalonSRX.configPeakOutputReverse(-1, 30);
+    liftTalonSRX.configPeakOutputForward(1.0, 30);
+    liftTalonSRX.configPeakOutputReverse(-1.0, 30);
 
     liftTalonSRX.configAllowableClosedloopError(0, 0, 30);
 
 		liftTalonSRX.config_kF(0, 0.0, 30);
-		liftTalonSRX.config_kP(0, 0.15, 30);
+		liftTalonSRX.config_kP(0, 1.0, 30);
 		liftTalonSRX.config_kI(0, 0.0, 30);
     liftTalonSRX.config_kD(0, 1.0, 30);
 
+    liftTalonSRX.configPeakCurrentLimit(50, 30);
+    liftTalonSRX.configPeakCurrentDuration(700, 30);
+    liftTalonSRX.configContinuousCurrentLimit(30, 30);
+    liftTalonSRX.enableCurrentLimit(true);
+
     liftVictorSPX.follow(liftTalonSRX);
-    //pre-flight checklist to make sure lift is all the way @ bottom
-    liftTalonSRX.setSelectedSensorPosition(0,0,30);
+    
+    //pre-flight checklist to make sure lift is all the way up
+    liftTalonSRX.setSelectedSensorPosition(FrontLiftPositions.front_home,0,30);
+    //liftTalonSRX.setSelectedSensorPosition(FrontLiftPositions.front_home - 1000,0,30);
+    
+    // use this as starting position if the front lift was left in the down position
+    //liftTalonSRX.setSelectedSensorPosition(FrontLiftPositions.front_habClimbStep2 ,0,30);
   }
 
   public static FrontLift getInstance(){
@@ -79,26 +87,31 @@ public class FrontLift extends Subsystem {
     return instance;
   }
 
-  public void gotoToLevel6position(){
-    setPosition(FrontLiftPositions.habLevel6);
+  public void climbStep2(){
+    setPosition(FrontLiftPositions.front_habClimbStep2);
   }
 
-  public void goToLevel9Position(){
-    setPosition(FrontLiftPositions.habLevel19);
+  public void climbStep1(){
+    setPosition(FrontLiftPositions.front_habClimbStep1);
+  }
+
+  public void gotoToLevel6position(){
+    setPosition(FrontLiftPositions.front_habLevel6);
+  }
+
+  public void goToLevel19Position(){
+    setPosition(FrontLiftPositions.front_habLevel19);
   }
 
   public void goToHome(){
-    setPosition(FrontLiftPositions.home);
+    setPosition(FrontLiftPositions.front_home);
   }
 
   private void setPosition(int position){
 
     //counterclockwise is up, 
-    liftTalonSRX.set(ControlMode.Position, FrontLiftPositions.Position[position]);
-    liftTalonSRX.getSelectedSensorPosition();
-    //System.out.println("Sensor:"+liftTalonSRX.getSelectedSensorPosition());
-    // System.out.println("INDEX:"+position);
-    System.out.println("Target VALUE:"+ FrontLiftPositions.Position[position] + "\n");
+    liftTalonSRX.set(ControlMode.Position, position);
+    // System.out.println("Target VALUE:"+ position + "\n");
   }
 
   public int getSensorValue(){

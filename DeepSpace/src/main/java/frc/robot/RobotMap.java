@@ -26,14 +26,13 @@ public class RobotMap {
 
 
   //*********************start can********************/
-  
-  //*****Draintrain********************
-  public static int SPXFrontRight = 11;
-  public static int SPXFrontLeft = 12;
-  
-  public static int SRXBackRight = 2;
-  public static int SRXBackLeft = 4;
-  //*****Draintrain********************
+    //*****Start Draintrain********************
+    public static int SPXFrontRight = 11;
+    public static int SPXFrontLeft = 12;
+    
+    public static int SRXBackRight = 2;
+    public static int SRXBackLeft = 4;
+    //*****End  Draintrain********************
 
   public static int SRXFrontLift = 7;
   public static int SPXFrontLift = 10;
@@ -43,22 +42,23 @@ public class RobotMap {
   public static int SRXElevator = 5;
   public static int SPXElevator = 9;
 
-  public static int TalonIntakeClaw = 0;
-  public static int VictorIntakeWheels = 0;
-  public static int VictorIntakeFlipper = 0;
+  //public static int TalonIntakeClaw = 0;
+  public static int TalonIntakeWheels = 3;
+  public static int TalonIntakeFlipper = 8;
 
   public static int SRXIntakeElbow = 1;
 //*******************end can*****************************/
 
+//****************** DIO ports for encoders**************/
   public static int leftEncoderChannelA = 4;
   public static int leftEncoderChannelB = 5;
   public static int rightEncoderChannelA = 2;
   public static int rightEncoderChannelB = 3;
 
-  public static int flipperEncoderChannelA = 6;
-  public static int flipperEncoderChannelB = 7;
+  public static int flipperEncoderChannelA = 0;
+  public static int flipperEncoderChannelB = 1;
 
-  	//start xbox *****************************************
+//start xbox *****************************************
 	public static final int xboxControllerDriver = 0;
 	public static final int xboxControllerAssist = 1;
 	
@@ -84,7 +84,8 @@ public class RobotMap {
 
 	public static final int rightJoystickPush = 12;
 	public static final int leftJoystickPush = 11;
-	//end xbox *****************************************
+
+  //end xbox *****************************************
 
 
 }

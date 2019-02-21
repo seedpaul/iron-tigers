@@ -12,34 +12,48 @@ package frc.robot;
  */
 public class ElbowPositions {
     
-    private static int elbowIncrement = 100;
-    private static int elbowMax = 18192;
-    private static int elbowMin = 0;
-    private static int currentPosition = 0;
+    private static int eject_position = 5000;
+    private static int home_position = 8200;//this is down
+    private static int intake_Position = 4100;//this is up
+    private static int currentIndex = 2;
+
+    private static int[] positions = {intake_Position,eject_position,home_position};
 
     public static int getMax(){
-        return elbowMax;
+        return home_position;
     }
 
     public static int getMin(){
-        return elbowMin;
+        return intake_Position;
     }
 
-    public static int up(){
+    public static int home(){
         //move position up one increment
-        if(currentPosition < (elbowMax-elbowIncrement)){
-            currentPosition+=elbowIncrement;
-          }
-          return currentPosition;
+        return home_position;
     }
 
-    public static int down(){
+    public static int intake(){
         //move down one increment
-        if(currentPosition > (elbowMin+elbowIncrement)){
-            currentPosition-=elbowIncrement;
-          }
+        return intake_Position;
+    }
 
-          return currentPosition;
+    public static int eject(){
+        return eject_position;
     }
     
+    public static int down(){
+
+        if(currentIndex > 0){
+            currentIndex--;
+        }
+        return positions[currentIndex];
+    }
+    public static int up(){
+
+        if(currentIndex < 3){
+            currentIndex++;
+        }
+        return positions[currentIndex];
+    }
+
 }

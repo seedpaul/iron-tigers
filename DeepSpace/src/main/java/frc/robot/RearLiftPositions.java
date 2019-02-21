@@ -12,18 +12,16 @@ package frc.robot;
  */
 public class RearLiftPositions {
 
-    public static final int home = 0;
+    public static final int rear_home = 0;
 
-    public static final int habLevel6 = 6;
-    public static final int habLevel19 = 9;
-
-    public static final int[] Position = {home, habLevel6, habLevel19};
+    public static final int rear_habLevel6 = -4500;
+    public static final int rear_habLevel19 = -10250;
 
     public static int getHighestPosition(){
-    return Position[Position.length-1];
+        return rear_habLevel19;
     }
 
     public static int getHomePosition(){
-    return Position[0];
+        return rear_home;
     }
 }

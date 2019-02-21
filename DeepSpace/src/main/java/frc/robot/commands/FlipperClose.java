@@ -7,12 +7,13 @@
 
 package frc.robot.commands;
 
-import frc.robot.commands.CommandBase;
 
-public class disablePID extends CommandBase {
-  public disablePID() {
+public class FlipperClose extends CommandBase {
+  private static boolean complete = false;
+  
+  public FlipperClose() {
     // Use requires() here to declare subsystem dependencies
-    requires(driveTrain);
+    requires(intakeWheels);
   }
 
   // Called just before this Command runs the first time
@@ -23,18 +24,19 @@ public class disablePID extends CommandBase {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    driveTrain.disablePID();
+    complete = intakeWheels.closeFlipper();
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return true;
+    return complete;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    intakeWheels.stopFlipper();
   }
 
   // Called when another command which requires one or more of the same

@@ -9,11 +9,10 @@ package frc.robot.commands;
 
 import frc.robot.commands.CommandBase;
 
-public class RearLiftDown extends CommandBase {
-  public RearLiftDown() {
+public class IntakeWheelsInjest extends CommandBase {
+  public IntakeWheelsInjest() {
     // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
-    //requires(rearLift);
+    requires(intakeWheels);
   }
 
   // Called just before this Command runs the first time
@@ -24,14 +23,13 @@ public class RearLiftDown extends CommandBase {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    //rearLift.down();
-    //System.out.println("sensorValue: "+rearLift.getSensorValue());
+    intakeWheels.injest();
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return true;
+    return false;
   }
 
   // Called once after isFinished returns true

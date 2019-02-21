@@ -7,11 +7,11 @@
 
 package frc.robot.commands;
 
-
-public class closeFlipper extends CommandBase {
-  public closeFlipper() {
+public class FlipperStop extends CommandBase {
+  
+  public FlipperStop() {
     // Use requires() here to declare subsystem dependencies
-    //requires(intakeClaw);
+    requires(intakeWheels);
   }
 
   // Called just before this Command runs the first time
@@ -22,19 +22,19 @@ public class closeFlipper extends CommandBase {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    //intakeClaw.retractFlippers();
-    
+    intakeWheels.stopFlipper();
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return true;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    intakeWheels.stopFlipper();
   }
 
   // Called when another command which requires one or more of the same

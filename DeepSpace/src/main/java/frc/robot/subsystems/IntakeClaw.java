@@ -24,7 +24,7 @@ public class IntakeClaw extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  private static TalonSRX intakeClaw = new TalonSRX(RobotMap.TalonIntakeClaw);
+  private static TalonSRX intakeClaw = new TalonSRX(RobotMap.TalonIntakeWheels);
   private static Servo flipper1Servo = new Servo(0);
   private static Servo flipper2Servo = new Servo(1);
   private static Servo flipper3Servo = new Servo(2);

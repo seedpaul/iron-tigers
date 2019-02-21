@@ -7,11 +7,12 @@
 
 package frc.robot.commands;
 
+import frc.robot.commands.CommandBase;
 
-public class openFlipper extends CommandBase {
-  public openFlipper() {
+public class RearLiftHome extends CommandBase {
+  public RearLiftHome() {
     // Use requires() here to declare subsystem dependencies
-    // requires(intakeClaw);
+    requires(rearLift);
   }
 
   // Called just before this Command runs the first time
@@ -22,13 +23,14 @@ public class openFlipper extends CommandBase {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    // intakeClaw.extendFlippers();
+    rearLift.goToHome();
+    // System.out.println("sensorValue: "+frontLift.getSensorValue());
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return true;
   }
 
   // Called once after isFinished returns true
