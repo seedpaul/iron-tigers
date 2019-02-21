@@ -10,7 +10,6 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.*;
-import frc.robot.command_groups.*;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -48,7 +47,7 @@ public class OI {
   public void init(){
 
     //********** Main Driver *****************************************************//
-    startButton_dr.whenPressed(new ToggleCameras());
+    //startButton_dr.whenPressed(new ToggleCameras());
 
     buttonX_dr.whenPressed(new ElbowUp());//actually down
     buttonB_dr.whenPressed(new ElbowDown());//actually up
@@ -76,8 +75,8 @@ public class OI {
     buttonB_as.whenPressed(new FlipperOpen());
     buttonX_as.whenPressed(new FlipperClose());
 
-    buttonBumperRight_as.whenPressed(new ClimbLevel19()); 
-    buttonBumperLeft_as.whenPressed(new ClimbLevel6()); 
+    // buttonBumperRight_as.whenPressed(new ClimbLevel19()); 
+    // buttonBumperLeft_as.whenPressed(new ClimbLevel6()); 
     
 
   }
