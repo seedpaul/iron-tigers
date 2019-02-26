@@ -40,6 +40,10 @@ public class Elevator extends Subsystem {
     elevatorTalon.set(-0.5);
   }
 
+  public void stop(){
+    elevatorTalon.set(0.0);
+  }
+
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.

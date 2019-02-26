@@ -13,65 +13,72 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
+import edu.wpi.first.wpilibj.Encoder;
 
-import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-/**
- * Add your docs here.
- */
 public class IntakeClaw extends Subsystem {
-  // Put methods for controlling this subsystem
-  // here. Call these from Commands.
 
-  private static TalonSRX intakeClaw = new TalonSRX(RobotMap.TalonIntakeWheels);
-  private static Servo flipper1Servo = new Servo(0);
-  private static Servo flipper2Servo = new Servo(1);
-  private static Servo flipper3Servo = new Servo(2);
-//hi
+  private static final TalonSRX intakeClawSRX = new TalonSRX(RobotMap.TalonIntakeClaw);
+  private static final TalonSRX intakeflipper = new TalonSRX(RobotMap.TalonIntakeClawFlipper);
+  private static final Encoder flipperEncoder = new Encoder(RobotMap.flipperEncoderChannelA, RobotMap.flipperEncoderChannelB, true, Encoder.EncodingType.k4X);
+
+  private static final int flipper_home = 0;
+  private static final int flipper_extend = 400;
+
   private static IntakeClaw instance;
 
   private IntakeClaw(){
     init();
   }
 
-  private void init(){
-    flipper1Servo.setSpeed(1.0);
-    flipper2Servo.setSpeed(1.0);
-    flipper3Servo.setSpeed(1.0);    
+  private void init(){ 
     
-    intakeClaw.set(ControlMode.PercentOutput,0);
-    intakeClaw.configFactoryDefault();
-    intakeClaw.setNeutralMode(NeutralMode.Brake);
+    //************** claw**************/
+    intakeClawSRX.configFactoryDefault();
+    intakeClawSRX.setSensorPhase(true);
+    intakeClawSRX.set(ControlMode.PercentOutput,0);
+    intakeClawSRX.setNeutralMode(NeutralMode.Brake);
+    intakeClawSRX.configForwardSoftLimitThreshold(IntakeClawPositions.getMax());
+    intakeClawSRX.configReverseSoftLimitThreshold(IntakeClawPositions.getMin());
+    intakeClawSRX.configForwardSoftLimitEnable(true);
+    intakeClawSRX.configReverseSoftLimitEnable(true);
+    intakeClawSRX.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 30);
+    intakeClawSRX.configAllowableClosedloopError(0,75,30);
 
-    //this is a very important line of code in order to make foward on motor line up with foward on encoder
-    intakeClaw.setSensorPhase(true);
-
-    intakeClaw.configForwardSoftLimitEnable(true);
-    intakeClaw.configReverseSoftLimitEnable(true);
-
-    // tightest to widest
-    //load/release hatch panel
-    //hold hatch panel
-    //clamp ball
-    //ball release position
-    //ball pick up
-
-    intakeClaw.configForwardSoftLimitThreshold(IntakeClawPositions.getMax());
-    intakeClaw.configReverseSoftLimitThreshold(IntakeClawPositions.getMin());
-
-    intakeClaw.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 30);
+		intakeClawSRX.config_kF(0, 0.0, 30);
+		intakeClawSRX.config_kP(0, 0.85, 30);
+		intakeClawSRX.config_kI(0, 0.0, 30);
+    intakeClawSRX.config_kD(0, 1.0, 30);
     
-    intakeClaw.configNominalOutputForward(0,30);
-    intakeClaw.configNominalOutputReverse(0,30);
-    intakeClaw.configPeakOutputForward(1, 30);
-    intakeClaw.configPeakOutputReverse(-1, 30);
+    intakeClawSRX.configNominalOutputForward(0,30);
+    intakeClawSRX.configNominalOutputReverse(0,30);
+    intakeClawSRX.configPeakOutputForward(1, 30);
+    intakeClawSRX.configPeakOutputReverse(-1, 30);
 
-    // intakeClaw.configPeakCurrentLimit(3, 30);
-    // intakeClaw.configPeakCurrentDuration(5, 30);
-    // intakeClaw.configContinuousCurrentLimit(1, 30);
-    // intakeClaw.enableCurrentLimit(false); // Honor initial setting
+    intakeClawSRX.configPeakCurrentLimit(20, 30);
+    intakeClawSRX.configPeakCurrentDuration(120, 30);
+    intakeClawSRX.configContinuousCurrentLimit(1, 30);
+    intakeClawSRX.enableCurrentLimit(true);
 
+    intakeClawSRX.setSelectedSensorPosition(IntakeClawPositions.getMin(),0,30);
+
+    //************** flipper**************/
+    intakeflipper.configFactoryDefault();
+
+    intakeflipper.set(ControlMode.PercentOutput,0);
+    intakeflipper.setNeutralMode(NeutralMode.Brake);
+    intakeflipper.configNominalOutputForward(0,30);
+    intakeflipper.configNominalOutputReverse(0,30);
+    intakeflipper.configPeakOutputForward(1, 30);
+    intakeflipper.configPeakOutputReverse(-1, 30);
+
+    intakeflipper.configPeakCurrentLimit(20, 30);
+    intakeflipper.configPeakCurrentDuration(120, 30);
+    intakeflipper.configContinuousCurrentLimit(1, 30);
+    intakeflipper.enableCurrentLimit(true); 
+
+    flipperEncoder.reset();
   }
 
   public static IntakeClaw getInstance(){
@@ -81,34 +88,54 @@ public class IntakeClaw extends Subsystem {
     return instance;
   }
 
-  public void loadHatchPanel(){
-    intakeClaw.set(ControlMode.Position, IntakeClawPositions.loadHatchPanel());
-  }
-  public void holdHatchPanel(){
-    intakeClaw.set(ControlMode.Position, IntakeClawPositions.holdHatchPanel());
-  }
-  
-  public void clampBall(){
-    intakeClaw.set(ControlMode.Position, IntakeClawPositions.clampBall());
-  }
-  public void releaseBall(){
-    intakeClaw.set(ControlMode.Position, IntakeClawPositions.releaseBall());
-    extendFlippers();
-  }
-  public void loadBall(){
-    intakeClaw.set(ControlMode.Position, IntakeClawPositions.loadBall());
+  public void clawOpen(){
+    intakeClawSRX.set(ControlMode.Position, IntakeClawPositions.open());
   }
 
-
-  public void extendFlippers(){
-    flipper1Servo.set(0.0);
-    flipper2Servo.set(0.0);
-    flipper3Servo.set(1.0);
+  public void clawClose(){
+    intakeClawSRX.set(ControlMode.Position, IntakeClawPositions.close());
   }
-  public void retractFlippers(){
-    flipper1Servo.set(1.0);
-    flipper2Servo.set(1.0);
-    flipper3Servo.set(0.0);
+
+  public void clawReleaseBall(){
+    intakeClawSRX.set(ControlMode.Position, IntakeClawPositions.releaseBall());
+  }
+
+  public void clawStop(){
+    intakeClawSRX.set(ControlMode.PercentOutput, 0.0);
+  }
+
+  public boolean flipperHome(){
+
+    boolean done = false;
+    double currentDistance = flipperEncoder.getDistance(); 
+
+    if(currentDistance > flipper_home){
+      intakeflipper.set(ControlMode.PercentOutput, -1.0);
+    }
+    else{
+      done = true;
+    }
+    
+    return done;
+  }
+
+  public boolean flipperExtend(){
+
+    boolean done = false;
+    double currentDistance = flipperEncoder.getDistance(); 
+
+    if(currentDistance < flipper_extend){
+      intakeflipper.set(ControlMode.PercentOutput, 1.0);
+    }
+    else{
+      done = true;
+    }
+    
+    return done;
+  }
+
+  public void flipperStop(){
+    intakeflipper.set(ControlMode.PercentOutput, 0.0);
   }
 
   @Override

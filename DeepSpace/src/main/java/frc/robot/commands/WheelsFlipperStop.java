@@ -7,9 +7,9 @@
 
 package frc.robot.commands;
 
-public class FlipperStop extends CommandBase {
+public class WheelsFlipperStop extends CommandBase {
   
-  public FlipperStop() {
+  public WheelsFlipperStop() {
     // Use requires() here to declare subsystem dependencies
     requires(intakeWheels);
   }

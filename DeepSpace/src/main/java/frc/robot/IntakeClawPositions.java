@@ -12,13 +12,20 @@ package frc.robot;
  */
 public class IntakeClawPositions {
     
-    private static int currentPosition;
-
+    
     private static int load_release_HatchPanel = 0;//fully closed
-    private static int holdHatchPanel = 0;
-    private static int clampBall = 0;
-    private static int releaseBall = 0;
-    private static int loadBall = 0;//fully open
+    private static int holdHatchPanel = 1;
+    private static int clampBall = 2;
+
+    // releaseBall is a special position that will be skipped by normal open and close function
+    // it will be tied together with flipper extend to eject the ball with one button push
+    private static int releaseBall = 3;
+
+    private static int loadBall = 4;//fully open
+    private static int currentIndex = 0;
+
+                            // index         0               1               2           3
+    private static int[] positions = {load_release_HatchPanel,holdHatchPanel,clampBall,loadBall};
 
     public static int getMax(){
         return loadBall;
@@ -28,30 +35,28 @@ public class IntakeClawPositions {
         return load_release_HatchPanel;
     }
 
-    public static int loadHatchPanel(){
-        currentPosition = load_release_HatchPanel;
+    public static int home(){
+        //move position up one increment
         return load_release_HatchPanel;
-        
-    }
-
-    public static int holdHatchPanel(){
-        currentPosition = load_release_HatchPanel;
-        return holdHatchPanel;
-    }
-
-    public static int clampBall(){
-        currentPosition = load_release_HatchPanel;
-        return clampBall;
     }
 
     public static int releaseBall(){
-        currentPosition = load_release_HatchPanel;
         return releaseBall;
     }
+    
+    public static int close(){
 
-    public static int loadBall(){
-        currentPosition = load_release_HatchPanel;
-        return loadBall;
+        if(currentIndex > 0){
+            currentIndex--;
+        }
+        return positions[currentIndex];
+    }
+    public static int open(){
+
+        if(currentIndex < (positions.length-1)){
+            currentIndex++;
+        }
+        return positions[currentIndex];
     }
     
 }

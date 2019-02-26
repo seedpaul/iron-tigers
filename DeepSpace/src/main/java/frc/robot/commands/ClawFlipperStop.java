@@ -7,12 +7,11 @@
 
 package frc.robot.commands;
 
-import frc.robot.commands.CommandBase;
-
-public class IntakeWheelsEject extends CommandBase {
-  public IntakeWheelsEject() {
+public class ClawFlipperStop extends CommandBase {
+  
+  public ClawFlipperStop() {
     // Use requires() here to declare subsystem dependencies
-    requires(intakeWheels);
+    requires(intakeClaw);
   }
 
   // Called just before this Command runs the first time
@@ -23,7 +22,7 @@ public class IntakeWheelsEject extends CommandBase {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    intakeWheels.eject();
+    intakeClaw.flipperStop();
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -35,6 +34,7 @@ public class IntakeWheelsEject extends CommandBase {
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    intakeClaw.flipperStop();
   }
 
   // Called when another command which requires one or more of the same

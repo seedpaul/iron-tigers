@@ -10,14 +10,17 @@ package frc.robot;
 /**
  * Add your docs here.
  */
-public class ElbowPositions {
+public class IntakeElbowPositions {
     
-    private static int eject_position = 5000;
-    private static int home_position = 8200;//this is down
-    private static int intake_Position = 4100;//this is up
-    private static int currentIndex = 2;
+    
+    private static int home_position = 20000;//this is up
+    private static int eject_position = 18000;
+    private static int hatch_position = 17000;
+    private static int intake_Position = 16000;//this is down
+    private static int currentIndex = 3;
 
-    private static int[] positions = {intake_Position,eject_position,home_position};
+                            // index         0               1               2             3
+    private static int[] positions = {intake_Position,hatch_position,eject_position,home_position};
 
     public static int getMax(){
         return home_position;
@@ -25,11 +28,6 @@ public class ElbowPositions {
 
     public static int getMin(){
         return intake_Position;
-    }
-
-    public static int home(){
-        //move position up one increment
-        return home_position;
     }
 
     public static int intake(){
@@ -50,7 +48,7 @@ public class ElbowPositions {
     }
     public static int up(){
 
-        if(currentIndex < 3){
+        if(currentIndex < (positions.length-1)){
             currentIndex++;
         }
         return positions[currentIndex];

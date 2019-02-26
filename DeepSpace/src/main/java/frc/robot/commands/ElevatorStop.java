@@ -9,10 +9,10 @@ package frc.robot.commands;
 
 import frc.robot.commands.CommandBase;
 
-public class IntakeWheelsEject extends CommandBase {
-  public IntakeWheelsEject() {
+public class ElevatorStop extends CommandBase {
+  public ElevatorStop() {
     // Use requires() here to declare subsystem dependencies
-    requires(intakeWheels);
+    requires(elevator);
   }
 
   // Called just before this Command runs the first time
@@ -23,7 +23,7 @@ public class IntakeWheelsEject extends CommandBase {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    intakeWheels.eject();
+    elevator.stop();
   }
 
   // Make this return true when this Command no longer needs to run execute()

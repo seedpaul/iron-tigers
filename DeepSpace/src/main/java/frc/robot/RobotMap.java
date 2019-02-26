@@ -42,9 +42,13 @@ public class RobotMap {
   public static int SRXElevator = 5;
   public static int SPXElevator = 9;
 
-  //public static int TalonIntakeClaw = 0;
+   // mapping locations for intake wheels
   public static int TalonIntakeWheels = 3;
   public static int TalonIntakeFlipper = 8;
+
+  // mapping locations for intake claw
+  public static int TalonIntakeClaw = 3;
+  public static int TalonIntakeClawFlipper = 8;
 
   public static int SRXIntakeElbow = 1;
 //*******************end can*****************************/
@@ -55,8 +59,8 @@ public class RobotMap {
   public static int rightEncoderChannelA = 2;
   public static int rightEncoderChannelB = 3;
 
-  public static int flipperEncoderChannelA = 0;
-  public static int flipperEncoderChannelB = 1;
+  public static int flipperEncoderChannelA = 8;
+  public static int flipperEncoderChannelB = 9;
 
 //start xbox *****************************************
 	public static final int xboxControllerDriver = 0;

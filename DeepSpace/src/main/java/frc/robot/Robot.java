@@ -7,10 +7,15 @@
 
 package frc.robot;
 
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.robot.commands.ArcadeDrive;
 import frc.robot.commands.CommandBase;
+import frc.robot.subsystems.IntakeElbow;
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -21,6 +26,10 @@ import frc.robot.commands.CommandBase;
  */
 public class Robot extends TimedRobot {
   private ArcadeDrive driveCommand;
+  private CameraServer server;
+  private UsbCamera cam;
+  private static final PowerDistributionPanel pdp = new PowerDistributionPanel(0);
+  private IntakeElbow elbow = IntakeElbow.getInstance();
 
   /**
    * This function is run when the robot is first started up and should be
@@ -30,6 +39,10 @@ public class Robot extends TimedRobot {
   public void robotInit() {
 
     CommandBase.init();
+    server = CameraServer.getInstance();
+		cam = server.startAutomaticCapture(0);
+		cam.setResolution(320, 240);
+		cam.setFPS(20);
   }
 
   /**
@@ -98,6 +111,11 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
+
+    SmartDashboard.putNumber("Elbow Current", pdp.getCurrent(15));
+    SmartDashboard.putNumber("Intake Wheels Current", pdp.getCurrent(14));
+    SmartDashboard.putNumber("Elbow Positon:",elbow.getSensorPosition());
+    
     Scheduler.getInstance().run();
 
     if (CommandBase.driveTrain.getCurrentCommand() == null){

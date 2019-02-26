@@ -35,24 +35,34 @@ public class OI {
   public static Joystick xboxControllerAssist = new Joystick(RobotMap.xboxControllerAssist);
 
   public static JoystickButton buttonA_as = new JoystickButton(xboxControllerAssist,RobotMap.buttonA);
+  public static JoystickButton buttonB_as = new JoystickButton(xboxControllerAssist,RobotMap.buttonB);
+  public static JoystickButton buttonX_as = new JoystickButton(xboxControllerAssist,RobotMap.buttonX);
   public static JoystickButton buttonY_as = new JoystickButton(xboxControllerAssist,RobotMap.buttonY);
+
+  public static JoystickButton buttonBumperLeft_as = new JoystickButton(xboxControllerAssist,RobotMap.buttonBumperLeft);
 
   public void init(){
 
     //************************* Main ***************************//
-    buttonY_dr.whenPressed(new IntakeWheelsEject());
-    buttonA_dr.whenPressed(new IntakeWheelsInjest());
+    buttonBumperRight_dr.whenPressed(new IntakeWheelsInjest());
+    //buttonBumperRight_dr.whenReleased(new IntakeWheelsStop());
+    
+    buttonBumperLeft_dr.whileHeld(new IntakeWheelsEject());
+    buttonBumperLeft_dr.whenReleased(new IntakeWheelsStop());
 
-    buttonX_dr.whenPressed(new ElbowUp());//actually down
-    buttonB_dr.whenPressed(new ElbowDown());//actually up
-    startButton_dr.whenPressed(new ElbowStop()); 
-
-    buttonBumperLeft_dr.whenPressed(new FlipperClose());
-    buttonBumperRight_dr.whenPressed(new FlipperOpen());
+    buttonY_dr.whenPressed(new ElbowUp());
+    buttonA_dr.whenPressed(new ElbowDown()); 
+    //buttonBumperRight_dr.whenPressed(new ElbowStop()); 
 
     //**************************** Assistnt ************************//
-    buttonY_as.whenPressed(new ElevatorUp()); 
-    buttonA_as.whenPressed(new ElevatorDown()); 
+    buttonY_as.whileHeld(new ElevatorUp()); 
+    buttonY_as.whenReleased(new ElevatorStop());
+
+    buttonA_as.whileHeld(new ElevatorDown()); 
+    buttonA_as.whenReleased(new ElevatorStop());
+
+    buttonX_as.whenPressed(new WheelsFlipperClose());
+    buttonB_as.whenPressed(new WheelsFlipperOpen());
 
   }
   

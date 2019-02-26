@@ -9,6 +9,7 @@ package frc.robot.subsystems;
 import frc.robot.RobotMap;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.Encoder;
+
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
@@ -20,10 +21,10 @@ public class IntakeWheels extends Subsystem {
 
   private static final TalonSRX intakeWheels = new TalonSRX(RobotMap.TalonIntakeWheels);
   private static final TalonSRX intakeflipper = new TalonSRX(RobotMap.TalonIntakeFlipper);
-  private final Encoder flipperEncoder = new Encoder(RobotMap.flipperEncoderChannelA, RobotMap.flipperEncoderChannelB, false, Encoder.EncodingType.k4X);
+  private final Encoder flipperEncoder = new Encoder(RobotMap.flipperEncoderChannelA, RobotMap.flipperEncoderChannelB, true, Encoder.EncodingType.k4X);
 
   private static final double flipper_home = 0.0;
-  private static final double flipper_open = 520.0;
+  private static final double flipper_close = 500.0;
 
   //pulse per rev 2048
   private static IntakeWheels instance;
@@ -53,14 +54,14 @@ public class IntakeWheels extends Subsystem {
     intakeflipper.configPeakOutputForward(1, 30);
     intakeflipper.configPeakOutputReverse(-1, 30);
 
-    intakeWheels.configPeakCurrentLimit(35, 30);
+    intakeWheels.configPeakCurrentLimit(15, 30);
     intakeWheels.configPeakCurrentDuration(120, 30);
-    intakeWheels.configContinuousCurrentLimit(25, 30);
+    intakeWheels.configContinuousCurrentLimit(1, 30);
     intakeWheels.enableCurrentLimit(true);
 
-    intakeflipper.configPeakCurrentLimit(35, 30);
+    intakeflipper.configPeakCurrentLimit(15, 30);
     intakeflipper.configPeakCurrentDuration(120, 30);
-    intakeflipper.configContinuousCurrentLimit(25, 30);
+    intakeflipper.configContinuousCurrentLimit(1, 30);
     intakeflipper.enableCurrentLimit(true);
 
     flipperEncoder.reset();
@@ -78,23 +79,7 @@ public class IntakeWheels extends Subsystem {
     return instance;
   }
 
-  public boolean openFlipper(){
-
-    boolean done = false;
-    double currentDistance = flipperEncoder.getDistance(); 
-
-    if(currentDistance < flipper_open){
-      intakeflipper.set(ControlMode.PercentOutput, 1.0);
-    }
-    else{
-      done = true;
-    }
-    
-    addInfoToDashboard();
-    return done;
-  }
-
-  public boolean closeFlipper(){
+  public boolean homeFlipper(){
 
     boolean done = false;
     double currentDistance = flipperEncoder.getDistance(); 
@@ -110,10 +95,26 @@ public class IntakeWheels extends Subsystem {
     return done;
   }
 
+  public boolean closeFlipper(){
+
+    boolean done = false;
+    double currentDistance = flipperEncoder.getDistance(); 
+
+    if(currentDistance < flipper_close){
+      intakeflipper.set(ControlMode.PercentOutput, 1.0);
+    }
+    else{
+      done = true;
+    }
+    
+    addInfoToDashboard();
+    return done;
+  }
+
 
   public void simpleCloseFlipper(){
 
-    intakeflipper.set(ControlMode.PercentOutput, -1.0);
+    intakeflipper.set(ControlMode.PercentOutput, 1.0);
   }
 
   public void stopFlipper(){
@@ -123,21 +124,23 @@ public class IntakeWheels extends Subsystem {
 
   public void injest(){
     intakeWheels.set(ControlMode.PercentOutput, -0.5);
+    addInfoToDashboard();
   }
 
   public void eject(){
     intakeWheels.set(ControlMode.PercentOutput, 1.0);
+    addInfoToDashboard();
   }
 
   public void stop(){
     intakeWheels.set(ControlMode.PercentOutput, 0.0);
+    addInfoToDashboard();
   }
 
 
   private void addInfoToDashboard(){
+
     SmartDashboard.putData("flipperEncoder", flipperEncoder);
-
-
   }
 //TODO:function wheels hold -- we may be able to automatically do with by monitoring the voltage
 
