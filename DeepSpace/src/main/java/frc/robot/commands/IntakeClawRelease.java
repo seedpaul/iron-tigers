@@ -34,13 +34,13 @@ public class IntakeClawRelease extends CommandBase {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    intakeClaw.clawStop();
+    //intakeClaw.clawStop();
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    intakeClaw.clawStop();
+    //intakeClaw.clawStop();
   }
 }

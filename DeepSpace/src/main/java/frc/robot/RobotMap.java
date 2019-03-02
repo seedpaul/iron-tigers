@@ -47,8 +47,8 @@ public class RobotMap {
   public static int TalonIntakeFlipper = 8;
 
   // mapping locations for intake claw
-  public static int TalonIntakeClaw = 3;
-  public static int TalonIntakeClawFlipper = 8;
+  public static int TalonIntakeClaw = 8;
+  public static int TalonIntakeClawFlipper = 3;
 
   public static int SRXIntakeElbow = 1;
 //*******************end can*****************************/

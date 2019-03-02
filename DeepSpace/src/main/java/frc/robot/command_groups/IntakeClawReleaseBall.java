@@ -10,6 +10,7 @@ package frc.robot.command_groups;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.commands.ClawFlipperClose;
 import frc.robot.commands.ClawFlipperOpen;
+import frc.robot.commands.IntakeClawRelease;
 
 public class IntakeClawReleaseBall extends CommandGroup {
   /**
@@ -17,9 +18,9 @@ public class IntakeClawReleaseBall extends CommandGroup {
    */
   public IntakeClawReleaseBall() {
 
+  
+  addParallel(new IntakeClawRelease());
   addParallel(new ClawFlipperOpen());
-  addParallel(new IntakeClawReleaseBall());
-
   addSequential(new ClawFlipperClose());
 
   }

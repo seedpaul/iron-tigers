@@ -48,7 +48,7 @@ public class IntakeElbow extends Subsystem {
     intakeElbowSRX.configAllowableClosedloopError(0,75,30);
 
 		intakeElbowSRX.config_kF(0, 0.0, 30);
-		intakeElbowSRX.config_kP(0, 0.85, 30);
+		intakeElbowSRX.config_kP(0, 1.0, 30);
 		intakeElbowSRX.config_kI(0, 0.0, 30);
     intakeElbowSRX.config_kD(0, 1.0, 30);
 

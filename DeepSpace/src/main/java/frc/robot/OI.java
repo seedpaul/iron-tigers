@@ -9,6 +9,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.command_groups.IntakeClawReleaseBall;
 import frc.robot.commands.*;
 
 /**
@@ -44,11 +45,16 @@ public class OI {
   public void init(){
 
     //************************* Main ***************************//
-    buttonBumperRight_dr.whenPressed(new IntakeWheelsInjest());
-    //buttonBumperRight_dr.whenReleased(new IntakeWheelsStop());
+    // buttonBumperRight_dr.whenPressed(new IntakeWheelsInjest());
     
-    buttonBumperLeft_dr.whileHeld(new IntakeWheelsEject());
-    buttonBumperLeft_dr.whenReleased(new IntakeWheelsStop());
+    // buttonBumperLeft_dr.whileHeld(new IntakeWheelsEject());
+    // buttonBumperLeft_dr.whenReleased(new IntakeWheelsStop());
+
+    buttonBumperRight_dr.whenPressed(new ClawFlipperOpen());
+    buttonBumperLeft_dr.whenPressed(new ClawFlipperClose());
+
+    buttonX_dr.whenPressed(new IntakeClawOpen());
+    buttonB_dr.whenPressed(new IntakeClawClose()); 
 
     buttonY_dr.whenPressed(new ElbowUp());
     buttonA_dr.whenPressed(new ElbowDown()); 

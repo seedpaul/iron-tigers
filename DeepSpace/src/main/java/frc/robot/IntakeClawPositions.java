@@ -13,31 +13,26 @@ package frc.robot;
 public class IntakeClawPositions {
     
     
-    private static int load_release_HatchPanel = 0;//fully closed
-    private static int holdHatchPanel = 1;
-    private static int clampBall = 2;
+    private static int load_release_HatchPanel = 0;//fully closed 19421
+    private static int holdHatchPanel = -4000;
+    private static int clampBall = -9000;
 
     // releaseBall is a special position that will be skipped by normal open and close function
     // it will be tied together with flipper extend to eject the ball with one button push
-    private static int releaseBall = 3;
+    private static int releaseBall = -12000;
 
-    private static int loadBall = 4;//fully open
+    private static int loadBall = -22000;//fully open
     private static int currentIndex = 0;
 
-                            // index         0               1               2           3
-    private static int[] positions = {load_release_HatchPanel,holdHatchPanel,clampBall,loadBall};
+                            // index         0               1               2           3             4
+    private static int[] positions = {load_release_HatchPanel,holdHatchPanel,clampBall,releaseBall,loadBall};
 
     public static int getMax(){
-        return loadBall;
+        return load_release_HatchPanel;
     }
 
     public static int getMin(){
-        return load_release_HatchPanel;
-    }
-
-    public static int home(){
-        //move position up one increment
-        return load_release_HatchPanel;
+        return loadBall;
     }
 
     public static int releaseBall(){

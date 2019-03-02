@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.robot.commands.ArcadeDrive;
 import frc.robot.commands.CommandBase;
+import frc.robot.subsystems.IntakeClaw;
 import frc.robot.subsystems.IntakeElbow;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -30,6 +31,7 @@ public class Robot extends TimedRobot {
   private UsbCamera cam;
   private static final PowerDistributionPanel pdp = new PowerDistributionPanel(0);
   private IntakeElbow elbow = IntakeElbow.getInstance();
+  private IntakeClaw claw = IntakeClaw.getInstance();
 
   /**
    * This function is run when the robot is first started up and should be
@@ -115,6 +117,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("Elbow Current", pdp.getCurrent(15));
     SmartDashboard.putNumber("Intake Wheels Current", pdp.getCurrent(14));
     SmartDashboard.putNumber("Elbow Positon:",elbow.getSensorPosition());
+    SmartDashboard.putData("flipper Positon:",claw.getFlipperEncoder());
     
     Scheduler.getInstance().run();
 

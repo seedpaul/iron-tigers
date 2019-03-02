@@ -24,7 +24,7 @@ public class IntakeClaw extends Subsystem {
   private static final Encoder flipperEncoder = new Encoder(RobotMap.flipperEncoderChannelA, RobotMap.flipperEncoderChannelB, true, Encoder.EncodingType.k4X);
 
   private static final int flipper_home = 0;
-  private static final int flipper_extend = 400;
+  private static final int flipper_extend = 475;
 
   private static IntakeClaw instance;
 
@@ -36,7 +36,7 @@ public class IntakeClaw extends Subsystem {
     
     //************** claw**************/
     intakeClawSRX.configFactoryDefault();
-    intakeClawSRX.setSensorPhase(true);
+    intakeClawSRX.setSensorPhase(false);
     intakeClawSRX.set(ControlMode.PercentOutput,0);
     intakeClawSRX.setNeutralMode(NeutralMode.Brake);
     intakeClawSRX.configForwardSoftLimitThreshold(IntakeClawPositions.getMax());
@@ -56,12 +56,12 @@ public class IntakeClaw extends Subsystem {
     intakeClawSRX.configPeakOutputForward(1, 30);
     intakeClawSRX.configPeakOutputReverse(-1, 30);
 
-    intakeClawSRX.configPeakCurrentLimit(20, 30);
+    intakeClawSRX.configPeakCurrentLimit(9, 30);
     intakeClawSRX.configPeakCurrentDuration(120, 30);
     intakeClawSRX.configContinuousCurrentLimit(1, 30);
     intakeClawSRX.enableCurrentLimit(true);
 
-    intakeClawSRX.setSelectedSensorPosition(IntakeClawPositions.getMin(),0,30);
+    intakeClawSRX.setSelectedSensorPosition(IntakeClawPositions.getMax(),0,30);
 
     //************** flipper**************/
     intakeflipper.configFactoryDefault();
@@ -73,7 +73,7 @@ public class IntakeClaw extends Subsystem {
     intakeflipper.configPeakOutputForward(1, 30);
     intakeflipper.configPeakOutputReverse(-1, 30);
 
-    intakeflipper.configPeakCurrentLimit(20, 30);
+    intakeflipper.configPeakCurrentLimit(5, 30);
     intakeflipper.configPeakCurrentDuration(120, 30);
     intakeflipper.configContinuousCurrentLimit(1, 30);
     intakeflipper.enableCurrentLimit(true); 
@@ -110,12 +110,11 @@ public class IntakeClaw extends Subsystem {
     double currentDistance = flipperEncoder.getDistance(); 
 
     if(currentDistance > flipper_home){
-      intakeflipper.set(ControlMode.PercentOutput, -1.0);
+      intakeflipper.set(ControlMode.PercentOutput, 1.0);
     }
     else{
       done = true;
     }
-    
     return done;
   }
 
@@ -125,17 +124,20 @@ public class IntakeClaw extends Subsystem {
     double currentDistance = flipperEncoder.getDistance(); 
 
     if(currentDistance < flipper_extend){
-      intakeflipper.set(ControlMode.PercentOutput, 1.0);
+      intakeflipper.set(ControlMode.PercentOutput, -1.0);
     }
     else{
       done = true;
     }
-    
     return done;
   }
 
   public void flipperStop(){
     intakeflipper.set(ControlMode.PercentOutput, 0.0);
+  }
+
+  public Encoder getFlipperEncoder(){
+    return flipperEncoder;
   }
 
   @Override
