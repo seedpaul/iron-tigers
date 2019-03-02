@@ -53,8 +53,8 @@ public class OI {
     buttonBumperRight_dr.whenPressed(new ClawFlipperOpen());
     buttonBumperLeft_dr.whenPressed(new ClawFlipperClose());
 
-    buttonX_dr.whenPressed(new IntakeClawOpen());
-    buttonB_dr.whenPressed(new IntakeClawClose()); 
+    buttonB_dr.whenPressed(new IntakeClawOpen());
+    buttonX_dr.whenPressed(new IntakeClawClose()); 
 
     buttonY_dr.whenPressed(new ElbowUp());
     buttonA_dr.whenPressed(new ElbowDown()); 
