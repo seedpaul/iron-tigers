@@ -15,8 +15,8 @@ public abstract class CommandBase extends Command {
     
   public static DriveTrain driveTrain;
   public static Elevator elevator;
-  public static IntakeClaw intakeClaw;
-  //public static IntakeWheels intakeWheels;
+  //public static IntakeClaw intakeClaw;
+  public static IntakeWheels intakeWheels;
   public static IntakeElbow intakeElbow;
   
   public static OI oi;
@@ -26,8 +26,8 @@ public abstract class CommandBase extends Command {
 
     driveTrain  = DriveTrain.getInstance();
     elevator = Elevator.getInstance();
-    intakeClaw =IntakeClaw.getInstance();
-    //intakeWheels= IntakeWheels.getInstance();
+    //intakeClaw =IntakeClaw.getInstance();
+    intakeWheels= IntakeWheels.getInstance();
     intakeElbow = IntakeElbow.getInstance();
 
     oi = new OI();

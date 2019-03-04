@@ -12,7 +12,7 @@ import frc.robot.commands.CommandBase;
 public class IntakeWheelsStop extends CommandBase {
   public IntakeWheelsStop() {
     // Use requires() here to declare subsystem dependencies
-    //requires(intakeWheels);
+    requires(intakeWheels);
   }
 
   // Called just before this Command runs the first time
@@ -23,7 +23,7 @@ public class IntakeWheelsStop extends CommandBase {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    //intakeWheels.stop();
+    intakeWheels.stop();
   }
 
   // Make this return true when this Command no longer needs to run execute()

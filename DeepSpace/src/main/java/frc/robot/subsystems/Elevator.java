@@ -32,12 +32,12 @@ public class Elevator extends Subsystem {
 
   public void up(){
 
-    elevatorTalon.set(0.5);
+    elevatorTalon.set(1.0);
   }
 
   public void down(){
 
-    elevatorTalon.set(-0.5);
+    elevatorTalon.set(-1.0);
   }
 
   public void stop(){

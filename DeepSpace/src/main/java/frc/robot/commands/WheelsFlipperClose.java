@@ -7,13 +7,12 @@
 
 package frc.robot.commands;
 
-
 public class WheelsFlipperClose extends CommandBase {
   private static boolean complete = false;
   
   public WheelsFlipperClose() {
     // Use requires() here to declare subsystem dependencies
-    //requires(intakeWheels);
+    requires(intakeWheels);
   }
 
   // Called just before this Command runs the first time
@@ -24,7 +23,9 @@ public class WheelsFlipperClose extends CommandBase {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    //complete = intakeWheels.closeFlipper();
+    //if(CommandBase.intakeWheels.getCurrentCommand() == null){
+    complete = intakeWheels.closeFlipper();
+    //}
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -36,7 +37,7 @@ public class WheelsFlipperClose extends CommandBase {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    //intakeWheels.stopFlipper();
+    intakeWheels.stopFlipper();
   }
 
   // Called when another command which requires one or more of the same

@@ -15,11 +15,15 @@ public class ElevatorPositions{
     public static final int[] Position = {home,hatchLevel1,cargoLevel1,hatchLevel2,cargoLevel2,hatchLevel3,cargoLevel3};
 
     public static int getHighestPosition(){
-    return Position[Position.length-1];
+        return Position[Position.length-1];
     }
 
     public static int getHomePosition(){
-    return Position[0];
+       return Position[0];
+    }
+
+    public static int getspeedLimitThreshold(){
+        return cargoLevel2;
     }
 
 }
