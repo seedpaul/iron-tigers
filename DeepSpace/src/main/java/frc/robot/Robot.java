@@ -11,7 +11,6 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.robot.commands.drivetrain.ArcadeDrive;
 import frc.robot.commands.CommandBase;
-import frc.robot.subsystems.Camera;
 
 /**
  * The VM is configured to automatically run this class, and to call the

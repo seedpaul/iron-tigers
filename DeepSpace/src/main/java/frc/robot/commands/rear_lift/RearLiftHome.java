@@ -5,14 +5,14 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.rear_lift;
 
 import frc.robot.commands.CommandBase;
 
-public class FrontLiftClimbStep1 extends CommandBase {
-  public FrontLiftClimbStep1() {
+public class RearLiftHome extends CommandBase {
+  public RearLiftHome() {
     // Use requires() here to declare subsystem dependencies
-    requires(frontLift);
+    requires(rearLift);
   }
 
   // Called just before this Command runs the first time
@@ -23,7 +23,7 @@ public class FrontLiftClimbStep1 extends CommandBase {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    frontLift.climbStep1();
+    rearLift.goToHome();
     // System.out.println("sensorValue: "+frontLift.getSensorValue());
   }
 

@@ -5,14 +5,15 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.rear_lift;
 
 import frc.robot.commands.CommandBase;
 
-public class ElevatorHome extends CommandBase {
-  public ElevatorHome() {
+public class RearLiftHab6 extends CommandBase {
+  public RearLiftHab6() {
     // Use requires() here to declare subsystem dependencies
-    requires(elevator);
+    // eg. requires(chassis);
+    requires(rearLift);
   }
 
   // Called just before this Command runs the first time
@@ -23,7 +24,8 @@ public class ElevatorHome extends CommandBase {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    elevator.up();
+    rearLift.goToLevel6();
+    //System.out.println("sensorValue: "+rearLift.getSensorValue());
   }
 
   // Make this return true when this Command no longer needs to run execute()

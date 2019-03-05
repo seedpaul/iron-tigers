@@ -9,7 +9,10 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.robot.commands.*;
+import frc.robot.commands.elbow.*;
+import frc.robot.commands.intake_wheels.*;
+import frc.robot.commands.elevator.*;
+import frc.robot.commands.flipper.*;
 import frc.robot.command_groups.*;
 
 /**
@@ -32,54 +35,39 @@ public class OI {
   public static JoystickButton startButton_dr = new JoystickButton(XboxDriver,RobotMap.buttonStart);
   public static JoystickButton selectButton_dr = new JoystickButton(XboxDriver,RobotMap.buttonSelect);
 
+  //************************ Assistant Driver ************************************//
+  public static Joystick xboxControllerAssist = new Joystick(RobotMap.xboxControllerAssist);
 
-//************************ Assistant Driver ********************************//
- public static Joystick XboxAssist = new Joystick(RobotMap.xboxControllerAssist);
+  public static JoystickButton buttonA_as = new JoystickButton(xboxControllerAssist,RobotMap.buttonA);
+  public static JoystickButton buttonB_as = new JoystickButton(xboxControllerAssist,RobotMap.buttonB);
+  public static JoystickButton buttonX_as = new JoystickButton(xboxControllerAssist,RobotMap.buttonX);
+  public static JoystickButton buttonY_as = new JoystickButton(xboxControllerAssist,RobotMap.buttonY);
 
-
-  public static JoystickButton buttonA_as = new JoystickButton(XboxAssist,RobotMap.buttonA);
-  public static JoystickButton buttonB_as = new JoystickButton(XboxAssist,RobotMap.buttonB);
-  public static JoystickButton buttonY_as = new JoystickButton(XboxAssist,RobotMap.buttonY);
-  public static JoystickButton buttonX_as = new JoystickButton(XboxAssist,RobotMap.buttonX);
-
-    public static JoystickButton buttonBumperRight_as = new JoystickButton(XboxAssist,RobotMap.buttonBumperRight);
-    public static JoystickButton buttonBumperLeft_as = new JoystickButton(XboxAssist,RobotMap.buttonBumperLeft);
+  public static JoystickButton buttonBumperLeft_as = new JoystickButton(xboxControllerAssist,RobotMap.buttonBumperLeft);
+  public static JoystickButton buttonBumperRight_as = new JoystickButton(xboxControllerAssist,RobotMap.buttonBumperRight);
 
   public void init(){
 
-    //********** Main Driver *****************************************************//
-    startButton_dr.whenPressed(new ToggleCameras());
-
-    buttonX_dr.whenPressed(new ElbowUp());//actually down
-    buttonB_dr.whenPressed(new ElbowDown());//actually up
-    buttonBumperRight_dr.whenPressed(new ElbowStop()); 
-
-    buttonY_dr.whileHeld(new IntakeWheelsEject()); 
-    buttonA_dr.whileHeld(new IntakeWheelsInjest()); 
-
-      //********************************* For Claw Intake *************************************//
-      // buttonA_dr.whenPressed(command); //close claw total 
-      // buttonB_dr.whenPressed(command); //grab ball
-      // buttonY_dr.whenPressed(command); //open claw total
-      // buttonX_dr.whenPressed(command); //grab panel
-
-      // buttonBumperRight_dr.whenPressed(command); //deliver ball - command group?
-      
-      // buttonA_dr.whenPressed(new EnablePID()); //close claw total
-      // buttonY_dr.whenPressed(new disablePID()); //open claw total
-
-    //********* Assist Driver *******************************************************//
-
-    buttonY_as.whenPressed(new ElevatorUp());
-    buttonA_as.whenPressed(new ElevatorDown());
-
-    buttonB_as.whenPressed(new FlipperOpen());
-    buttonX_as.whenPressed(new FlipperClose());
-
-    buttonBumperRight_as.whenPressed(new ClimbLevel19()); 
-    buttonBumperLeft_as.whenPressed(new ClimbLevel6()); 
+    //************************* Main ***************************//
+    buttonBumperRight_dr.whenPressed(new IntakeWheelsInjest());
     
+    buttonBumperLeft_dr.whileHeld(new IntakeWheelsEject());
+    buttonBumperLeft_dr.whenReleased(new IntakeWheelsStop()); 
 
+    buttonY_dr.whenPressed(new ElbowUp());
+    buttonA_dr.whenPressed(new ElbowDown()); 
+
+    //**************************** Assistnt ************************//
+    buttonY_as.whileHeld(new ElevatorUp()); 
+    buttonY_as.whenReleased(new ElevatorStop());
+
+    buttonA_as.whileHeld(new ElevatorDown()); 
+    buttonA_as.whenReleased(new ElevatorStop());
+
+    buttonX_as.whenPressed(new FlipperClose());
+    buttonB_as.whenPressed(new FlipperOpen());
+	
+	  buttonBumperRight_as.whenPressed(new ClimbLevel19()); 
+    buttonBumperLeft_as.whenPressed(new ClimbLevel6()); 
   }
-  
 }

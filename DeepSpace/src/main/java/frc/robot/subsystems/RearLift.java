@@ -12,7 +12,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import frc.robot.RobotMap;
-import frc.robot.RearLiftPositions;
+import frc.robot.subsystems.positioning.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -41,8 +41,8 @@ public class RearLift extends Subsystem {
     //this is a very important line of code in order to make foward on motor line up with foward on encoder
     rearLiftSRX.setSensorPhase(false);
 
-    // rearLiftSRX.configForwardSoftLimitEnable(true);
-    // rearLiftSRX.configReverseSoftLimitEnable(true);
+    rearLiftSRX.configForwardSoftLimitEnable(true);
+    rearLiftSRX.configReverseSoftLimitEnable(true);
 
     rearLiftSRX.configForwardSoftLimitThreshold(RearLiftPositions.getHomePosition());
     rearLiftSRX.configReverseSoftLimitThreshold(RearLiftPositions.getHighestPosition());
@@ -73,30 +73,24 @@ public class RearLift extends Subsystem {
     if (instance == null){
       instance = new RearLift();
     }
-
     return instance;
   }
 
   public void goToLevel6(){
-    // System.out.println("goToLevel6\n");
     setPosition(RearLiftPositions.rear_habLevel6);
   }
 
   public void goToLevel19(){
-    // System.out.println("goToLevel19\n");
     setPosition(RearLiftPositions.rear_habLevel19);
   }
 
   public void goToHome(){
-    // System.out.println("goToHome\n");
     setPosition(RearLiftPositions.rear_home);
   }
 
   private void setPosition(int position){
-
     rearLiftSRX.set(ControlMode.Position, position);
     rearLiftSRX.getSelectedSensorPosition();
-    // System.out.println("Target VALUE:"+ position + "\n");
   }
 
   public int getSensorValue(){

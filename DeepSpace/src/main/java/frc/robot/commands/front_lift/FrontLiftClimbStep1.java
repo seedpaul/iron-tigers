@@ -5,14 +5,14 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.front_lift;
 
 import frc.robot.commands.CommandBase;
 
-public class IntakeWheelsEject extends CommandBase {
-  public IntakeWheelsEject() {
+public class FrontLiftClimbStep1 extends CommandBase {
+  public FrontLiftClimbStep1() {
     // Use requires() here to declare subsystem dependencies
-    requires(intakeWheels);
+    requires(frontLift);
   }
 
   // Called just before this Command runs the first time
@@ -23,13 +23,14 @@ public class IntakeWheelsEject extends CommandBase {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    intakeWheels.eject();
+    frontLift.climbStep1();
+    // System.out.println("sensorValue: "+frontLift.getSensorValue());
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return true;
   }
 
   // Called once after isFinished returns true

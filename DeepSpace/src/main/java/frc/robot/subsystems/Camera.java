@@ -56,20 +56,18 @@ public class Camera extends Subsystem {
     sink.setSource(camLeft);
   }
 
-  @Override
-  public void initDefaultCommand() {
-    // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
-  }
-
   public void showCameraLeft(){
-    // System.out.println("showLeft");
     sink.setSource(camLeft);
   }
 
   public void showCameraRight(){
-    // System.out.println("showRight");
     sink.setSource(camRight);
+  }
+
+  @Override
+  public void initDefaultCommand() {
+    // Set the default command for a subsystem here.
+    // setDefaultCommand(new MySpecialCommand());
   }
 
 }

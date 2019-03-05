@@ -1,14 +1,10 @@
-/*----------------------------------------------------------------------------*/
-/* Copyright (c) 2018 FIRST. All Rights Reserved.                             */
-/* Open Source Software - may be modified and shared by FRC teams. The code   */
-/* must be accompanied by the FIRST BSD license file in the root directory of */
-/* the project.                                                               */
-/*----------------------------------------------------------------------------*/
-
 package frc.robot.command_groups;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import frc.robot.commands.*;
+import frc.robot.commands.elevator.*;
+import frc.robot.commands.front_lift.*;
+import frc.robot.commands.rear_lift.*;
+import frc.robot.commands.drivetrain.*;
 
 public class ClimbLevel6 extends CommandGroup {
   /**
@@ -21,25 +17,28 @@ public class ClimbLevel6 extends CommandGroup {
     // addParallel(new Command1());
 
     //Step 1 - Elevator all the way down
-    addSequential(new ElevatorHome());
+    //addSequential(new ElevatorHome());
 
     //Step 2 - Deploy front lift 
-    addSequential(new FrontLiftHab6());
+    addSequential(new FrontLiftHab6(),2);
 
     //Step 3 - Deploy rear lift and start 
     //  front lift omn it way down
-    addParallel(new RearLiftHab6());
-    addParallel(new FrontLiftClimbStep1());
+    //addParallel(new DriveStraight(5, 0.5));
 
-    //Step 4 - Drive forward 
-    addSequential(new DriveStraight(0,0)); // until about ITS OVER 9000 DUBBAH BRAP BRAP BRAP 
+    addParallel(new RearLiftHab6(),2);
+
+    addParallel(new FrontLiftClimbStep1(),2);
+
+    addSequential(new FrontLiftClimbStep2(),2);
+
+    addSequential(new DriveStraight(20.0, 0.5)); // until about ITS OVER 9000 DUBBAH BRAP BRAP BRAP 
 
     //Step 5 - deploy rear lift 
-    addSequential(new RearLiftHome());
+    // addSequential(new RearLiftHome());
 
     //step 6 - drive forward 
-    addParallel(new DriveStraight(0,0));
-    addParallel(new FrontLiftHome());
-
+    // addParallel(new DriveStraight(0,0));
+    // addParallel(new FrontLiftHome());
   }
 }

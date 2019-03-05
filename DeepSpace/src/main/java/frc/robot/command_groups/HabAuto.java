@@ -8,7 +8,9 @@
 package frc.robot.command_groups;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import frc.robot.commands.*;
+import frc.robot.commands.front_lift.*;
+import frc.robot.commands.rear_lift.*;
+import frc.robot.commands.drivetrain.*;
 
 
 public class HabAuto extends CommandGroup {
@@ -16,10 +18,6 @@ public class HabAuto extends CommandGroup {
    * Add your docs here.
    */
   public HabAuto() {
-    // Add Commands here:
-    // e.g. addSequential(new Command1());
-    // addSequential(new Command2());
-    // addParallel(new Command1());
 
     //Step 1 - Deploy front lift 
     addSequential(new FrontLiftClimbStep1());

@@ -5,27 +5,34 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.camera;
 
 import frc.robot.commands.CommandBase;
 
-public class RearLiftHab6 extends CommandBase {
-  public RearLiftHab6() {
+public class ToggleCameras extends CommandBase {
+
+  Boolean isLeft = true;
+  public ToggleCameras() {
     // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
-    requires(rearLift);
+    requires(camera);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    rearLift.goToLevel6();
-    //System.out.println("sensorValue: "+rearLift.getSensorValue());
+    if(isLeft){
+      camera.showCameraRight();
+    }
+    else{
+      camera.showCameraLeft();
+    }
+    isLeft = !isLeft;
   }
 
   // Make this return true when this Command no longer needs to run execute()

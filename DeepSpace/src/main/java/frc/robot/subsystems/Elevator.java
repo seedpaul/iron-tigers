@@ -7,7 +7,7 @@
 
 package frc.robot.subsystems;
 import frc.robot.RobotMap;
-import frc.robot.ElevatorPositions;
+import frc.robot.subsystems.positioning.ElevatorPositions;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -85,9 +85,7 @@ public class Elevator extends Subsystem {
     if(currentPosition < (ElevatorPositions.Position.length-1)){
       currentPosition++;
       setPosition(currentPosition);
-      // System.out.println("current:" + elevatorSRX.getOutputCurrent());
     }
-
   }
 
   public void down(){
@@ -95,23 +93,20 @@ public class Elevator extends Subsystem {
     if(currentPosition > 0){
       currentPosition--;
       setPosition(currentPosition);
-      // System.out.println("current:" + elevatorSRX.getOutputCurrent());
     }
   }
 
-  public void goToHome(){
+  public void stop(){
+    elevatorSRX.set(ControlMode.PercentOutput, 0.0);
+  }
 
+  public void goToHome(){
     setPosition(ElevatorPositions.home);
   }
 
   private void setPosition(int position){
-
-    //counterclockwise is up, 
     elevatorSRX.set(ControlMode.Position, ElevatorPositions.Position[position]);
     elevatorSRX.getSelectedSensorPosition();
-    // System.out.println("Sensor:"+elevatorSRX.getSelectedSensorPosition());
-    // System.out.println("INDEX:"+position);
-    // System.out.println("VALUE:"+ ElevatorPositions.Position[position] + "\n");
   }
 
   @Override

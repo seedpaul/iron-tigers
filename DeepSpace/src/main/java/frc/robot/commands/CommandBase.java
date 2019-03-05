@@ -31,7 +31,7 @@ public abstract class CommandBase extends Command {
     elevator = Elevator.getInstance();
     frontLift = FrontLift.getInstance();
     panelFlipper = HatchPanelFlipper.getInstance();
-	camera = Camera.getInstance();
+	  camera = Camera.getInstance();
     intakeWheels= IntakeWheels.getInstance();
     intakeElbow = IntakeElbow.getInstance();
     rearLift = RearLift.getInstance();

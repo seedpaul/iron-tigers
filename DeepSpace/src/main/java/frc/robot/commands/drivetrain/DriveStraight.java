@@ -5,7 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.drivetrain;
 
 import frc.robot.commands.CommandBase;
 import edu.wpi.first.wpilibj.Timer;

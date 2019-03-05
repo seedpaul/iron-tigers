@@ -5,15 +5,14 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.front_lift;
 
+import frc.robot.commands.CommandBase;
 
-public class FlipperClose extends CommandBase {
-  private static boolean complete = false;
-  
-  public FlipperClose() {
+public class FrontLiftHab19 extends CommandBase {
+  public FrontLiftHab19() {
     // Use requires() here to declare subsystem dependencies
-    requires(intakeWheels);
+    requires(frontLift); 
   }
 
   // Called just before this Command runs the first time
@@ -24,19 +23,19 @@ public class FlipperClose extends CommandBase {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    complete = intakeWheels.closeFlipper();
+    frontLift.goToLevel19Position();
+    //System.out.println("sensorValue: "+frontLift.getSensorValue());
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return complete;
+    return true;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    intakeWheels.stopFlipper();
   }
 
   // Called when another command which requires one or more of the same

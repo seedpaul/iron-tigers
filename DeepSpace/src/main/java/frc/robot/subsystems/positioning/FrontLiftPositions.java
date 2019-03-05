@@ -5,23 +5,22 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot;
+package frc.robot.subsystems.positioning;
 
-/**
- * Add your docs here.
- */
-public class RearLiftPositions {
+public class FrontLiftPositions {
 
-    public static final int rear_home = 0;
+    public static final int front_home = 150000;
+    public static final int front_habLevel19 = 100000;
+    public static final int front_habLevel6 = 60000;
 
-    public static final int rear_habLevel6 = -4500;
-    public static final int rear_habLevel19 = -10250;
+    public static final int front_habClimbStep1 = 37500;
+    public static final int front_habClimbStep2 = 17500;
 
-    public static int getHighestPosition(){
-        return rear_habLevel19;
+    public static int geLowestPosition(){
+        return front_habClimbStep2;
     }
 
     public static int getHomePosition(){
-        return rear_home;
+        return front_home;
     }
 }
