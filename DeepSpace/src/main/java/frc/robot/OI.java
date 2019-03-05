@@ -9,7 +9,10 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.robot.commands.*;
+import frc.robot.commands.elbow.*;
+import frc.robot.commands.intake_wheels.*;
+import frc.robot.commands.elevator.*;
+import frc.robot.commands.flipper.*;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -66,8 +69,8 @@ public class OI {
     buttonA_as.whileHeld(new ElevatorDown()); 
     buttonA_as.whenReleased(new ElevatorStop());
 
-    buttonX_as.whenPressed(new WheelsFlipperClose());
-    buttonB_as.whenPressed(new WheelsFlipperOpen());
+    buttonX_as.whenPressed(new FlipperClose());
+    buttonB_as.whenPressed(new FlipperOpen());
 
   }
   

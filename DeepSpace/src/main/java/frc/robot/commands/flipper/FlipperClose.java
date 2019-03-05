@@ -5,14 +5,15 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.flipper;
 
 import frc.robot.commands.CommandBase;
 
-public class ElevatorUp extends CommandBase {
-  public ElevatorUp() {
+public class FlipperClose extends CommandBase {
+  
+  public FlipperClose() {
     // Use requires() here to declare subsystem dependencies
-    requires(elevator);
+    requires(panelFlipper);
   }
 
   // Called just before this Command runs the first time
@@ -23,7 +24,7 @@ public class ElevatorUp extends CommandBase {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    elevator.up();
+    panelFlipper.closeFlipper();
   }
 
   // Make this return true when this Command no longer needs to run execute()

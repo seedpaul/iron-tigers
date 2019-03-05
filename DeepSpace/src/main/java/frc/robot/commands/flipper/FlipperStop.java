@@ -5,14 +5,15 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.flipper;
 
 import frc.robot.commands.CommandBase;
 
-public class IntakeWheelsEject extends CommandBase {
-  public IntakeWheelsEject() {
+public class FlipperStop extends CommandBase {
+  
+  public FlipperStop() {
     // Use requires() here to declare subsystem dependencies
-    requires(intakeWheels);
+    requires(panelFlipper);
   }
 
   // Called just before this Command runs the first time
@@ -23,7 +24,7 @@ public class IntakeWheelsEject extends CommandBase {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    intakeWheels.eject();
+    panelFlipper.stopFlipper();
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -35,6 +36,7 @@ public class IntakeWheelsEject extends CommandBase {
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    panelFlipper.stopFlipper();
   }
 
   // Called when another command which requires one or more of the same

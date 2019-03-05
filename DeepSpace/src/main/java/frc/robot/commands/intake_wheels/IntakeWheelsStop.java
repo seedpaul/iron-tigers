@@ -5,11 +5,12 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.intake_wheels;
 
-public class WheelsFlipperClose extends CommandBase {
-  
-  public WheelsFlipperClose() {
+import frc.robot.commands.CommandBase;
+
+public class IntakeWheelsStop extends CommandBase {
+  public IntakeWheelsStop() {
     // Use requires() here to declare subsystem dependencies
     requires(intakeWheels);
   }
@@ -22,13 +23,13 @@ public class WheelsFlipperClose extends CommandBase {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    intakeWheels.closeFlipper();
+    intakeWheels.stop();
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return true;
+    return false;
   }
 
   // Called once after isFinished returns true

@@ -5,12 +5,12 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.elevator;
 
 import frc.robot.commands.CommandBase;
 
-public class ElevatorDown extends CommandBase {
-  public ElevatorDown() {
+public class ElevatorStop extends CommandBase {
+  public ElevatorStop() {
     // Use requires() here to declare subsystem dependencies
     requires(elevator);
   }
@@ -23,7 +23,7 @@ public class ElevatorDown extends CommandBase {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    elevator.down();
+    elevator.stop();
   }
 
   // Make this return true when this Command no longer needs to run execute()

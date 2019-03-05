@@ -5,14 +5,14 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.elbow;
 
+import frc.robot.commands.CommandBase;
 
-public class WheelsFlipperOpen extends CommandBase {
-
-  public WheelsFlipperOpen() {
+public class ElbowUp extends CommandBase {
+  public ElbowUp() {
     // Use requires() here to declare subsystem dependencies
-    requires(intakeWheels);
+    requires(intakeElbow);
   }
 
   // Called just before this Command runs the first time
@@ -23,7 +23,7 @@ public class WheelsFlipperOpen extends CommandBase {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    intakeWheels.homeFlipper();
+    intakeElbow.up();
   }
 
   // Make this return true when this Command no longer needs to run execute()

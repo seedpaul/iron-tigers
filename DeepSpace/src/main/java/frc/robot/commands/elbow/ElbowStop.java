@@ -5,12 +5,12 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.elbow;
 
 import frc.robot.commands.CommandBase;
 
-public class ElbowUp extends CommandBase {
-  public ElbowUp() {
+public class ElbowStop extends CommandBase {
+  public ElbowStop() {
     // Use requires() here to declare subsystem dependencies
     requires(intakeElbow);
   }
@@ -23,7 +23,7 @@ public class ElbowUp extends CommandBase {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    intakeElbow.up();
+    intakeElbow.stop();
   }
 
   // Make this return true when this Command no longer needs to run execute()
