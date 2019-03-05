@@ -52,7 +52,7 @@ public class IntakeElbow extends Subsystem {
 		intakeElbowSRX.config_kI(0, 0.0, 30);
     intakeElbowSRX.config_kD(0, 1.0, 30);
 
-    intakeElbowSRX.configPeakCurrentLimit(32, 30);
+    intakeElbowSRX.configPeakCurrentLimit(16 , 30);
     intakeElbowSRX.configPeakCurrentDuration(120, 30);
     intakeElbowSRX.configContinuousCurrentLimit(1, 30);
     intakeElbowSRX.enableCurrentLimit(true);
@@ -83,14 +83,6 @@ public class IntakeElbow extends Subsystem {
   public void down(){
     intakeElbowSRX.set(ControlMode.Position, IntakeElbowPositions.down());
     intakeElbowSRX.getSelectedSensorPosition();
-  }
-
-  public void bump(){
-    /*********************** 
-     * this is not used
-    ************************/
-    double currentSensorReading = intakeElbowSRX.getSelectedSensorPosition();
-    intakeElbowSRX.set(ControlMode.Position, currentSensorReading + 1000);
   }
 
   public int getSensorPosition(){
