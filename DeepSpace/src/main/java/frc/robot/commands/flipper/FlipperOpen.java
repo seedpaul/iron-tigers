@@ -13,7 +13,7 @@ public class FlipperOpen extends CommandBase {
 
   public FlipperOpen() {
     // Use requires() here to declare subsystem dependencies
-    requires(panelFlipper);
+    requires(flipper);
   }
 
   // Called just before this Command runs the first time
@@ -24,7 +24,7 @@ public class FlipperOpen extends CommandBase {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    panelFlipper.homeFlipper();
+    flipper.homeFlipper();
   }
 
   // Make this return true when this Command no longer needs to run execute()

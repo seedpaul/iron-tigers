@@ -7,14 +7,8 @@ import frc.robot.commands.rear_lift.*;
 import frc.robot.commands.drivetrain.*;
 
 public class ClimbLevel19 extends CommandGroup {
-  /**
-   * Add your docs here.
-   */
+
   public ClimbLevel19() {
-    // Add Commands here:
-    // e.g. addSequential(new Command1());
-    // addSequential(new Command2());
-    // addParallel(new Command1());
 
     //Step 1 - Elevator all the way down
     //addSequential(new ElevatorHome());

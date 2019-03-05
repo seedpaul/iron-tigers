@@ -13,27 +13,28 @@ import frc.robot.subsystems.*;
 
 public abstract class CommandBase extends Command {
     
+  public static Camera camera;
   public static DriveTrain driveTrain;
+  public static Elbow elbow;
   public static Elevator elevator;
-  public static HatchPanelFlipper panelFlipper;
+  public static Flipper flipper;
   public static FrontLift frontLift;
   public static IntakeWheels intakeWheels;
-  public static IntakeElbow intakeElbow;
   public static RearLift rearLift;
-  public static Camera camera;
+  
   
   public static OI oi;
 
   //initializes all of static variables
   public static void init() {
 
+    camera = Camera.getInstance();
     driveTrain  = DriveTrain.getInstance();
+    elbow = Elbow.getInstance();
     elevator = Elevator.getInstance();
+    flipper = Flipper.getInstance();
     frontLift = FrontLift.getInstance();
-    panelFlipper = HatchPanelFlipper.getInstance();
-	  camera = Camera.getInstance();
     intakeWheels= IntakeWheels.getInstance();
-    intakeElbow = IntakeElbow.getInstance();
     rearLift = RearLift.getInstance();
 
     oi = new OI();

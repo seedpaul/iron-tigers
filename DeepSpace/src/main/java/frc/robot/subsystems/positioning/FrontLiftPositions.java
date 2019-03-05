@@ -1,15 +1,8 @@
-/*----------------------------------------------------------------------------*/
-/* Copyright (c) 2018 FIRST. All Rights Reserved.                             */
-/* Open Source Software - may be modified and shared by FRC teams. The code   */
-/* must be accompanied by the FIRST BSD license file in the root directory of */
-/* the project.                                                               */
-/*----------------------------------------------------------------------------*/
-
 package frc.robot.subsystems.positioning;
 
 public class FrontLiftPositions {
 
-    public static final int front_home = 150000;
+    private static final int front_home = 150000;
     public static final int front_habLevel19 = 100000;
     public static final int front_habLevel6 = 60000;
 

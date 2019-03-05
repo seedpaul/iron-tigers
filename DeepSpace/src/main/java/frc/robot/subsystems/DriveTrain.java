@@ -1,12 +1,4 @@
-/*----------------------------------------------------------------------------*/
-/* Copyright (c) 2018 FIRST. All Rights Reserved.                             */
-/* Open Source Software - may be modified and shared by FRC teams. The code   */
-/* must be accompanied by the FIRST BSD license file in the root directory of */
-/* the project.                                                               */
-/*----------------------------------------------------------------------------*/
-
 package frc.robot.subsystems;
-
 
 import frc.robot.RobotMap;
 import frc.robot.commands.drivetrain.ArcadeDrive;
@@ -25,13 +17,13 @@ import com.kauailabs.navx.frc.AHRS;
 
 public class DriveTrain extends Subsystem{
 
-  private final WPI_VictorSPX frontRight = new WPI_VictorSPX(RobotMap.SPXFrontRight);
-  private final WPI_VictorSPX frontLeft = new WPI_VictorSPX(RobotMap.SPXFrontLeft);
-  private final WPI_TalonSRX backRight = new WPI_TalonSRX(RobotMap.SRXBackRight);
-  private final WPI_TalonSRX backLeft = new WPI_TalonSRX(RobotMap.SRXBackLeft);
+  private final WPI_VictorSPX frontRightVictor = new WPI_VictorSPX(RobotMap.VictorFrontRight);
+  private final WPI_VictorSPX frontLeftVictor = new WPI_VictorSPX(RobotMap.VictorFrontLeft);
+  private final WPI_TalonSRX backRightTalon = new WPI_TalonSRX(RobotMap.TalonBackRight);
+  private final WPI_TalonSRX backLeftTalon = new WPI_TalonSRX(RobotMap.TalonBackLeft);
 
-  private final SpeedControllerGroup rightSCG = new SpeedControllerGroup(frontRight, backRight);
-  private final SpeedControllerGroup leftSCG = new SpeedControllerGroup(frontLeft, backLeft);
+  private final SpeedControllerGroup rightSCG = new SpeedControllerGroup(frontRightVictor, backRightTalon);
+  private final SpeedControllerGroup leftSCG = new SpeedControllerGroup(frontLeftVictor, backLeftTalon);
 
   private final DifferentialDrive robotDrive = new DifferentialDrive(leftSCG, rightSCG);
 
@@ -64,8 +56,8 @@ public class DriveTrain extends Subsystem{
 
   private void init(){
 
-    backRight.setNeutralMode(NeutralMode.Coast);
-    backLeft.setNeutralMode(NeutralMode.Coast);
+    backRightTalon.setNeutralMode(NeutralMode.Coast);
+    backLeftTalon.setNeutralMode(NeutralMode.Coast);
     robotDrive.setExpiration(1);
     robotDrive.setSafetyEnabled(true);
 
@@ -115,8 +107,8 @@ public class DriveTrain extends Subsystem{
   }
 
   public void brake(){
-    backRight.setNeutralMode(NeutralMode.Brake);
-    backLeft.setNeutralMode(NeutralMode.Brake);
+    backRightTalon.setNeutralMode(NeutralMode.Brake);
+    backLeftTalon.setNeutralMode(NeutralMode.Brake);
   }
 
   public void resetEncoders(){

@@ -1,24 +1,15 @@
-/*----------------------------------------------------------------------------*/
-/* Copyright (c) 2017-2018 FIRST. All Rights Reserved.                        */
-/* Open Source Software - may be modified and shared by FRC teams. The code   */
-/* must be accompanied by the FIRST BSD license file in the root directory of */
-/* the project.                                                               */
-/*----------------------------------------------------------------------------*/
-
 package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.elbow.*;
 import frc.robot.commands.intake_wheels.*;
+import frc.robot.commands.rear_lift.RearLiftHome;
 import frc.robot.commands.elevator.*;
 import frc.robot.commands.flipper.*;
+import frc.robot.commands.front_lift.FrontLiftHome;
 import frc.robot.command_groups.*;
 
-/**
- * This class is the glue that binds the controls on the physical operator
- * interface to the commands and command groups that allow control of the robot.
- */
 public class OI {
 
   //************************* Main Driver *********************************//
@@ -46,6 +37,9 @@ public class OI {
   public static JoystickButton buttonBumperLeft_as = new JoystickButton(xboxControllerAssist,RobotMap.buttonBumperLeft);
   public static JoystickButton buttonBumperRight_as = new JoystickButton(xboxControllerAssist,RobotMap.buttonBumperRight);
 
+  public static JoystickButton startButton_as = new JoystickButton(xboxControllerAssist,RobotMap.buttonStart);
+  public static JoystickButton selectButton_as = new JoystickButton(xboxControllerAssist,RobotMap.buttonSelect);
+
   public void init(){
 
     //************************* Main ***************************//
@@ -57,7 +51,10 @@ public class OI {
     buttonY_dr.whenPressed(new ElbowUp());
     buttonA_dr.whenPressed(new ElbowDown()); 
 
-    //**************************** Assistnt ************************//
+    startButton_dr.whenPressed(new RearLiftHome());
+    selectButton_dr.whenPressed(new FrontLiftHome());
+
+    //**************************** Assistant ************************//
     buttonY_as.whileHeld(new ElevatorUp()); 
     buttonY_as.whenReleased(new ElevatorStop());
 

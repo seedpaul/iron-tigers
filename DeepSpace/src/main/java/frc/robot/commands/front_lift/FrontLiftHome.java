@@ -24,7 +24,6 @@ public class FrontLiftHome extends CommandBase {
   @Override
   protected void execute() {
     frontLift.goToHome();
-    // System.out.println("sensorValue: "+frontLift.getSensorValue());
   }
 
   // Make this return true when this Command no longer needs to run execute()

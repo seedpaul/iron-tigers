@@ -12,7 +12,7 @@ import frc.robot.commands.CommandBase;
 public class ElbowDown extends CommandBase {
   public ElbowDown() {
     // Use requires() here to declare subsystem dependencies
-    requires(intakeElbow);
+    requires(elbow);
   }
 
   // Called just before this Command runs the first time
@@ -23,7 +23,7 @@ public class ElbowDown extends CommandBase {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    intakeElbow.down();
+    elbow.down();
   }
 
   // Make this return true when this Command no longer needs to run execute()

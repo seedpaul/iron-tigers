@@ -12,18 +12,36 @@ public class ElevatorPositions{
     private static final int cargoLevel2 = 12000; //4
     private static final int cargoLevel3 = 19000; //6
 
-    public static final int[] Position = {home,hatchLevel1,cargoLevel1,hatchLevel2,cargoLevel2,hatchLevel3,cargoLevel3};
+    //                          index:      0        1           2           3           4           5           6
+    public static final int[] positions = {home,hatchLevel1,cargoLevel1,hatchLevel2,cargoLevel2,hatchLevel3,cargoLevel3};
+
+    private static int currentIndex = 0;
 
     public static int getHighestPosition(){
-        return Position[Position.length-1];
+        return positions[positions.length-1];
     }
 
     public static int getHomePosition(){
-       return Position[0];
+       return positions[0];
     }
 
     public static int getspeedLimitThreshold(){
         return cargoLevel2;
+    }
+
+    public static int down(){
+
+        if(currentIndex > 0){
+            currentIndex--;
+        }
+        return positions[currentIndex];
+    }
+    public static int up(){
+
+        if(currentIndex < (positions.length-1)){
+            currentIndex++;
+        }
+        return positions[currentIndex];
     }
 
 }

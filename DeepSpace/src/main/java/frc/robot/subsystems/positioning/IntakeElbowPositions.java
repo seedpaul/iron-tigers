@@ -1,19 +1,9 @@
-/*----------------------------------------------------------------------------*/
-/* Copyright (c) 2018 FIRST. All Rights Reserved.                             */
-/* Open Source Software - may be modified and shared by FRC teams. The code   */
-/* must be accompanied by the FIRST BSD license file in the root directory of */
-/* the project.                                                               */
-/*----------------------------------------------------------------------------*/
-
 package frc.robot.subsystems.positioning;
 
-/**
- * Add your docs here.
- */
 public class IntakeElbowPositions {
     
     
-    private static int home_position = 20000;//this is up
+    public static int home_position = 20000;//this is up
     private static int eject_position = 18000;
     private static int hatch_position = 17000;
     private static int intake_Position = 16000;//this is down
