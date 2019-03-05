@@ -9,7 +9,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import frc.robot.commands.ArcadeDrive;
+import frc.robot.commands.drivetrain.ArcadeDrive;
 import frc.robot.commands.CommandBase;
 import frc.robot.subsystems.Camera;
 

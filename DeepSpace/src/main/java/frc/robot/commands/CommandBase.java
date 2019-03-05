@@ -15,8 +15,8 @@ public abstract class CommandBase extends Command {
     
   public static DriveTrain driveTrain;
   public static Elevator elevator;
+  public static HatchPanelFlipper panelFlipper;
   public static FrontLift frontLift;
-  // public static IntakeClaw intakeClaw;
   public static IntakeWheels intakeWheels;
   public static IntakeElbow intakeElbow;
   public static RearLift rearLift;
@@ -30,8 +30,8 @@ public abstract class CommandBase extends Command {
     driveTrain  = DriveTrain.getInstance();
     elevator = Elevator.getInstance();
     frontLift = FrontLift.getInstance();
-    camera = Camera.getInstance();
-    // intakeClaw =IntakeClaw.getInstance();
+    panelFlipper = HatchPanelFlipper.getInstance();
+	camera = Camera.getInstance();
     intakeWheels= IntakeWheels.getInstance();
     intakeElbow = IntakeElbow.getInstance();
     rearLift = RearLift.getInstance();
