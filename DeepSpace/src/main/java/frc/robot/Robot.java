@@ -7,12 +7,11 @@
 
 package frc.robot;
 
-import edu.wpi.cscore.UsbCamera;
-import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.robot.commands.drivetrain.ArcadeDrive;
 import frc.robot.commands.CommandBase;
+import frc.robot.subsystems.Camera;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -22,9 +21,9 @@ import frc.robot.commands.CommandBase;
  * project.
  */
 public class Robot extends TimedRobot {
+
+  public static Camera camera;
   private ArcadeDrive driveCommand;
-  private CameraServer server;
-  private UsbCamera cam;
 
   /**
    * This function is run when the robot is first started up and should be
@@ -34,10 +33,7 @@ public class Robot extends TimedRobot {
   public void robotInit() {
 
     CommandBase.init();
-    server = CameraServer.getInstance();
-		cam = server.startAutomaticCapture(0);
-		cam.setResolution(320, 240);
-		cam.setFPS(20);
+    camera = Camera.getInstance();
   }
 
   /**

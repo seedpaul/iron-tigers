@@ -9,6 +9,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.commands.camera.ToggleCameras;
 import frc.robot.commands.elbow.*;
 import frc.robot.commands.intake_wheels.*;
 import frc.robot.commands.elevator.*;
@@ -60,7 +61,8 @@ public class OI {
 
     buttonY_dr.whenPressed(new ElbowUp());
     buttonA_dr.whenPressed(new ElbowDown()); 
-    //buttonBumperRight_dr.whenPressed(new ElbowStop()); 
+
+    startButton_dr.whenPressed(new ToggleCameras()); 
 
     //**************************** Assistnt ************************//
     buttonY_as.whileHeld(new ElevatorUp()); 
