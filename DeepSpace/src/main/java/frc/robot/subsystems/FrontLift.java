@@ -61,8 +61,8 @@ public class FrontLift extends Subsystem {
 		liftTalon.config_kI(0, 0.0, 30);
     liftTalon.config_kD(0, 1.0, 30);
 
-    liftTalon.configPeakCurrentLimit(50, 30);
-    liftTalon.configPeakCurrentDuration(700, 30);
+    liftTalon.configPeakCurrentLimit(60, 30);
+    liftTalon.configPeakCurrentDuration(900, 30);
     liftTalon.configContinuousCurrentLimit(30, 30);
     liftTalon.enableCurrentLimit(true);
 

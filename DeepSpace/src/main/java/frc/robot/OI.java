@@ -4,10 +4,13 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.elbow.*;
 import frc.robot.commands.intake_wheels.*;
+import frc.robot.commands.rear_lift.RearLiftHab19;
 import frc.robot.commands.rear_lift.RearLiftHome;
 import frc.robot.commands.elevator.*;
 import frc.robot.commands.flipper.*;
+import frc.robot.commands.front_lift.FrontLiftClimbStep2;
 import frc.robot.commands.front_lift.FrontLiftHome;
+import frc.robot.commands.camera.*;
 import frc.robot.command_groups.*;
 
 public class OI {
@@ -64,7 +67,9 @@ public class OI {
     buttonX_as.whenPressed(new FlipperClose());
     buttonB_as.whenPressed(new FlipperOpen());
 	
-	  buttonBumperRight_as.whenPressed(new ClimbLevel19()); 
-    buttonBumperLeft_as.whenPressed(new ClimbLevel6()); 
+	  buttonBumperRight_as.whenPressed(new FrontLiftClimbStep2()); 
+    buttonBumperLeft_as.whenPressed(new RearLiftHab19()); 
+	
+	  startButton_as.whenPressed(new ToggleCameras()); 
   }
 }

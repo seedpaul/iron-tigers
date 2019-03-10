@@ -35,7 +35,7 @@ public class Elevator extends Subsystem {
     elevatorTalon.configFactoryDefault();
     elevatorVictor.configFactoryDefault();
 
-    elevatorTalon.set(ControlMode.PercentOutput,0);
+    elevatorTalon.set(ControlMode.Position,0);
     elevatorVictor.set(ControlMode.Follower,0);
 
     elevatorTalon.setNeutralMode(NeutralMode.Brake);
@@ -57,12 +57,12 @@ public class Elevator extends Subsystem {
     elevatorTalon.configPeakOutputForward(1, 30);
     elevatorTalon.configPeakOutputReverse(-0.5, 30);
 
-    elevatorTalon.configAllowableClosedloopError(0, 0, 30);
+    elevatorTalon.configAllowableClosedloopError(0, 20, 30);
 
 		elevatorTalon.config_kF(0, 0.0, 30);
-		elevatorTalon.config_kP(0, 0.5, 30);
-		elevatorTalon.config_kI(0, 0.0, 30);
-    elevatorTalon.config_kD(0, 1.0, 30);
+		elevatorTalon.config_kP(0, 0.0, 30);
+    elevatorTalon.config_kI(0, 0.0, 30);
+    elevatorTalon.config_kD(0, 0.0, 30);
 
     elevatorVictor.follow(elevatorTalon);
 

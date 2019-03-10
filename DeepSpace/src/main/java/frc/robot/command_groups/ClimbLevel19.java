@@ -26,7 +26,7 @@ public class ClimbLevel19 extends CommandGroup {
 
     addSequential(new FrontLiftClimbStep2(),2);
 
-    addSequential(new DriveStraight(20.0, 0.5)); // until about ITS OVER 9000 DUBBAH BRAP BRAP BRAP 
+    //addSequential(new DriveStraight(20.0, 0.5)); // until about ITS OVER 9000 DUBBAH BRAP BRAP BRAP 
 
     //Step 5 - deploy rear lift 
     // addSequential(new RearLiftHome());

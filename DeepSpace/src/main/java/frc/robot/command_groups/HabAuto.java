@@ -15,13 +15,13 @@ public class HabAuto extends CommandGroup {
     addSequential(new FrontLiftClimbStep1());
 
     //Step 2 - Drive forward 
-    addSequential(new DriveStraight(0,0));
+    //addSequential(new DriveStraight(0,0));
 
     //Step 3 - deploy rear lift 
     addSequential(new RearLiftHab6());
 
     //step 4 - drive forward 
-    addSequential(new DriveStraight(0,0));
+   //addSequential(new DriveStraight(0,0));
 
     //step 5 - return front lift + back lift to bot
     addParallel(new FrontLiftHome());
