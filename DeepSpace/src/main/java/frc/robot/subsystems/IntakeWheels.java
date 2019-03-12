@@ -15,7 +15,7 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 
 public class IntakeWheels extends Subsystem {
 
-  private static final TalonSRX intakeWheels = new TalonSRX(RobotMap.TalonIntakeWheels);
+  // private static final TalonSRX intakeWheels = new TalonSRX(RobotMap.TalonIntakeWheels);
   private static IntakeWheels instance;
 
   private IntakeWheels(){
@@ -24,19 +24,19 @@ public class IntakeWheels extends Subsystem {
 
   private void init(){
 
-    intakeWheels.configFactoryDefault();
-    intakeWheels.set(ControlMode.PercentOutput,0);
-    intakeWheels.setNeutralMode(NeutralMode.Brake);
+    // intakeWheels.configFactoryDefault();
+    // intakeWheels.set(ControlMode.PercentOutput,0);
+    // intakeWheels.setNeutralMode(NeutralMode.Brake);
 
-    intakeWheels.configNominalOutputForward(0,30);
-    intakeWheels.configNominalOutputReverse(0,30);
-    intakeWheels.configPeakOutputForward(1, 30);
-    intakeWheels.configPeakOutputReverse(-1, 30);
+    // intakeWheels.configNominalOutputForward(0,30);
+    // intakeWheels.configNominalOutputReverse(0,30);
+    // intakeWheels.configPeakOutputForward(1, 30);
+    // intakeWheels.configPeakOutputReverse(-1, 30);
     
-    intakeWheels.configPeakCurrentLimit(15, 30);
-    intakeWheels.configPeakCurrentDuration(120, 30);
-    intakeWheels.configContinuousCurrentLimit(1, 30);
-    intakeWheels.enableCurrentLimit(true);
+    // intakeWheels.configPeakCurrentLimit(15, 30);
+    // intakeWheels.configPeakCurrentDuration(120, 30);
+    // intakeWheels.configContinuousCurrentLimit(1, 30);
+    // intakeWheels.enableCurrentLimit(true);
 
   }
 
@@ -48,15 +48,15 @@ public class IntakeWheels extends Subsystem {
   }
 
   public void injest(){
-    intakeWheels.set(ControlMode.PercentOutput, -0.5);
+    // intakeWheels.set(ControlMode.PercentOutput, -0.5);
   }
 
   public void eject(){
-    intakeWheels.set(ControlMode.PercentOutput, 1.0);
+    // intakeWheels.set(ControlMode.PercentOutput, 1.0);
   }
 
   public void stop(){
-    intakeWheels.set(ControlMode.PercentOutput, 0.0);
+    // intakeWheels.set(ControlMode.PercentOutput, 0.0);
   }
 
   @Override

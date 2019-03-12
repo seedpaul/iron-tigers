@@ -16,7 +16,7 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 
 public class HatchPanelFlipper extends Subsystem {
 
-  private static final TalonSRX intakeflipper = new TalonSRX(RobotMap.TalonIntakeFlipper);
+  // private static final TalonSRX intakeflipper = new TalonSRX(RobotMap.TalonIntakeFlipper);
 
   private static final int flipper_home = 0;
   private static final int flipper_close = 1100;
@@ -36,49 +36,49 @@ public class HatchPanelFlipper extends Subsystem {
   
   private void init(){
 
-    intakeflipper.configFactoryDefault();
-    intakeflipper.set(ControlMode.PercentOutput,0);
-    intakeflipper.setNeutralMode(NeutralMode.Brake);
+    // intakeflipper.configFactoryDefault();
+    // intakeflipper.set(ControlMode.PercentOutput,0);
+    // intakeflipper.setNeutralMode(NeutralMode.Brake);
 
-    intakeflipper.configForwardSoftLimitEnable(true);
-    intakeflipper.configReverseSoftLimitEnable(true);
+    // intakeflipper.configForwardSoftLimitEnable(true);
+    // intakeflipper.configReverseSoftLimitEnable(true);
 
-    intakeflipper.configForwardSoftLimitThreshold(flipper_close);
-    intakeflipper.configReverseSoftLimitThreshold(flipper_home);
+    // intakeflipper.configForwardSoftLimitThreshold(flipper_close);
+    // intakeflipper.configReverseSoftLimitThreshold(flipper_home);
 
-    intakeflipper.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 30);
+    // intakeflipper.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 30);
 
-    intakeflipper.config_kF(0, 0.0, 30);
-		intakeflipper.config_kP(0, 1.0, 30);
-		intakeflipper.config_kI(0, 0.0, 30);
-    intakeflipper.config_kD(0, 1.0, 30);
+    // intakeflipper.config_kF(0, 0.0, 30);
+		// intakeflipper.config_kP(0, 1.0, 30);
+		// intakeflipper.config_kI(0, 0.0, 30);
+    // intakeflipper.config_kD(0, 1.0, 30);
     
-    intakeflipper.configAllowableClosedloopError(0,7,30);
+    // intakeflipper.configAllowableClosedloopError(0,7,30);
 
-    intakeflipper.configNominalOutputForward(0,30);
-    intakeflipper.configNominalOutputReverse(0,30);
-    intakeflipper.configPeakOutputForward(1, 30);
-    intakeflipper.configPeakOutputReverse(-1, 30);
+    // intakeflipper.configNominalOutputForward(0,30);
+    // intakeflipper.configNominalOutputReverse(0,30);
+    // intakeflipper.configPeakOutputForward(1, 30);
+    // intakeflipper.configPeakOutputReverse(-1, 30);
 
-    intakeflipper.configPeakCurrentLimit(15, 30);
-    intakeflipper.configPeakCurrentDuration(60, 30);
-    intakeflipper.configContinuousCurrentLimit(1, 30);
+    // intakeflipper.configPeakCurrentLimit(15, 30);
+    // intakeflipper.configPeakCurrentDuration(60, 30);
+    // intakeflipper.configContinuousCurrentLimit(1, 30);
 
-    intakeflipper.enableCurrentLimit(true);
+    // intakeflipper.enableCurrentLimit(true);
 
-    intakeflipper.setSelectedSensorPosition(flipper_home,0,30);
+    // intakeflipper.setSelectedSensorPosition(flipper_home,0,30);
   }
 
   public void homeFlipper(){
-    intakeflipper.set(ControlMode.Position, flipper_home);
+    // intakeflipper.set(ControlMode.Position, flipper_home);
   }
 
   public void closeFlipper(){
-    intakeflipper.set(ControlMode.Position, flipper_close);
+    // intakeflipper.set(ControlMode.Position, flipper_close);
   }
 
   public void stopFlipper(){
-    intakeflipper.set(ControlMode.PercentOutput, 0.0);
+    // intakeflipper.set(ControlMode.PercentOutput, 0.0);
   }
 
   @Override

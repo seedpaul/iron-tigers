@@ -17,7 +17,8 @@ public abstract class CommandBase extends Command {
   public static Elevator elevator;
   public static HatchPanelFlipper panelFlipper;
   public static IntakeWheels intakeWheels;
-  public static IntakeElbow intakeElbow;
+  //public static IntakeElbow intakeElbow;
+  public static IntakeElbowSparkMax intakeElbow;
   public static Camera camera;
   
   public static OI oi;
@@ -29,7 +30,8 @@ public abstract class CommandBase extends Command {
     elevator = Elevator.getInstance();
     panelFlipper = HatchPanelFlipper.getInstance();
     intakeWheels = IntakeWheels.getInstance();
-    intakeElbow = IntakeElbow.getInstance();
+    //intakeElbow = IntakeElbow.getInstance();
+    intakeElbow = IntakeElbowSparkMax.getInstance();
     camera = Camera.getInstance();
 
     oi = new OI();
