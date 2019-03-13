@@ -3,10 +3,10 @@ package frc.robot.subsystems.positioning;
 public class IntakeElbowPositions {
     
     
-    public static int home_position = 20000;//this is up
-    private static int eject_position = 18000;
-    private static int hatch_position = 17000;
-    private static int intake_Position = 16000;//this is down
+    public static int home_position = 19820;//this is up
+    private static int eject_position = 17820;
+    private static int hatch_position = 16820;
+    private static int intake_Position = 15820;//this is down
     private static int currentIndex = 3;
 
                             // index         0               1               2             3

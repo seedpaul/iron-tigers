@@ -4,6 +4,7 @@ import frc.robot.RobotMap;
 import frc.robot.subsystems.positioning.ElevatorPositions;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
@@ -44,6 +45,8 @@ public class Elevator extends Subsystem {
     //this is a very important line of code
     elevatorTalon.setSensorPhase(true);
 
+    elevatorTalon.configClosedloopRamp(0.75, 30);
+
     elevatorTalon.configForwardSoftLimitEnable(true);
     elevatorTalon.configReverseSoftLimitEnable(true);
 
@@ -57,17 +60,27 @@ public class Elevator extends Subsystem {
     elevatorTalon.configPeakOutputForward(1, 30);
     elevatorTalon.configPeakOutputReverse(-0.5, 30);
 
-    elevatorTalon.configAllowableClosedloopError(0, 20, 30);
+    elevatorTalon.configPeakCurrentLimit(40 , 30);
+    elevatorTalon.configPeakCurrentDuration(120, 30);
+    elevatorTalon.configContinuousCurrentLimit(15, 30);
+    elevatorTalon.enableCurrentLimit(true);
+
+    elevatorTalon.configAllowableClosedloopError(0, 0, 30);
 
 		elevatorTalon.config_kF(0, 0.0, 30);
-		elevatorTalon.config_kP(0, 0.0, 30);
+		elevatorTalon.config_kP(0, 0.6, 30);
     elevatorTalon.config_kI(0, 0.0, 30);
-    elevatorTalon.config_kD(0, 0.0, 30);
+    elevatorTalon.config_kD(0, 1.6, 30);
 
     elevatorVictor.follow(elevatorTalon);
 
     //pre-flight checklist to make sure elevator is all the way @ bottom
     elevatorTalon.setSelectedSensorPosition(0,0,30);
+  }
+
+  @Override
+  public void periodic(){
+    SmartDashboard.putNumber("elevator",elevatorTalon.getSelectedSensorPosition(0));
   }
 
   public void up(){

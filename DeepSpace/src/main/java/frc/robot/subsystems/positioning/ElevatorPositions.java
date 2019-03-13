@@ -6,11 +6,11 @@ public class ElevatorPositions{
 
     private static final int hatchLevel1 = 2000; //1
     private static final int hatchLevel2 = 10000; //3
-    private static final int hatchLevel3 = 17000; //5
+    private static final int hatchLevel3 = 18000; //5
 
     private static final int cargoLevel1 = 5000; //2
-    private static final int cargoLevel2 = 12000; //4
-    private static final int cargoLevel3 = 19000; //6
+    private static final int cargoLevel2 = 12500; //4
+    private static final int cargoLevel3 = 20000; //6
 
     //                          index:      0        1           2           3           4           5           6
     public static final int[] positions = {home,hatchLevel1,cargoLevel1,hatchLevel2,cargoLevel2,hatchLevel3,cargoLevel3};
