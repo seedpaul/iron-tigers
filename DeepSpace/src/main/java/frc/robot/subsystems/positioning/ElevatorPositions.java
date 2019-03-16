@@ -3,6 +3,7 @@ package frc.robot.subsystems.positioning;
 public class ElevatorPositions{
 
     public static final int home = 0;
+    public static int current = 0;
 
     private static final int hatchLevel1 = 2000; //1
     private static final int hatchLevel2 = 10000; //3
@@ -34,6 +35,7 @@ public class ElevatorPositions{
         if(currentIndex > 0){
             currentIndex--;
         }
+        current =  positions[currentIndex];
         return positions[currentIndex];
     }
     public static int up(){
@@ -41,7 +43,23 @@ public class ElevatorPositions{
         if(currentIndex < (positions.length-1)){
             currentIndex++;
         }
+        current =  positions[currentIndex];
         return positions[currentIndex];
     }
 
+    public static int downSimple(){
+
+        if(current > 0){
+            current--;
+        }
+        return current;
+    }
+
+    public static int upSimple(){
+
+        if(currentIndex < (positions.length-1)){
+            current++;
+        }
+        return current;
+    }
 }

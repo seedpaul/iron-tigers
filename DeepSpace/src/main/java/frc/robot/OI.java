@@ -56,11 +56,13 @@ public class OI {
 
     buttonBumperRight_dr.whenPressed(new FrontLiftHome());
     buttonBumperLeft_dr.whenPressed(new RearLiftHome()); 
-    
 
     //**************************** Assistant ************************//
     buttonY_as.whenPressed(new ElevatorUp()); 
     buttonA_as.whenPressed(new ElevatorDown()); 
+
+    //buttonY_as.whileHeld(new ElevatorUpSimple()); 
+    //buttonA_as.whileHeld(new ElevatorDownSimple()); 
 
     buttonX_as.whenPressed(new FlipperClose());
     buttonB_as.whenPressed(new FlipperOpen());

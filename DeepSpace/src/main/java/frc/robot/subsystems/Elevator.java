@@ -67,10 +67,20 @@ public class Elevator extends Subsystem {
 
     elevatorTalon.configAllowableClosedloopError(0, 0, 30);
 
-		elevatorTalon.config_kF(0, 0.0, 30);
-		elevatorTalon.config_kP(0, 0.6, 30);
+
+// For example if you want your mechanism to drive 50% throttle when the error is 4096 (one rotation when using CTRE Mag Encoder), 
+// then the calculated Proportional Gain would be (0.50 X 1023) / 4096 = ~0.125.
+// Tune this until the sensed value is close to the target under typical load. 
+// Many prefer to simply double the P-gain until oscillations occur, then reduce accordingly.
+// If the mechanism accelerates too abruptly, Derivative Gain can be used to smooth the motion. 
+// Typically start with 10x to 100x of your current Proportional Gain. If application requires a 
+// controlled (smooth) deceleration towards the target, we strongly recommend motion-magic.
+// If the mechanism never quite reaches the target and increasing Integral Gain is viable, start with 1/100th of the Proportional Gain.
+
+		elevatorTalon.config_kF(0, 0.2, 30);
+		elevatorTalon.config_kP(0, 0.25, 30);//0.6
     elevatorTalon.config_kI(0, 0.0, 30);
-    elevatorTalon.config_kD(0, 1.6, 30);
+    elevatorTalon.config_kD(0, 0.0, 30);//1.6
 
     elevatorVictor.follow(elevatorTalon);
 
@@ -89,6 +99,14 @@ public class Elevator extends Subsystem {
 
   public void down(){
     setPosition(ElevatorPositions.down());
+  }
+
+  public void upSimple(){
+    setPosition(ElevatorPositions.upSimple());
+  }
+
+  public void downSimple(){
+    setPosition(ElevatorPositions.downSimple());
   }
 
   public void goToHome(){
