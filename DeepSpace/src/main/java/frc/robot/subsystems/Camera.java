@@ -30,11 +30,11 @@ public class Camera extends Subsystem {
 
     // System.out.println("camera init");
 
-    camLeft.setResolution(640,480);
-    camRight.setResolution(640,480);
+    camLeft.setResolution(320,240);
+    camRight.setResolution(320,240);
 
-    camLeft.setFPS(30);
-    camRight.setFPS(30);
+    camLeft.setFPS(60);
+    camRight.setFPS(60);
 
     camLeft.setConnectionStrategy(ConnectionStrategy.kKeepOpen);
     camRight.setConnectionStrategy(ConnectionStrategy.kKeepOpen);

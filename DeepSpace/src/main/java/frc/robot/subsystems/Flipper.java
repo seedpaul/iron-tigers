@@ -13,6 +13,7 @@ public class Flipper extends Subsystem {
 
   private static final int flipper_home = 0;
   private static final int flipper_close = 1100;
+  private static final int flipper_start = -700;
 
   private static Flipper instance;
 
@@ -60,7 +61,7 @@ public class Flipper extends Subsystem {
     flipperTalon.enableCurrentLimit(true);
 
     //pre-flight checklist to make sure flipper is all the way up
-    flipperTalon.setSelectedSensorPosition(flipper_home,0,30);
+    flipperTalon.setSelectedSensorPosition(flipper_start,0,30);
   }
 
   public void homeFlipper(){

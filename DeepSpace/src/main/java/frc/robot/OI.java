@@ -46,23 +46,21 @@ public class OI {
   public void init(){
 
     //************************* Main ***************************//
-    buttonBumperRight_dr.whenPressed(new IntakeWheelsInjest());
+    buttonX_dr.whenPressed(new IntakeWheelsInjest());
     
-    buttonBumperLeft_dr.whileHeld(new IntakeWheelsEject());
-    buttonBumperLeft_dr.whenReleased(new IntakeWheelsStop()); 
+    buttonB_dr.whileHeld(new IntakeWheelsEject());
+    buttonB_dr.whenReleased(new IntakeWheelsStop()); 
 
     buttonY_dr.whenPressed(new ElbowUp());
     buttonA_dr.whenPressed(new ElbowDown()); 
 
-    startButton_dr.whenPressed(new RearLiftHome());
-    selectButton_dr.whenPressed(new FrontLiftHome());
+    buttonBumperRight_dr.whenPressed(new FrontLiftHome());
+    buttonBumperLeft_dr.whenPressed(new RearLiftHome()); 
+    
 
     //**************************** Assistant ************************//
     buttonY_as.whenPressed(new ElevatorUp()); 
-    //buttonY_as.whenReleased(new ElevatorStop());
-
     buttonA_as.whenPressed(new ElevatorDown()); 
-    //buttonA_as.whenReleased(new ElevatorStop());
 
     buttonX_as.whenPressed(new FlipperClose());
     buttonB_as.whenPressed(new FlipperOpen());
