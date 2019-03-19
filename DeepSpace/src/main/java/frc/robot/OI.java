@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.elbow.*;
 import frc.robot.commands.intake_wheels.*;
 import frc.robot.commands.rear_lift.RearLiftHab19;
+import frc.robot.commands.rear_lift.RearLiftHab6;
 import frc.robot.commands.rear_lift.RearLiftHome;
 import frc.robot.commands.elevator.*;
 import frc.robot.commands.flipper.*;
@@ -57,19 +58,20 @@ public class OI {
     buttonBumperRight_dr.whenPressed(new FrontLiftHome());
     buttonBumperLeft_dr.whenPressed(new RearLiftHome()); 
 
+    selectButton_dr.whenPressed(new FlipperBumpDown()); 
+	  startButton_dr.whenPressed(new FlipperBumpUp()); 
+
     //**************************** Assistant ************************//
     buttonY_as.whenPressed(new ElevatorUp()); 
     buttonA_as.whenPressed(new ElevatorDown()); 
-
-    //buttonY_as.whileHeld(new ElevatorUpSimple()); 
-    //buttonA_as.whileHeld(new ElevatorDownSimple()); 
 
     buttonX_as.whenPressed(new FlipperClose());
     buttonB_as.whenPressed(new FlipperOpen());
 	
 	  buttonBumperRight_as.whenPressed(new FrontLiftClimbStep2()); 
     buttonBumperLeft_as.whenPressed(new RearLiftHab19()); 
-	
+
+    selectButton_as.whenPressed(new RearLiftHab6()); 
 	  startButton_as.whenPressed(new ToggleCameras()); 
   }
 }

@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.DemandType;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 
@@ -57,8 +58,8 @@ public class Elevator extends Subsystem {
     
     elevatorTalon.configNominalOutputForward(0,30);
     elevatorTalon.configNominalOutputReverse(0,30);
-    elevatorTalon.configPeakOutputForward(1, 30);
-    elevatorTalon.configPeakOutputReverse(-0.5, 30);
+    elevatorTalon.configPeakOutputForward(1.0, 30);
+    elevatorTalon.configPeakOutputReverse(-0.45, 30);
 
     elevatorTalon.configPeakCurrentLimit(40 , 30);
     elevatorTalon.configPeakCurrentDuration(120, 30);
@@ -77,10 +78,10 @@ public class Elevator extends Subsystem {
 // controlled (smooth) deceleration towards the target, we strongly recommend motion-magic.
 // If the mechanism never quite reaches the target and increasing Integral Gain is viable, start with 1/100th of the Proportional Gain.
 
-		elevatorTalon.config_kF(0, 0.2, 30);
-		elevatorTalon.config_kP(0, 0.25, 30);//0.6
+		elevatorTalon.config_kF(0, 0.0, 30);
+		elevatorTalon.config_kP(0, 0.5, 30);
     elevatorTalon.config_kI(0, 0.0, 30);
-    elevatorTalon.config_kD(0, 0.0, 30);//1.6
+    elevatorTalon.config_kD(0, 50.0, 30);
 
     elevatorVictor.follow(elevatorTalon);
 
@@ -114,7 +115,7 @@ public class Elevator extends Subsystem {
   }
 
   private void setPosition(int position){
-    elevatorTalon.set(ControlMode.Position, position);
+    elevatorTalon.set(ControlMode.Position, position, DemandType.ArbitraryFeedForward,0.2);
   }
 
   public void stop(){

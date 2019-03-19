@@ -11,9 +11,10 @@ public class Flipper extends Subsystem {
 
   private static final TalonSRX flipperTalon = new TalonSRX(RobotMap.TalonIntakeFlipper);
 
-  private static final int flipper_home = 0;
-  private static final int flipper_close = 1100;
-  private static final int flipper_start = -700;
+  private static int flipper_home = 400;
+  private static int flipper_close = 1550;
+  private static final int flipper_start = 0;
+  private static final int flipperBumpIncrement = 100;
 
   private static Flipper instance;
 
@@ -75,6 +76,17 @@ public class Flipper extends Subsystem {
   public void stopFlipper(){
     flipperTalon.set(ControlMode.PercentOutput, 0.0);
   }
+
+  public void bumpFlipperUp(){
+
+    flipper_home = flipper_home + flipperBumpIncrement;
+    flipper_close = flipper_close + flipperBumpIncrement;
+
+  };
+  public void bumpFlipperDown(){
+    flipper_home = flipper_home - flipperBumpIncrement;
+    flipper_close = flipper_close - flipperBumpIncrement;
+  };
 
   @Override
   public void initDefaultCommand() {
