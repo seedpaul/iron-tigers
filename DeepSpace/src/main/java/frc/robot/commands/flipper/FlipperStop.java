@@ -13,7 +13,7 @@ public class FlipperStop extends CommandBase {
   
   public FlipperStop() {
     // Use requires() here to declare subsystem dependencies
-    requires(panelFlipper);
+    requires(flipper);
   }
 
   // Called just before this Command runs the first time
@@ -24,7 +24,7 @@ public class FlipperStop extends CommandBase {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    panelFlipper.stopFlipper();
+    flipper.stopFlipper();
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -36,7 +36,7 @@ public class FlipperStop extends CommandBase {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    panelFlipper.stopFlipper();
+    flipper.stopFlipper();
   }
 
   // Called when another command which requires one or more of the same

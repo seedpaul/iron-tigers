@@ -9,16 +9,12 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.robot.commands.camera.ToggleCameras;
 import frc.robot.commands.elbow.*;
 import frc.robot.commands.intake_wheels.*;
 import frc.robot.commands.elevator.*;
 import frc.robot.commands.flipper.*;
+import frc.robot.commands.camera.*;
 
-/**
- * This class is the glue that binds the controls on the physical operator
- * interface to the commands and command groups that allow control of the robot.
- */
 public class OI {
 
   //************************* Main Driver *********************************//
@@ -44,20 +40,18 @@ public class OI {
   public static JoystickButton buttonY_as = new JoystickButton(xboxControllerAssist,RobotMap.buttonY);
 
   public static JoystickButton buttonBumperLeft_as = new JoystickButton(xboxControllerAssist,RobotMap.buttonBumperLeft);
+  public static JoystickButton buttonBumperRight_as = new JoystickButton(xboxControllerAssist,RobotMap.buttonBumperRight);
+
+  public static JoystickButton startButton_as = new JoystickButton(xboxControllerAssist,RobotMap.buttonStart);
+  public static JoystickButton selectButton_as = new JoystickButton(xboxControllerAssist,RobotMap.buttonSelect);
 
   public void init(){
 
     //************************* Main ***************************//
-    buttonBumperRight_dr.whenPressed(new IntakeWheelsInjest());
+    buttonX_dr.whenPressed(new IntakeWheelsInjest());
     
-    buttonBumperLeft_dr.whileHeld(new IntakeWheelsEject());
-    buttonBumperLeft_dr.whenReleased(new IntakeWheelsStop());
-
-    // buttonBumperRight_dr.whenPressed(new ClawFlipperOpen());
-    // buttonBumperLeft_dr.whenPressed(new ClawFlipperClose());
-
-    // buttonB_dr.whenPressed(new IntakeClawOpen());
-    // buttonX_dr.whenPressed(new IntakeClawClose()); 
+    buttonB_dr.whileHeld(new IntakeWheelsEject());
+    buttonB_dr.whenReleased(new IntakeWheelsStop()); 
 
     buttonY_dr.whenPressed(new ElbowUp());
     buttonA_dr.whenPressed(new ElbowDown()); 
@@ -73,6 +67,9 @@ public class OI {
 
     buttonX_as.whenPressed(new FlipperClose());
     buttonB_as.whenPressed(new FlipperOpen());
+
+    startButton_as.whenPressed(new FlipperBumpUp());
+    selectButton_as.whenPressed(new FlipperBumpDown());
 
   }
   

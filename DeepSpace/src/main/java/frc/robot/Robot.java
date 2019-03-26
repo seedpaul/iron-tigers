@@ -11,7 +11,6 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.robot.commands.drivetrain.ArcadeDrive;
 import frc.robot.commands.CommandBase;
-import frc.robot.subsystems.Camera;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -21,8 +20,6 @@ import frc.robot.subsystems.Camera;
  * project.
  */
 public class Robot extends TimedRobot {
-
-  public static Camera camera;
   private ArcadeDrive driveCommand;
 
   /**
@@ -33,7 +30,6 @@ public class Robot extends TimedRobot {
   public void robotInit() {
 
     CommandBase.init();
-    camera = Camera.getInstance();
   }
 
   /**
@@ -84,6 +80,7 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousPeriodic() {
     Scheduler.getInstance().run();
+    teleopPeriodic();
   }
 
   @Override
@@ -102,7 +99,6 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
-    
     Scheduler.getInstance().run();
 
     if (CommandBase.driveTrain.getCurrentCommand() == null){

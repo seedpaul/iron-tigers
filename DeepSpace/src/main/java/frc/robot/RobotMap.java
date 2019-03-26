@@ -27,30 +27,26 @@ public class RobotMap {
 
   //*********************start can********************/
     //*****Start Draintrain********************
-    public static int SPXFrontRight = 11;
-    public static int SPXFrontLeft = 12;
+    public static int VictorFrontRight = 11;
+    public static int VictorFrontLeft = 12;
     
-    public static int SRXBackRight = 2;
-    public static int SRXBackLeft = 4;
+    public static int TalonBackRight = 2;
+    public static int TalonBackLeft = 4;
     //*****End  Draintrain********************
 
-  public static int SRXFrontLift = 7;
-  public static int SPXFrontLift = 10;
+  public static int TalonFrontLift = 7;
+  public static int VictorFrontLift = 10;
 
-  public static int SRXRearLift = 6;
+  public static int TalonRearLift = 6;
   
-  public static int SRXElevator = 5;
-  public static int SPXElevator = 9;
+  public static int TalonElevator = 5;
+  public static int VictorElevator = 9;
 
    // mapping locations for intake wheels
   public static int TalonIntakeWheels = 3;
   public static int TalonIntakeFlipper = 8;
 
-  // mapping locations for intake claw
-  public static int TalonIntakeClaw = 8;
-  public static int TalonIntakeClawFlipper = 3;
-
-  public static int SRXIntakeElbow = 1;
+  public static int TalonIntakeElbow = 1;
 //*******************end can*****************************/
 
 //****************** DIO ports for encoders**************/
