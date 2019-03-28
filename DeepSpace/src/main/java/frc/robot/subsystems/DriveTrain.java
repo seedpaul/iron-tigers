@@ -1,10 +1,3 @@
-/*----------------------------------------------------------------------------*/
-/* Copyright (c) 2018 FIRST. All Rights Reserved.                             */
-/* Open Source Software - may be modified and shared by FRC teams. The code   */
-/* must be accompanied by the FIRST BSD license file in the root directory of */
-/* the project.                                                               */
-/*----------------------------------------------------------------------------*/
-
 package frc.robot.subsystems;
 
 import frc.robot.RobotMap;
@@ -12,8 +5,8 @@ import frc.robot.commands.drivetrain.ArcadeDrive;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
-import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.Talon;
 
 public class DriveTrain extends Subsystem{
 
@@ -27,9 +20,8 @@ public class DriveTrain extends Subsystem{
 
   private final DifferentialDrive robotDrive = new DifferentialDrive(leftSCG, rightSCG);
 
-  int counter = 0;
-
   private static DriveTrain instance;
+
 
   private DriveTrain(){
     init();
@@ -44,9 +36,9 @@ public class DriveTrain extends Subsystem{
   }
 
   private void init(){
-
     robotDrive.setExpiration(1);
     robotDrive.setSafetyEnabled(true);
+    
   }
 
   @Override
@@ -62,8 +54,13 @@ public class DriveTrain extends Subsystem{
     robotDrive.arcadeDrive(speed, turn, true);
   }
 
+  public void autoDrive(double speed, double rotation) {
+    robotDrive.curvatureDrive(speed, rotation, false);
+  }
+
   public void stop(){
     robotDrive.stopMotor();
   }
+
 
 }

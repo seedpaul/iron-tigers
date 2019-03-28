@@ -45,15 +45,15 @@ public class Elbow extends Subsystem {
     
     intakeElbowTalon.configNominalOutputForward(0,30);
     intakeElbowTalon.configNominalOutputReverse(0,30);
-    intakeElbowTalon.configPeakOutputForward(0.8, 30);
-    intakeElbowTalon.configPeakOutputReverse(-0.5, 30);
+    intakeElbowTalon.configPeakOutputForward(0.9, 30);
+    intakeElbowTalon.configPeakOutputReverse(-0.8, 30);
 
     intakeElbowTalon.configAllowableClosedloopError(0,75,30);
 
 		intakeElbowTalon.config_kF(0, 0.0, 30);
-		intakeElbowTalon.config_kP(0, 1.0, 30);
+		intakeElbowTalon.config_kP(0, 1.5, 30);
 		intakeElbowTalon.config_kI(0, 0.0, 30);
-    intakeElbowTalon.config_kD(0, 1.0, 30);
+    intakeElbowTalon.config_kD(0, 10.0, 30);
 
     intakeElbowTalon.configPeakCurrentLimit(16 , 30);
     intakeElbowTalon.configPeakCurrentDuration(120, 30);
