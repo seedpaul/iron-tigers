@@ -35,7 +35,7 @@ public class IntakeWheels extends Subsystem {
     
     intakeWheelsTalon.configPeakCurrentLimit(15, 30);
     intakeWheelsTalon.configPeakCurrentDuration(120, 30);
-    intakeWheelsTalon.configContinuousCurrentLimit(1, 30);
+    intakeWheelsTalon.configContinuousCurrentLimit(3, 30);
     intakeWheelsTalon.enableCurrentLimit(true);
 
   }

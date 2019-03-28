@@ -56,8 +56,11 @@ public class DriveTrain extends Subsystem{
 
   private void init(){
 
-    backRightTalon.setNeutralMode(NeutralMode.Coast);
-    backLeftTalon.setNeutralMode(NeutralMode.Coast);
+    backRightTalon.setNeutralMode(NeutralMode.Brake);
+    backLeftTalon.setNeutralMode(NeutralMode.Brake);
+    frontLeftVictor.setNeutralMode(NeutralMode.Brake);
+    frontRightVictor.setNeutralMode(NeutralMode.Brake);
+
     robotDrive.setExpiration(1);
     robotDrive.setSafetyEnabled(true);
 

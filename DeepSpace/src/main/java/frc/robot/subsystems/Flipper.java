@@ -11,10 +11,10 @@ public class Flipper extends Subsystem {
 
   private static final TalonSRX flipperTalon = new TalonSRX(RobotMap.TalonIntakeFlipper);
 
-  private static int flipper_home = 400;
-  private static int flipper_close = 1550;
+  private static int flipper_home = 350;
+  private static int flipper_close = 1460;
   private static final int flipper_start = 0;
-  private static final int flipperBumpIncrement = 100;
+  private static final int flipperBumpIncrement = 0;
 
   private static Flipper instance;
 
@@ -32,7 +32,7 @@ public class Flipper extends Subsystem {
   private void init(){
 
     flipperTalon.configFactoryDefault();
-    flipperTalon.set(ControlMode.PercentOutput,0);
+    flipperTalon.set(ControlMode.Position,0);
     flipperTalon.setNeutralMode(NeutralMode.Brake);
 
     flipperTalon.configForwardSoftLimitEnable(true);
@@ -44,11 +44,11 @@ public class Flipper extends Subsystem {
     flipperTalon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 30);
 
     flipperTalon.config_kF(0, 0.0, 30);
-		flipperTalon.config_kP(0, 1.0, 30);
+		flipperTalon.config_kP(0, 1.5, 30);
 		flipperTalon.config_kI(0, 0.0, 30);
-    flipperTalon.config_kD(0, 1.0, 30);
+    flipperTalon.config_kD(0, 15.0, 30);
     
-    flipperTalon.configAllowableClosedloopError(0,7,30);
+    flipperTalon.configAllowableClosedloopError(0,5,30);
 
     flipperTalon.configNominalOutputForward(0,30);
     flipperTalon.configNominalOutputReverse(0,30);
@@ -78,15 +78,16 @@ public class Flipper extends Subsystem {
   }
 
   public void bumpFlipperUp(){
+    flipper_home += flipperBumpIncrement;
+    flipper_close += flipperBumpIncrement; 
+    flipperTalon.overrideSoftLimitsEnable(true);
+  }
 
-    flipper_home = flipper_home + flipperBumpIncrement;
-    flipper_close = flipper_close + flipperBumpIncrement;
-
-  };
   public void bumpFlipperDown(){
-    flipper_home = flipper_home - flipperBumpIncrement;
-    flipper_close = flipper_close - flipperBumpIncrement;
-  };
+    flipper_home -= flipperBumpIncrement;
+    flipper_close -= flipperBumpIncrement;
+    flipperTalon.overrideSoftLimitsEnable(true);
+  }
 
   @Override
   public void initDefaultCommand() {
