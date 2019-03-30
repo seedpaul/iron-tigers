@@ -12,7 +12,7 @@ public class Flipper extends Subsystem {
   private static final TalonSRX flipperTalon = new TalonSRX(RobotMap.TalonIntakeFlipper);
 
   private static int flipper_home = 350;
-  private static int flipper_close = 1460;
+  private static int flipper_close = 1410;
   private static final int flipper_start = 0;
   private static final int flipperBumpIncrement = 0;
 

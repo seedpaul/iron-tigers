@@ -58,8 +58,7 @@ public class OI {
     buttonBumperRight_dr.whenPressed(new FrontLiftHome());
     buttonBumperLeft_dr.whenPressed(new RearLiftHome()); 
 
-    selectButton_dr.whenPressed(new FlipperBumpDown()); 
-	  startButton_dr.whenPressed(new FlipperBumpUp()); 
+	  startButton_dr.whenPressed(new ToggleCameras()); 
 
     //**************************** Assistant ************************//
     buttonY_as.whenPressed(new ElevatorUp()); 
@@ -71,7 +70,6 @@ public class OI {
 	  buttonBumperRight_as.whenPressed(new FrontLiftClimbStep2()); 
     buttonBumperLeft_as.whenPressed(new RearLiftHab19()); 
 
-    selectButton_as.whenPressed(new RearLiftHab6()); 
-	  startButton_as.whenPressed(new ToggleCameras()); 
+    selectButton_as.whenPressed(new RearLiftHab6());  
   }
 }
