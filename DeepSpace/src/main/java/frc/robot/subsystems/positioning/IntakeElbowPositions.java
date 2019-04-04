@@ -3,12 +3,20 @@ package frc.robot.subsystems.positioning;
 public class IntakeElbowPositions {
     
     
-    public static int home_position = 19820;//this is up
-    private static int eject_position = 17820;
-    private static int hatch_position = 16420;
-    private static int intake_Position = 15820;//this is down
-    private static int currentIndex = 3;
+    private static int pulsesPerRevolutionAtOutPointShaft = 3402;//4200;
+    private static double ratio = pulsesPerRevolutionAtOutPointShaft/360;
+    private static int finalElbowGearRatio = 66/18;
+    public static int home_position = 0;//this is up
 
+    private static int eject_position = (int)(ratio * 2); //45 degrees
+    private static int hatch_position = (int)(ratio * 4);//90 degrees
+    private static int intake_Position = (int)(ratio * 6); //100 degrees
+
+    // private static int eject_position = (int)(ratio * 45); //45 degrees
+    // private static int hatch_position = (int)(ratio * 90);//90 degrees
+    // private static int intake_Position = (int)(ratio * 100); //100 degrees
+    private static int currentIndex = 3;
+ 
                             // index         0               1               2             3
     private static int[] positions = {intake_Position,hatch_position,eject_position,home_position};
 

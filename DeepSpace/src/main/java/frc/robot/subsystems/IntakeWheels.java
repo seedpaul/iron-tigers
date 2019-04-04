@@ -8,7 +8,7 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 
 public class IntakeWheels extends Subsystem {
 
-  private static final TalonSRX intakeWheelsTalon = new TalonSRX(RobotMap.TalonIntakeWheels);
+  private static final TalonSRX intakeWheelsTalon = new TalonSRX(1);
   private static IntakeWheels instance;
 
   private IntakeWheels(){

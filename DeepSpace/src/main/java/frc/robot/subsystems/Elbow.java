@@ -1,17 +1,23 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.subsystems.positioning.IntakeElbowPositions;
-
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.NeutralMode;
-import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.revrobotics.CANEncoder;
+import com.revrobotics.CANPIDController;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.ControlType;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 public class Elbow extends Subsystem {
-  
-  private static TalonSRX intakeElbowTalon = new TalonSRX(RobotMap.TalonIntakeElbow);
+
+  private static final int deviceID = 13;
+  private CANPIDController PIDcontroller;
+  private CANEncoder encoder;
+  private CANSparkMax sparkMax;
+  public double kP, kI, kD, kIz, kFF, kMaxOutput, kMinOutput;
+
   private static Elbow instance;
 
   private Elbow(){
@@ -26,42 +32,30 @@ public class Elbow extends Subsystem {
   }
 
   private void init(){
+    sparkMax = new CANSparkMax(deviceID,MotorType.kBrushless);
+    sparkMax.restoreFactoryDefaults();
 
-    //pulse per revolution = 4096
-    intakeElbowTalon.configFactoryDefault();
-    intakeElbowTalon.set(ControlMode.PercentOutput,0);
-    intakeElbowTalon.setNeutralMode(NeutralMode.Brake);
+    PIDcontroller = sparkMax.getPIDController();
+    encoder = sparkMax.getEncoder();
 
-    //this is a very important line of code
-    intakeElbowTalon.setSensorPhase(true);
+    // PID coefficients
+    kP = 1.8; 
+    kI = 0.0;
+    kD = 1.0; 
+    kIz = 0; 
+    kFF = 0; 
+    kMaxOutput = 1; 
+    kMinOutput = -1;
 
-    intakeElbowTalon.configForwardSoftLimitEnable(true);
-    intakeElbowTalon.configReverseSoftLimitEnable(true);
+    // set PID coefficients
+    PIDcontroller.setP(kP);
+    PIDcontroller.setI(kI);
+    PIDcontroller.setD(kD);
+    PIDcontroller.setIZone(kIz);
+    PIDcontroller.setFF(kFF);
+    PIDcontroller.setOutputRange(kMinOutput, kMaxOutput);
 
-    intakeElbowTalon.configForwardSoftLimitThreshold(IntakeElbowPositions.getMax());
-    intakeElbowTalon.configReverseSoftLimitThreshold(IntakeElbowPositions.getMin());
-
-    intakeElbowTalon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 30);
-    
-    intakeElbowTalon.configNominalOutputForward(0,30);
-    intakeElbowTalon.configNominalOutputReverse(0,30);
-    intakeElbowTalon.configPeakOutputForward(0.9, 30);
-    intakeElbowTalon.configPeakOutputReverse(-0.8, 30);
-
-    intakeElbowTalon.configAllowableClosedloopError(0,75,30);
-
-		intakeElbowTalon.config_kF(0, 0.0, 30);
-		intakeElbowTalon.config_kP(0, 1.5, 30);
-		intakeElbowTalon.config_kI(0, 0.0, 30);
-    intakeElbowTalon.config_kD(0, 10.0, 30);
-
-    intakeElbowTalon.configPeakCurrentLimit(16 , 30);
-    intakeElbowTalon.configPeakCurrentDuration(120, 30);
-    intakeElbowTalon.configContinuousCurrentLimit(1, 30);
-    intakeElbowTalon.enableCurrentLimit(true);
-
-    //pre-flight checklist to make sure elbow is all the way @ up
-    intakeElbowTalon.setSelectedSensorPosition(IntakeElbowPositions.getMax(),0,30);
+    encoder.setPosition(0);
   }
 
   public void up(){
@@ -73,16 +67,24 @@ public class Elbow extends Subsystem {
   }
 
   private void setPosition(int position){
-    intakeElbowTalon.set(ControlMode.Position, position);
+    PIDcontroller.setReference(position, ControlType.kPosition);
+    SmartDashboard.putNumber("elbow target position",position);
   }
 
   public void stop(){
-    intakeElbowTalon.set(ControlMode.PercentOutput, 0.0);
+
   }
 
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
+  }
+
+  @Override
+  public void periodic() {
+    super.periodic();
+    SmartDashboard.putNumber("elbow position",encoder.getPosition());
+    SmartDashboard.putNumber("elbow velocity",encoder.getVelocity());
   }
 }
