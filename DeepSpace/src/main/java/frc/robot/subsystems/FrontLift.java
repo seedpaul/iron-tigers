@@ -70,7 +70,11 @@ public class FrontLift extends Subsystem {
     
     //pre-flight checklist to make sure front lift is all the way up
     liftTalon.setSelectedSensorPosition(FrontLiftPositions.getHomePosition(),0,30);
+    
+    //liftTalon.setSelectedSensorPosition(FrontLiftPositions.front_habLevel19,0,30);
+
     //liftTalon.setSelectedSensorPosition(FrontLiftPositions.geLowestPosition(),0,30);
+    //liftTalon.setSelectedSensorPosition(145000,0,30);
   }
 
   public void climbStep2(){
@@ -103,3 +107,4 @@ public class FrontLift extends Subsystem {
     // setDefaultCommand(new MySpecialCommand());
   }
 }
+

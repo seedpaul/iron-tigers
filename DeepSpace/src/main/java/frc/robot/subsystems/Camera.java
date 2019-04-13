@@ -8,9 +8,9 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Camera extends Subsystem {
 
-  private UsbCamera camLeft = CameraServer.getInstance().startAutomaticCapture("CamLeft", 0);
-  private UsbCamera camRight = CameraServer.getInstance().startAutomaticCapture("CamRight", 1);
-  private final VideoSink sink = CameraServer.getInstance().getServer();
+  private UsbCamera camLeft = new UsbCamera("CamLeft", 0);//CameraServer.getInstance().startAutomaticCapture("CamLeft", 0);
+  private UsbCamera camRight = new UsbCamera("CamRight", 1); //CameraServer.getInstance().startAutomaticCapture("CamRight", 1);
+  private final VideoSink sink = CameraServer.getInstance().addSwitchedCamera("name");//.getServer();
 
   private static Camera instance;
   
@@ -26,15 +26,16 @@ public class Camera extends Subsystem {
     return instance;
   }
 
-  private void init(){
+  private void init()
+  {
 
     // System.out.println("camera init");
 
     camLeft.setResolution(320,240);
     camRight.setResolution(320,240);
 
-    camLeft.setFPS(60);
-    camRight.setFPS(60);
+    camLeft.setFPS(15);
+    camRight.setFPS(15);
 
     camLeft.setConnectionStrategy(ConnectionStrategy.kKeepOpen);
     camRight.setConnectionStrategy(ConnectionStrategy.kKeepOpen);

@@ -104,8 +104,8 @@ public class DriveTrain extends Subsystem{
   }
 
   private void addInfoToDashboard(){
-    SmartDashboard.putData("leftEncoder", leftEncoder);
-    SmartDashboard.putData("rightEncoder", rightEncoder);
+    //SmartDashboard.putData("leftEncoder", leftEncoder);
+    //SmartDashboard.putData("rightEncoder", rightEncoder);
   }
 
   public void brake(){

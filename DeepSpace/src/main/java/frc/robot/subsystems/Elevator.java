@@ -59,7 +59,7 @@ public class Elevator extends Subsystem {
     elevatorTalon.configNominalOutputForward(0,30);
     elevatorTalon.configNominalOutputReverse(0,30);
     elevatorTalon.configPeakOutputForward(1.0, 30);
-    elevatorTalon.configPeakOutputReverse(-0.45, 30);
+    elevatorTalon.configPeakOutputReverse(-0.7, 30);
 
     elevatorTalon.configPeakCurrentLimit(40 , 30);
     elevatorTalon.configPeakCurrentDuration(120, 30);
@@ -81,7 +81,7 @@ public class Elevator extends Subsystem {
 		elevatorTalon.config_kF(0, 0.0, 30);
 		elevatorTalon.config_kP(0, 0.5, 30);
     elevatorTalon.config_kI(0, 0.0, 30);
-    elevatorTalon.config_kD(0, 50.0, 30);
+    elevatorTalon.config_kD(0, 100.0, 30);
 
     elevatorVictor.follow(elevatorTalon);
 
@@ -91,7 +91,7 @@ public class Elevator extends Subsystem {
 
   @Override
   public void periodic(){
-    SmartDashboard.putNumber("elevator",elevatorTalon.getSelectedSensorPosition(0));
+    //SmartDashboard.putNumber("elevator",elevatorTalon.getSelectedSensorPosition(0));
   }
 
   public void up(){
