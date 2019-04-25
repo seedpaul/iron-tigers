@@ -46,7 +46,7 @@ public class Elevator extends Subsystem {
     //this is a very important line of code
     elevatorTalon.setSensorPhase(true);
 
-    elevatorTalon.configClosedloopRamp(0.75, 30);
+    elevatorTalon.configClosedloopRamp(0.5, 30);
 
     elevatorTalon.configForwardSoftLimitEnable(true);
     elevatorTalon.configReverseSoftLimitEnable(true);
@@ -79,9 +79,9 @@ public class Elevator extends Subsystem {
 // If the mechanism never quite reaches the target and increasing Integral Gain is viable, start with 1/100th of the Proportional Gain.
 
 		elevatorTalon.config_kF(0, 0.0, 30);
-		elevatorTalon.config_kP(0, 0.5, 30);
+		elevatorTalon.config_kP(0, 1.5, 30);
     elevatorTalon.config_kI(0, 0.0, 30);
-    elevatorTalon.config_kD(0, 100.0, 30);
+    elevatorTalon.config_kD(0, 1500.0, 30);
 
     elevatorVictor.follow(elevatorTalon);
 

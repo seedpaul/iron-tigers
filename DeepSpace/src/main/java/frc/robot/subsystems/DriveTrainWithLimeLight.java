@@ -13,8 +13,9 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import com.kauailabs.navx.frc.AHRS;
+import edu.wpi.first.networktables.*;
 
-public class DriveTrain extends Subsystem{
+public class DriveTrainWithLimeLight extends Subsystem{
 
   private final WPI_VictorSPX frontRightVictor = new WPI_VictorSPX(RobotMap.VictorFrontRight);
   private final WPI_VictorSPX frontLeftVictor = new WPI_VictorSPX(RobotMap.VictorFrontLeft);
@@ -31,7 +32,7 @@ public class DriveTrain extends Subsystem{
 
   private AHRS ahrs;
 
-  private static DriveTrain instance;
+  private static DriveTrainWithLimeLight instance;
 
   static final double kP = 0.012;
   static final double kI = 0.00;
@@ -39,15 +40,19 @@ public class DriveTrain extends Subsystem{
   static final double kF = 0.00;
   static final double kToleranceDegrees = 2.0f;
 
+  private boolean m_LimelightHasValidTarget = false;
+  private double m_LimelightDriveCommand = 0.0;
+  private double m_LimelightSteerCommand = 0.0;
+
   int counter = 0;
 
-  private DriveTrain(){
+  private DriveTrainWithLimeLight(){
     init();
   }
 
-  public static DriveTrain getInstance(){
+  public static DriveTrainWithLimeLight getInstance(){
     if (instance == null){
-      instance = new DriveTrain();
+      instance = new DriveTrainWithLimeLight();
     }
 
     return instance;
@@ -94,17 +99,20 @@ public class DriveTrain extends Subsystem{
     double speed = -driver.getRawAxis(RobotMap.leftStickY);
     double turn = driver.getRawAxis(RobotMap.rightStickX);
     robotDrive.arcadeDrive(speed, turn, true);
-    addInfoToDashboard();
   }
 
-  public void autoDrive(double speed, double rotation) {
-    addInfoToDashboard();
-    robotDrive.curvatureDrive(speed, rotation, false);
-  }
+  public void autoDrive(Joystick driver) {
+    Update_Limelight_Tracking();
 
-  private void addInfoToDashboard(){
-    //SmartDashboard.putData("leftEncoder", leftEncoder);
-    //SmartDashboard.putData("rightEncoder", rightEncoder);
+    if (m_LimelightHasValidTarget)
+    {
+      robotDrive.arcadeDrive(m_LimelightDriveCommand,m_LimelightSteerCommand);
+    }
+    else
+    {
+      robotDrive.arcadeDrive(0.0,0.0);
+    }
+
   }
 
   public void brake(){
@@ -112,42 +120,42 @@ public class DriveTrain extends Subsystem{
     backLeftTalon.setNeutralMode(NeutralMode.Brake);
   }
 
-  public void resetEncoders(){
-    leftEncoder.reset();
-    rightEncoder.reset();
-  }
+  public void Update_Limelight_Tracking()
+  {
+        // These numbers must be tuned for your Robot!  Be careful!
+        final double STEER_K = 0.03;                    // how hard to turn toward the target
+        final double DRIVE_K = 0.26;                    // how hard to drive fwd toward the target
+        final double DESIRED_TARGET_AREA = 13.0;        // Area of the target when the robot reaches the wall
+        final double MAX_DRIVE = 0.7;                   // Simple speed limit so we don't drive too fast
 
-  public void resetAHRS(){
-    ahrs.reset();
-  }
+        double tv = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(0);
+        double tx = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tx").getDouble(0);
+        double ty = NetworkTableInstance.getDefault().getTable("limelight").getEntry("ty").getDouble(0);
+        double ta = NetworkTableInstance.getDefault().getTable("limelight").getEntry("ta").getDouble(0);
 
-  public void stop(){
-    robotDrive.stopMotor();
-  }
-  
-  public double getLeftEncoderDistance() 
-  {
-    return leftEncoder.getDistance();
-  }
-    
-  public double getRightEncoderDistance() 
-  {
-    return rightEncoder.getDistance();
-  }    
-  
-  public void resetRightEncoder() 
-  {
-    rightEncoder.reset();
-  }
-  
-  public void resetLeftEncoder() 
-  {
-    leftEncoder.reset();
-  }
+        if (tv < 1.0)
+        {
+          m_LimelightHasValidTarget = false;
+          m_LimelightDriveCommand = 0.0;
+          m_LimelightSteerCommand = 0.0;
+          return;
+        }
 
-  public double getAHRSAngle() 
-  {
-    return ahrs.getAngle();
+        m_LimelightHasValidTarget = true;
+
+        // Start with proportional steering
+        double steer_cmd = tx * STEER_K;
+        m_LimelightSteerCommand = steer_cmd;
+
+        // try to drive forward until the target area reaches our desired area
+        double drive_cmd = (DESIRED_TARGET_AREA - ta) * DRIVE_K;
+
+        // don't let the robot drive too fast into the goal
+        if (drive_cmd > MAX_DRIVE)
+        {
+          drive_cmd = MAX_DRIVE;
+        }
+        m_LimelightDriveCommand = drive_cmd;
   }
 
 }
