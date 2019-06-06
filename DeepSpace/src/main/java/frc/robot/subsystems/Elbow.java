@@ -55,7 +55,7 @@ public class Elbow extends Subsystem {
     PIDcontroller.setFF(kFF);
     PIDcontroller.setOutputRange(kMinOutput, kMaxOutput);
 
-    encoder.setPosition(0);
+    encoder.setPosition(IntakeElbowPositions.getMin());
   }
 
   public void up(){

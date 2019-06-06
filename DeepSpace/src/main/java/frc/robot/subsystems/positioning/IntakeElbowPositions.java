@@ -8,9 +8,9 @@ public class IntakeElbowPositions {
     private static int finalElbowGearRatio = 66/18;
     public static int home_position = 0;//this is up
 
-    private static int eject_position = (int)(ratio * 2); //45 degrees
-    private static int hatch_position = (int)(ratio * 4);//90 degrees
-    private static int intake_Position = (int)(ratio * 6); //100 degrees
+    private static int eject_position = -(int)(ratio * 2); //45 degrees
+    private static int hatch_position = -(int)(ratio * 4);//90 degrees
+    private static int intake_Position = -(int)(ratio * 6); //100 degrees
 
     // private static int eject_position = (int)(ratio * 45); //45 degrees
     // private static int hatch_position = (int)(ratio * 90);//90 degrees

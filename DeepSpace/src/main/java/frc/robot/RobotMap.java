@@ -88,4 +88,27 @@ public class RobotMap {
   //end xbox *****************************************
 
 
+
+  //start momo *****************************************
+	
+	public static final int buttonTopRight = 4;
+	public static final int buttonMiddleRight = 6;
+  public static final int buttonBottomRight = 8;
+  
+	public static final int buttonTopLeft = 3;
+	public static final int buttonMiddleLeft = 5;
+  public static final int buttonBottomLeft = 7;
+
+  public static final int paddleLeft = 1;
+  public static final int paddleRight = 2;
+  
+	public static final int shifterForward = 10;
+	public static final int shifterBackwards = 9;
+	
+	public static final int pedals = 1;
+	public static final int wheel = 0;
+
+  //end momo *****************************************
+
+
 }

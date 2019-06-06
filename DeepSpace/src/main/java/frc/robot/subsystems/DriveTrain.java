@@ -49,8 +49,13 @@ public class DriveTrain extends Subsystem{
 
   public void arcade(Joystick driver){
 
-    double speed = -driver.getRawAxis(RobotMap.leftStickY);
-    double turn = driver.getRawAxis(RobotMap.rightStickX);
+    double speed = -driver.getRawAxis(RobotMap.pedals);
+    double turn = driver.getRawAxis(RobotMap.wheel);
+
+    turn *= 1.75;
+    turn = (turn > 1)? turn = 1 : turn;
+    turn = (turn < -1)? turn = -1 : turn;
+
     robotDrive.arcadeDrive(speed, turn, true);
   }
 

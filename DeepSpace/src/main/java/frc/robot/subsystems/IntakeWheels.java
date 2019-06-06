@@ -1,14 +1,11 @@
 package frc.robot.subsystems;
 
-import frc.robot.RobotMap;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.NeutralMode;
+import edu.wpi.first.wpilibj.VictorSP;
 
 public class IntakeWheels extends Subsystem {
 
-  private static final TalonSRX intakeWheelsTalon = new TalonSRX(1);
+  private static final VictorSP intakeWheelsVictor = new VictorSP(6);
   private static IntakeWheels instance;
 
   private IntakeWheels(){
@@ -24,32 +21,21 @@ public class IntakeWheels extends Subsystem {
 
   private void init(){
 
-    intakeWheelsTalon.configFactoryDefault();
-    intakeWheelsTalon.set(ControlMode.PercentOutput,0);
-    intakeWheelsTalon.setNeutralMode(NeutralMode.Brake);
-
-    intakeWheelsTalon.configNominalOutputForward(0,30);
-    intakeWheelsTalon.configNominalOutputReverse(0,30);
-    intakeWheelsTalon.configPeakOutputForward(1, 30);
-    intakeWheelsTalon.configPeakOutputReverse(-1, 30);
-    
-    intakeWheelsTalon.configPeakCurrentLimit(15, 30);
-    intakeWheelsTalon.configPeakCurrentDuration(120, 30);
-    intakeWheelsTalon.configContinuousCurrentLimit(3, 30);
-    intakeWheelsTalon.enableCurrentLimit(true);
+    intakeWheelsVictor.setExpiration(1);
+    intakeWheelsVictor.setSafetyEnabled(true);
 
   }
 
   public void injest(){
-    intakeWheelsTalon.set(ControlMode.PercentOutput, -0.5);
+    intakeWheelsVictor.set(-0.5);
   }
 
   public void eject(){
-    intakeWheelsTalon.set(ControlMode.PercentOutput, 1.0);
+    intakeWheelsVictor.set(1.0);
   }
 
   public void stop(){
-    intakeWheelsTalon.set(ControlMode.PercentOutput, 0.0);
+    intakeWheelsVictor.set(0.0);
   }
 
   @Override
