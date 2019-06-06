@@ -4,7 +4,6 @@ import frc.robot.RobotMap;
 import frc.robot.subsystems.positioning.ElevatorPositions;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
@@ -12,7 +11,6 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.DemandType;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
-
 
 public class Elevator extends Subsystem {
 
@@ -61,7 +59,7 @@ public class Elevator extends Subsystem {
     elevatorTalon.configPeakOutputForward(1.0, 30);
     elevatorTalon.configPeakOutputReverse(-0.7, 30);
 
-    elevatorTalon.configPeakCurrentLimit(40 , 30);
+    elevatorTalon.configPeakCurrentLimit(68, 30);
     elevatorTalon.configPeakCurrentDuration(120, 30);
     elevatorTalon.configContinuousCurrentLimit(15, 30);
     elevatorTalon.enableCurrentLimit(true);

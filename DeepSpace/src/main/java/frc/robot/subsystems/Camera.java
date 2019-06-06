@@ -10,7 +10,7 @@ public class Camera extends Subsystem {
 
   private UsbCamera camLeft = new UsbCamera("CamLeft", 0);//CameraServer.getInstance().startAutomaticCapture("CamLeft", 0);
   private UsbCamera camRight = new UsbCamera("CamRight", 1); //CameraServer.getInstance().startAutomaticCapture("CamRight", 1);
-  private final VideoSink sink = CameraServer.getInstance().addSwitchedCamera("name");//.getServer();
+  private final VideoSink sink = CameraServer.getInstance().addSwitchedCamera("CamLeft");//.getServer();
 
   private static Camera instance;
   
