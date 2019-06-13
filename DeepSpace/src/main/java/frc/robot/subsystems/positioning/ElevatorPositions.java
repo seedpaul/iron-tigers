@@ -6,6 +6,7 @@ public class ElevatorPositions{
     public static int current = 0;
 
     private static final int hatchLevel1 = 2750; //1
+    private static final int hatchLevelInBetween = 3150; //1
     private static final int hatchLevel2 = 11750; //3
     private static final int hatchLevel3 = 21000; //5
 
@@ -15,7 +16,7 @@ public class ElevatorPositions{
 
     //                          index:      0        1           2           3           4           5           6
     //public static final int[] positions = {home,hatchLevel1,cargoLevel1,hatchLevel2,cargoLevel2,hatchLevel3,cargoLevel3};
-    public static final int[] positions = {home,hatchLevel1,hatchLevel2,hatchLevel3};
+    public static final int[] positions = {home,hatchLevel1,hatchLevelInBetween,hatchLevel2,hatchLevel3};
 
     private static int currentIndex = 0;
 
