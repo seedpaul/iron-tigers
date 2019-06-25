@@ -2,6 +2,8 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.VictorSP;
+import edu.wpi.first.hal.PDPJNI;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class IntakeWheels extends Subsystem {
 
@@ -10,6 +12,10 @@ public class IntakeWheels extends Subsystem {
 
   private IntakeWheels(){
     init();
+  }
+
+  public void periodic(){
+    SmartDashboard.putNumber("intake wheels",getCurrent(15)); 
   }
 
   public static IntakeWheels getInstance(){
@@ -27,11 +33,15 @@ public class IntakeWheels extends Subsystem {
   }
 
   public void injest(){
-    intakeWheelsVictor.set(-0.5);
+    intakeWheelsVictor.set(0.5);
+  }
+
+  public void hold(){
+    intakeWheelsVictor.set(0.1);
   }
 
   public void eject(){
-    intakeWheelsVictor.set(1.0);
+    intakeWheelsVictor.set(-1.0);
   }
 
   public void stop(){
@@ -43,4 +53,14 @@ public class IntakeWheels extends Subsystem {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
   }
+
+  public double getCurrent(int channel) {
+
+		double current = PDPJNI.getPDPChannelCurrent((byte)channel, 0);
+		PDPJNI.checkPDPChannel(channel);
+
+		return current;
+	}
+
+
 }

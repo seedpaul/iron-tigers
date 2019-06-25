@@ -48,7 +48,8 @@ public class OI {
   public void init(){
 
     //************************* Main ***************************//
-    buttonX_dr.whenPressed(new IntakeWheelsInjest());
+    buttonX_dr.whileHeld(new IntakeWheelsInjest());
+    buttonX_dr.whenReleased(new IntakeWheelsHold());
     
     buttonB_dr.whileHeld(new IntakeWheelsEject());
     buttonB_dr.whenReleased(new IntakeWheelsStop()); 
@@ -68,8 +69,8 @@ public class OI {
     buttonX_as.whenPressed(new FlipperClose());
     buttonB_as.whenPressed(new FlipperOpen());
 
-    startButton_as.whenPressed(new FlipperBumpUp());
-    selectButton_as.whenPressed(new FlipperBumpDown());
+    // startButton_as.whenPressed(new FlipperBumpUp());
+    // selectButton_as.whenPressed(new FlipperBumpDown());
 
   }
   

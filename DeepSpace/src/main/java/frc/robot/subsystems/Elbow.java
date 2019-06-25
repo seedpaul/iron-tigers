@@ -39,13 +39,13 @@ public class Elbow extends Subsystem {
     encoder = sparkMax.getEncoder();
 
     // PID coefficients
-    kP = 1.8; 
+    kP = 0.8; 
     kI = 0.0;
-    kD = 1.0; 
+    kD = 80.0; 
     kIz = 0; 
     kFF = 0; 
-    kMaxOutput = 1; 
-    kMinOutput = -1;
+    kMaxOutput = 0.4; 
+    kMinOutput = -0.4;
 
     // set PID coefficients
     PIDcontroller.setP(kP);
@@ -55,7 +55,7 @@ public class Elbow extends Subsystem {
     PIDcontroller.setFF(kFF);
     PIDcontroller.setOutputRange(kMinOutput, kMaxOutput);
 
-    encoder.setPosition(IntakeElbowPositions.getMin());
+    encoder.setPosition(IntakeElbowPositions.getHigh());
   }
 
   public void up(){

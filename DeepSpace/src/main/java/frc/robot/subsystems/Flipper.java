@@ -9,7 +9,7 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 
 public class Flipper extends Subsystem {
 
-  private static final TalonSRX flipperTalon = new TalonSRX(RobotMap.TalonIntakeFlipper);
+  private static final TalonSRX flipperTalon = new TalonSRX(1);
 
   private static int flipper_home = 350;
   private static int flipper_close = 1460;
@@ -46,7 +46,7 @@ public class Flipper extends Subsystem {
     flipperTalon.config_kF(0, 0.0, 30);
 		flipperTalon.config_kP(0, 1.5, 30);
 		flipperTalon.config_kI(0, 0.0, 30);
-    flipperTalon.config_kD(0, 15.0, 30);
+    flipperTalon.config_kD(0, 150.0, 30);
     
     flipperTalon.configAllowableClosedloopError(0,5,30);
 
