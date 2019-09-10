@@ -1,21 +1,17 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.VictorSP;
-import edu.wpi.first.hal.PDPJNI;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 
 public class IntakeWheels extends Subsystem {
 
-  private static final VictorSP intakeWheelsVictor = new VictorSP(6);
+  private static final TalonSRX intakeWheelsTalon = new TalonSRX(20);
   private static IntakeWheels instance;
 
   private IntakeWheels(){
     init();
-  }
-
-  public void periodic(){
-    SmartDashboard.putNumber("intake wheels",getCurrent(15)); 
   }
 
   public static IntakeWheels getInstance(){
@@ -27,25 +23,32 @@ public class IntakeWheels extends Subsystem {
 
   private void init(){
 
-    intakeWheelsVictor.setExpiration(1);
-    intakeWheelsVictor.setSafetyEnabled(true);
+    intakeWheelsTalon.configFactoryDefault();
+    intakeWheelsTalon.set(ControlMode.PercentOutput,0);
+    intakeWheelsTalon.setNeutralMode(NeutralMode.Brake);
+
+    intakeWheelsTalon.configNominalOutputForward(0,30);
+    intakeWheelsTalon.configNominalOutputReverse(0,30);
+    intakeWheelsTalon.configPeakOutputForward(1, 30);
+    intakeWheelsTalon.configPeakOutputReverse(-1, 30);
+    
+    intakeWheelsTalon.configPeakCurrentLimit(15, 30);
+    intakeWheelsTalon.configPeakCurrentDuration(120, 30);
+    intakeWheelsTalon.configContinuousCurrentLimit(3, 30);
+    intakeWheelsTalon.enableCurrentLimit(true);
 
   }
 
   public void injest(){
-    intakeWheelsVictor.set(0.5);
-  }
-
-  public void hold(){
-    intakeWheelsVictor.set(0.1);
+    intakeWheelsTalon.set(ControlMode.PercentOutput, 0.5);
   }
 
   public void eject(){
-    intakeWheelsVictor.set(-1.0);
+    intakeWheelsTalon.set(ControlMode.PercentOutput, -1.0);
   }
 
   public void stop(){
-    intakeWheelsVictor.set(0.0);
+    intakeWheelsTalon.set(ControlMode.PercentOutput, 0.0);
   }
 
   @Override
@@ -53,14 +56,4 @@ public class IntakeWheels extends Subsystem {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
   }
-
-  public double getCurrent(int channel) {
-
-		double current = PDPJNI.getPDPChannelCurrent((byte)channel, 0);
-		PDPJNI.checkPDPChannel(channel);
-
-		return current;
-	}
-
-
 }

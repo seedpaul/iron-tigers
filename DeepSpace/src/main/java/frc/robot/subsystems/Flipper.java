@@ -35,8 +35,8 @@ public class Flipper extends Subsystem {
     flipperTalon.set(ControlMode.Position,0);
     flipperTalon.setNeutralMode(NeutralMode.Brake);
 
-    flipperTalon.configForwardSoftLimitEnable(true);
-    flipperTalon.configReverseSoftLimitEnable(true);
+    flipperTalon.configForwardSoftLimitEnable(false);
+    flipperTalon.configReverseSoftLimitEnable(false);
 
     flipperTalon.configForwardSoftLimitThreshold(flipper_close);
     flipperTalon.configReverseSoftLimitThreshold(flipper_home);

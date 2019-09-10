@@ -13,64 +13,44 @@ import frc.robot.commands.elbow.*;
 import frc.robot.commands.intake_wheels.*;
 import frc.robot.commands.elevator.*;
 import frc.robot.commands.flipper.*;
-import frc.robot.commands.camera.*;
 
 public class OI {
 
   //************************* Main Driver *********************************//
-  public static Joystick XboxDriver = new Joystick(RobotMap.xboxControllerDriver);
+  public static Joystick XboxDriver = new Joystick(RobotMap.genericController);
 
-  public static JoystickButton buttonA_dr = new JoystickButton(XboxDriver,RobotMap.buttonA);
-  public static JoystickButton buttonB_dr = new JoystickButton(XboxDriver,RobotMap.buttonB);
-  public static JoystickButton buttonX_dr = new JoystickButton(XboxDriver,RobotMap.buttonX);
-  public static JoystickButton buttonY_dr = new JoystickButton(XboxDriver,RobotMap.buttonY);
+  public static JoystickButton buttonA = new JoystickButton(XboxDriver,RobotMap.genericButtonA);
+  public static JoystickButton buttonB = new JoystickButton(XboxDriver,RobotMap.genericButtonB);
+  public static JoystickButton buttonX = new JoystickButton(XboxDriver,RobotMap.genericButtonX);
+  public static JoystickButton buttonY = new JoystickButton(XboxDriver,RobotMap.genericButtonY);
 
-  public static JoystickButton buttonBumperRight_dr = new JoystickButton(XboxDriver,RobotMap.buttonBumperRight);
-  public static JoystickButton buttonBumperLeft_dr = new JoystickButton(XboxDriver,RobotMap.buttonBumperLeft);
+  public static JoystickButton buttonBumperRight = new JoystickButton(XboxDriver,RobotMap.genericButtonBumperRight);
+  public static JoystickButton buttonBumperLeft = new JoystickButton(XboxDriver,RobotMap.genericButtonBumperLeft);
 
-  public static JoystickButton startButton_dr = new JoystickButton(XboxDriver,RobotMap.buttonStart);
-  public static JoystickButton selectButton_dr = new JoystickButton(XboxDriver,RobotMap.buttonSelect);
+  public static JoystickButton startButton = new JoystickButton(XboxDriver,RobotMap.genericButtonStart);
+  public static JoystickButton backButton = new JoystickButton(XboxDriver,RobotMap.genericButtonBack);
 
-  //************************ Assistant Driver ************************************//
-  public static Joystick xboxControllerAssist = new Joystick(RobotMap.xboxControllerAssist);
-
-  public static JoystickButton buttonA_as = new JoystickButton(xboxControllerAssist,RobotMap.buttonA);
-  public static JoystickButton buttonB_as = new JoystickButton(xboxControllerAssist,RobotMap.buttonB);
-  public static JoystickButton buttonX_as = new JoystickButton(xboxControllerAssist,RobotMap.buttonX);
-  public static JoystickButton buttonY_as = new JoystickButton(xboxControllerAssist,RobotMap.buttonY);
-
-  public static JoystickButton buttonBumperLeft_as = new JoystickButton(xboxControllerAssist,RobotMap.buttonBumperLeft);
-  public static JoystickButton buttonBumperRight_as = new JoystickButton(xboxControllerAssist,RobotMap.buttonBumperRight);
-
-  public static JoystickButton startButton_as = new JoystickButton(xboxControllerAssist,RobotMap.buttonStart);
-  public static JoystickButton selectButton_as = new JoystickButton(xboxControllerAssist,RobotMap.buttonSelect);
+  public static JoystickButton buttonTriggerRight = new JoystickButton(XboxDriver,RobotMap.genericRightTrigger);
+  public static JoystickButton buttonTriggerLeft = new JoystickButton(XboxDriver,RobotMap.genericLeftTrigger);
 
   public void init(){
 
-    //************************* Main ***************************//
-    buttonX_dr.whileHeld(new IntakeWheelsInjest());
-    buttonX_dr.whenReleased(new IntakeWheelsHold());
+    buttonBumperLeft.whenPressed(new IntakeWheelsInjest());
     
-    buttonB_dr.whileHeld(new IntakeWheelsEject());
-    buttonB_dr.whenReleased(new IntakeWheelsStop()); 
+    buttonBumperRight.whenPressed(new IntakeWheelsEject());
+    buttonBumperRight.whenReleased(new IntakeWheelsStop());
 
-    buttonY_dr.whenPressed(new ElbowUp());
-    buttonA_dr.whenPressed(new ElbowDown()); 
+    buttonTriggerRight.whenPressed(new ElbowUp());
+    buttonTriggerLeft.whenPressed(new ElbowDown()); 
 
-    startButton_dr.whenPressed(new ToggleCameras()); 
+    buttonY.whenPressed(new ElevatorUp()); 
+    buttonY.whenReleased(new ElevatorStop());
 
-    //**************************** Assistnt ************************//
-    buttonY_as.whileHeld(new ElevatorUp()); 
-    buttonY_as.whenReleased(new ElevatorStop());
+    buttonA.whenPressed(new ElevatorDown()); 
+    buttonA.whenReleased(new ElevatorStop());
 
-    buttonA_as.whileHeld(new ElevatorDown()); 
-    buttonA_as.whenReleased(new ElevatorStop());
-
-    buttonX_as.whenPressed(new FlipperClose());
-    buttonB_as.whenPressed(new FlipperOpen());
-
-    // startButton_as.whenPressed(new FlipperBumpUp());
-    // selectButton_as.whenPressed(new FlipperBumpDown());
+    buttonX.whenPressed(new FlipperClose());
+    buttonB.whenPressed(new FlipperOpen());
 
   }
   

@@ -76,7 +76,7 @@ public class RobotMap {
 	public static final int rightStickY = 5;
 	public static final int leftStickY = 1;
 	
-	public static final int rightStickX = 4;
+	public static final int rightStickX = 2;
 	public static final int leftStickX = 0;
 	
 	public static final int rightTrigger = 3;
@@ -108,12 +108,12 @@ public class RobotMap {
 
 
   //start logitech ***********************************
-  public static final int genericControllerAssist = 1;
+  public static final int genericController = 0;
 	
-	public static final int genericButton1 = 1;
-	public static final int genericButton2 = 2;
-	public static final int genericButton3 = 3;
-	public static final int genericButton5 = 4;
+	public static final int genericButtonX = 1;
+	public static final int genericButtonA = 2;
+	public static final int genericButtonB = 3;
+	public static final int genericButtonY = 4;
 	
 	public static final int genericButtonBumperLeft = 5;
 	public static final int genericButtonBumperRight = 6;
@@ -121,8 +121,8 @@ public class RobotMap {
 	public static final int genericLeftTrigger = 7;
 	public static final int genericRightTrigger = 8;
 	
-	public static final int genericButton9 = 9;
-	public static final int genericButton10 = 10;
+	public static final int genericButtonBack = 9;
+	public static final int genericButtonStart = 10;
 	
 	public static final int genericLeftJoystickPush = 11;
 	public static final int genericRightJoystickPush = 12;
