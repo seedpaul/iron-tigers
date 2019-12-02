@@ -54,7 +54,7 @@ public class RearLift extends Subsystem {
 		rearLiftTalon.config_kI(0, 0.0, 30);
     rearLiftTalon.config_kD(0, 1.0, 30);
 
-    rearLiftTalon.configPeakCurrentLimit(35, 30);
+    rearLiftTalon.configPeakCurrentLimit(65, 30);
     rearLiftTalon.configPeakCurrentDuration(120, 30);
     rearLiftTalon.configContinuousCurrentLimit(25, 30);
     rearLiftTalon.enableCurrentLimit(true);
