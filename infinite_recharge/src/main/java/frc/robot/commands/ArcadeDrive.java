@@ -9,6 +9,7 @@ package frc.robot.commands;
 
 import frc.robot.subsystems.DriveTrain;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.OI;
 
 /**
  * An example command that uses an example subsystem.
@@ -36,6 +37,7 @@ public class ArcadeDrive extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    my_driveTrain.arcade(OI.XboxDriver);
   }
 
   // Called once the command ends or is interrupted.
