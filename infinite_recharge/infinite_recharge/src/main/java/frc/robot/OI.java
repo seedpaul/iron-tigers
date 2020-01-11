@@ -1,0 +1,10 @@
+package frc.robot;
+
+
+public class OI {
+
+    public void init(){
+
+    }
+}
+    
