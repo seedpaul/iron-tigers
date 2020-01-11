@@ -10,9 +10,10 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.Joystick;
 import frc.robot.RobotMap;
 
 public class DriveTrain extends SubsystemBase {
@@ -37,6 +38,9 @@ public class DriveTrain extends SubsystemBase {
 
    private static DriveTrain instance;
 
+   private DriveTrain(){
+    init();
+  }
 
    public static DriveTrain getInstance(){
      if (instance == null){
@@ -46,10 +50,24 @@ public class DriveTrain extends SubsystemBase {
      return instance;
    }
 
+   private void init(){
 
+    backRightTalon.setNeutralMode(NeutralMode.Brake);
+    backLeftTalon.setNeutralMode(NeutralMode.Brake);
+    frontLeftVictor.setNeutralMode(NeutralMode.Brake);
+    frontRightVictor.setNeutralMode(NeutralMode.Brake);
 
-  @Override
-  public void periodic() {
-    // This method will be called once per scheduler run
+    robotDrive.setExpiration(1);
+    robotDrive.setSafetyEnabled(true);
+    
+   }
+
+   public void arcade(Joystick driver){
+
+    double speed = -driver.getRawAxis(RobotMap.leftStickY);
+    double turn = driver.getRawAxis(RobotMap.rightStickX);
+    robotDrive.arcadeDrive(speed, turn, true);
   }
+
+
 }
