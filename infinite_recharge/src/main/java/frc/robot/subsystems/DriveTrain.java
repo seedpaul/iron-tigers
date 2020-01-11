@@ -37,10 +37,6 @@ public class DriveTrain extends SubsystemBase {
 
    private static DriveTrain instance;
 
-  //  private DriveTrain(){
-  //   init();
-  //  }
-
 
    public static DriveTrain getInstance(){
      if (instance == null){
