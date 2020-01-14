@@ -43,8 +43,6 @@ public class Robot extends TimedRobot {
 
     m_driveTrain =  DriveTrain.getInstance();
 
-    m_arcadeDrive = new ArcadeDrive(m_driveTrain);
-
   }
 
   /**
@@ -103,6 +101,8 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+    m_arcadeDrive = new ArcadeDrive(m_driveTrain);
+   
   }
 
   /**
@@ -110,6 +110,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
+    m_arcadeDrive.execute();
   }
 
   @Override
