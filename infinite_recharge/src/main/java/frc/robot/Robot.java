@@ -13,6 +13,8 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.OI;
 import frc.robot.commands.ArcadeDrive;
 import frc.robot.subsystems.DriveTrain;
+import edu.wpi.first.networktables.*;
+import edu.wpi.first.wpilibj.GenericHID.Hand;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -28,6 +30,10 @@ public class Robot extends TimedRobot {
   private ArcadeDrive m_arcadeDrive;
   private DriveTrain m_driveTrain;
 
+  private boolean m_LimelightHasValidTarget = false;
+  private double m_LimelightDriveCommand = 0.0;
+  private double m_LimelightSteerCommand = 0.0;
+
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
@@ -39,7 +45,6 @@ public class Robot extends TimedRobot {
     m_robotContainer = new RobotContainer();
     m_oi = new OI();
     m_oi.init();
-
 
     m_driveTrain =  DriveTrain.getInstance();
 
@@ -110,7 +115,81 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
-    m_arcadeDrive.execute();
+   
+        Update_Limelight_Tracking();
+
+        double steer = OI.XboxDriver.getX(Hand.kRight);
+        double drive = -OI.XboxDriver.getY(Hand.kLeft);
+        boolean auto = OI.XboxDriver.getRawButton(RobotMap.buttonA);
+
+        steer *= 0.70;
+        drive *= 0.70;
+
+        if (auto)
+        {
+          NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(3);
+          System.out.println("auto");
+          if (m_LimelightHasValidTarget){
+              System.out.println("m_LimelightHasValidTarget");
+              m_driveTrain.robotDrive.arcadeDrive(m_LimelightDriveCommand,m_LimelightSteerCommand);
+          }
+          else{
+            m_driveTrain.robotDrive.arcadeDrive(0.0,0.0);
+          }
+        }
+        else{
+          m_driveTrain.robotDrive.arcadeDrive(drive,steer);
+          NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(1);
+        }
+  }
+
+  public void Update_Limelight_Tracking()
+  {
+
+        System.out.println("Update_Limelight_Tracking");
+        // These numbers must be tuned for your Robot!  Be careful!
+        final double STEER_K = 0.1;                    // how hard to turn toward the target
+        final double DRIVE_K = 0.35;                    // how hard to drive fwd toward the target
+        final double DESIRED_TARGET_AREA = 13.0;        // Area of the target when the robot reaches the wall
+        final double MAX_DRIVE = 0.7;                   // Simple speed limit so we don't drive too fast
+
+        double tv = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(0);
+        double tx = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tx").getDouble(0);
+        double ty = NetworkTableInstance.getDefault().getTable("limelight").getEntry("ty").getDouble(0);
+        double ta = NetworkTableInstance.getDefault().getTable("limelight").getEntry("ta").getDouble(0);
+
+
+        System.out.println("tv:" + tv);
+        System.out.println("tx:" + tx);
+        System.out.println("ty:" + ty);
+        System.out.println("ta:" + ta);
+
+        // double test = NetworkTable.getTable("limelight").getDouble("tx", 0);
+        // System.out.println("tx:" + test);
+
+        if (tv < 1.0)
+        {
+          m_LimelightHasValidTarget = false;
+          m_LimelightDriveCommand = 0.0;
+          m_LimelightSteerCommand = 0.0;
+          return;
+        }
+
+        m_LimelightHasValidTarget = true;
+
+        // Start with proportional steering
+        double steer_cmd = tx * STEER_K;
+        m_LimelightSteerCommand = steer_cmd;
+
+        // try to drive forward until the target area reaches our desired area
+        double drive_cmd = (DESIRED_TARGET_AREA - ta) * DRIVE_K;
+
+        // don't let the robot drive too fast into the goal
+        if (drive_cmd > MAX_DRIVE)
+        {
+          drive_cmd = MAX_DRIVE;
+        }
+        m_LimelightDriveCommand = drive_cmd;
   }
 
   @Override

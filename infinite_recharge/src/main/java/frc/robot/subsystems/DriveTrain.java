@@ -34,7 +34,7 @@ public class DriveTrain extends SubsystemBase {
    private final SpeedControllerGroup leftSCG = new SpeedControllerGroup(frontLeftVictor, backLeftTalon);
 
    //declares the drive train (which consists of each motor controller)
-   private final DifferentialDrive robotDrive = new DifferentialDrive(leftSCG, rightSCG);
+   public final DifferentialDrive robotDrive = new DifferentialDrive(leftSCG, rightSCG);
 
 
    private static DriveTrain instance;
