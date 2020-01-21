@@ -116,6 +116,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
    
+        // NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(3);
         Update_Limelight_Tracking();
 
         double steer = OI.XboxDriver.getX(Hand.kRight);
@@ -130,7 +131,7 @@ public class Robot extends TimedRobot {
           NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(3);
           System.out.println("auto");
           if (m_LimelightHasValidTarget){
-              System.out.println("m_LimelightHasValidTarget");
+              // System.out.println("m_LimelightHasValidTarget");
               m_driveTrain.robotDrive.arcadeDrive(m_LimelightDriveCommand,m_LimelightSteerCommand);
           }
           else{
@@ -146,26 +147,24 @@ public class Robot extends TimedRobot {
   public void Update_Limelight_Tracking()
   {
 
-        System.out.println("Update_Limelight_Tracking");
+        // System.out.println("Update_Limelight_Tracking");
         // These numbers must be tuned for your Robot!  Be careful!
-        final double STEER_K = 0.1;                    // how hard to turn toward the target
-        final double DRIVE_K = 0.35;                    // how hard to drive fwd toward the target
-        final double DESIRED_TARGET_AREA = 13.0;        // Area of the target when the robot reaches the wall
+        final double STEER_K = 0.035;                    // how hard to turn toward the target
+        final double DRIVE_K = 0.45;                    // how hard to drive fwd toward the target
+        final double DESIRED_TARGET_AREA = 2.93;        // Area of the target when the robot reaches the wall
         final double MAX_DRIVE = 0.7;                   // Simple speed limit so we don't drive too fast
 
         double tv = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(0);
         double tx = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tx").getDouble(0);
         double ty = NetworkTableInstance.getDefault().getTable("limelight").getEntry("ty").getDouble(0);
         double ta = NetworkTableInstance.getDefault().getTable("limelight").getEntry("ta").getDouble(0);
+        double tl = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tl").getDouble(0);
 
-
-        System.out.println("tv:" + tv);
-        System.out.println("tx:" + tx);
-        System.out.println("ty:" + ty);
-        System.out.println("ta:" + ta);
-
-        // double test = NetworkTable.getTable("limelight").getDouble("tx", 0);
-        // System.out.println("tx:" + test);
+        // System.out.println("tv:" + tv);
+        // System.out.println("tx:" + tx);
+        // System.out.println("ty:" + ty);
+        // System.out.println("ta:" + ta);
+        // System.out.println("tl:" + tl);
 
         if (tv < 1.0)
         {
