@@ -1,5 +1,5 @@
 /*----------------------------------------------------------------------------*/
-/* Copyright (c) 2018-2019 FIRST. All Rights Reserved.                        */
+/* Copyright (c) 2019 FIRST. All Rights Reserved.                             */
 /* Open Source Software - may be modified and shared by FRC teams. The code   */
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
@@ -7,39 +7,29 @@
 
 package frc.robot.commands;
 
-import frc.robot.subsystems.DriveTrain;
-import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.Bombardier;
 
-/**
- * An example command that uses an example subsystem.
- */
-public class ArcadeDrive extends CommandBase {
+public class TurretStartTargeting extends CommandBase {
 
-  private final DriveTrain m_driveTrain;
-  private final XboxController m_driverController;
+  private final Bombardier m_Bombardier;
 
-  /**
-   * Creates a new ExampleCommand.
-   *
-   * @param driveTrain The subsystem used by this command.
-   */
-  public ArcadeDrive(DriveTrain in_driveTrain, XboxController in_driverController) {
-    m_driveTrain = in_driveTrain;
-    m_driverController = in_driverController;
+  public TurretStartTargeting(Bombardier in_Bombardier) {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(m_driveTrain);
+    m_Bombardier = in_Bombardier;
+    addRequirements(m_Bombardier);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_driveTrain.arcade(m_driverController);
+    m_Bombardier.target(true, false);
   }
 
   // Called once the command ends or is interrupted.
@@ -50,6 +40,6 @@ public class ArcadeDrive extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return true;
   }
 }
